@@ -1,4 +1,6 @@
 eval "$(rbenv init -)"
+
+# プロンプトの表示変更、gitのブランチ表示、git補完機能
 source /usr/local/etc/bash_completion.d/git-prompt.sh
 source /usr/local/etc/bash_completion.d/git-completion.bash
 GIT_PS1_SHOWDIRTYSTATE=true
