@@ -19,6 +19,9 @@ set ignorecase " 検索パターンに大文字小文字を区別しない
 set smartcase " 検索パターンに大文字を含んでいたら大文字小文字を区別する
 set hlsearch " 検索結果をハイライト
 
+" ctrl-h*2でカーソル上のキーワードでhelp
+nnoremap <C-h><C-h> :<C-u>help<Space><C-r><C-w><CR>
+
 " ESCキー2度押しでハイライトの切り替え
 nnoremap <silent><Esc><Esc> :<C-u>set nohlsearch!<CR>
 
@@ -27,10 +30,10 @@ set number " 行番号を表示
 set cursorline " カーソルラインをハイライト
 
 " 行が折り返し表示されていた場合、行単位ではなく表示行単位でカーソルを移動する
-nnoremap j gj
-nnoremap k gk
-nnoremap <down> gj
-nnoremap <up> gk
+noremap j gj
+noremap k gk
+noremap <down> gj
+noremap <up> gk
 
 " バックスペースキーの有効化
 set backspace=indent,eol,start
