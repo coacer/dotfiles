@@ -99,7 +99,7 @@ colorscheme iceberg
 " The NERD Tree
 let g:NERDTreeDirArrowExpandable = '▸'
 let g:NERDTreeDirArrowCollapsible = '▾'
-map <C-n> :NERDTreeToggle<CR>
+map <C-n> :<C-u>NERDTreeToggle<CR>
 
 " ツリービュー自動表示
 " autocmd VimEnter * execute 'NERDTree'
