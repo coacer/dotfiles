@@ -48,15 +48,15 @@ if &compatible
 endif
 
 " Required:
-set runtimepath+=/Users/nakagamiyuki/.vim/bundle/repos/github.com/Shougo/dein.vim
+set runtimepath+=~/.vim/bundle/repos/github.com/Shougo/dein.vim
 
 " Required:
-if dein#load_state('/Users/nakagamiyuki/.vim/bundle')
-  call dein#begin('/Users/nakagamiyuki/.vim/bundle')
+if dein#load_state('~/.vim/bundle')
+  call dein#begin('~/.vim/bundle')
 
   " Let dein manage dein
   " Required:
-  call dein#add('/Users/nakagamiyuki/.vim/bundle/repos/github.com/Shougo/dein.vim')
+  call dein#add('~/.vim/bundle/repos/github.com/Shougo/dein.vim')
 
   " Add or remove your plugins here like this:
   "call dein#add('Shougo/neosnippet.vim')
@@ -79,6 +79,12 @@ if dein#load_state('/Users/nakagamiyuki/.vim/bundle')
   call dein#add('vim-airline/vim-airline-themes')
   " git管理
   call dein#add('tpope/vim-fugitive')
+  " ウィンドウサイズ変更用プラグイン
+  call dein#add('simeji/winresizer')
+  " カラーテーブルを表示する
+  call dein#add('guns/xterm-color-table.vim')
+  " JavaScriptES6のシンタックス
+  call dein#add('othree/yajs.vim')
   
   call dein#end()
   call dein#save_state()
@@ -89,11 +95,9 @@ filetype plugin indent on
 syntax enable
 
 " If you want to install not installed plugins on startup.
-" icebergを有効にする場合この下のコメントアウトを外す
-colorscheme iceberg
-"if dein#check_install()
-"  call dein#install()
-"endif
+if dein#check_install()
+ call dein#install()
+endif
 
 "End dein Scripts-------------------------
 " The NERD Tree
@@ -128,3 +132,71 @@ imap <C-f> <Right>
 filetype plugin indent on
 
 let g:indent_guides_enable_on_vim_startup = 1
+
+" ウィンドウサイズ変更用プラグイン
+" startコマンドのデフォルトctrl-eからctrl-uに変更
+let g:winresizer_start_key = '<C-U>'
+" 移動幅の設定
+let g:winresizer_vert_resize = 3
+let g:winresizer_horiz_resize = 1
+
+
+
+
+
+"----------カラースキーム-----------
+" カスタマイズ
+autocmd ColorScheme * highlight Comment ctermfg=246 
+autocmd ColorScheme * highlight Visual ctermbg=96 
+autocmd ColorScheme * highlight Search ctermbg=96 
+" -----JavaScript-----
+autocmd ColorScheme * highlight javascriptClassKeyword ctermfg=48 
+autocmd ColorScheme * highlight javascriptObjectLabel ctermfg=207 
+autocmd ColorScheme * highlight javascriptClassStatic ctermfg=197
+
+" -----Ruby-----
+autocmd ColorScheme * highlight rubyClass ctermfg=48 
+autocmd ColorScheme * highlight rubyFunction ctermfg=198 
+
+" カラースキーム設定
+colorscheme iceberg
+
+
+" :SyntaxInfoコマンドでカーソル下のシンタックスグループ名を表示する関数
+function! s:get_syn_id(transparent)
+  let synid = synID(line("."), col("."), 1)
+  if a:transparent
+    return synIDtrans(synid)
+  else
+    return synid
+  endif
+endfunction
+function! s:get_syn_attr(synid)
+  let name = synIDattr(a:synid, "name")
+  let ctermfg = synIDattr(a:synid, "fg", "cterm")
+  let ctermbg = synIDattr(a:synid, "bg", "cterm")
+  let guifg = synIDattr(a:synid, "fg", "gui")
+  let guibg = synIDattr(a:synid, "bg", "gui")
+  return {
+        \ "name": name,
+        \ "ctermfg": ctermfg,
+        \ "ctermbg": ctermbg,
+        \ "guifg": guifg,
+        \ "guibg": guibg}
+endfunction
+function! s:get_syn_info()
+  let baseSyn = s:get_syn_attr(s:get_syn_id(0))
+  echo "name: " . baseSyn.name .
+        \ " ctermfg: " . baseSyn.ctermfg .
+        \ " ctermbg: " . baseSyn.ctermbg .
+        \ " guifg: " . baseSyn.guifg .
+        \ " guibg: " . baseSyn.guibg
+  let linkedSyn = s:get_syn_attr(s:get_syn_id(1))
+  echo "link to"
+  echo "name: " . linkedSyn.name .
+        \ " ctermfg: " . linkedSyn.ctermfg .
+        \ " ctermbg: " . linkedSyn.ctermbg .
+        \ " guifg: " . linkedSyn.guifg .
+        \ " guibg: " . linkedSyn.guibg
+endfunction
+command! SyntaxInfo call s:get_syn_info()
