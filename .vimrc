@@ -23,7 +23,7 @@ set hlsearch " 検索結果をハイライト
 nnoremap <C-h><C-h> :<C-u>help<Space><C-r><C-w><CR>
 
 " ESCキー2度押しでハイライトの切り替え
-nnoremap <silent><Esc><Esc> :<C-u>set nohlsearch!<CR>
+nnoremap <Esc><Esc> :noh<CR>
 
 set whichwrap=b,s,h,l,<,>,[,],~ " カーソルの左右移動で行末から次の行の行頭への移動が可能になる
 set number " 行番号を表示
