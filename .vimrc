@@ -143,22 +143,25 @@ map <C-n> :<C-u>NERDTreeToggle<CR>
 " autocmd VimEnter * execute 'NERDTree'
 
 " ツリービュー拡張子ハイライト
-function! NERDTreeHighlightFile(extension, fg, bg, guifg, guibg)
-  exec 'autocmd filetype nerdtree highlight ' . a:extension .' ctermbg='. a:bg .' ctermfg='. a:fg .' guibg='. a:guibg .' guifg='. a:guifg
+function! NERDTreeHighlightFile(extension, fg, bg)
+  exec 'autocmd filetype nerdtree highlight ' . a:extension .' ctermbg='. a:bg .' ctermfg='. a:fg
   exec 'autocmd filetype nerdtree syn match ' . a:extension .' #^\s\+.*'. a:extension .'$#'
 endfunction
-call NERDTreeHighlightFile('py',     'yellow',  'none', 'yellow',  '#151515')
-call NERDTreeHighlightFile('md',     'blue',    'none', '#3366FF', '#151515')
-call NERDTreeHighlightFile('yml',    'yellow',  'none', 'yellow',  '#151515')
-call NERDTreeHighlightFile('config', 'yellow',  'none', 'yellow',  '#151515')
-call NERDTreeHighlightFile('conf',   'yellow',  'none', 'yellow',  '#151515')
-call NERDTreeHighlightFile('json',   'yellow',  'none', 'yellow',  '#151515')
-call NERDTreeHighlightFile('html',   'yellow',  'none', 'yellow',  '#151515')
-call NERDTreeHighlightFile('styl',   'cyan',    'none', 'cyan',    '#151515')
-call NERDTreeHighlightFile('css',    'cyan',    'none', 'cyan',    '#151515')
-call NERDTreeHighlightFile('rb',     'Red',     'none', 'red',     '#151515')
-call NERDTreeHighlightFile('js',   'yellow',  'none', 'yellow',  '#151515')
-call NERDTreeHighlightFile('php',    'Magenta', 'none', '#ff00ff', '#151515')
+call NERDTreeHighlightFile('py',     'yellow',  'none')
+call NERDTreeHighlightFile('md',     'blue',    'none')
+call NERDTreeHighlightFile('yml',    'yellow',  'none')
+call NERDTreeHighlightFile('config', 'yellow',  'none')
+call NERDTreeHighlightFile('conf',   'yellow',  'none')
+call NERDTreeHighlightFile('json',   'yellow',  'none')
+call NERDTreeHighlightFile('html',   'yellow',  'none')
+call NERDTreeHighlightFile('styl',   'cyan',    'none')
+call NERDTreeHighlightFile('css',    '159',    'none')
+call NERDTreeHighlightFile('rb',     'Red',     'none')
+call NERDTreeHighlightFile('js',   '227',  'none')
+call NERDTreeHighlightFile('php',    'Magenta', 'none')
+call NERDTreeHighlightFile('coffee',    '2', 'none')
+call NERDTreeHighlightFile('Gemfile',    '126', 'none')
+call NERDTreeHighlightFile('lock',    '126', 'none')
 
 
 " ステータスラインカスタム
