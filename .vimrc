@@ -19,6 +19,32 @@ set ignorecase " 検索パターンに大文字小文字を区別しない
 set smartcase " 検索パターンに大文字を含んでいたら大文字小文字を区別する
 set hlsearch " 検索結果をハイライト
 
+" スペース+vで.vimrcファイルを開く
+nnoremap <Space>v :<C-u>vsplit $MYVIMRC<CR>
+
+" スペース+sで.vimrcファイルを読み込む
+nnoremap <Space>s :<C-u>source $MYVIMRC<CR>
+
+" スペース+mでmyvim_manual.txtファイルを開く
+nnoremap <Space>m :<C-u>vsplit ~/dotfiles/myvim_manual.txt<CR>
+
+" ctrl+aで全選択
+nnoremap <C-a> ggVG
+
+" ; と : を入れ替える
+nnoremap ; :
+nnoremap : ;
+
+" ctrl-oで下に空行挿入
+nnoremap <C-o> mzo<Esc>`z
+
+" 行を移動
+nnoremap <C-k> "zdd<Up>"zP
+nnoremap <C-j> "zdd"zp
+" 複数行を移動
+vnoremap <C-k> "zx<Up>"zP`[V`]
+vnoremap <C-j> "zx"zp`[V`]
+
 " ctrl-h*2でカーソル上のキーワードでhelp
 nnoremap <C-h><C-h> :<C-u>help<Space><C-r><C-w><CR>
 
@@ -112,7 +138,7 @@ if dein#load_state('~/.vim/bundle')
   call dein#add('tpope/vim-fugitive')
   " カッコやHTMLタグなどの挿入、削除、置換プラグイン
   call dein#add('tpope/vim-surround')
-  
+
   " Required:
   call dein#end()
   call dein#save_state()
@@ -124,7 +150,7 @@ syntax enable
 
 " If you want to install not installed plugins on startup.
 if dein#check_install()
- call dein#install()
+  call dein#install()
 endif
 
 "End dein Scripts-------------------------
@@ -137,7 +163,7 @@ endif
 " 基本設定
 let g:NERDTreeDirArrowExpandable = '▸'
 let g:NERDTreeDirArrowCollapsible = '▾'
-map <C-n> :<C-u>NERDTreeToggle<CR>
+noremap <C-n> :<C-u>NERDTreeToggle<CR>
 
 " ツリービュー自動表示
 " autocmd VimEnter * execute 'NERDTree'
@@ -178,7 +204,7 @@ let g:airline#extensions#default#section_truncate_width = {}
 let g:airline#extensions#whitespace#enabled = 1
 nmap <C-e> <Plug>AirlineSelectPrevTab
 nmap <C-y> <Plug>AirlineSelectNextTab
-map <C-d> :bd<CR>
+noremap <C-d> :bd<CR>
 
 
 " ファイルタイプ別のプラグイン/インデントを有効にする
