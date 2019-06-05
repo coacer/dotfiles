@@ -110,6 +110,8 @@ if dein#load_state('~/.vim/bundle')
   call dein#add('othree/yajs.vim')
   " vim上からgitコマンドを使えるプラグイン
   call dein#add('tpope/vim-fugitive')
+  " カッコやHTMLタグなどの挿入、削除、置換プラグイン
+  call dein#add('tpope/vim-surround')
   
   " Required:
   call dein#end()
