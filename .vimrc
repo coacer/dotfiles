@@ -40,7 +40,31 @@ set backspace=indent,eol,start
 set showmatch " 括弧の対応関係を一瞬表示する
 source $VIMRUNTIME/macros/matchit.vim " Vimの「%」を拡張する
 
+" シンタックスを判別してカラー表示する
 syntax on
+
+" Emacs風キーバインディングの設定
+" インサートモード
+imap <C-p> <Up>
+imap <C-n> <Down>
+imap <C-b> <Left>
+imap <C-f> <Right>
+imap <C-a> <Home>
+imap <C-e> <End>
+imap <C-d> <Del>
+
+" コマンドモード
+cnoremap <C-p> <Up>
+cnoremap <C-n> <Down>
+cnoremap <C-b> <Left>
+cnoremap <C-f> <Right>
+cnoremap <C-a> <Home>
+cnoremap <C-e> <End>
+cnoremap <C-d> <Del>
+
+
+
+
 
 "dein Scripts-----------------------------
 if &compatible
@@ -62,7 +86,6 @@ if dein#load_state('~/.vim/bundle')
   "call dein#add('Shougo/neosnippet.vim')
   "call dein#add('Shougo/neosnippet-snippets')
 
-  " Required:
   " ツリービュー表示
   call dein#add('scrooloose/nerdtree')
   " カラースキーム
@@ -85,7 +108,10 @@ if dein#load_state('~/.vim/bundle')
   call dein#add('guns/xterm-color-table.vim')
   " JavaScriptES6のシンタックス
   call dein#add('othree/yajs.vim')
+  " vim上からgitコマンドを使えるプラグイン
+  call dein#add('tpope/vim-fugitive')
   
+  " Required:
   call dein#end()
   call dein#save_state()
 endif
@@ -100,10 +126,19 @@ if dein#check_install()
 endif
 
 "End dein Scripts-------------------------
-" The NERD Tree
+
+
+
+
+
+" -------------- The NERD Tree----------------
+" 基本設定
 let g:NERDTreeDirArrowExpandable = '▸'
 let g:NERDTreeDirArrowCollapsible = '▾'
 map <C-n> :<C-u>NERDTreeToggle<CR>
+
+" ツリービュー自動表示
+" autocmd VimEnter * execute 'NERDTree'
 
 " ツリービュー拡張子ハイライト
 function! NERDTreeHighlightFile(extension, fg, bg, guifg, guibg)
@@ -124,9 +159,6 @@ call NERDTreeHighlightFile('js',   'yellow',  'none', 'yellow',  '#151515')
 call NERDTreeHighlightFile('php',    'Magenta', 'none', '#ff00ff', '#151515')
 
 
-" ツリービュー自動表示
-" autocmd VimEnter * execute 'NERDTree'
-
 " ステータスラインカスタム
 let g:airline_theme = 'bubblegum'
 set laststatus=2
@@ -143,16 +175,13 @@ nmap <C-e> <Plug>AirlineSelectPrevTab
 nmap <C-y> <Plug>AirlineSelectNextTab
 map <C-d> :bd<CR>
 
-imap <C-p> <Up>
-imap <C-n> <Down>
-imap <C-b> <Left>
-imap <C-f> <Right>
+
 " ファイルタイプ別のプラグイン/インデントを有効にする
 filetype plugin indent on
 
 let g:indent_guides_enable_on_vim_startup = 1
 
-" ウィンドウサイズ変更用プラグイン
+" ウィンドウサイズ変更用プラグイン(winresizer)
 " startコマンドのデフォルトctrl-eからctrl-uに変更
 let g:winresizer_start_key = '<C-U>'
 " 移動幅の設定
