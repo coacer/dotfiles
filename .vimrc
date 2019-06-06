@@ -186,8 +186,8 @@ call NERDTreeHighlightFile('rb',     'Red',     'none')
 call NERDTreeHighlightFile('js',   '227',  'none')
 call NERDTreeHighlightFile('php',    'Magenta', 'none')
 call NERDTreeHighlightFile('coffee',    '2', 'none')
-call NERDTreeHighlightFile('Gemfile',    '126', 'none')
-call NERDTreeHighlightFile('lock',    '126', 'none')
+call NERDTreeHighlightFile('Gemfile',    '105', 'none')
+call NERDTreeHighlightFile('lock',    '105', 'none')
 
 
 " ステータスラインカスタム
@@ -225,6 +225,7 @@ let g:winresizer_horiz_resize = 1
 
 "----------カラースキーム-----------
 " カスタマイズ
+
 autocmd ColorScheme * highlight Comment ctermfg=246 
 autocmd ColorScheme * highlight Visual ctermbg=96 
 autocmd ColorScheme * highlight Search ctermbg=96 
@@ -234,8 +235,8 @@ autocmd ColorScheme * highlight javascriptObjectLabel ctermfg=207
 autocmd ColorScheme * highlight javascriptClassStatic ctermfg=197
 
 " -----Ruby-----
-autocmd ColorScheme * highlight rubyClass ctermfg=48 
-autocmd ColorScheme * highlight rubyFunction ctermfg=198 
+autocmd ColorScheme * highlight rubyClass ctermfg=150
+autocmd ColorScheme * highlight rubyFunction ctermfg=123
 
 " カラースキーム設定
 colorscheme iceberg
