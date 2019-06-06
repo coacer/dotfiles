@@ -89,7 +89,9 @@ cnoremap <C-e> <End>
 cnoremap <C-d> <Del>
 
 
-
+" 補完機能
+inoremap <Tab> <C-n>
+inoremap <S-Tab> <C-p>
 
 
 "dein Scripts-----------------------------
@@ -138,6 +140,8 @@ if dein#load_state('~/.vim/bundle')
   call dein#add('tpope/vim-fugitive')
   " カッコやHTMLタグなどの挿入、削除、置換プラグイン
   call dein#add('tpope/vim-surround')
+  " rails用プラグイン
+  call dein#add('tpope/vim-rails')
 
   " Required:
   call dein#end()
