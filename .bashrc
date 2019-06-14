@@ -21,5 +21,4 @@ function add_line {
 PROMPT_COMMAND='add_line'
 
 # エイリアス
-alias ypwd='pwd | pbcopy; pwd; echo is copied!!'
-alias cdp='cd `pbpaste`'
+alias t='~/Script/createTerminalAtCurrentDirectory.applescript'
