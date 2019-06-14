@@ -6,6 +6,7 @@ set fileencodings=ucs-boms,utf-8,euc-jp,cp932 " 読み込み時の文字コー�
 set fileformats=unix,dos,mac " 改行コードの自動判別. 左側が優先される
 set ambiwidth=double " □や○文字が崩れる問題を解決
 set noswapfile
+set mouse=a " マウスクリックを有効か
 
 set expandtab " タブ入力を複数の空白入力に置き換える
 set tabstop=2 " 画面上でタブ文字が占める幅
@@ -20,7 +21,8 @@ set smartcase " 検索パターンに大文字を含んでいたら大文字小�
 set hlsearch " 検索結果をハイライト
 
 " スペース+vで.vimrcファイルを開く
-nnoremap <Space>v :<C-u>vsplit $MYVIMRC<CR>
+nnoremap <Space>v :<C-u>edit $MYVIMRC<CR>
+nnoremap <Space>V :<C-u>vsplit $MYVIMRC<CR>
 
 " スペース+sで.vimrcファイルを読み込む
 nnoremap <Space>s :<C-u>source $MYVIMRC<CR>
@@ -32,8 +34,8 @@ nnoremap <Space>m :<C-u>vsplit ~/dotfiles/myvim_manual.txt<CR>
 nnoremap <C-a> ggVG
 
 " ; と : を入れ替える
-nnoremap ; :
-nnoremap : ;
+noremap ; :
+noremap : ;
 
 " ctrl-oで下に空行挿入
 nnoremap <C-o> mzo<Esc>`z
@@ -90,8 +92,11 @@ cnoremap <C-d> <Del>
 
 
 " 補完機能
-inoremap <Tab> <C-n>
-inoremap <S-Tab> <C-p>
+inoremap <Space><Space> <C-n>
+
+" ctrl+y -/= でerbのカッコを表示
+inoremap <C-y>- <%  %><Left><Left><Left>
+inoremap <C-y>= <%=  %><Left><Left><Left>
 
 
 "dein Scripts-----------------------------
@@ -124,12 +129,10 @@ if dein#load_state('~/.vim/bundle')
   call dein#add('mattn/emmet-vim')
   " コメントアウトショートカット導入
   call dein#add('tomtom/tcomment_vim')
-  " ステータスライン表示 
+  " ステータスライン表示
   call dein#add('vim-airline/vim-airline')
   " ステータスライン装飾
   call dein#add('vim-airline/vim-airline-themes')
-  " git管理
-  call dein#add('tpope/vim-fugitive')
   " ウィンドウサイズ変更用プラグイン
   call dein#add('simeji/winresizer')
   " カラーテーブルを表示する
@@ -142,6 +145,8 @@ if dein#load_state('~/.vim/bundle')
   call dein#add('tpope/vim-surround')
   " rails用プラグイン
   call dein#add('tpope/vim-rails')
+  " vim help日本語化
+  call dein#add('vim-jp/vimdoc-ja')
 
   " Required:
   call dein#end()
@@ -230,12 +235,12 @@ let g:winresizer_horiz_resize = 1
 "----------カラースキーム-----------
 " カスタマイズ
 
-autocmd ColorScheme * highlight Comment ctermfg=246 
-autocmd ColorScheme * highlight Visual ctermbg=96 
-autocmd ColorScheme * highlight Search ctermbg=96 
+autocmd ColorScheme * highlight Comment ctermfg=246
+autocmd ColorScheme * highlight Visual ctermbg=29
+autocmd ColorScheme * highlight Search ctermbg=29
 " -----JavaScript-----
-autocmd ColorScheme * highlight javascriptClassKeyword ctermfg=48 
-autocmd ColorScheme * highlight javascriptObjectLabel ctermfg=207 
+autocmd ColorScheme * highlight javascriptClassKeyword ctermfg=48
+autocmd ColorScheme * highlight javascriptObjectLabel ctermfg=207
 autocmd ColorScheme * highlight javascriptClassStatic ctermfg=197
 
 " -----Ruby-----
