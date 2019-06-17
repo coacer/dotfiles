@@ -6,7 +6,7 @@ set fileencodings=ucs-boms,utf-8,euc-jp,cp932 " 読み込み時の文字コー�
 set fileformats=unix,dos,mac " 改行コードの自動判別. 左側が優先される
 set ambiwidth=double " □や○文字が崩れる問題を解決
 set noswapfile
-set mouse=a " マウスクリックを有効か
+" set mouse=a " マウスクリックを有効か
 
 set expandtab " タブ入力を複数の空白入力に置き換える
 set tabstop=2 " 画面上でタブ文字が占める幅
@@ -97,6 +97,7 @@ inoremap <Space><Space> <C-n>
 " ctrl+y -/= でerbのカッコを表示
 inoremap <C-y>- <%  %><Left><Left><Left>
 inoremap <C-y>= <%=  %><Left><Left><Left>
+
 
 
 "dein Scripts-----------------------------

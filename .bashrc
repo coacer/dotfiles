@@ -21,4 +21,4 @@ function add_line {
 PROMPT_COMMAND='add_line'
 
 # エイリアス
-alias t='~/Script/createTerminalAtCurrentDirectory.applescript'
+alias t='~/dev/Script/createTerminalAtCurrentDirectory.applescript'
