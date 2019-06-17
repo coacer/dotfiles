@@ -37,6 +37,10 @@ nnoremap <C-a> ggVG
 noremap ; :
 noremap : ;
 
+" x, cで文字を消した際にレジスタに格納しない
+nnoremap x "_x
+nnoremap c "_c
+
 " ctrl-oで下に空行挿入
 nnoremap <C-o> mzo<Esc>`z
 
