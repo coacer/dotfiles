@@ -152,6 +152,8 @@ if dein#load_state('~/.vim/bundle')
   call dein#add('tpope/vim-rails')
   " vim help日本語化
   call dein#add('vim-jp/vimdoc-ja')
+  " インデントを可視化
+  call dein#add('nathanaelkane/vim-indent-guides')
 
   " Required:
   call dein#end()
@@ -251,6 +253,12 @@ autocmd ColorScheme * highlight javascriptClassStatic ctermfg=197
 " -----Ruby-----
 autocmd ColorScheme * highlight rubyClass ctermfg=150
 autocmd ColorScheme * highlight rubyFunction ctermfg=123
+
+" -----インデント-----
+let g:indent_guides_auto_colors = 0
+autocmd Colorscheme * :hi IndentGuidesOdd  ctermbg=none
+autocmd Colorscheme * :hi IndentGuidesEven ctermbg=235
+
 
 " カラースキーム設定
 colorscheme iceberg
