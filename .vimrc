@@ -31,15 +31,17 @@ nnoremap <Space>s :<C-u>source $MYVIMRC<CR>
 nnoremap <Space>m :<C-u>vsplit ~/dotfiles/myvim_manual.txt<CR>
 
 " ctrl+aで全選択
-nnoremap <C-a> ggVG
+nnoremap <Space>a ggVG
 
 " ; と : を入れ替える
-noremap ; :
-noremap : ;
+" noremap ; :
+" noremap : ;
 
 " x, cで文字を消した際にレジスタに格納しない
 nnoremap x "_x
 nnoremap c "_c
+vnoremap x "_x
+vnoremap c "_c
 
 " ctrl-oで下に空行挿入
 nnoremap <C-o> mzo<Esc>`z
@@ -57,7 +59,7 @@ nnoremap <C-h><C-h> :<C-u>help<Space><C-r><C-w><CR>
 " ESCキー2度押しでハイライトの切り替え
 nnoremap <Esc><Esc> :noh<CR>
 
-set whichwrap=b,s,h,l,<,>,[,],~ " カーソルの左右移動で行末から次の行の行頭への移動が可能になる
+" set whichwrap=b,s,h,l,<,>,[,],~ " カーソルの左右移動で行末から次の行の行頭への移動が可能になる
 set number " 行番号を表示
 set cursorline " カーソルラインをハイライト
 
@@ -101,6 +103,9 @@ inoremap <Space><Space> <C-n>
 " ctrl+y -/= でerbのカッコを表示
 inoremap <C-y>- <%  %><Left><Left><Left>
 inoremap <C-y>= <%=  %><Left><Left><Left>
+
+" *で検索時に次の検索文字に移動しないように設定
+nnoremap * mq*`q
 
 
 
@@ -223,8 +228,6 @@ nmap <C-y> <Plug>AirlineSelectNextTab
 noremap <C-d> :bd<CR>
 
 
-" ファイルタイプ別のプラグイン/インデントを有効にする
-filetype plugin indent on
 
 let g:indent_guides_enable_on_vim_startup = 1
 
