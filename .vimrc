@@ -79,13 +79,12 @@ syntax on
 
 " Emacs風キーバインディングの設定
 " インサートモード
-imap <C-p> <Up>
-imap <C-n> <Down>
-imap <C-b> <Left>
-imap <C-f> <Right>
-imap <C-a> <Home>
-imap <C-e> <End>
-imap <C-d> <Del>
+inoremap <C-p> <Up>
+inoremap <C-n> <Down>
+inoremap <C-b> <Left>
+inoremap <C-f> <Right>
+inoremap <C-a> <Home>
+inoremap <C-e> <End>
 
 " コマンドモード
 cnoremap <C-p> <Up>
@@ -94,7 +93,6 @@ cnoremap <C-b> <Left>
 cnoremap <C-f> <Right>
 cnoremap <C-a> <Home>
 cnoremap <C-e> <End>
-cnoremap <C-d> <Del>
 
 
 " 補完機能
