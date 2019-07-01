@@ -1,4 +1,8 @@
 # dotfiles
+```
+ $ cd #ホームディレクトリに移動
+ $ git clone https://github.com/coacer/dotfiles.git
+```
 
 ## .vimrcセッティング
 - dein.vim(プラグインパッケージ管理ツール)インストール
@@ -17,3 +21,6 @@ $ sh ./installer.sh ~/.vim/bundle
 ```
  $ vim #vimを起動すると自動でインストール作業が開始される
 ```
+
+dein.vim引用
+https://github.com/Shougo/dein.vim
