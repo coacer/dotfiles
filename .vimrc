@@ -7,6 +7,7 @@ set fileformats=unix,dos,mac " 改行コードの自動判別. 左側が優先�
 set ambiwidth=double " □や○文字が崩れる問題を解決
 set noswapfile
 " set mouse=a " マウスクリックを有効か
+set hidden " バッファ保存せずに移動しようとした場合に!をつけなくても移動できる, またargsの移動も隠しファイルにする
 
 set expandtab " タブ入力を複数の空白入力に置き換える
 set tabstop=2 " 画面上でタブ文字が占める幅
@@ -19,6 +20,7 @@ set incsearch " インクリメンタルサーチ. １文字入力毎に検索�
 set ignorecase " 検索パターンに大文字小文字を区別しない
 set smartcase " 検索パターンに大文字を含んでいたら大文字小文字を区別する
 set hlsearch " 検索結果をハイライト
+" set so=999 " 常にカーソルをファイル中央に配置
 
 " スペース+vで.vimrcファイルを開く
 nnoremap <Space>v :<C-u>edit $MYVIMRC<CR>
@@ -44,7 +46,7 @@ vnoremap x "_x
 vnoremap c "_c
 
 " ctrl-oで下に空行挿入
-nnoremap <C-o> mzo<Esc>`z
+nnoremap <C-o> mzo<Esc>"_cc<Esc>`z
 
 " 行を移動
 nnoremap <C-k> "zdd<Up>"zP
@@ -254,6 +256,11 @@ autocmd ColorScheme * highlight javascriptClassStatic ctermfg=197
 " -----Ruby-----
 autocmd ColorScheme * highlight rubyClass ctermfg=150
 autocmd ColorScheme * highlight rubyFunction ctermfg=123
+
+" -----PHP-----
+" autocmd ColorScheme * highlight Delimiter ctermfg=37
+autocmd ColorScheme * highlight phpParent ctermfg=none
+autocmd ColorScheme * highlight Identifier ctermfg=none
 
 " -----インデント-----
 let g:indent_guides_auto_colors = 0
