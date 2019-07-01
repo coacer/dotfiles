@@ -30,7 +30,7 @@ nnoremap <Space>V :<C-u>vsplit $MYVIMRC<CR>
 nnoremap <Space>s :<C-u>source $MYVIMRC<CR>
 
 " スペース+mでmyvim_manual.txtファイルを開く
-nnoremap <Space>m :<C-u>vsplit ~/dotfiles/myvim_manual.txt<CR>
+nnoremap <Space>m :<C-u>vsplit ~/Memo/myvim_manual.txt<CR>
 
 " ctrl+aで全選択
 nnoremap <Space>a ggVG

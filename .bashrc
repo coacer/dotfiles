@@ -1,4 +1,4 @@
-eval "$(rbenv init -)"
+eval "$(rbenv init -)" # rbenv初期化(パスが通る)
 export PATH="/usr/local/opt/mysql/bin:$PATH"
 export CLICOLOR=1
 export LSCOLORS=DxGxcxdxCxegedabagacad #lsで表示される色の変更
