@@ -41,9 +41,9 @@ nnoremap <Space>a ggVG
 
 " x, cで文字を消した際にレジスタに格納しない
 nnoremap x "_x
-nnoremap c "_c
+" nnoremap c "_c
 vnoremap x "_x
-vnoremap c "_c
+" vnoremap c "_c
 
 " ctrl-oで下に空行挿入
 nnoremap <C-o> mzo<Esc>"_cc<Esc>`z
@@ -81,8 +81,8 @@ syntax on
 
 " Emacs風キーバインディングの設定
 " インサートモード
-inoremap <C-p> <Up>
-inoremap <C-n> <Down>
+" inoremap <C-p> <Up>
+" inoremap <C-n> <Down>
 inoremap <C-b> <Left>
 inoremap <C-f> <Right>
 inoremap <C-a> <Home>
@@ -98,7 +98,7 @@ cnoremap <C-e> <End>
 
 
 " 補完機能
-inoremap <Space><Space> <C-n>
+" inoremap <Space><Space> <C-n>
 
 " ctrl+y -/= でerbのカッコを表示
 inoremap <C-y>- <%  %><Left><Left><Left>
@@ -256,16 +256,17 @@ autocmd ColorScheme * highlight javascriptClassStatic ctermfg=197
 " -----Ruby-----
 autocmd ColorScheme * highlight rubyClass ctermfg=150
 autocmd ColorScheme * highlight rubyFunction ctermfg=123
+autocmd ColorScheme * highlight rubyInstanceVariable ctermfg=212
 
 " -----PHP-----
 " autocmd ColorScheme * highlight Delimiter ctermfg=37
-autocmd ColorScheme * highlight phpParent ctermfg=none
-autocmd ColorScheme * highlight Identifier ctermfg=none
+" autocmd ColorScheme * highlight phpParent ctermfg=none
+" autocmd ColorScheme * highlight Identifier ctermfg=none
 
 " -----インデント-----
 let g:indent_guides_auto_colors = 0
-autocmd Colorscheme * :hi IndentGuidesOdd  ctermbg=none
-autocmd Colorscheme * :hi IndentGuidesEven ctermbg=235
+autocmd Colorscheme * :hi IndentGuidesOdd  ctermbg=235
+autocmd Colorscheme * :hi IndentGuidesEven ctermbg=236
 
 
 " カラースキーム設定
