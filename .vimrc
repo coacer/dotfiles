@@ -159,6 +159,8 @@ if dein#load_state('~/.vim/bundle')
   call dein#add('vim-jp/vimdoc-ja')
   " インデントを可視化
   call dein#add('nathanaelkane/vim-indent-guides')
+  " nerdtreeにアイコン表示
+  call dein#add('ryanoasis/vim-devicons')
 
   " Required:
   call dein#end()
@@ -185,6 +187,8 @@ endif
 let g:NERDTreeDirArrowExpandable = '▸'
 let g:NERDTreeDirArrowCollapsible = '▾'
 noremap <C-n> :<C-u>NERDTreeToggle<CR>
+" フォルダアイコンの表示をON
+let g:WebDevIconsUnicodeDecorateFolderNodes = 1
 
 " ツリービュー自動表示
 " autocmd VimEnter * execute 'NERDTree'
