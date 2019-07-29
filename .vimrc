@@ -107,6 +107,8 @@ inoremap <C-y>= <%=  %><Left><Left><Left>
 " *で検索時に次の検索文字に移動しないように設定
 nnoremap * mq*`q
 
+" space + t でtigを開く
+nnoremap <Space>t :!tig<CR>
 
 
 "dein Scripts-----------------------------
@@ -161,6 +163,18 @@ if dein#load_state('~/.vim/bundle')
   call dein#add('nathanaelkane/vim-indent-guides')
   " nerdtreeにアイコン表示
   call dein#add('ryanoasis/vim-devicons')
+  " 末尾の空白可視化j
+  call dein#add('bronson/vim-trailing-whitespace')
+  " ファイルオープンを便利に
+  call dein#add('Shougo/unite.vim')
+  " Unite.vimで最近使ったファイルを表示できるようにする
+  call dein#add('Shougo/neomru.vim')
+  " シンタックスエラーチェック
+  call dein#add('w0rp/ale')
+  " gitで管理してる変更された箇所を行番号横に表示
+  call dein#add('airblade/vim-gitgutter')
+  " surround.vimなどの変更を.で繰り返し可能にする
+  call dein#add('tpope/vim-repeat')
 
   " Required:
   call dein#end()
@@ -207,10 +221,10 @@ call NERDTreeHighlightFile('json',   'yellow',  'none')
 call NERDTreeHighlightFile('html',   'yellow',  'none')
 call NERDTreeHighlightFile('styl',   'cyan',    'none')
 call NERDTreeHighlightFile('css',    '159',    'none')
-call NERDTreeHighlightFile('rb',     'Red',     'none')
+call NERDTreeHighlightFile('rb',     '169',     'none')
 call NERDTreeHighlightFile('js',   '227',  'none')
 call NERDTreeHighlightFile('php',    'Magenta', 'none')
-call NERDTreeHighlightFile('coffee',    '2', 'none')
+call NERDTreeHighlightFile('coffee',    '79', 'none')
 call NERDTreeHighlightFile('Gemfile',    '105', 'none')
 call NERDTreeHighlightFile('lock',    '105', 'none')
 
@@ -314,4 +328,41 @@ function! s:get_syn_info()
         \ " guifg: " . linkedSyn.guifg .
         \ " guibg: " . linkedSyn.guibg
 endfunction
+
 command! SyntaxInfo call s:get_syn_info()
+
+let g:ctrlp_match_window = 'order:ttb,min:20,max:20,results:100' " マッチウインドウの設定. 「下部に表示, 大きさ20行で固定, 検索結果100件」
+let g:ctrlp_show_hidden = 1 " .(ドット)から始まるファイルも検索対象にする
+let g:ctrlp_types = ['fil'] "ファイル検索のみ使用
+let g:ctrlp_extensions = ['funky', 'commandline'] " CtrlPの拡張として「funky」と「commandline」を使用
+
+" CtrlPCommandLineの有効化
+command! CtrlPCommandLine call ctrlp#init(ctrlp#commandline#id())
+
+" CtrlPFunkyの有効化
+let g:ctrlp_funky_matchtype = 'path'
+" Unit.vimの設定
+""""""""""""""""""""""""""""""
+" 入力モードで開始する
+let g:unite_enable_start_insert=1
+" バッファ一覧
+noremap <Space>F :Unite buffer<CR>
+" 再帰的にファイル一覧検索
+noremap <Space>f :Unite file_rec<CR>
+" 最近使ったファイルの一覧
+noremap <C-Z> :Unite file_mru<CR>
+" sourcesを「今開いているファイルのディレクトリ」とする
+" noremap :uff :<C-u>UniteWithBufferDir file -buffer-name=file<CR>
+" ウィンドウを分割して開く
+au FileType unite nnoremap <silent> <buffer> <expr> s unite#do_action('split')
+" au FileType unite inoremap <silent> <buffer> <expr> <C-J> unite#do_action('split')
+" ウィンドウを縦に分割して開く
+au FileType unite nnoremap <silent> <buffer> <expr> v unite#do_action('vsplit')
+" au FileType unite inoremap <silent> <buffer> <expr> <C-K> unite#do_action('vsplit')
+" ESCキーを2回押すと終了する
+" au FileType unite nnoremap <silent> <buffer> <ESC><ESC> :q<CR>
+" au FileType unite inoremap <silent> <buffer> <ESC><ESC> <ESC>:q<CR>
+""""""""""""""""""""""""""""""
+" ale設定
+let g:ale_sign_error = '✖︎'
+let g:ale_sign_warning = '⚠︎'
