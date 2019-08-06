@@ -21,6 +21,7 @@ set ignorecase " 検索パターンに大文字小文字を区別しない
 set smartcase " 検索パターンに大文字を含んでいたら大文字小文字を区別する
 set hlsearch " 検索結果をハイライト
 " set so=999 " 常にカーソルをファイル中央に配置
+language C " 英語化
 
 " スペース+vで.vimrcファイルを開く
 nnoremap <Space>v :<C-u>edit $MYVIMRC<CR>
@@ -35,15 +36,9 @@ nnoremap <Space>m :<C-u>vsplit ~/Memo/myvim_manual.txt<CR>
 " ctrl+aで全選択
 nnoremap <Space>a ggVG
 
-" ; と : を入れ替える
-" noremap ; :
-" noremap : ;
-
-" x, cで文字を消した際にレジスタに格納しない
+" xで文字を消した際にレジスタに格納しない
 nnoremap x "_x
-" nnoremap c "_c
 vnoremap x "_x
-" vnoremap c "_c
 
 " ctrl-oで下に空行挿入
 nnoremap <C-o> mzo<Esc>"_cc<Esc>`z
@@ -59,7 +54,7 @@ vnoremap <C-j> "zx"zp`[V`]
 nnoremap <C-h><C-h> :<C-u>help<Space><C-r><C-w><CR>
 
 " ESCキー2度押しでハイライトの切り替え
-nnoremap <Esc><Esc> :noh<CR>
+nnoremap <Esc><Esc> :<C-u>noh<CR>
 
 " set whichwrap=b,s,h,l,<,>,[,],~ " カーソルの左右移動で行末から次の行の行頭への移動が可能になる
 set number " 行番号を表示
@@ -96,10 +91,6 @@ cnoremap <C-f> <Right>
 cnoremap <C-a> <Home>
 cnoremap <C-e> <End>
 
-
-" 補完機能
-" inoremap <Space><Space> <C-n>
-
 " ctrl+y -/= でerbのカッコを表示
 inoremap <C-y>- <%  %><Left><Left><Left>
 inoremap <C-y>= <%=  %><Left><Left><Left>
@@ -108,7 +99,8 @@ inoremap <C-y>= <%=  %><Left><Left><Left>
 nnoremap * mq*`q
 
 " space + t でtigを開く
-nnoremap <Space>t :!tig<CR>
+nnoremap <Space>t :<C-u>!tig<CR>
+
 
 
 "dein Scripts-----------------------------
@@ -165,16 +157,18 @@ if dein#load_state('~/.vim/bundle')
   call dein#add('ryanoasis/vim-devicons')
   " 末尾の空白可視化j
   call dein#add('bronson/vim-trailing-whitespace')
-  " ファイルオープンを便利に
-  call dein#add('Shougo/unite.vim')
-  " Unite.vimで最近使ったファイルを表示できるようにする
-  call dein#add('Shougo/neomru.vim')
   " シンタックスエラーチェック
   call dein#add('w0rp/ale')
   " gitで管理してる変更された箇所を行番号横に表示
   call dein#add('airblade/vim-gitgutter')
   " surround.vimなどの変更を.で繰り返し可能にする
   call dein#add('tpope/vim-repeat')
+  " ファイル検索プラグイン
+  call dein#add('Shougo/denite.nvim')
+  " denite.nvim用
+  call dein#add('roxma/nvim-yarp')
+  " denite.nvim用
+  call dein#add('roxma/vim-hug-neovim-rpc')
 
   " Required:
   call dein#end()
@@ -256,6 +250,8 @@ let g:winresizer_start_key = '<C-U>'
 let g:winresizer_vert_resize = 3
 let g:winresizer_horiz_resize = 1
 
+" 保存時に末尾のスペースを削除
+autocmd BufWritePre * %s/\s\+$//e
 
 
 
@@ -331,38 +327,36 @@ endfunction
 
 command! SyntaxInfo call s:get_syn_info()
 
-let g:ctrlp_match_window = 'order:ttb,min:20,max:20,results:100' " マッチウインドウの設定. 「下部に表示, 大きさ20行で固定, 検索結果100件」
-let g:ctrlp_show_hidden = 1 " .(ドット)から始まるファイルも検索対象にする
-let g:ctrlp_types = ['fil'] "ファイル検索のみ使用
-let g:ctrlp_extensions = ['funky', 'commandline'] " CtrlPの拡張として「funky」と「commandline」を使用
-
-" CtrlPCommandLineの有効化
-command! CtrlPCommandLine call ctrlp#init(ctrlp#commandline#id())
-
-" CtrlPFunkyの有効化
-let g:ctrlp_funky_matchtype = 'path'
-" Unit.vimの設定
-""""""""""""""""""""""""""""""
-" 入力モードで開始する
-let g:unite_enable_start_insert=1
-" バッファ一覧
-noremap <Space>F :Unite buffer<CR>
-" 再帰的にファイル一覧検索
-noremap <Space>f :Unite file_rec<CR>
-" 最近使ったファイルの一覧
-noremap <C-Z> :Unite file_mru<CR>
-" sourcesを「今開いているファイルのディレクトリ」とする
-" noremap :uff :<C-u>UniteWithBufferDir file -buffer-name=file<CR>
-" ウィンドウを分割して開く
-au FileType unite nnoremap <silent> <buffer> <expr> s unite#do_action('split')
-" au FileType unite inoremap <silent> <buffer> <expr> <C-J> unite#do_action('split')
-" ウィンドウを縦に分割して開く
-au FileType unite nnoremap <silent> <buffer> <expr> v unite#do_action('vsplit')
-" au FileType unite inoremap <silent> <buffer> <expr> <C-K> unite#do_action('vsplit')
-" ESCキーを2回押すと終了する
-" au FileType unite nnoremap <silent> <buffer> <ESC><ESC> :q<CR>
-" au FileType unite inoremap <silent> <buffer> <ESC><ESC> <ESC>:q<CR>
-""""""""""""""""""""""""""""""
 " ale設定
 let g:ale_sign_error = '✖︎'
 let g:ale_sign_warning = '⚠︎'
+
+
+" denite.nvim define mappings
+autocmd FileType denite call s:denite_my_settings()
+function! s:denite_my_settings() abort
+  nnoremap <silent><buffer><expr> <CR>
+        \ denite#do_map('do_action')
+  nnoremap <silent><buffer><expr> d
+        \ denite#do_map('do_action', 'delete')
+  nnoremap <silent><buffer><expr> p
+        \ denite#do_map('do_action', 'preview')
+  nnoremap <silent><buffer><expr> q
+        \ denite#do_map('quit')
+  nnoremap <silent><buffer><expr> i
+        \ denite#do_map('open_filter_buffer')
+  nnoremap <silent><buffer><expr> <Space>
+        \ denite#do_map('toggle_select').'j'
+endfunction
+
+" denite.nvimにgrepではなくagで検索
+call denite#custom#var('file_rec', 'command', ['ag', '--follow', '--nocolor', '--nogroup', '-g', ''])
+call denite#custom#var('grep', 'command', ['ag'])
+call denite#custom#var('grep', 'recursive_opts', [])
+call denite#custom#var('grep', 'pattern_opt', [])
+call denite#custom#var('grep', 'default_opts', ['--follow', '--no-group', '--no-color'])
+
+" denite.nvim キーマッピング
+nnoremap <Space>f :<C-u>Denite file/rec<CR>
+nnoremap <Space>b :<C-u>Denite buffer<CR>
+nnoremap <Space>g :<C-u>Denite grep<CR>
