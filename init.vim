@@ -6,7 +6,6 @@ set fileencodings=ucs-boms,utf-8,euc-jp,cp932 " 読み込み時の文字コー�
 set fileformats=unix,dos,mac " 改行コードの自動判別. 左側が優先される
 set ambiwidth=double " □や○文字が崩れる問題を解決
 set noswapfile
-" set mouse=a " マウスクリックを有効か
 set hidden " バッファ保存せずに移動しようとした場合に!をつけなくても移動できる, またargsの移動も隠しファイルにする
 
 set expandtab " タブ入力を複数の空白入力に置き換える
@@ -23,6 +22,7 @@ set hlsearch " 検索結果をハイライト
 " set so=999 " 常にカーソルをファイル中央に配置
 language C " 英語化
 set inccommand=split "文字列置換をインタラクティブに
+set ttimeoutlen=50 "インサートモードからEscの遅延を無くす
 
 " スペース+vで.vimrcファイルを開く
 nnoremap <Space>v :<C-u>edit $MYVIMRC<CR>
@@ -105,6 +105,9 @@ nnoremap <Space>t :<C-u>!tig<CR>
 " ターミナル表示時にescで抜ける
 tnoremap <Esc> <C-\><C-n>
 
+" <ctrl+r>*2で無名レジスタ
+inoremap <C-r><C-r> <C-r>"
+
 
 "dein Scripts-----------------------------
 if &compatible
@@ -172,6 +175,13 @@ if dein#load_state('~/.cache/dein')
   call dein#add('roxma/nvim-yarp')
   " denite.nvim用
   call dein#add('roxma/vim-hug-neovim-rpc')
+  " スクロールを滑らかに
+  call dein#add('yuttie/comfortable-motion.vim')
+  call dein#add('Shougo/deoplete.nvim')
+  if !has('nvim')
+    call dein#add('roxma/nvim-yarp')
+    call dein#add('roxma/vim-hug-neovim-rpc')
+  endif
 
   " Required:
   call dein#end()
@@ -236,11 +246,13 @@ let g:airline#extensions#default#layout = [['a', 'b', 'c'], ['x', 'y', 'z']]
 let g:airline_section_c = '%t'
 let g:airline_section_x = '%{&filetype}'
 let g:airline_section_z = '%3l:%2v %{airline#extensions#ale#get_warning()} %{airline#extensions#ale#get_error()}'
+let g:airline#extensions#ale#error_symbol = ' '
+let g:airline#extensions#ale#warning_symbol = ' '
 let g:airline#extensions#default#section_truncate_width = {}
 let g:airline#extensions#whitespace#enabled = 1
 nmap <C-e> <Plug>AirlineSelectPrevTab
 nmap <C-y> <Plug>AirlineSelectNextTab
-noremap <C-d> :bd<CR>
+nnoremap <C-d> :bd<CR>
 
 
 
@@ -263,7 +275,7 @@ autocmd BufWritePre * %s/\s\+$//e
 " カスタマイズ
 
 autocmd ColorScheme * highlight Comment ctermfg=246
-autocmd ColorScheme * highlight Visual ctermbg=29
+autocmd ColorScheme * highlight Visual ctermbg=30
 autocmd ColorScheme * highlight Search ctermbg=29
 " -----JavaScript-----
 autocmd ColorScheme * highlight javascriptClassKeyword ctermfg=48
@@ -374,3 +386,15 @@ function! s:Repl()
   return "p@=RestoreRegister()\<cr>"
 endfunction
 vmap <silent> <expr> p <sid>Repl()
+
+" comfortable-motionの設定
+let g:comfortable_motion_friction = 800.0 " 摩擦力
+let g:comfortable_motion_air_drag = 0.0 " 空気抵抗
+let g:comfortable_motion_no_default_key_mappings = 1
+nnoremap <silent> <C-f> :call comfortable_motion#flick(300)<CR>
+nnoremap <silent> <C-b> :call comfortable_motion#flick(-300)<CR>
+
+" deoplete.vimセッティング
+let g:deoplete#enable_at_startup = 1
+
+" set termguicolors    " ターミナルでも True Color を使えるようにする。
