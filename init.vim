@@ -7,6 +7,7 @@ set fileformats=unix,dos,mac " 改行コードの自動判別. 左側が優先�
 set ambiwidth=double " □や○文字が崩れる問題を解決
 set noswapfile
 set hidden " バッファ保存せずに移動しようとした場合に!をつけなくても移動できる, またargsの移動も隠しファイルにする
+set undofile " undo履歴をファイルに保存
 
 set expandtab " タブ入力を複数の空白入力に置き換える
 set tabstop=2 " 画面上でタブ文字が占める幅
@@ -42,7 +43,7 @@ nnoremap x "_x
 vnoremap x "_x
 
 " ctrl-oで下に空行挿入
-nnoremap <C-o> mzo<Esc>"_cc<Esc>`z
+nnoremap <Space>o mzo<Esc>"_cc<Esc>`z
 
 " 行を移動
 nnoremap <C-k> "zdd<Up>"zP
@@ -50,9 +51,6 @@ nnoremap <C-j> "zdd"zp
 " 複数行を移動
 vnoremap <C-k> "zx<Up>"zP`[V`]
 vnoremap <C-j> "zx"zp`[V`]
-
-" ctrl-h*2でカーソル上のキーワードでhelp
-nnoremap <C-h><C-h> :<C-u>help<Space><C-r><C-w><CR>
 
 " ESCキー2度押しでハイライトの切り替え
 nnoremap <Esc><Esc> :<C-u>noh<CR>
@@ -107,13 +105,10 @@ tnoremap <Esc> <C-\><C-n>
 
 " <ctrl+r>*2で無名レジスタ
 inoremap <C-r><C-r> <C-r>"
+cnoremap <C-r><C-r> <C-r>"
 
 
 "dein Scripts-----------------------------
-if &compatible
-  set nocompatible               " Be iMproved
-endif
-
 " Required:
 set runtimepath+=~/.cache/dein/repos/github.com/Shougo/dein.vim
 
@@ -172,9 +167,9 @@ if dein#load_state('~/.cache/dein')
   " ファイル検索プラグイン
   call dein#add('Shougo/denite.nvim')
   " denite.nvim用
-  call dein#add('roxma/nvim-yarp')
+  " call dein#add('roxma/nvim-yarp')
   " denite.nvim用
-  call dein#add('roxma/vim-hug-neovim-rpc')
+  " call dein#add('roxma/vim-hug-neovim-rpc')
   " スクロールを滑らかに
   call dein#add('yuttie/comfortable-motion.vim')
   call dein#add('Shougo/deoplete.nvim')
@@ -182,6 +177,8 @@ if dein#load_state('~/.cache/dein')
     call dein#add('roxma/nvim-yarp')
     call dein#add('roxma/vim-hug-neovim-rpc')
   endif
+  " coffeescriptシンタックス
+  call dein#add('kchmck/vim-coffee-script')
 
   " Required:
   call dein#end()
@@ -302,6 +299,7 @@ autocmd Colorscheme * :hi IndentGuidesEven ctermbg=236
 colorscheme iceberg
 
 
+
 " :SyntaxInfoコマンドでカーソル下のシンタックスグループ名を表示する関数
 function! s:get_syn_id(transparent)
   let synid = synID(line("."), col("."), 1)
@@ -389,7 +387,7 @@ vmap <silent> <expr> p <sid>Repl()
 
 " comfortable-motionの設定
 let g:comfortable_motion_friction = 800.0 " 摩擦力
-let g:comfortable_motion_air_drag = 0.0 " 空気抵抗
+let g:comfortable_motion_air_drag = 3.0 " 空気抵抗
 let g:comfortable_motion_no_default_key_mappings = 1
 nnoremap <silent> <C-f> :call comfortable_motion#flick(300)<CR>
 nnoremap <silent> <C-b> :call comfortable_motion#flick(-300)<CR>
