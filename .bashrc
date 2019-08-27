@@ -18,12 +18,16 @@ function add_line {
     printf '\n'
   fi
 }
+
 PROMPT_COMMAND='add_line'
+function cdls() {
+ \cd $1;
+ ls -G;
+}
 
 # エイリアス
-alias t='~/dev/Script/createTerminalAtCurrentDirectory.applescript'
-alias vim='nvim'
-alias vi='nvim'
+alias cd=cdls
+alias vi='vim -C -u NONE'
 alias ..='cd ..'
 alias la='ls -a'
 alias ll='ls -l'

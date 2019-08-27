@@ -163,12 +163,6 @@ if dein#load_state('~/.vim/bundle')
   call dein#add('airblade/vim-gitgutter')
   " surround.vimなどの変更を.で繰り返し可能にする
   call dein#add('tpope/vim-repeat')
-  " ファイル検索プラグイン
-  call dein#add('Shougo/denite.nvim')
-  " denite.nvim用
-  call dein#add('roxma/nvim-yarp')
-  " denite.nvim用
-  call dein#add('roxma/vim-hug-neovim-rpc')
 
   " Required:
   call dein#end()
@@ -330,33 +324,3 @@ command! SyntaxInfo call s:get_syn_info()
 " ale設定
 let g:ale_sign_error = '✖︎'
 let g:ale_sign_warning = '⚠︎'
-
-
-" denite.nvim define mappings
-autocmd FileType denite call s:denite_my_settings()
-function! s:denite_my_settings() abort
-  nnoremap <silent><buffer><expr> <CR>
-        \ denite#do_map('do_action')
-  nnoremap <silent><buffer><expr> d
-        \ denite#do_map('do_action', 'delete')
-  nnoremap <silent><buffer><expr> p
-        \ denite#do_map('do_action', 'preview')
-  nnoremap <silent><buffer><expr> q
-        \ denite#do_map('quit')
-  nnoremap <silent><buffer><expr> i
-        \ denite#do_map('open_filter_buffer')
-  nnoremap <silent><buffer><expr> <Space>
-        \ denite#do_map('toggle_select').'j'
-endfunction
-
-" denite.nvimにgrepではなくagで検索
-call denite#custom#var('file_rec', 'command', ['ag', '--follow', '--nocolor', '--nogroup', '-g', ''])
-call denite#custom#var('grep', 'command', ['ag'])
-call denite#custom#var('grep', 'recursive_opts', [])
-call denite#custom#var('grep', 'pattern_opt', [])
-call denite#custom#var('grep', 'default_opts', ['--follow', '--no-group', '--no-color'])
-
-" denite.nvim キーマッピング
-nnoremap <Space>f :<C-u>Denite file/rec<CR>
-nnoremap <Space>b :<C-u>Denite buffer<CR>
-nnoremap <Space>g :<C-u>Denite grep<CR>

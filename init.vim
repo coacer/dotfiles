@@ -7,7 +7,7 @@ set fileformats=unix,dos,mac " 改行コードの自動判別. 左側が優先�
 set ambiwidth=double " □や○文字が崩れる問題を解決
 set noswapfile
 set hidden " バッファ保存せずに移動しようとした場合に!をつけなくても移動できる, またargsの移動も隠しファイルにする
-set undofile " undo履歴をファイルに保存
+set undofile " undo履歴をファイルに保存(vim終了時にundo履歴が削除されない)
 
 set expandtab " タブ入力を複数の空白入力に置き換える
 set tabstop=2 " 画面上でタブ文字が占める幅
@@ -21,7 +21,7 @@ set ignorecase " 検索パターンに大文字小文字を区別しない
 set smartcase " 検索パターンに大文字を含んでいたら大文字小文字を区別する
 set hlsearch " 検索結果をハイライト
 " set so=999 " 常にカーソルをファイル中央に配置
-language C " 英語化
+language C " 出力文字英語化
 set inccommand=split "文字列置換をインタラクティブに
 set ttimeoutlen=50 "インサートモードからEscの遅延を無くす
 
@@ -35,15 +35,15 @@ nnoremap <Space>s :<C-u>source $MYVIMRC<CR>
 " スペース+mでmyvim_manual.txtファイルを開く
 nnoremap <Space>m :<C-u>vsplit ~/Memo/myvim_manual.txt<CR>
 
-" ctrl+aで全選択
+" space+aでj選択
 nnoremap <Space>a ggVG
 
 " xで文字を消した際にレジスタに格納しない
 nnoremap x "_x
 vnoremap x "_x
 
-" ctrl-oで下に空行挿入
-nnoremap <Space>o mzo<Esc>"_cc<Esc>`z
+" スペースEnterで下に空行挿入
+nnoremap <Space><CR> mzo<Esc>"_cc<Esc>`z
 
 " 行を移動
 nnoremap <C-k> "zdd<Up>"zP
@@ -73,7 +73,7 @@ source $VIMRUNTIME/macros/matchit.vim " Vimの「%」を拡張する
 " シンタックスを判別してカラー表示する
 syntax on
 
-" Emacs風キーバインディングの設定
+" Emacsキーバインディングの設定
 " インサートモード
 " inoremap <C-p> <Up>
 " inoremap <C-n> <Down>
@@ -156,7 +156,7 @@ if dein#load_state('~/.cache/dein')
   call dein#add('nathanaelkane/vim-indent-guides')
   " nerdtreeにアイコン表示
   call dein#add('ryanoasis/vim-devicons')
-  " 末尾の空白可視化j
+  " 末尾の空白可視化
   call dein#add('bronson/vim-trailing-whitespace')
   " シンタックスエラーチェック
   call dein#add('w0rp/ale')
@@ -172,6 +172,7 @@ if dein#load_state('~/.cache/dein')
   " call dein#add('roxma/vim-hug-neovim-rpc')
   " スクロールを滑らかに
   call dein#add('yuttie/comfortable-motion.vim')
+  " 非同期補完
   call dein#add('Shougo/deoplete.nvim')
   if !has('nvim')
     call dein#add('roxma/nvim-yarp')
@@ -179,6 +180,10 @@ if dein#load_state('~/.cache/dein')
   endif
   " coffeescriptシンタックス
   call dein#add('kchmck/vim-coffee-script')
+  " gundoグラフ可視化
+  call dein#add('sjl/gundo.vim')
+  " markdownプレビュー
+  call dein#add('iamcco/markdown-preview.vim')
 
   " Required:
   call dein#end()
@@ -274,6 +279,8 @@ autocmd BufWritePre * %s/\s\+$//e
 autocmd ColorScheme * highlight Comment ctermfg=246
 autocmd ColorScheme * highlight Visual ctermbg=30
 autocmd ColorScheme * highlight Search ctermbg=29
+autocmd ColorScheme * highlight Pmenu ctermfg=236 ctermbg=37
+
 " -----JavaScript-----
 autocmd ColorScheme * highlight javascriptClassKeyword ctermfg=48
 autocmd ColorScheme * highlight javascriptObjectLabel ctermfg=207
@@ -291,8 +298,8 @@ autocmd ColorScheme * highlight rubyInstanceVariable ctermfg=212
 
 " -----インデント-----
 let g:indent_guides_auto_colors = 0
-autocmd Colorscheme * :hi IndentGuidesOdd  ctermbg=235
-autocmd Colorscheme * :hi IndentGuidesEven ctermbg=236
+autocmd Colorscheme * highlight IndentGuidesOdd  ctermbg=235
+autocmd Colorscheme * highlight IndentGuidesEven ctermbg=236
 
 
 " カラースキーム設定
@@ -396,3 +403,7 @@ nnoremap <silent> <C-b> :call comfortable_motion#flick(-300)<CR>
 let g:deoplete#enable_at_startup = 1
 
 " set termguicolors    " ターミナルでも True Color を使えるようにする。
+
+" gundo.vim
+let g:gundo_prefer_python3 = 1 " python3で動作(デフォルトではpython2.4)
+nnoremap <F5> :GundoToggle<CR>
