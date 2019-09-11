@@ -28,6 +28,7 @@ function cdls() {
 # エイリアス
 alias cd=cdls
 alias vi='vim -C -u NONE'
+alias nv='nvim'
 alias ..='cd ..'
 alias la='ls -a'
 alias ll='ls -l'

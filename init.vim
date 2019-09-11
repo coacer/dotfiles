@@ -5,9 +5,9 @@ set fileencoding=utf-8 " 保存時の文字コード
 set fileencodings=ucs-boms,utf-8,euc-jp,cp932 " 読み込み時の文字コードの自動判別. 左側が優先される
 set fileformats=unix,dos,mac " 改行コードの自動判別. 左側が優先される
 set ambiwidth=double " □や○文字が崩れる問題を解決
-set noswapfile
 set hidden " バッファ保存せずに移動しようとした場合に!をつけなくても移動できる, またargsの移動も隠しファイルにする
 set undofile " undo履歴をファイルに保存(vim終了時にundo履歴が削除されない)
+" set mouse=a " マウス有効化
 
 set expandtab " タブ入力を複数の空白入力に置き換える
 set tabstop=2 " 画面上でタブ文字が占める幅
@@ -24,6 +24,12 @@ set hlsearch " 検索結果をハイライト
 language C " 出力文字英語化
 set inccommand=split "文字列置換をインタラクティブに
 set ttimeoutlen=50 "インサートモードからEscの遅延を無くす
+
+" ctrl+lでesc
+inoremap <C-l> <Esc>
+cnoremap <C-l> <Esc>
+vnoremap <C-l> <Esc>
+tmap <C-l> <Esc>
 
 " スペース+vで.vimrcファイルを開く
 nnoremap <Space>v :<C-u>edit $MYVIMRC<CR>
@@ -42,8 +48,11 @@ nnoremap <Space>a ggVG
 nnoremap x "_x
 vnoremap x "_x
 
-" スペースEnterで下に空行挿入
-nnoremap <Space><CR> mzo<Esc>"_cc<Esc>`z
+" Yでカーソル位置から行末までコピー
+nnoremap Y y$
+
+" Enterで下に空行挿入
+nnoremap <CR> mzo<Esc>"_cc<Esc>`z
 
 " 行を移動
 nnoremap <C-k> "zdd<Up>"zP
@@ -279,7 +288,7 @@ autocmd BufWritePre * %s/\s\+$//e
 autocmd ColorScheme * highlight Comment ctermfg=246
 autocmd ColorScheme * highlight Visual ctermbg=30
 autocmd ColorScheme * highlight Search ctermbg=29
-autocmd ColorScheme * highlight Pmenu ctermfg=236 ctermbg=37
+" autocmd ColorScheme * highlight Pmenu ctermfg=236 ctermbg=37
 
 " -----JavaScript-----
 autocmd ColorScheme * highlight javascriptClassKeyword ctermfg=48
