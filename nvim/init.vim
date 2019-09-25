@@ -124,75 +124,7 @@ set runtimepath+=~/.cache/dein/repos/github.com/Shougo/dein.vim
 " Required:
 if dein#load_state('~/.cache/dein')
   call dein#begin('~/.cache/dein')
-
-  " Let dein manage dein
-  " Required:
-  call dein#add('~/.cache/dein/repos/github.com/Shougo/dein.vim')
-
-  " Add or remove your plugins here like this:
-  "call dein#add('Shougo/neosnippet.vim')
-  "call dein#add('Shougo/neosnippet-snippets')
-
-  " ツリービュー表示
-  call dein#add('scrooloose/nerdtree')
-  " カラースキーム
-  call dein#add('cocopon/iceberg.vim')
-  " 閉じカッコ保管
-  call dein#add('cohama/lexima.vim')
-  " Emmet導入
-  call dein#add('mattn/emmet-vim')
-  " コメントアウトショートカット導入
-  call dein#add('tomtom/tcomment_vim')
-  " ステータスライン表示
-  call dein#add('vim-airline/vim-airline')
-  " ステータスライン装飾
-  call dein#add('vim-airline/vim-airline-themes')
-  " ウィンドウサイズ変更用プラグイン
-  call dein#add('simeji/winresizer')
-  " カラーテーブルを表示する
-  call dein#add('guns/xterm-color-table.vim')
-  " JavaScriptES6のシンタックス
-  call dein#add('othree/yajs.vim')
-  " vim上からgitコマンドを使えるプラグイン
-  call dein#add('tpope/vim-fugitive')
-  " カッコやHTMLタグなどの挿入、削除、置換プラグイン
-  call dein#add('tpope/vim-surround')
-  " rails用プラグイン
-  call dein#add('tpope/vim-rails')
-  " vim help日本語化
-  call dein#add('vim-jp/vimdoc-ja')
-  " インデントを可視化
-  call dein#add('nathanaelkane/vim-indent-guides')
-  " nerdtreeにアイコン表示
-  call dein#add('ryanoasis/vim-devicons')
-  " 末尾の空白可視化
-  call dein#add('bronson/vim-trailing-whitespace')
-  " シンタックスエラーチェック
-  call dein#add('w0rp/ale')
-  " gitで管理してる変更された箇所を行番号横に表示
-  call dein#add('airblade/vim-gitgutter')
-  " surround.vimなどの変更を.で繰り返し可能にする
-  call dein#add('tpope/vim-repeat')
-  " ファイル検索プラグイン
-  call dein#add('Shougo/denite.nvim')
-  " denite.nvim用
-  " call dein#add('roxma/nvim-yarp')
-  " denite.nvim用
-  " call dein#add('roxma/vim-hug-neovim-rpc')
-  " スクロールを滑らかに
-  call dein#add('yuttie/comfortable-motion.vim')
-  " 非同期補完
-  call dein#add('Shougo/deoplete.nvim')
-  if !has('nvim')
-    call dein#add('roxma/nvim-yarp')
-    call dein#add('roxma/vim-hug-neovim-rpc')
-  endif
-  " coffeescriptシンタックス
-  call dein#add('kchmck/vim-coffee-script')
-  " gundoグラフ可視化
-  call dein#add('sjl/gundo.vim')
-  " markdownプレビュー
-  call dein#add('iamcco/markdown-preview.vim')
+  call dein#load_toml('~/.config/nvim/dein.toml', {'lazy': 0})
 
   " Required:
   call dein#end()
@@ -210,20 +142,6 @@ endif
 
 "End dein Scripts-------------------------
 
-
-
-
-
-" -------------- The NERD Tree----------------
-" 基本設定
-let g:NERDTreeDirArrowExpandable = '▸'
-let g:NERDTreeDirArrowCollapsible = '▾'
-noremap <C-n> :<C-u>NERDTreeToggle<CR>
-" フォルダアイコンの表示をON
-let g:WebDevIconsUnicodeDecorateFolderNodes = 1
-
-" ツリービュー自動表示
-" autocmd VimEnter * execute 'NERDTree'
 
 " ツリービュー拡張子ハイライト
 function! NERDTreeHighlightFile(extension, fg, bg)
@@ -247,34 +165,6 @@ call NERDTreeHighlightFile('Gemfile',    '105', 'none')
 call NERDTreeHighlightFile('lock',    '105', 'none')
 
 
-" ステータスラインカスタム
-let g:airline_theme = 'bubblegum'
-set laststatus=2
-let g:airline#extensions#branch#enabled = 1
-let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#wordcount#enabled = 0
-let g:airline#extensions#default#layout = [['a', 'b', 'c'], ['x', 'y', 'z']]
-let g:airline_section_c = '%t'
-let g:airline_section_x = '%{&filetype}'
-let g:airline_section_z = '%3l:%2v %{airline#extensions#ale#get_warning()} %{airline#extensions#ale#get_error()}'
-let g:airline#extensions#ale#error_symbol = ' '
-let g:airline#extensions#ale#warning_symbol = ' '
-let g:airline#extensions#default#section_truncate_width = {}
-let g:airline#extensions#whitespace#enabled = 1
-nmap <C-e> <Plug>AirlineSelectPrevTab
-nmap <C-y> <Plug>AirlineSelectNextTab
-nnoremap <C-d> :bd<CR>
-
-
-
-let g:indent_guides_enable_on_vim_startup = 1
-
-" ウィンドウサイズ変更用プラグイン(winresizer)
-" startコマンドのデフォルトctrl-eからctrl-uに変更
-let g:winresizer_start_key = '<C-U>'
-" 移動幅の設定
-let g:winresizer_vert_resize = 3
-let g:winresizer_horiz_resize = 1
 
 " 保存時に末尾のスペースを削除
 autocmd BufWritePre * %s/\s\+$//e
@@ -304,11 +194,6 @@ autocmd ColorScheme * highlight rubyInstanceVariable ctermfg=212
 " autocmd ColorScheme * highlight Delimiter ctermfg=37
 " autocmd ColorScheme * highlight phpParent ctermfg=none
 " autocmd ColorScheme * highlight Identifier ctermfg=none
-
-" -----インデント-----
-let g:indent_guides_auto_colors = 0
-autocmd Colorscheme * highlight IndentGuidesOdd  ctermbg=235
-autocmd Colorscheme * highlight IndentGuidesEven ctermbg=236
 
 
 " カラースキーム設定
@@ -356,40 +241,6 @@ endfunction
 
 command! SyntaxInfo call s:get_syn_info()
 
-" ale設定
-let g:ale_sign_error = '✖︎'
-let g:ale_sign_warning = '⚠︎'
-
-
-" denite.nvim define mappings
-autocmd FileType denite call s:denite_my_settings()
-function! s:denite_my_settings() abort
-  nnoremap <silent><buffer><expr> <CR>
-        \ denite#do_map('do_action')
-  nnoremap <silent><buffer><expr> d
-        \ denite#do_map('do_action', 'delete')
-  nnoremap <silent><buffer><expr> p
-        \ denite#do_map('do_action', 'preview')
-  nnoremap <silent><buffer><expr> q
-        \ denite#do_map('quit')
-  nnoremap <silent><buffer><expr> i
-        \ denite#do_map('open_filter_buffer')
-  nnoremap <silent><buffer><expr> <Space>
-        \ denite#do_map('toggle_select').'j'
-endfunction
-
-" denite.nvimにgrepではなくagで検索
-call denite#custom#var('file_rec', 'command', ['ag', '--follow', '--nocolor', '--nogroup', '-g', ''])
-call denite#custom#var('grep', 'command', ['ag'])
-call denite#custom#var('grep', 'recursive_opts', [])
-call denite#custom#var('grep', 'pattern_opt', [])
-call denite#custom#var('grep', 'default_opts', ['--follow', '--no-group', '--no-color'])
-
-" denite.nvim キーマッピング
-nnoremap <Space>f :<C-u>Denite file/rec<CR>
-nnoremap <Space>b :<C-u>Denite buffer<CR>
-nnoremap <Space>g :<C-u>Denite grep<CR>
-
 " ヴィジュアルモードでペーストした際に削除した文字列をレジスタに格納しない
 function! RestoreRegister()
   let @" = s:restore_reg
@@ -400,19 +251,3 @@ function! s:Repl()
   return "p@=RestoreRegister()\<cr>"
 endfunction
 vmap <silent> <expr> p <sid>Repl()
-
-" comfortable-motionの設定
-let g:comfortable_motion_friction = 800.0 " 摩擦力
-let g:comfortable_motion_air_drag = 3.0 " 空気抵抗
-let g:comfortable_motion_no_default_key_mappings = 1
-nnoremap <silent> <C-f> :call comfortable_motion#flick(300)<CR>
-nnoremap <silent> <C-b> :call comfortable_motion#flick(-300)<CR>
-
-" deoplete.vimセッティング
-let g:deoplete#enable_at_startup = 1
-
-" set termguicolors    " ターミナルでも True Color を使えるようにする。
-
-" gundo.vim
-let g:gundo_prefer_python3 = 1 " python3で動作(デフォルトではpython2.4)
-nnoremap <F5> :GundoToggle<CR>
