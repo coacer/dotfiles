@@ -23,6 +23,12 @@ set hlsearch " 検索結果をハイライト
 " set so=999 " 常にカーソルをファイル中央に配置
 language C " 英語化
 
+" ctrl+lでesc
+inoremap <C-l> <Esc>
+cnoremap <C-l> <Esc>
+vnoremap <C-l> <Esc>
+tmap <C-l> <Esc>
+
 " スペース+vで.vimrcファイルを開く
 nnoremap <Space>v :<C-u>edit $MYVIMRC<CR>
 nnoremap <Space>V :<C-u>vsplit $MYVIMRC<CR>
@@ -163,6 +169,8 @@ if dein#load_state('~/.vim/bundle')
   call dein#add('airblade/vim-gitgutter')
   " surround.vimなどの変更を.で繰り返し可能にする
   call dein#add('tpope/vim-repeat')
+  " editorconfig
+  call dein#add('editorconfig/editorconfig-vim')
 
   " Required:
   call dein#end()

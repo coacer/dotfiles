@@ -31,9 +31,11 @@ cnoremap <C-l> <Esc>
 vnoremap <C-l> <Esc>
 tmap <C-l> <Esc>
 
-" スペース+vで.vimrcファイルを開く
+" スペース+vでinit.vimファイルを開く
 nnoremap <Space>v :<C-u>edit $MYVIMRC<CR>
-nnoremap <Space>V :<C-u>vsplit $MYVIMRC<CR>
+
+" スペース+Vでdein.tomlファイルを開く
+nnoremap <Space>V :<C-u>edit ~/.config/nvim/dein.toml<CR>
 
 " スペース+sで.vimrcファイルを読み込む
 nnoremap <Space>s :<C-u>source $MYVIMRC<CR>
@@ -100,8 +102,8 @@ cnoremap <C-a> <Home>
 cnoremap <C-e> <End>
 
 " ctrl+y -/= でerbのカッコを表示
-inoremap <C-y>- <%  %><Left><Left><Left>
-inoremap <C-y>= <%=  %><Left><Left><Left>
+inoremap <C-d>- <%  %><Left><Left><Left>
+inoremap <C-d>= <%=  %><Left><Left><Left>
 
 " *で検索時に次の検索文字に移動しないように設定
 nnoremap * mq*`q
@@ -125,6 +127,7 @@ set runtimepath+=~/.cache/dein/repos/github.com/Shougo/dein.vim
 if dein#load_state('~/.cache/dein')
   call dein#begin('~/.cache/dein')
   call dein#load_toml('~/.config/nvim/dein.toml', {'lazy': 0})
+  call dein#load_toml('~/.config/nvim/dein_lazy.toml', {'lazy': 1})
 
   " Required:
   call dein#end()

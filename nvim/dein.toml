@@ -15,7 +15,9 @@ repo = 'cocopon/iceberg.vim'
 
 [[plugins]] # 閉じカッコ保管
 repo = 'cohama/lexima.vim'
-
+hook_add = '''
+  let g:user_emmet_leader_key = '<C-d>'
+'''
 [[plugins]] # Emmet導入
 repo = 'mattn/emmet-vim'
 
@@ -145,7 +147,6 @@ hook_add = '''
 [[plugins]] # 非同期補完
 repo = 'Shougo/deoplete.nvim'
 hook_add = '''
-  let g:deoplete#enable_at_startup = 1
 '''
 
 [[plugins]] # coffeescriptシンタックス
@@ -164,3 +165,14 @@ repo = 'iamcco/markdown-preview.vim'
 [[plugins]] # tomlシンタックス
 repo = 'cespare/vim-toml'
 
+[[plugins]] # editorconfig
+repo = 'editorconfig/editorconfig-vim'
+
+[[plugins]] # Vue.jsシンタックス
+repo = 'posva/vim-vue'
+hook_add = '''
+  autocmd FileType vue syntax sync fromstart
+'''
+
+[[plugins]] # スニペット
+repo = 'Shougo/neosnippet-snippets'
