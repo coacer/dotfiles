@@ -6,7 +6,7 @@ repo = 'scrooloose/nerdtree'
 hook_add = '''
   let g:NERDTreeDirArrowExpandable = '▸'
   let g:NERDTreeDirArrowCollapsible = '▾'
-  noremap <C-n> :<C-u>NERDTreeToggle<CR>
+  nnoremap <C-n> :<C-u>NERDTreeToggle<CR><C-l>
   let g:WebDevIconsUnicodeDecorateFolderNodes = 1
 '''
 
@@ -16,7 +16,7 @@ repo = 'cocopon/iceberg.vim'
 [[plugins]] # 閉じカッコ保管
 repo = 'cohama/lexima.vim'
 hook_add = '''
-  let g:user_emmet_leader_key = '<C-d>'
+  let g:user_emmet_leader_key = '<C-j>'
 '''
 [[plugins]] # Emmet導入
 repo = 'mattn/emmet-vim'

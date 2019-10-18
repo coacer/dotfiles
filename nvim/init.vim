@@ -101,9 +101,9 @@ cnoremap <C-f> <Right>
 cnoremap <C-a> <Home>
 cnoremap <C-e> <End>
 
-" ctrl+y -/= でerbのカッコを表示
-inoremap <C-d>- <%  %><Left><Left><Left>
-inoremap <C-d>= <%=  %><Left><Left><Left>
+" ctrl+j -/= でerbのカッコを表示
+inoremap <C-j>- <%  %><Left><Left><Left>
+inoremap <C-j>= <%=  %><Left><Left><Left>
 
 " *で検索時に次の検索文字に移動しないように設定
 nnoremap * mq*`q
