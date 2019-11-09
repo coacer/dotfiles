@@ -5,9 +5,9 @@ set fileencoding=utf-8 " 保存時の文字コード
 set fileencodings=ucs-boms,utf-8,euc-jp,cp932 " 読み込み時の文字コードの自動判別. 左側が優先される
 set fileformats=unix,dos,mac " 改行コードの自動判別. 左側が優先される
 set ambiwidth=double " □や○文字が崩れる問題を解決
-set noswapfile
-" set mouse=a " マウスクリックを有効か
 set hidden " バッファ保存せずに移動しようとした場合に!をつけなくても移動できる, またargsの移動も隠しファイルにする
+set undofile " undo履歴をファイルに保存(vim終了時にundo履歴が削除されない)
+" set mouse=a " マウス有効化
 
 set expandtab " タブ入力を複数の空白入力に置き換える
 set tabstop=2 " 画面上でタブ文字が占める幅
@@ -21,7 +21,8 @@ set ignorecase " 検索パターンに大文字小文字を区別しない
 set smartcase " 検索パターンに大文字を含んでいたら大文字小文字を区別する
 set hlsearch " 検索結果をハイライト
 " set so=999 " 常にカーソルをファイル中央に配置
-language C " 英語化
+language C " 出力文字英語化
+set ttimeoutlen=50 "インサートモードからEscの遅延を無くす
 
 " ctrl+lでesc
 inoremap <C-l> <Esc>
@@ -37,17 +38,20 @@ nnoremap <Space>V :<C-u>vsplit $MYVIMRC<CR>
 nnoremap <Space>s :<C-u>source $MYVIMRC<CR>
 
 " スペース+mでmyvim_manual.txtファイルを開く
-nnoremap <Space>m :<C-u>vsplit ~/Memo/myvim_manual.txt<CR>
+nnoremap <Space>m :<C-u>vsplit ~/Documents/Memo/myvim_manual.txt<CR>
 
-" ctrl+aで全選択
+" space+aで全選択
 nnoremap <Space>a ggVG
 
 " xで文字を消した際にレジスタに格納しない
 nnoremap x "_x
 vnoremap x "_x
 
-" ctrl-oで下に空行挿入
-nnoremap <C-o> mzo<Esc>"_cc<Esc>`z
+" Yでカーソル位置から行末までコピー
+nnoremap Y y$
+
+" Enterで下に空行挿入
+nnoremap <CR> mzo<Esc>"_cc<Esc>`z
 
 " 行を移動
 nnoremap <C-k> "zdd<Up>"zP
@@ -55,9 +59,6 @@ nnoremap <C-j> "zdd"zp
 " 複数行を移動
 vnoremap <C-k> "zx<Up>"zP`[V`]
 vnoremap <C-j> "zx"zp`[V`]
-
-" ctrl-h*2でカーソル上のキーワードでhelp
-nnoremap <C-h><C-h> :<C-u>help<Space><C-r><C-w><CR>
 
 " ESCキー2度押しでハイライトの切り替え
 nnoremap <Esc><Esc> :<C-u>noh<CR>
@@ -80,7 +81,7 @@ source $VIMRUNTIME/macros/matchit.vim " Vimの「%」を拡張する
 " シンタックスを判別してカラー表示する
 syntax on
 
-" Emacs風キーバインディングの設定
+" Emacsキーバインディングの設定
 " インサートモード
 " inoremap <C-p> <Up>
 " inoremap <C-n> <Down>
@@ -97,9 +98,9 @@ cnoremap <C-f> <Right>
 cnoremap <C-a> <Home>
 cnoremap <C-e> <End>
 
-" ctrl+y -/= でerbのカッコを表示
-inoremap <C-y>- <%  %><Left><Left><Left>
-inoremap <C-y>= <%=  %><Left><Left><Left>
+" ctrl+j -/= でerbのカッコを表示
+inoremap <C-j>- <%  %><Left><Left><Left>
+inoremap <C-j>= <%=  %><Left><Left><Left>
 
 " *で検索時に次の検索文字に移動しないように設定
 nnoremap * mq*`q
@@ -241,6 +242,7 @@ nmap <C-e> <Plug>AirlineSelectPrevTab
 nmap <C-y> <Plug>AirlineSelectNextTab
 noremap <C-d> :bd<CR>
 
+let g:user_emmet_leader_key = '<C-j>'
 
 
 let g:indent_guides_enable_on_vim_startup = 1

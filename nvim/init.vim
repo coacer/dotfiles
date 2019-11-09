@@ -41,9 +41,9 @@ nnoremap <Space>V :<C-u>edit ~/.config/nvim/dein.toml<CR>
 nnoremap <Space>s :<C-u>source $MYVIMRC<CR>
 
 " スペース+mでmyvim_manual.txtファイルを開く
-nnoremap <Space>m :<C-u>vsplit ~/Memo/myvim_manual.txt<CR>
+nnoremap <Space>m :<C-u>vsplit ~/Documents/Memo/myvim_manual.txt<CR>
 
-" space+aでj選択
+" space+aで全選択
 nnoremap <Space>a ggVG
 
 " xで文字を消した際にレジスタに格納しない
