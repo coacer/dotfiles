@@ -7,6 +7,8 @@ set fileformats=unix,dos,mac " 改行コードの自動判別. 左側が優先�
 set ambiwidth=double " □や○文字が崩れる問題を解決
 set hidden " バッファ保存せずに移動しようとした場合に!をつけなくても移動できる, またargsの移動も隠しファイルにする
 set undofile " undo履歴をファイルに保存(vim終了時にundo履歴が削除されない)
+set undodir=~/.local/share/vim/undo " undoファイルの保存場所
+noswapfile
 " set mouse=a " マウス有効化
 
 set expandtab " タブ入力を複数の空白入力に置き換える
@@ -109,11 +111,10 @@ nnoremap * mq*`q
 nnoremap <Space>t :<C-u>!tig<CR>
 
 
+" <ctrl+r>*2で無名レジスタ
+inoremap <C-r><C-r> <C-r>"
+cnoremap <C-r><C-r> <C-r>"
 
-"dein Scripts-----------------------------
-if &compatible
-  set nocompatible               " Be iMproved
-endif
 
 " Required:
 set runtimepath+=~/.vim/bundle/repos/github.com/Shougo/dein.vim
@@ -121,58 +122,10 @@ set runtimepath+=~/.vim/bundle/repos/github.com/Shougo/dein.vim
 " Required:
 if dein#load_state('~/.vim/bundle')
   call dein#begin('~/.vim/bundle')
-
-  " Let dein manage dein
-  " Required:
-  call dein#add('~/.vim/bundle/repos/github.com/Shougo/dein.vim')
-
-  " Add or remove your plugins here like this:
-  "call dein#add('Shougo/neosnippet.vim')
-  "call dein#add('Shougo/neosnippet-snippets')
-
-  " ツリービュー表示
-  call dein#add('scrooloose/nerdtree')
-  " カラースキーム
-  call dein#add('cocopon/iceberg.vim')
-  " 閉じカッコ保管
-  call dein#add('cohama/lexima.vim')
-  " Emmet導入
-  call dein#add('mattn/emmet-vim')
-  " コメントアウトショートカット導入
-  call dein#add('tomtom/tcomment_vim')
-  " ステータスライン表示
-  call dein#add('vim-airline/vim-airline')
-  " ステータスライン装飾
-  call dein#add('vim-airline/vim-airline-themes')
-  " ウィンドウサイズ変更用プラグイン
-  call dein#add('simeji/winresizer')
-  " カラーテーブルを表示する
-  call dein#add('guns/xterm-color-table.vim')
-  " JavaScriptES6のシンタックス
-  call dein#add('othree/yajs.vim')
-  " vim上からgitコマンドを使えるプラグイン
-  call dein#add('tpope/vim-fugitive')
-  " カッコやHTMLタグなどの挿入、削除、置換プラグイン
-  call dein#add('tpope/vim-surround')
-  " rails用プラグイン
-  call dein#add('tpope/vim-rails')
-  " vim help日本語化
-  call dein#add('vim-jp/vimdoc-ja')
-  " インデントを可視化
-  call dein#add('nathanaelkane/vim-indent-guides')
-  " nerdtreeにアイコン表示
-  call dein#add('ryanoasis/vim-devicons')
-  " 末尾の空白可視化j
-  call dein#add('bronson/vim-trailing-whitespace')
-  " シンタックスエラーチェック
-  call dein#add('w0rp/ale')
-  " gitで管理してる変更された箇所を行番号横に表示
-  call dein#add('airblade/vim-gitgutter')
-  " surround.vimなどの変更を.で繰り返し可能にする
-  call dein#add('tpope/vim-repeat')
-  " editorconfig
-  call dein#add('editorconfig/editorconfig-vim')
-
+  call dein#load_toml('~/.config/nvim/dein.toml', {'lazy': 0})
+  call dein#load_toml('~/.config/nvim/dein_lazy.toml', {'lazy': 1})
+  call dein#add('roxma/nvim-yarp') " neovim用プラグインを動かすためのプラグイン
+  call dein#add('roxma/vim-hug-neovim-rpc') " neovim用プラグインを動かすためのプラグイン
   " Required:
   call dein#end()
   call dein#save_state()
@@ -189,20 +142,6 @@ endif
 
 "End dein Scripts-------------------------
 
-
-
-
-
-" -------------- The NERD Tree----------------
-" 基本設定
-let g:NERDTreeDirArrowExpandable = '▸'
-let g:NERDTreeDirArrowCollapsible = '▾'
-noremap <C-n> :<C-u>NERDTreeToggle<CR>
-" フォルダアイコンの表示をON
-let g:WebDevIconsUnicodeDecorateFolderNodes = 1
-
-" ツリービュー自動表示
-" autocmd VimEnter * execute 'NERDTree'
 
 " ツリービュー拡張子ハイライト
 function! NERDTreeHighlightFile(extension, fg, bg)
@@ -226,33 +165,6 @@ call NERDTreeHighlightFile('Gemfile',    '105', 'none')
 call NERDTreeHighlightFile('lock',    '105', 'none')
 
 
-" ステータスラインカスタム
-let g:airline_theme = 'bubblegum'
-set laststatus=2
-let g:airline#extensions#branch#enabled = 1
-let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#wordcount#enabled = 0
-let g:airline#extensions#default#layout = [['a', 'b', 'c'], ['x', 'y', 'z']]
-let g:airline_section_c = '%t'
-let g:airline_section_x = '%{&filetype}'
-let g:airline_section_z = '%3l:%2v %{airline#extensions#ale#get_warning()} %{airline#extensions#ale#get_error()}'
-let g:airline#extensions#default#section_truncate_width = {}
-let g:airline#extensions#whitespace#enabled = 1
-nmap <C-e> <Plug>AirlineSelectPrevTab
-nmap <C-y> <Plug>AirlineSelectNextTab
-noremap <C-d> :bd<CR>
-
-let g:user_emmet_leader_key = '<C-j>'
-
-
-let g:indent_guides_enable_on_vim_startup = 1
-
-" ウィンドウサイズ変更用プラグイン(winresizer)
-" startコマンドのデフォルトctrl-eからctrl-uに変更
-let g:winresizer_start_key = '<C-U>'
-" 移動幅の設定
-let g:winresizer_vert_resize = 3
-let g:winresizer_horiz_resize = 1
 
 " 保存時に末尾のスペースを削除
 autocmd BufWritePre * %s/\s\+$//e
@@ -281,14 +193,10 @@ autocmd ColorScheme * highlight rubyInstanceVariable ctermfg=212
 " autocmd ColorScheme * highlight phpParent ctermfg=none
 " autocmd ColorScheme * highlight Identifier ctermfg=none
 
-" -----インデント-----
-let g:indent_guides_auto_colors = 0
-autocmd Colorscheme * :hi IndentGuidesOdd  ctermbg=235
-autocmd Colorscheme * :hi IndentGuidesEven ctermbg=236
-
 
 " カラースキーム設定
 colorscheme iceberg
+
 
 
 " :SyntaxInfoコマンドでカーソル下のシンタックスグループ名を表示する関数
@@ -331,6 +239,13 @@ endfunction
 
 command! SyntaxInfo call s:get_syn_info()
 
-" ale設定
-let g:ale_sign_error = '✖︎'
-let g:ale_sign_warning = '⚠︎'
+" ヴィジュアルモードでペーストした際に削除した文字列をレジスタに格納しない
+function! RestoreRegister()
+  let @" = s:restore_reg
+  return ''
+endfunction
+function! s:Repl()
+  let s:restore_reg = @"
+  return "p@=RestoreRegister()\<cr>"
+endfunction
+vmap <silent> <expr> p <sid>Repl()
