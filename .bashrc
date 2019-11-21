@@ -15,7 +15,7 @@ function add_line {
   if [[ -z "${PS1_NEWLINE_LOGIN}" ]]; then
     PS1_NEWLINE_LOGIN=true
   else
-    printf '\n'
+    printf '\n\n'
   fi
 }
 
@@ -28,7 +28,6 @@ function cdls() {
 # エイリアス
 alias cd=cdls
 alias vi='vim -C -u NONE'
-alias nv='nvim'
 alias ..='cd ..'
 alias la='ls -a'
 alias ll='ls -l'
