@@ -92,6 +92,8 @@ repo = 'w0rp/ale'
 hook_add = '''
   let g:ale_sign_error = '✖︎'
   let g:ale_sign_warning = '⚠︎'
+  let g:ale_lint_on_save = 1
+  let g:ale_lint_on_text_changed = 0
 '''
 
 [[plugins]] # 末尾の空白可視化
@@ -102,37 +104,6 @@ repo = 'airblade/vim-gitgutter'
 
 [[plugins]] # surround.vimなどの変更を.で繰り返し可能にする
 repo = 'tpope/vim-repeat'
-
-[[plugins]] # ファイル検索プラグイン
-repo = 'Shougo/denite.nvim'
-hook_add = '''
-  autocmd FileType denite call s:denite_my_settings()
-  function! s:denite_my_settings() abort
-    nnoremap <silent><buffer><expr> <CR>
-          \ denite#do_map('do_action')
-    nnoremap <silent><buffer><expr> d
-          \ denite#do_map('do_action', 'delete')
-    nnoremap <silent><buffer><expr> p
-          \ denite#do_map('do_action', 'preview')
-    nnoremap <silent><buffer><expr> q
-          \ denite#do_map('quit')
-    nnoremap <silent><buffer><expr> i
-          \ denite#do_map('open_filter_buffer')
-    nnoremap <silent><buffer><expr> <Space>
-          \ denite#do_map('toggle_select').'j'
-  endfunction
-
-  call denite#custom#var('file_rec', 'command', ['ag', '--follow', '--nocolor', '--nogroup', '-g', ''])
-  call denite#custom#var('grep', 'command', ['ag'])
-  call denite#custom#var('grep', 'recursive_opts', [])
-  call denite#custom#var('grep', 'pattern_opt', [])
-  call denite#custom#var('grep', 'default_opts', ['--follow', '--no-group', '--no-color'])
-
-  nnoremap <Space>f :<C-u>Denite file/rec<CR>
-  nnoremap <Space>b :<C-u>Denite buffer<CR>
-  nnoremap <Space>g :<C-u>Denite grep<CR>
-'''
-
 
 [[plugins]] # スクロールを滑らかに
 repo = 'yuttie/comfortable-motion.vim'
@@ -168,11 +139,31 @@ repo = 'cespare/vim-toml'
 [[plugins]] # editorconfig
 repo = 'editorconfig/editorconfig-vim'
 
-[[plugins]] # Vue.jsシンタックス
-repo = 'posva/vim-vue'
-hook_add = '''
-  autocmd FileType vue syntax sync fromstart
-'''
+# [[plugins]] # Vue.jsシンタックス
+# repo = 'posva/vim-vue'
+# hook_add = '''
+#   autocmd FileType vue syntax sync fromstart
+# '''
 
 [[plugins]] # スニペット
 repo = 'Shougo/neosnippet-snippets'
+
+[[plugins]] # PHPのbladeファイル対応
+repo = 'jwalton512/vim-blade'
+
+[[plugins]] # fzfプラグイン
+repo = 'junegunn/fzf.vim'
+hook_add = '''
+  nnoremap <Space>f :GFiles<CR>
+  nnoremap <Space>F :Files<CR>
+  nnoremap <Space>g :GGrep<CR>
+  nnoremap <Space>b :Buffers<CR>
+
+  command! -bang -nargs=* GGrep
+  \ call fzf#vim#grep(
+  \   'git grep --line-number '.shellescape(<q-args>), 0,
+  \   fzf#vim#with_preview({'dir': systemlist('git rev-parse --show-toplevel')[0]}), <bang>0)
+'''
+
+[[plugins]] # fzfプラグイン
+repo = '/usr/local/opt/fzf'

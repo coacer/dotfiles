@@ -42,7 +42,7 @@ nnoremap <Space>V :<C-u>edit ~/.config/nvim/dein.toml<CR>
 nnoremap <Space>s :<C-u>source $MYVIMRC<CR>
 
 " スペース+mでmyvim_manual.txtファイルを開く
-nnoremap <Space>m :<C-u>vsplit ~/Documents/Memo/myvim_manual.txt<CR>
+nnoremap <Space>m :<C-u>edit ~/Documents/Memo/Vim/myvim_manual.txt<CR>
 
 " space+aで全選択
 nnoremap <Space>a ggVG
@@ -54,12 +54,12 @@ vnoremap x "_x
 " Yでカーソル位置から行末までコピー
 nnoremap Y y$
 
-" Enterで下に空行挿入
-nnoremap <CR> mzo<Esc>"_cc<Esc>`z
+" ctrl-kで下に空行挿入
+nnoremap <C-k> mzo<Esc>"_cc<Esc>`z
 
-" 行を移動
-nnoremap <C-k> "zdd<Up>"zP
-nnoremap <C-j> "zdd"zp
+" space*2でファイル全体のインデントを揃える
+nnoremap <Space><Space> mz:%normal ==<CR>`z
+
 " 複数行を移動
 vnoremap <C-k> "zx<Up>"zP`[V`]
 vnoremap <C-j> "zx"zp`[V`]
@@ -119,6 +119,8 @@ tnoremap <Esc> <C-\><C-n>
 inoremap <C-r><C-r> <C-r>"
 cnoremap <C-r><C-r> <C-r>"
 
+" ターミナル表示時は番号を表示しない
+autocmd TermOpen * setlocal nonumber
 
 "dein Scripts-----------------------------
 " Required:
@@ -140,9 +142,9 @@ filetype plugin indent on
 syntax enable
 
 " If you want to install not installed plugins on startup.
-if dein#check_install()
-  call dein#install()
-endif
+" if dein#check_install()
+"   call dein#install()
+" endif
 
 "End dein Scripts-------------------------
 

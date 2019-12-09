@@ -1,5 +1,6 @@
 eval "$(rbenv init -)" # rbenv初期化(パスが通る)
 export PATH="/usr/local/opt/mysql/bin:$PATH"
+export PATH="$PATH:./node_modules/.bin"
 export CLICOLOR=1
 export LSCOLORS=DxGxcxdxCxegedabagacad #lsで表示される色の変更
 
@@ -27,8 +28,11 @@ function cdls() {
 
 # エイリアス
 alias cd=cdls
+alias cdd='cd ~/Desktop'
 alias vi='vim -C -u NONE'
 alias ..='cd ..'
 alias la='ls -a'
 alias ll='ls -l'
 alias lla='ls -la'
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash

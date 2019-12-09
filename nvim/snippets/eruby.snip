@@ -1,0 +1,26 @@
+snippet     each
+abbr        <% objects.each do || %>
+options     indent
+  <% ${1:objects}.each do |${2:value}| %>
+    ${3}
+  <% end %>
+
+snippet     render
+abbr        <%= render '' %>
+options     head
+  <%= render '${1:template}' %>
+
+snippet     render_opt
+abbr        <%= render '', object: ~ %>
+options     head
+  <%= render '${1:template}', ${2:object}: ${3:value} %>
+
+snippet     render_obj
+abbr        <%= render objects %>
+options     head
+  <%= render ${1:objects} %>
+
+snippet     link
+abbr        <%= link_to '' %>
+options     head
+  <%= link_to ${1:string}, ${2}_path %>

@@ -1,0 +1,29 @@
+snippet data
+abbr data() { return {} }
+  data() {
+    return {
+      ${1:key}: ${2:value},
+    }
+  },
+
+snippet created
+abbr created() {}
+  created() {
+    ${1}
+  },
+
+snippet mounted
+abbr mounted() {}
+  mounted() {
+    ${1}
+  },
+
+snippet props
+abbr props: {}
+options indent
+  props: {
+    ${1:propName}: {
+      type: ${2:String},
+      required: true
+    },
+  },
