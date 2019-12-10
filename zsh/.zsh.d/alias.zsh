@@ -11,4 +11,5 @@ alias la='ls -a'
 alias ll='ls -l'
 alias lla='ls -la'
 alias ls="ls -GF"
+alias ide="~/Scripts/ide.sh"
 

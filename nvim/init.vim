@@ -51,6 +51,9 @@ nnoremap <Space>a ggVG
 nnoremap x "_x
 vnoremap x "_x
 
+" ウィンドウprefixをsに変換
+nnoremap s <C-w>
+
 " Yでカーソル位置から行末までコピー
 nnoremap Y y$
 

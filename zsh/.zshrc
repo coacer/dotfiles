@@ -1,6 +1,16 @@
 eval "$(rbenv init -)" # rbenv初期化(パスが通る)
 export PATH="/usr/local/opt/mysql/bin:$PATH"
 export PATH="$PATH:./node_modules/.bin"
+# alias j="autojump"
+# if [ -f `brew --prefix`/etc/autojump  ]; then
+#     . `brew --prefix`/etc/autojump
+# fi
+BREW_PREFIX=`brew --prefix`
+if [ -e $BREW_PREFIX/etc/autojump ]; then
+    source $BREW_PREFIX/etc/autojump
+    fpath=($BREW_PREFIX/share/zsh/functions(N) $BREW_PREFIX/share/zsh/site-functions(N) $fpath)
+fi
+autoload -U compinit; compinit -u
 
 
 # --------------------------------------------------
@@ -90,3 +100,4 @@ if [ -d $ZSHHOME -a -r $ZSHHOME -a \
 fi
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+ [[ -s $(brew --prefix)/etc/profile.d/autojump.sh ]] && . $(brew --prefix)/etc/profile.d/autojump.sh

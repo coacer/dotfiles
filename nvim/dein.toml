@@ -154,10 +154,10 @@ repo = 'jwalton512/vim-blade'
 [[plugins]] # fzfプラグイン
 repo = 'junegunn/fzf.vim'
 hook_add = '''
-  nnoremap <Space>f :GFiles<CR>
-  nnoremap <Space>F :Files<CR>
-  nnoremap <Space>g :GGrep<CR>
-  nnoremap <Space>b :Buffers<CR>
+  nnoremap <Space>f :<C-u>GFiles<CR>
+  nnoremap <Space>F :<C-u>Files<CR>
+  nnoremap <Space>g :<C-u>GGrep<CR>
+  nnoremap <Space>b :<C-u>Buffers<CR>
 
   command! -bang -nargs=* GGrep
   \ call fzf#vim#grep(
