@@ -1,0 +1,9 @@
+snippet     render
+abbr        <%= render ~ %>
+options     head
+  <%= render ${1} %>
+
+snippet     link
+abbr        <%= link_to str, path %>
+options     word
+  <%= link_to ${1:str}, ${2:path}_path %>

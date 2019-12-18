@@ -1,0 +1,26 @@
+snippet     vue-ts
+options     head
+  <template>
+    ${1}
+  </template>
+
+  <script lang="ts">
+  import { Component, Vue } from "vue-property-decorator";
+
+  @Component
+  export default class `expand("%:t:r")` extends Vue {
+  }
+  </script>
+
+  <style lang="scss" scoped>
+  </style>
+
+snippet     script-ts
+abbr        <script lang="ts">
+options     head
+  <script lang="ts">
+  import { Component, Vue } from 'vue-property-decorator';
+
+  @Component
+  export default class `expand("%:t:r")` extends Vue {}
+  </script>

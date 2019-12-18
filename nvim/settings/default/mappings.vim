@@ -4,17 +4,36 @@ cnoremap <C-l> <Esc>
 vnoremap <C-l> <Esc>
 tmap <C-l> <Esc>
 
-" スペース+vでinit.vimファイルを開く
-nnoremap <Space>v :<C-u>edit $MYVIMRC<CR>
+"========== vimrc操作 ==========
+" スペース+vmでmappings.vimファイルを開く
+nnoremap <Space>vm :<C-u>edit ~/.config/nvim/settings/default/mappings.vim<CR>
 
-" スペース+Vでdein.tomlファイルを開く
-nnoremap <Space>V :<C-u>edit ~/.config/nvim/dein/dein.toml<CR>
+" スペース+vbでbasic.vimファイルを開く
+nnoremap <Space>vb :<C-u>edit ~/.config/nvim/settings/default/basic.vim<CR>
 
-" スペース+sで.vimrcファイルを読み込む
-nnoremap <Space>s :<C-u>source $MYVIMRC<CR>
+" スペース+vcでcolor.vimファイルを開く
+nnoremap <Space>vc :<C-u>edit ~/.config/nvim/settings/default/color.vim<CR>
+
+" スペース+vdでdein.tomlファイルを開く
+nnoremap <Space>vd :<C-u>edit ~/.config/nvim/dein/dein.toml<CR>
+
+" スペース+vsで.vimrcファイルを読み込む
+nnoremap <Space>vs :<C-u>source $MYVIMRC<CR>
 
 " スペース+mでmyvim_manual.txtファイルを開く
 nnoremap <Space>m :<C-u>edit ~/Documents/Memo/Vim/myvim_manual.txt<CR>
+
+
+"========== セッション操作 ==========
+" スペース+swでセッションファイルを保存してウィンドウを全て閉じる
+nnoremap <Space>sw :<C-u>mks! .session.vim<CR>:<C-u>qall<CR>
+
+" スペース+ssでセッションファイルを読み込む
+nnoremap <Space>ss :<C-u>source .session.vim<CR>
+
+" スペース+sdでセッションファイルを削除
+nnoremap <Space>sd :<C-u>!rm .session.vim<CR>
+"==================================
 
 " space+aで全選択
 nnoremap <Space>a ggVG
