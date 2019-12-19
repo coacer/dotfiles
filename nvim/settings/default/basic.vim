@@ -1,3 +1,9 @@
+" ダイナミック プロバイダのパス
+let g:python_host_prog  = '/usr/local/bin/python2'
+let g:python3_host_prog = '/usr/local/bin/python3'
+let g:ruby_host_prog = '~/.rbenv/shims/neovim-ruby-host'
+let g:node_host_prog = '/usr/local/bin/neovim-node-host'
+
 " 基本設定
 set encoding=utf-8
 scriptencoding utf-8
@@ -9,6 +15,9 @@ set hidden " バッファ保存せずに移動しようとした場合に!をつ
 set undofile " undo履歴をファイルに保存(vim終了時にundo履歴が削除されない)
 noswapfile
 " set mouse=a " マウス有効化
+set termguicolors
+" let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum" " 文字色
+" let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum" " 背景色
 
 set expandtab " タブ入力を複数の空白入力に置き換える
 set tabstop=2 " 画面上でタブ文字が占める幅

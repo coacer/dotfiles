@@ -13,13 +13,11 @@ hook_add = '''
 [[plugins]] # カラースキーム
 repo = 'cocopon/iceberg.vim'
 
-[[plugins]] # 閉じカッコ保管
-repo = 'cohama/lexima.vim'
+[[plugins]] # Emmet導入
+repo = 'mattn/emmet-vim'
 hook_add = '''
   let g:user_emmet_leader_key = '<C-j>'
 '''
-[[plugins]] # Emmet導入
-repo = 'mattn/emmet-vim'
 
 [[plugins]] # コメントアウトショートカット導入
 repo = 'tomtom/tcomment_vim'
@@ -35,9 +33,6 @@ hook_add = '''
   let g:airline#extensions#default#layout = [['a', 'b', 'c'], ['x', 'y', 'z']]
   let g:airline_section_c = '%t'
   let g:airline_section_x = '%{&filetype}'
-  let g:airline_section_z = '%3l:%2v %{airline#extensions#ale#get_warning()} %{airline#extensions#ale#get_error()}'
-  let g:airline#extensions#ale#error_symbol = ' '
-  let g:airline#extensions#ale#warning_symbol = ' '
   let g:airline#extensions#default#section_truncate_width = {}
   let g:airline#extensions#whitespace#enabled = 1
   nmap <C-e> <Plug>AirlineSelectPrevTab
@@ -87,14 +82,14 @@ hook_add = '''
 [[plugins]] # nerdtreeにアイコン表示
 repo = 'ryanoasis/vim-devicons'
 
-[[plugins]] # シンタックスエラーチェック
-repo = 'w0rp/ale'
-hook_add = '''
-  let g:ale_sign_error = '✖︎'
-  let g:ale_sign_warning = '⚠︎'
-  let g:ale_lint_on_save = 1
-  let g:ale_lint_on_text_changed = 0
-'''
+# [[plugins]] # シンタックスエラーチェック
+# repo = 'w0rp/ale'
+# hook_add = '''
+#   let g:ale_sign_error = '✖︎'
+#   let g:ale_sign_warning = '⚠︎'
+#   let g:ale_lint_on_save = 1
+#   let g:ale_lint_on_text_changed = 0
+# '''
 
 [[plugins]] # 末尾の空白可視化
 repo = 'bronson/vim-trailing-whitespace'
@@ -115,10 +110,10 @@ hook_add = '''
   nnoremap <silent> <C-b> :call comfortable_motion#flick(-300)<CR>
 '''
 
-[[plugins]] # 非同期補完
-repo = 'Shougo/deoplete.nvim'
-hook_add = '''
-'''
+# [[plugins]] # 非同期補完
+# repo = 'Shougo/deoplete.nvim'
+# hook_add = '''
+# '''
 
 [[plugins]] # coffeescriptシンタックス
 repo = 'kchmck/vim-coffee-script'
@@ -139,14 +134,14 @@ repo = 'cespare/vim-toml'
 [[plugins]] # editorconfig
 repo = 'editorconfig/editorconfig-vim'
 
-# [[plugins]] # Vue.jsシンタックス
-# repo = 'posva/vim-vue'
-# hook_add = '''
-#   autocmd FileType vue syntax sync fromstart
-# '''
+[[plugins]] # Vue.jsシンタックス
+repo = 'posva/vim-vue'
+hook_add = '''
+  autocmd FileType vue syntax sync fromstart
+'''
 
-[[plugins]] # スニペット
-repo = 'Shougo/neosnippet-snippets'
+# [[plugins]] # スニペット
+# repo = 'Shougo/neosnippet-snippets'
 
 [[plugins]] # PHPのbladeファイル対応
 repo = 'jwalton512/vim-blade'
@@ -167,3 +162,56 @@ hook_add = '''
 
 [[plugins]] # fzfプラグイン
 repo = '/usr/local/opt/fzf'
+
+[[plugins]] # LSPを使用した非同期補完+諸々の機能
+repo = 'neoclide/coc.nvim'
+rev = 'release'
+on_i = 1
+merged = '0'
+hook_source = 'call coil398#init#coc#hook_source()'
+hook_add = '''
+'''
+
+[[plugins]] # typescriptシンタックス
+repo = 'leafgarland/typescript-vim'
+
+[[plugins]] # jsxシンタックス
+repo = 'maxmellon/vim-jsx-pretty'
+
+[[plugins]] # tsxシンタックス
+repo = 'ianks/vim-tsx'
+
+[[plugins]] # スニペットエンジン
+repo = 'SirVer/ultisnips'
+
+[[plugins]] # スニペット定義
+repo = 'honza/vim-snippets'
+
+[[plugins]] # カラースキーム
+repo = 'jonathanfilip/vim-lucius'
+
+[[plugins]] # カラースキーム
+repo = 'jdkanani/vim-material-theme'
+
+[[plugins]] # カラースキーム
+repo = 'Shougo/unite.vim'
+
+[[plugins]] # カラースキーム
+repo = 'ujihisa/unite-colorscheme'
+hook_add = '''
+  let g:unite_colorscheme_blacklist = [
+        \ 'blue', 'darkblue', 'delek', 'evening',
+        \ 'desert', 'elflord', 'koehler', 'morning',
+        \ 'murphy', 'pablo', 'peachpuff', 'ron',
+        \ 'slate', 'torte', 'zellner', 'industry', 'shine']
+'''
+
+[[plugins]] # カラースキーム
+repo = 'gosukiwi/vim-atom-dark'
+
+[[plugins]] # 閉じ括弧補完
+repo = 'jiangmiao/auto-pairs'
+
+[[plugins]] # ruby閉じend補完
+repo = 'tpope/vim-endwise'
+

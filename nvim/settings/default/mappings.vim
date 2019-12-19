@@ -52,7 +52,7 @@ nnoremap Y y$
 nnoremap <C-k> mzo<Esc>"_cc<Esc>`z
 
 " space*2でファイル全体のインデントを揃える
-nnoremap <Space><Space> mz:%normal ==<CR>`z
+nnoremap <Space><Space> mz:%normal ==<CR>`zzz
 
 " 複数行を移動
 vnoremap <C-k> "zx<Up>"zP`[V`]
