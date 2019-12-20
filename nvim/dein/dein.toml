@@ -4,10 +4,7 @@ repo = 'Shougo/dein.vim'
 [[plugins]] # ツリービュー表示
 repo = 'scrooloose/nerdtree'
 hook_add = '''
-  let g:NERDTreeDirArrowExpandable = '▸'
-  let g:NERDTreeDirArrowCollapsible = '▾'
-  nnoremap <C-n> :<C-u>NERDTreeToggle<CR><C-l>
-  let g:WebDevIconsUnicodeDecorateFolderNodes = 1
+  source ~/.config/nvim/settings/plugins/nerdtree.rc.vim
 '''
 
 [[plugins]] # カラースキーム
@@ -16,7 +13,7 @@ repo = 'cocopon/iceberg.vim'
 [[plugins]] # Emmet導入
 repo = 'mattn/emmet-vim'
 hook_add = '''
-  let g:user_emmet_leader_key = '<C-j>'
+  source ~/.config/nvim/settings/plugins/emmet-vim.rc.vim
 '''
 
 [[plugins]] # コメントアウトショートカット導入
@@ -25,19 +22,7 @@ repo = 'tomtom/tcomment_vim'
 [[plugins]] # ステータスライン表示
 repo = 'vim-airline/vim-airline'
 hook_add = '''
-  let g:airline_theme = 'bubblegum'
-  set laststatus=2
-  let g:airline#extensions#branch#enabled = 1
-  let g:airline#extensions#tabline#enabled = 1
-  let g:airline#extensions#wordcount#enabled = 0
-  let g:airline#extensions#default#layout = [['a', 'b', 'c'], ['x', 'y', 'z']]
-  let g:airline_section_c = '%t'
-  let g:airline_section_x = '%{&filetype}'
-  let g:airline#extensions#default#section_truncate_width = {}
-  let g:airline#extensions#whitespace#enabled = 1
-  nmap <C-e> <Plug>AirlineSelectPrevTab
-  nmap <C-y> <Plug>AirlineSelectNextTab
-  nnoremap <C-d> :bd<CR>
+  source ~/.config/nvim/settings/plugins/vim-airline.rc.vim
 '''
 
 [[plugins]] # ステータスライン装飾
@@ -46,10 +31,7 @@ repo = 'vim-airline/vim-airline-themes'
 [[plugins]] # ウィンドウサイズ変更用プラグイン
 repo = 'simeji/winresizer'
 hook_add = '''
-  let g:winresizer_start_key = '<C-U>'
-  " 移動幅の設定
-  let g:winresizer_vert_resize = 3
-  let g:winresizer_horiz_resize = 1
+  source ~/.config/nvim/settings/plugins/winresizer.rc.vim
 '''
 
 [[plugins]] # カラーテーブルを表示する
@@ -73,23 +55,11 @@ repo = 'vim-jp/vimdoc-ja'
 [[plugins]] # インデントを可視化
 repo = 'nathanaelkane/vim-indent-guides'
 hook_add = '''
-  let g:indent_guides_enable_on_vim_startup = 1
-  let g:indent_guides_auto_colors = 0
-  autocmd Colorscheme * highlight IndentGuidesOdd  ctermbg=235
-  autocmd Colorscheme * highlight IndentGuidesEven ctermbg=236
+  source ~/.config/nvim/settings/plugins/vim-indent-guides.rc.vim
 '''
 
 [[plugins]] # nerdtreeにアイコン表示
 repo = 'ryanoasis/vim-devicons'
-
-# [[plugins]] # シンタックスエラーチェック
-# repo = 'w0rp/ale'
-# hook_add = '''
-#   let g:ale_sign_error = '✖︎'
-#   let g:ale_sign_warning = '⚠︎'
-#   let g:ale_lint_on_save = 1
-#   let g:ale_lint_on_text_changed = 0
-# '''
 
 [[plugins]] # 末尾の空白可視化
 repo = 'bronson/vim-trailing-whitespace'
@@ -103,17 +73,8 @@ repo = 'tpope/vim-repeat'
 [[plugins]] # スクロールを滑らかに
 repo = 'yuttie/comfortable-motion.vim'
 hook_add = '''
-  let g:comfortable_motion_friction = 800.0 " 摩擦力
-  let g:comfortable_motion_air_drag = 3.0 " 空気抵抗
-  let g:comfortable_motion_no_default_key_mappings = 1
-  nnoremap <silent> <C-f> :call comfortable_motion#flick(300)<CR>
-  nnoremap <silent> <C-b> :call comfortable_motion#flick(-300)<CR>
+  source ~/.config/nvim/settings/plugins/comfortable-motion.rc.vim
 '''
-
-# [[plugins]] # 非同期補完
-# repo = 'Shougo/deoplete.nvim'
-# hook_add = '''
-# '''
 
 [[plugins]] # coffeescriptシンタックス
 repo = 'kchmck/vim-coffee-script'
@@ -121,8 +82,7 @@ repo = 'kchmck/vim-coffee-script'
 [[plugins]] # gundoグラフ可視化
 repo = 'sjl/gundo.vim'
 hook_add = '''
-  let g:gundo_prefer_python3 = 1 " python3で動作(デフォルトではpython2.4)
-  nnoremap <F5> :GundoToggle<CR>
+  source ~/.config/nvim/settings/plugins/gundo.rc.vim
 '''
 
 [[plugins]] # markdownプレビュー
@@ -137,11 +97,8 @@ repo = 'editorconfig/editorconfig-vim'
 [[plugins]] # Vue.jsシンタックス
 repo = 'posva/vim-vue'
 hook_add = '''
-  autocmd FileType vue syntax sync fromstart
+  source ~/.config/nvim/settings/plugins/vim-vue.rc.vim
 '''
-
-# [[plugins]] # スニペット
-# repo = 'Shougo/neosnippet-snippets'
 
 [[plugins]] # PHPのbladeファイル対応
 repo = 'jwalton512/vim-blade'
@@ -149,15 +106,7 @@ repo = 'jwalton512/vim-blade'
 [[plugins]] # fzfプラグイン
 repo = 'junegunn/fzf.vim'
 hook_add = '''
-  nnoremap <Space>f :<C-u>GFiles<CR>
-  nnoremap <Space>F :<C-u>Files<CR>
-  nnoremap <Space>g :<C-u>GGrep<CR>
-  nnoremap <Space>b :<C-u>Buffers<CR>
-
-  command! -bang -nargs=* GGrep
-  \ call fzf#vim#grep(
-  \   'git grep --line-number '.shellescape(<q-args>), 0,
-  \   fzf#vim#with_preview({'dir': systemlist('git rev-parse --show-toplevel')[0]}), <bang>0)
+  source ~/.config/nvim/settings/plugins/fzf.rc.vim
 '''
 
 [[plugins]] # fzfプラグイン
@@ -166,10 +115,9 @@ repo = '/usr/local/opt/fzf'
 [[plugins]] # LSPを使用した非同期補完+諸々の機能
 repo = 'neoclide/coc.nvim'
 rev = 'release'
-on_i = 1
 merged = '0'
-hook_source = 'call coil398#init#coc#hook_source()'
 hook_add = '''
+  source ~/.config/nvim/settings/plugins/coc.rc.vim
 '''
 
 [[plugins]] # typescriptシンタックス
@@ -199,11 +147,7 @@ repo = 'Shougo/unite.vim'
 [[plugins]] # カラースキーム
 repo = 'ujihisa/unite-colorscheme'
 hook_add = '''
-  let g:unite_colorscheme_blacklist = [
-        \ 'blue', 'darkblue', 'delek', 'evening',
-        \ 'desert', 'elflord', 'koehler', 'morning',
-        \ 'murphy', 'pablo', 'peachpuff', 'ron',
-        \ 'slate', 'torte', 'zellner', 'industry', 'shine']
+  source ~/.config/nvim/settings/plugins/unite-colorscheme.rc.vim
 '''
 
 [[plugins]] # カラースキーム

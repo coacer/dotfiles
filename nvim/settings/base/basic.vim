@@ -16,9 +16,7 @@ set undofile " undo履歴をファイルに保存(vim終了時にundo履歴が�
 noswapfile
 " set mouse=a " マウス有効化
 set termguicolors
-" let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum" " 文字色
-" let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum" " 背景色
-
+lang en_US.UTF-8
 set expandtab " タブ入力を複数の空白入力に置き換える
 set tabstop=2 " 画面上でタブ文字が占める幅
 set softtabstop=2 " 連続した空白に対してタブキーやバックスペースキーでカーソルが動く幅
@@ -31,7 +29,7 @@ set ignorecase " 検索パターンに大文字小文字を区別しない
 set smartcase " 検索パターンに大文字を含んでいたら大文字小文字を区別する
 set hlsearch " 検索結果をハイライト
 " set so=999 " 常にカーソルをファイル中央に配置
-language C " 出力文字英語化
+" language C " 出力文字英語化
 set inccommand=split "文字列置換をインタラクティブに
 set ttimeoutlen=50 "インサートモードからEscの遅延を無くす
 

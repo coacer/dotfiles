@@ -6,13 +6,13 @@ tmap <C-l> <Esc>
 
 "========== vimrc操作 ==========
 " スペース+vmでmappings.vimファイルを開く
-nnoremap <Space>vm :<C-u>edit ~/.config/nvim/settings/default/mappings.vim<CR>
+nnoremap <Space>vm :<C-u>edit ~/.config/nvim/settings/base/mappings.vim<CR>
 
 " スペース+vbでbasic.vimファイルを開く
-nnoremap <Space>vb :<C-u>edit ~/.config/nvim/settings/default/basic.vim<CR>
+nnoremap <Space>vb :<C-u>edit ~/.config/nvim/settings/base/basic.vim<CR>
 
 " スペース+vcでcolor.vimファイルを開く
-nnoremap <Space>vc :<C-u>edit ~/.config/nvim/settings/default/color.vim<CR>
+nnoremap <Space>vc :<C-u>edit ~/.config/nvim/settings/base/color.vim<CR>
 
 " スペース+vdでdein.tomlファイルを開く
 nnoremap <Space>vd :<C-u>edit ~/.config/nvim/dein/dein.toml<CR>
