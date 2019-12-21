@@ -2,6 +2,7 @@
 inoremap <C-l> <Esc>
 cnoremap <C-l> <Esc>
 vnoremap <C-l> <Esc>
+snoremap <C-l> <Esc>
 tmap <C-l> <Esc>
 
 "========== vimrc操作 ==========

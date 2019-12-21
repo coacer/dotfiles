@@ -117,7 +117,7 @@ repo = 'neoclide/coc.nvim'
 rev = 'release'
 merged = '0'
 hook_add = '''
-  source ~/.config/nvim/settings/plugins/coc.rc.vim
+  source ~/.config/nvim/settings/plugins/coc.rc/init.vim
 '''
 
 [[plugins]] # typescriptシンタックス
@@ -129,11 +129,17 @@ repo = 'maxmellon/vim-jsx-pretty'
 [[plugins]] # tsxシンタックス
 repo = 'ianks/vim-tsx'
 
-[[plugins]] # スニペットエンジン
-repo = 'SirVer/ultisnips'
-
 [[plugins]] # スニペット定義
-repo = 'honza/vim-snippets'
+repo = 'Shougo/neosnippet-snippets'
+
+# [[plugins]] # スニペットエンジン
+# repo = 'SirVer/ultisnips'
+# hook_add = '''
+#   source ~/.config/nvim/settings/plugins/ultisnips.rc.d/ultisnips.rc.vim
+# '''
+
+# [[plugins]] # スニペット定義
+# repo = 'honza/vim-snippets'
 
 [[plugins]] # カラースキーム
 repo = 'jonathanfilip/vim-lucius'
