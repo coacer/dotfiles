@@ -1,0 +1,25 @@
+snippet     react
+abbr        import React ~; const React.FC = () => {};
+options     head
+  import React from "react";
+
+  const `expand('%:t:r')`: React.FC = () => {
+    return (${1});
+  };
+
+  export default `expand('%:t:r')`;
+
+snippet     react_with_props
+abbr        import React ~; interface {} const React.FC<Props> = () => {};
+options     head
+  import React from "react";
+
+  interface Props {
+    ${1:prop}: ${2:value};
+  }
+
+  const `expand('%:t:r')`: React.FC<Props> = ({ $1 }) => {
+    return (${3});
+  };
+
+  export default `expand('%:t:r')`;

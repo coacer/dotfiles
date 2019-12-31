@@ -1,5 +1,5 @@
-nnoremap <Space>f :<C-u>GFiles<CR>
-nnoremap <Space>F :<C-u>Files<CR>
+nnoremap <Space>f :<C-u>Files<CR>
+nnoremap <Space>F :<C-u>GFiles<CR>
 nnoremap <Space>g :<C-u>GGrep<CR>
 nnoremap <Space>b :<C-u>Buffers<CR>
 

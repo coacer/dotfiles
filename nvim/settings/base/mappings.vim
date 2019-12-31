@@ -22,7 +22,7 @@ nnoremap <Space>vd :<C-u>edit ~/.config/nvim/dein/dein.toml<CR>
 nnoremap <Space>vs :<C-u>source $MYVIMRC<CR>
 
 " スペース+mでmyvim_manual.txtファイルを開く
-nnoremap <Space>m :<C-u>edit ~/Documents/Memo/Vim/myvim_manual.txt<CR>
+nnoremap <Space>m :<C-u>edit ~/Documents/Memo/skills/Vim/myvim_manual.txt<CR>
 
 
 "========== セッション操作 ==========
@@ -35,6 +35,9 @@ nnoremap <Space>ss :<C-u>source .session.vim<CR>
 " スペース+sdでセッションファイルを削除
 nnoremap <Space>sd :<C-u>!rm .session.vim<CR>
 "==================================
+
+" レジスタprefixをspace+r
+nnoremap <Space>r "
 
 " space+aで全選択
 nnoremap <Space>a ggVG
@@ -53,20 +56,17 @@ nnoremap Y y$
 nnoremap <C-k> mzo<Esc>"_cc<Esc>`z
 
 " space*2でファイル全体のインデントを揃える
-nnoremap <Space><Space> mz:%normal ==<CR>`zzz
-
-" 複数行を移動
-vnoremap <C-k> "zx<Up>"zP`[V`]
-vnoremap <C-j> "zx"zp`[V`]
+" nnoremap <Space><Space> mz:%normal ==<CR>`zzz
+nnoremap <silent> <Space><Space> :<C-u>call CocAction("format")<CR>
 
 " ESCキー2度押しでハイライトの切り替え
-nnoremap <Esc><Esc> :<C-u>noh<CR>
+nnoremap <silent> <Esc><Esc> :<C-u>noh<CR>
 
-" 行が折り返し表示されていた場合、行単位ではなく表示行単位でカーソルを移動する
-noremap j gj
-noremap k gk
-noremap <down> gj
-noremap <up> gk
+" 論理行単位ではなく表示行単位でカーソルを移動する
+nnoremap j gj
+nnoremap k gk
+nnoremap ^ g^
+nnoremap $ g$
 
 " Emacsキーバインディングの設定
 " インサートモード
@@ -78,6 +78,7 @@ inoremap <C-a> <Home>
 inoremap <C-e> <End>
 
 " コマンドモード
+" ctrl+n/pはデフォルトで履歴を辿れるがフィルタリング機能が<up>, <down>にしかないので追加
 cnoremap <C-p> <Up>
 cnoremap <C-n> <Down>
 cnoremap <C-b> <Left>
@@ -95,3 +96,8 @@ tnoremap <Esc> <C-\><C-n>
 inoremap <C-r><C-r> <C-r>"
 cnoremap <C-r><C-r> <C-r>"
 
+" ヴィジュアルモードでgyでyankしたらyank範囲の末尾にカーソル移動
+vnoremap gy y`>
+
+" gpでペースト時にカーソルを一個上の行に移動
+nnoremap gp gpk
