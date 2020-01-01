@@ -1,4 +1,3 @@
-"dein Scripts-----------------------------
 " Required:
 set runtimepath+=~/.cache/dein/repos/github.com/Shougo/dein.vim
 
@@ -21,7 +20,3 @@ syntax enable
 if dein#check_install()
   call dein#install()
 endif
-
-"End dein Scripts-------------------------
-
-

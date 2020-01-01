@@ -1,4 +1,5 @@
 " ctrl+lでesc
+" snoremapはスニペット使用時に使う
 inoremap <C-l> <Esc>
 cnoremap <C-l> <Esc>
 vnoremap <C-l> <Esc>
@@ -36,8 +37,9 @@ nnoremap <Space>ss :<C-u>source .session.vim<CR>
 nnoremap <Space>sd :<C-u>!rm .session.vim<CR>
 "==================================
 
-" レジスタprefixをspace+r
+" レジスタprefixをspace+r("は押しにくい)
 nnoremap <Space>r "
+vnoremap <Space>r "
 
 " space+aで全選択
 nnoremap <Space>a ggVG
@@ -52,7 +54,7 @@ nnoremap s <C-w>
 " Yでカーソル位置から行末までコピー
 nnoremap Y y$
 
-" ctrl-kで下に空行挿入
+" ctrl-kで下に空行挿入して元の位置に戻る
 nnoremap <C-k> mzo<Esc>"_cc<Esc>`z
 
 " space*2でファイル全体のインデントを揃える
@@ -70,8 +72,6 @@ nnoremap $ g$
 
 " Emacsキーバインディングの設定
 " インサートモード
-" inoremap <C-p> <Up>
-" inoremap <C-n> <Down>
 inoremap <C-b> <Left>
 inoremap <C-f> <Right>
 inoremap <C-a> <Home>
@@ -89,7 +89,7 @@ cnoremap <C-e> <End>
 " *で検索時に次の検索文字に移動しないように設定
 nnoremap * mq*`q
 
-" ターミナル表示時にescで抜ける
+" ターミナルモード時にescで抜ける
 tnoremap <Esc> <C-\><C-n>
 
 " <ctrl+r>*2で無名レジスタ
@@ -99,5 +99,5 @@ cnoremap <C-r><C-r> <C-r>"
 " ヴィジュアルモードでgyでyankしたらyank範囲の末尾にカーソル移動
 vnoremap gy y`>
 
-" gpでペースト時にカーソルを一個上の行に移動
+" gpでペースト時にカーソルを一個上の行に移動(連続ペーストの時デフォルトだと使いづらいため)
 nnoremap gp gpk

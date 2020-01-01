@@ -109,10 +109,10 @@ hook_add = '''
   source ~/.config/nvim/settings/plugins/fzf.rc.vim
 '''
 
-[[plugins]] # fzfプラグイン
+[[plugins]] # fzf本体
 repo = '/usr/local/opt/fzf'
 
-[[plugins]] # LSPを使用した非同期補完+諸々の機能
+[[plugins]] # LSPクライアントパッケージマネージャー
 repo = 'neoclide/coc.nvim'
 rev = 'release'
 merged = '0'
@@ -131,15 +131,6 @@ repo = 'ianks/vim-tsx'
 
 [[plugins]] # スニペット定義
 repo = 'Shougo/neosnippet-snippets'
-
-# [[plugins]] # スニペットエンジン
-# repo = 'SirVer/ultisnips'
-# hook_add = '''
-#   source ~/.config/nvim/settings/plugins/ultisnips.rc.d/ultisnips.rc.vim
-# '''
-
-# [[plugins]] # スニペット定義
-# repo = 'honza/vim-snippets'
 
 [[plugins]] # カラースキーム
 repo = 'jonathanfilip/vim-lucius'
@@ -164,4 +155,3 @@ repo = 'jiangmiao/auto-pairs'
 
 [[plugins]] # ruby閉じend補完
 repo = 'tpope/vim-endwise'
-

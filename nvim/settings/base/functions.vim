@@ -48,9 +48,3 @@ function! s:Repl()
   return "p@=RestoreRegister()\<cr>"
 endfunction
 vmap <silent> <expr> p <sid>Repl()
-
-" :EditSnippets で現在開いているファイル拡張子のスニペットファイルを開く
-function! EditSnippets()
-  let s:ft = &filetype
-  edit ft
-endfunction

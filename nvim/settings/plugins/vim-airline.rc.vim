@@ -11,4 +11,3 @@ let g:airline#extensions#whitespace#enabled = 1
 nmap <C-e> <Plug>AirlineSelectPrevTab
 nmap <C-y> <Plug>AirlineSelectNextTab
 nnoremap <C-d> :bd<CR>
-

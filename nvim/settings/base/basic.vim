@@ -10,7 +10,7 @@ scriptencoding utf-8
 set fileencoding=utf-8 " 保存時の文字コード
 set fileencodings=ucs-boms,utf-8,euc-jp,cp932 " 読み込み時の文字コードの自動判別. 左側が優先される
 set fileformats=unix,dos,mac " 改行コードの自動判別. 左側が優先される
-set ambiwidth=double " □や○文字が崩れる問題を解決
+set ambiwidth=double " □や○文字が崩れる問題を解(エミュレータにも依存するためぶっちゃけ役に立ってない)
 set hidden " バッファ保存せずに移動しようとした場合に!をつけなくても移動できる, またargsの移動も隠しファイルにする
 set undofile " undo履歴をファイルに保存(vim終了時にundo履歴が削除されない)
 noswapfile
@@ -28,7 +28,6 @@ set incsearch " インクリメンタルサーチ. １文字入力毎に検索�
 set ignorecase " 検索パターンに大文字小文字を区別しない
 set smartcase " 検索パターンに大文字を含んでいたら大文字小文字を区別する
 set hlsearch " 検索結果をハイライト
-" set so=999 " 常にカーソルをファイル中央に配置
 " language C " 出力文字英語化
 set inccommand=split "文字列置換をインタラクティブに
 set ttimeoutlen=50 "インサートモードからEscの遅延を無くす
