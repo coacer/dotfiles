@@ -5,6 +5,9 @@ cnoremap <C-l> <Esc>
 vnoremap <C-l> <Esc>
 snoremap <C-l> <Esc>
 tmap <C-l> <Esc>
+" ctrl+lで検索ハイライト無効化+再描画
+nnoremap <silent> <C-l> :<C-u>nohlsearch<CR><C-l>
+
 
 "========== vimrc操作 ==========
 " スペース+vmでmappings.vimファイルを開く
@@ -37,7 +40,7 @@ nnoremap <Space>ss :<C-u>source .session.vim<CR>
 nnoremap <Space>sd :<C-u>!rm .session.vim<CR>
 "==================================
 
-" レジスタprefixをspace+r("は押しにくい)
+" レジスタprefixをspace+r
 nnoremap <Space>r "
 vnoremap <Space>r "
 
@@ -60,9 +63,6 @@ nnoremap <C-k> mzo<Esc>"_cc<Esc>`z
 " space*2でファイル全体のインデントを揃える
 " nnoremap <Space><Space> mz:%normal ==<CR>`zzz
 nnoremap <silent> <Space><Space> :<C-u>call CocAction("format")<CR>
-
-" ESCキー2度押しでハイライトの切り替え
-nnoremap <silent> <Esc><Esc> :<C-u>noh<CR>
 
 " 論理行単位ではなく表示行単位でカーソルを移動する
 nnoremap j gj
