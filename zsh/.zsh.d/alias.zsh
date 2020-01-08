@@ -14,3 +14,4 @@ alias lla='ls -la'
 alias ls="ls -GF"
 alias ide="~/Scripts/ide.sh"
 alias nvis="nvim -S .session.vim"
+alias lo="~/Scripts/localhostOpen.sh"

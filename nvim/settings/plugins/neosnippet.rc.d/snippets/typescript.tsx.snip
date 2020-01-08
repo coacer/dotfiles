@@ -1,3 +1,4 @@
+# propsなし
 snippet     react
 abbr        import React ~; const React.FC = () => {};
 options     head
@@ -9,6 +10,7 @@ options     head
 
   export default `expand('%:t:r')`;
 
+# propsあり
 snippet     react_with_props
 abbr        import React ~; interface {} const React.FC<Props> = () => {};
 options     head
@@ -18,8 +20,92 @@ options     head
     ${1:prop}: ${2:value};
   }
 
+  export type `expand('%:t:r')`Props = Props;
+
   const `expand('%:t:r')`: React.FC<Props> = ({ $1 }) => {
     return (${3});
+  };
+
+  export default `expand('%:t:r')`;
+
+# 2つのprops
+snippet     react_with_2props
+abbr        import React ~; interface {} const React.FC<Props> = () => {};
+options     head
+  import React from "react";
+
+  interface Props {
+    ${1:prop}: ${2:value};
+    ${3:prop}: ${4:value};
+  }
+
+  export type `expand('%:t:r')`Props = Props;
+
+  const `expand('%:t:r')`: React.FC<Props> = ({ $1, $3 }) => {
+    return (${5});
+  };
+
+  export default `expand('%:t:r')`;
+
+# 3つのprops
+snippet     react_with_3props
+abbr        import React ~; interface {} const React.FC<Props> = () => {};
+options     head
+  import React from "react";
+
+  interface Props {
+    ${1:prop}: ${2:value};
+    ${3:prop}: ${4:value};
+    ${5:prop}: ${6:value};
+  }
+
+  export type `expand('%:t:r')`Props = Props;
+
+  const `expand('%:t:r')`: React.FC<Props> = ({ $1, $3, $5 }) => {
+    return (${7});
+  };
+
+  export default `expand('%:t:r')`;
+
+# 4つのprops
+snippet     react_with_4props
+abbr        import React ~; interface {} const React.FC<Props> = () => {};
+options     head
+  import React from "react";
+
+  interface Props {
+    ${1:prop}: ${2:value};
+    ${3:prop}: ${4:value};
+    ${5:prop}: ${6:value};
+    ${7:prop}: ${8:value};
+  }
+
+  export type `expand('%:t:r')`Props = Props;
+
+  const `expand('%:t:r')`: React.FC<Props> = ({ $1, $3, $5, $7 }) => {
+    return (${9});
+  };
+
+  export default `expand('%:t:r')`;
+
+# 5つのprops
+snippet     react_with_5props
+abbr        import React ~; interface {} const React.FC<Props> = () => {};
+options     head
+  import React from "react";
+
+  interface Props {
+    ${1:prop}: ${2:value};
+    ${3:prop}: ${4:value};
+    ${5:prop}: ${6:value};
+    ${7:prop}: ${8:value};
+    ${9:prop}: ${10:value};
+  }
+
+  export type `expand('%:t:r')`Props = Props;
+
+  const `expand('%:t:r')`: React.FC<Props> = ({ $1, $3, $5, $7, $9 }) => {
+    return (${11});
   };
 
   export default `expand('%:t:r')`;

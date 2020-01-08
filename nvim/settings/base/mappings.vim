@@ -4,6 +4,8 @@ inoremap <C-l> <Esc>
 cnoremap <C-l> <Esc>
 vnoremap <C-l> <Esc>
 snoremap <C-l> <Esc>
+" ターミナルモード時にescで抜ける
+tnoremap <Esc> <C-\><C-n>
 tmap <C-l> <Esc>
 " ctrl+lで検索ハイライト無効化+再描画
 nnoremap <silent> <C-l> :<C-u>nohlsearch<CR><C-l>
@@ -88,9 +90,6 @@ cnoremap <C-e> <End>
 
 " *で検索時に次の検索文字に移動しないように設定
 nnoremap * mq*`q
-
-" ターミナルモード時にescで抜ける
-tnoremap <Esc> <C-\><C-n>
 
 " <ctrl+r>*2で無名レジスタ
 inoremap <C-r><C-r> <C-r>"
