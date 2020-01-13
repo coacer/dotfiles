@@ -1,6 +1,3 @@
-" カラーピッカーの表示 ==> call CocAction('pickColor')
-
-
 " カスタマイズ
 autocmd ColorScheme * highlight Visual ctermbg=30 guibg=#123531
 autocmd ColorScheme * highlight Search ctermbg=29 guifg=#ffffff guibg=#476a47

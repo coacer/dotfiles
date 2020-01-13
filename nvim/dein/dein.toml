@@ -85,9 +85,6 @@ hook_add = '''
   source ~/.config/nvim/settings/plugins/gundo.rc.vim
 '''
 
-[[plugins]] # markdownプレビュー
-repo = 'iamcco/markdown-preview.vim'
-
 [[plugins]] # tomlシンタックス
 repo = 'cespare/vim-toml'
 

@@ -60,7 +60,7 @@ nnoremap s <C-w>
 nnoremap Y y$
 
 " ctrl-kで下に空行挿入して元の位置に戻る
-nnoremap <C-k> mzo<Esc>"_cc<Esc>`z
+nnoremap <C-Space> mzo<Esc>"_cc<Esc>`z
 
 " space*2でファイル全体のインデントを揃える
 " nnoremap <Space><Space> mz:%normal ==<CR>`zzz
