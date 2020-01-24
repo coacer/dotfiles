@@ -62,9 +62,5 @@ augroup mygroup
   autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
 augroup end
 
-" Use `:Format` to format current buffer ------
-" 標準インデント揃えとどちらが良いかわからないのでコメントアウト
-" command! -nargs=0 Format :call CocAction('format')
-
 " Add status line support, for integration with other plugin, checkout `:h coc-status`
 set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}

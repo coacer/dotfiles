@@ -1,4 +1,4 @@
-[[plugins]]
+[[plugins]] # スニペットエンジン
 repo = 'Shougo/neosnippet'
 hook_source = '''
   source ~/.config/nvim/settings/plugins/neosnippet.rc.d/init.vim

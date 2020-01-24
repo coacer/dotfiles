@@ -51,6 +51,5 @@ vmap <silent> <expr> p <sid>Repl()
 
 " ColorPickerコマンド
 command! ColorPicker call CocAction('pickColor')
-
 " SelectColorSchemeコマンド
 command! SelectColorScheme Unite colorscheme -auto-preview

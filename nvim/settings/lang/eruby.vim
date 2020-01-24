@@ -2,4 +2,3 @@
 inoremap <C-j>- <%  %><Left><Left><Left>
 inoremap <C-j>= <%=  %><Left><Left><Left>
 inoremap <C-j># <%#  %><Left><Left><Left>
-

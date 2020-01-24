@@ -1,4 +1,4 @@
-[[plugins]]
+[[plugins]] # プラグイン管理
 repo = 'Shougo/dein.vim'
 
 [[plugins]] # ツリービュー表示
@@ -135,10 +135,10 @@ repo = 'jonathanfilip/vim-lucius'
 [[plugins]] # カラースキーム
 repo = 'jdkanani/vim-material-theme'
 
-[[plugins]] # カラースキーム
+[[plugins]] # 諸々機能拡張
 repo = 'Shougo/unite.vim'
 
-[[plugins]] # カラースキーム
+[[plugins]] # カラースキーム選択
 repo = 'ujihisa/unite-colorscheme'
 hook_add = '''
   source ~/.config/nvim/settings/plugins/unite-colorscheme.rc.vim

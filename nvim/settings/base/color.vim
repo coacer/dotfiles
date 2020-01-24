@@ -4,14 +4,14 @@ autocmd ColorScheme * highlight Search ctermbg=29 guifg=#ffffff guibg=#476a47
 " autocmd ColorScheme * highlight Pmenu ctermfg=236 ctermbg=37
 
 " -----JavaScript-----
-autocmd ColorScheme * highlight javascriptClassKeyword ctermfg=48
-autocmd ColorScheme * highlight javascriptObjectLabel ctermfg=207
-autocmd ColorScheme * highlight javascriptClassStatic ctermfg=197
+autocmd ColorScheme * highlight javascriptClassKeyword ctermfg=48 guifg=#1ebec9
+autocmd ColorScheme * highlight javascriptObjectLabel ctermfg=207 guifg=#1ebec9
+autocmd ColorScheme * highlight javascriptClassStatic ctermfg=197 guifg=#1ebec9
 
 " -----Ruby-----
-autocmd ColorScheme * highlight rubyClass ctermfg=150
-autocmd ColorScheme * highlight rubyFunction ctermfg=123
-autocmd ColorScheme * highlight rubyInstanceVariable ctermfg=212
+autocmd ColorScheme * highlight rubyClass ctermfg=150 guifg=#1ebec9
+autocmd ColorScheme * highlight rubyFunction ctermfg=123 guifg=#20cfdf
+autocmd ColorScheme * highlight rubyInstanceVariable ctermfg=212 guifg=#9df6af
 
 " -----PHP-----
 " autocmd ColorScheme * highlight Delimiter ctermfg=37

@@ -43,7 +43,6 @@ source $VIMRUNTIME/macros/matchit.vim " Vimの「%」を拡張する
 
 " シンタックスを判別してカラー表示する
 syntax on
-
 " ターミナル表示時は番号を表示しない
 autocmd TermOpen * setlocal nonumber
 " 保存時に末尾のスペースを削除
