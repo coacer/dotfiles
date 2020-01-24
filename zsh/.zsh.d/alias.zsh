@@ -1,6 +1,6 @@
 function cdls() {
- \cd $1;
- ls -G;
+  \cd $1;
+  ls -G;
 }
 
 alias cd=cdls
@@ -15,3 +15,8 @@ alias ls="ls -GF"
 alias ide="~/Scripts/ide.sh"
 alias nvis="nvim -S .session.vim"
 alias lo="~/Scripts/localhostOpen.sh"
+alias t="tmux"
+alias ta="tmux a"
+alias tn="tmux new -s"
+alias tk="~/Scripts/tmuxKill.sh"
+alias giti="~/Scripts/CreateGitIgnoreFile/index.js"
