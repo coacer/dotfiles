@@ -51,7 +51,7 @@ nnoremap Y y$
 " ctrl-spaceで下に空行挿入して元の位置に戻る
 nnoremap <C-Space> mzo<Esc>"_cc<Esc>`z
 " space*2でファイル全体のインデントを揃える
-nnoremap <Space><Space> mz:%normal ==<CR>`zzz
+nnoremap <silent> <Space><Space> mz:%normal ==<CR>`zzz
 " nnoremap <silent> <Space><Space> :<C-u>call CocAction("format")<CR>
 
 " 論理行単位ではなく表示行単位でカーソルを移動する
