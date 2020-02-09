@@ -11,6 +11,8 @@ tmap <C-l> <Esc>
 nnoremap <silent> <C-l> :<C-u>nohlsearch<CR><C-l>
 
 "========== vimrc操作 ==========
+" スペース+vrでnvimフォルダ(ルートディレクトリ)を開く
+nnoremap <Space>vr :<C-u>edit ~/.config/nvim/<CR>
 " スペース+vmでmappings.vimファイルを開く
 nnoremap <Space>vm :<C-u>edit ~/.config/nvim/settings/base/mappings.vim<CR>
 " スペース+vbでbasic.vimファイルを開く

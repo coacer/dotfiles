@@ -152,3 +152,7 @@ repo = 'jiangmiao/auto-pairs'
 
 [[plugins]] # ruby閉じend補完
 repo = 'tpope/vim-endwise'
+
+[[plugins]] # golang
+repo = 'fatih/vim-go'
+

@@ -1,6 +1,9 @@
 eval "$(rbenv init -)" # rbenv初期化(パスが通る)
 export PATH="/usr/local/opt/mysql/bin:$PATH"
 export PATH="$PATH:./node_modules/.bin"
+export PATH="$PATH:/usr/local/opt/llvm/bin"
+export GOPATH="$HOME/go"
+export PATH="$PATH:$GOPATH/bin"
 # alias j="autojump"
 # if [ -f `brew --prefix`/etc/autojump  ]; then
 #     . `brew --prefix`/etc/autojump
