@@ -1,6 +1,7 @@
 " カスタマイズ
 autocmd ColorScheme * highlight Visual ctermbg=30 guibg=#123531
 autocmd ColorScheme * highlight Search ctermbg=29 guifg=#ffffff guibg=#476a47
+autocmd ColorScheme * highlight Normal guifg=#d7d1ff
 " autocmd ColorScheme * highlight Pmenu ctermfg=236 ctermbg=37
 
 " -----JavaScript-----

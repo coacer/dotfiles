@@ -66,3 +66,6 @@ augroup end
 set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 " golang autoformatter
 " autocmd BufWritePre *.go :call CocAction('runCommand', 'editor.action.organizeImport')
+command! -nargs=0 Prettier :CocCommand prettier.formatFile
+autocmd! BufWritePre *.ts Prettier
+autocmd! BufWritePre *.tsx Prettier
