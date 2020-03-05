@@ -1,0 +1,25 @@
+[include]
+  path = .gitconfig.local
+[core]
+  editor = nvim
+[alias]
+  st = status
+  cc = commit
+  cv = commit -v
+  ca = commit --amend
+  co = checkout
+  aa = add -A
+  df = diff
+  dfs = diff --staged
+  graph = log --graph --oneline
+  br = branch
+  lg = log --oneline
+  ref = reflog
+[diff]
+  tool = nvimdiff
+[difftool "nvimdiff"]
+  cmd = "nvim -R -d -c \"wincmd l\" -d \"$LOCAL\" \"$REMOTE\""
+[merge]
+  tool = nvimdiff
+[mergetool "nvimdiff"]
+  cmd = "nvim -d -c \"4wincmd w | wincmd J\" \"$LOCAL\" \"$BASE\" \"$REMOTE\"  \"$MERGED\""
