@@ -1,5 +1,5 @@
 [include]
-  path = .gitconfig.local
+  path = .gitconfig.local # user.name, user.emailの設定ファイル読み込み
 [core]
   editor = nvim
 [alias]
@@ -15,6 +15,7 @@
   br = branch
   lg = log --oneline
   ref = reflog
+  mt = mergetool
 [diff]
   tool = nvimdiff
 [difftool "nvimdiff"]
@@ -23,3 +24,5 @@
   tool = nvimdiff
 [mergetool "nvimdiff"]
   cmd = "nvim -d -c \"4wincmd w | wincmd J\" \"$LOCAL\" \"$BASE\" \"$REMOTE\"  \"$MERGED\""
+[mergetool]
+  keepBackup = false
