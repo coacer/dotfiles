@@ -38,7 +38,8 @@ nnoremap <Space>sd :<C-u>!rm .session.vim<CR>
 " レジスタprefixをspace+r
 nnoremap <Space>r "
 vnoremap <Space>r "
-
+" ヴィジュアルモードで+でシステムクリップボードにyank
+vnoremap + "+y
 " space+aで全選択
 nnoremap <Space>a ggVG
 
