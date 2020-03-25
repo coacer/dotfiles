@@ -24,14 +24,14 @@ brew install vim neovim emacs fzf git hub docker lazydocker lazygit tmux tig \
   tree autojump composer awscli rbenv pyenv pyenv-virtualenv nodenv;
 
 # 読み込み
-source ~/.zshrc
+source ~/.zshrc;
 
 # ==== Neovim ====
 # ==== dein.vimインストール ====
-mkdir -p ~/.cache/dein
-curl https://raw.githubusercontent.com/Shougo/dein.vim/master/bin/installer.sh > installer.sh
-sh ./installer.sh ~/.cache/dein
-rm installer.sh
+mkdir -p ~/.cache/dein;
+curl https://raw.githubusercontent.com/Shougo/dein.vim/master/bin/installer.sh > installer.sh;
+sh ./installer.sh ~/.cache/dein;
+rm installer.sh;
 
 
 # ==== ダイナミックプロバイダの設定 ====
@@ -70,3 +70,8 @@ nodenv rehash;
 nodenv global $node;
 npm install -g neovim;
 
+
+# ==== Coc.nvim extensions インストール ====
+nvim -c 'CocInstall -sync coc-css coc-highlight coc-neosnippet coc-tsserver \
+  coc-eslint coc-jest coc-prettier coc-vetur coc-go coc-json coc-solargraph \
+  | q';
