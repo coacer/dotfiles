@@ -4,6 +4,11 @@ export PATH="$PATH:./node_modules/.bin"
 export PATH="$PATH:/usr/local/opt/llvm/bin"
 export GOPATH="$HOME/go"
 export PATH="$PATH:$GOPATH/bin"
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"
+eval "$(nodenv init -)"
+if which pyenv-virtualenv-init > /dev/null; then eval "$(pyenv virtualenv-init -)"; fi
 # alias j="autojump"
 # if [ -f `brew --prefix`/etc/autojump  ]; then
 #     . `brew --prefix`/etc/autojump

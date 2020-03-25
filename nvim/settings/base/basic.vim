@@ -1,8 +1,8 @@
 " ダイナミック プロバイダのパス
-let g:python_host_prog  = '/usr/local/bin/python2'
-let g:python3_host_prog = '/usr/local/bin/python3'
-let g:ruby_host_prog = '~/.rbenv/shims/neovim-ruby-host'
-let g:node_host_prog = '/usr/local/bin/neovim-node-host'
+let g:python_host_prog  = '~/.pyenv/versions/py2neovim/bin/python'
+let g:python3_host_prog = '~/.pyenv/versions/py3neovim/bin/python'
+let g:ruby_host_prog = '~/.rbenv/versions/2.6.0/bin/neovim-ruby-host'
+let g:node_host_prog = '~/.nodenv/versions/12.16.1/bin/neovim-node-host'
 
 " 基本設定
 set encoding=utf-8
