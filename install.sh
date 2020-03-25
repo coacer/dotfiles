@@ -27,6 +27,13 @@ brew install vim neovim emacs fzf git hub docker lazydocker lazygit tmux tig \
 source ~/.zshrc
 
 # ==== Neovim ====
+# ==== dein.vimインストール ====
+mkdir -p ~/.cache/dein
+curl https://raw.githubusercontent.com/Shougo/dein.vim/master/bin/installer.sh > installer.sh
+sh ./installer.sh ~/.cache/dein
+rm installer.sh
+
+
 # ==== ダイナミックプロバイダの設定 ====
 
 # == Python ==
