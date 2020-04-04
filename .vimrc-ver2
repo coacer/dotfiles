@@ -111,6 +111,8 @@ nnoremap gp gpk
 autocmd ColorScheme * highlight Visual ctermbg=30 guibg=#123531
 autocmd ColorScheme * highlight Search ctermbg=29 guifg=#ffffff guibg=#476a47
 
+colorscheme iceberg
+
 " Required:
 set runtimepath+=~/.cache/dein/repos/github.com/Shougo/dein.vim
 
@@ -140,6 +142,7 @@ if dein#load_state('~/.cache/dein')
   call dein#add('leafgarland/typescript-vim')
   call dein#add('jiangmiao/auto-pairs')
   call dein#add('othree/yajs.vim')
+  call dein#add('mattn/emmet-vim')
 
   " Required:
   call dein#end()
