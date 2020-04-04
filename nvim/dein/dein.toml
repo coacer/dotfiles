@@ -66,6 +66,9 @@ repo = 'bronson/vim-trailing-whitespace'
 
 [[plugins]] # gitで管理してる変更された箇所を行番号横に表示
 repo = 'airblade/vim-gitgutter'
+hook_add = '''
+  source ~/.config/nvim/settings/plugins/vim-gitgutter.rc.vim
+'''
 
 [[plugins]] # surround.vimなどの変更を.で繰り返し可能にする
 repo = 'tpope/vim-repeat'
@@ -155,4 +158,7 @@ repo = 'tpope/vim-endwise'
 
 [[plugins]] # golang
 repo = 'fatih/vim-go'
+
+[[plugins]] # 禅モード
+repo = 'junegunn/goyo.vim'
 

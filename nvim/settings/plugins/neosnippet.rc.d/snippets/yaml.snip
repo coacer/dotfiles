@@ -1,0 +1,26 @@
+snippet     docker-scaffold
+abbr        version3~
+options     head
+
+  version: '3'
+  services:
+    db:
+      image: mysql:5.7
+      environment:
+        MYSQL_DATABASE: ${1}
+        MYSQL_ROOT_PASSWORD: ${2:password}
+      ports:
+        - "3306:3306"
+
+    ${3}:
+      build: ${4}
+      environment:
+        ${5:env}: ${6}
+      tty: true
+      command:  ${7:command}
+      ports:
+        - '${8:host_port}:${9:guest_port}'
+      volumes:
+        - ${10}
+      depends_on:
+        - db

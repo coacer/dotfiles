@@ -4,6 +4,8 @@ inoremap <C-l> <Esc>
 cnoremap <C-l> <Esc>
 vnoremap <C-l> <Esc>
 snoremap <C-l> <Esc>
+onoremap <C-l> <Esc>
+lnoremap <C-l> <Esc>
 " ターミナルモード時にescで抜ける
 tnoremap <Esc> <C-\><C-n>
 tmap <C-l> <Esc>
