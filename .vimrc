@@ -8,7 +8,6 @@ set ambiwidth=double " □や○文字が崩れる問題を解決
 set hidden " バッファ保存せずに移動しようとした場合に!をつけなくても移動できる, またargsの移動も隠しファイルにする
 set undofile " undo履歴をファイルに保存(vim終了時にundo履歴が削除されない)
 set undodir=~/.local/share/vim/undo " undoファイルの保存場所
-noswapfile
 " set mouse=a " マウス有効化
 
 set expandtab " タブ入力を複数の空白入力に置き換える
@@ -63,3 +62,9 @@ cnoremap <C-b> <Left>
 cnoremap <C-f> <Right>
 cnoremap <C-a> <Home>
 cnoremap <C-e> <End>
+
+inoremap <C-l> <Esc>
+vnoremap <C-l> <Esc>
+cnoremap <C-l> <Esc>
+snoremap <C-l> <Esc>
+nnoremap <silent> <C-l> :<C-u>noh<CR><C-l>
