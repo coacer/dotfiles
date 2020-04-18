@@ -1,3 +1,5 @@
+" LeaderをSpaceに設定
+let mapleader = "\<Space>"
 " ctrl+lでesc
 " snoremapはスニペット使用時に使う
 inoremap <C-l> <Esc>
@@ -14,36 +16,36 @@ nnoremap <silent> <C-l> :<C-u>nohlsearch<CR><C-l>
 
 "========== vimrc操作 ==========
 " スペース+vrでnvimフォルダ(ルートディレクトリ)を開く
-nnoremap <Space>vr :<C-u>edit ~/.config/nvim/<CR>
+nnoremap <Leader>vr :<C-u>edit ~/.config/nvim/<CR>
 " スペース+vmでmappings.vimファイルを開く
-nnoremap <Space>vm :<C-u>edit ~/.config/nvim/settings/base/mappings.vim<CR>
+nnoremap <Leader>vm :<C-u>edit ~/.config/nvim/settings/base/mappings.vim<CR>
 " スペース+vbでbasic.vimファイルを開く
-nnoremap <Space>vb :<C-u>edit ~/.config/nvim/settings/base/basic.vim<CR>
+nnoremap <Leader>vb :<C-u>edit ~/.config/nvim/settings/base/basic.vim<CR>
 " スペース+vcでcolor.vimファイルを開く
-nnoremap <Space>vc :<C-u>edit ~/.config/nvim/settings/base/color.vim<CR>
+nnoremap <Leader>vc :<C-u>edit ~/.config/nvim/settings/base/color.vim<CR>
 " スペース+vdでdein.tomlファイルを開く
-nnoremap <Space>vd :<C-u>edit ~/.config/nvim/dein/dein.toml<CR>
+nnoremap <Leader>vd :<C-u>edit ~/.config/nvim/dein/dein.toml<CR>
 " スペース+vsで.vimrcファイルを読み込む
-nnoremap <Space>vs :<C-u>source $MYVIMRC<CR>
+nnoremap <Leader>vs :<C-u>source $MYVIMRC<CR>
 " スペース+mでmyvim_manual.txtファイルを開く
-nnoremap <Space>m :<C-u>edit ~/Documents/Memo/skills/Vim/myvim_manual.txt<CR>
+nnoremap <Leader>m :<C-u>edit ~/Documents/Memo/skills/Vim/myvim_manual.txt<CR>
 
 "========== セッション操作 ==========
 " スペース+swでセッションファイルを保存してウィンドウを全て閉じる
-nnoremap <Space>sw :<C-u>mks! .session.vim<CR>:<C-u>qall<CR>
+nnoremap <Leader>sw :<C-u>mks! .session.vim<CR>:<C-u>qall<CR>
 " スペース+ssでセッションファイルを読み込む
-nnoremap <Space>ss :<C-u>source .session.vim<CR>
+nnoremap <Leader>ss :<C-u>source .session.vim<CR>
 " スペース+sdでセッションファイルを削除
-nnoremap <Space>sd :<C-u>!rm .session.vim<CR>
+nnoremap <Leader>sd :<C-u>!rm .session.vim<CR>
 "==================================
 
-" レジスタprefixをspace+r
-nnoremap <Space>r "
-vnoremap <Space>r "
+" レジスタprefixをLeader+r
+nnoremap <Leader>r "
+vnoremap <Leader>r "
 " ヴィジュアルモードで+でシステムクリップボードにyank
 vnoremap + "+y
-" space+aで全選択
-nnoremap <Space>a ggVG
+" Leader+aで全選択
+nnoremap <Leader>a ggVG
 
 " xで文字を消した際にレジスタに格納しない
 nnoremap x "_x
@@ -55,9 +57,9 @@ nnoremap s <C-w>
 nnoremap Y y$
 " ctrl-spaceで下に空行挿入して元の位置に戻る
 nnoremap <C-Space> mzo<Esc>"_cc<Esc>`z
-" space*2でファイル全体のインデントを揃える
-nnoremap <silent> <Space><Space> mz:%normal ==<CR>`zzz
-" nnoremap <silent> <Space><Space> :<C-u>call CocAction("format")<CR>
+" Leader*2でファイル全体のインデントを揃える
+nnoremap <silent> <Leader><Leader> mz:%normal ==<CR>`zzz
+" nnoremap <silent> <Leader><Leader> :<C-u>call CocAction("format")<CR>
 
 " 論理行単位ではなく表示行単位でカーソルを移動する
 nnoremap j gj
