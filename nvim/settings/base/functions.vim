@@ -34,8 +34,11 @@ function! s:get_syn_info()
         \ " ctermbg: " . linkedSyn.ctermbg .
         \ " guifg: " . linkedSyn.guifg .
         \ " guibg: " . linkedSyn.guibg
+  let @s = baseSyn.name
+  let @g = linkedSyn.name
 endfunction
 
+" syntax情報を表示 + @sにsyntaxネーム, @gにsyntax groupのネームを格納
 command! SyntaxInfo call s:get_syn_info()
 
 " ヴィジュアルモードでペーストした際に削除した文字列をレジスタに格納しない
@@ -53,3 +56,10 @@ vmap <silent> <expr> p <sid>Repl()
 command! ColorPicker call CocAction('pickColor')
 " SelectColorSchemeコマンド
 command! SelectColorScheme Unite colorscheme -auto-preview
+
+" deinの未使用プラグイン削除
+function! DeinDelete()
+  call map(dein#check_clean(), "delete(v:val, 'rf')")
+  call dein#recache_runtimepath()
+endfunction
+command! DelPlug call DeinRecache()

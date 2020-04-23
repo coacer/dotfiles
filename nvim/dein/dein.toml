@@ -73,11 +73,11 @@ hook_add = '''
 [[plugins]] # surround.vimなどの変更を.で繰り返し可能にする
 repo = 'tpope/vim-repeat'
 
-[[plugins]] # スクロールを滑らかに
-repo = 'yuttie/comfortable-motion.vim'
-hook_add = '''
-  source ~/.config/nvim/settings/plugins/comfortable-motion.rc.vim
-'''
+# [[plugins]] # スクロールを滑らかに
+# repo = 'yuttie/comfortable-motion.vim'
+# hook_add = '''
+#   source ~/.config/nvim/settings/plugins/comfortable-motion.rc.vim
+# '''
 
 [[plugins]] # coffeescriptシンタックス
 repo = 'kchmck/vim-coffee-script'

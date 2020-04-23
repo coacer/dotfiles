@@ -1,5 +1,7 @@
 " Required:
 set runtimepath+=~/.cache/dein/repos/github.com/Shougo/dein.vim
+" 自動リキャッシュ
+let g:dein#auto_recache = 1
 
 " Required:
 if dein#load_state('~/.cache/dein')
