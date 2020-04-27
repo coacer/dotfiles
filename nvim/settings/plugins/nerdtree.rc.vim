@@ -8,4 +8,4 @@ let NERDTreeShowHidden=1
 autocmd ColorScheme * highlight Directory guifg=#98ffff
 "NERDTreeのウィンドウしか開かれていないときは自動的に閉じる
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") &&
-      \ b:NERDTree.isTabTree()) | q | endif
+      \ b:NERDTree.isTabTree()) | bd | endif

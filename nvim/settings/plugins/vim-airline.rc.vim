@@ -10,4 +10,4 @@ let g:airline#extensions#default#section_truncate_width = {}
 let g:airline#extensions#whitespace#enabled = 1
 nmap <C-e> <Plug>AirlineSelectPrevTab
 nmap <C-y> <Plug>AirlineSelectNextTab
-nnoremap <C-d> :bd<CR>
+nnoremap <silent> <C-d> :<C-u>bdelete<CR>

@@ -19,6 +19,8 @@ nnoremap <silent> <C-l> :<C-u>nohlsearch<CR><C-l>
 nnoremap <Leader>vr :<C-u>edit ~/.config/nvim/<CR>
 " スペース+vmでmappings.vimファイルを開く
 nnoremap <Leader>vm :<C-u>edit ~/.config/nvim/settings/base/mappings.vim<CR>
+" スペース+vmでmappings.vimファイルを開く
+nnoremap <Leader>vf :<C-u>edit ~/.config/nvim/settings/base/functions.vim<CR>
 " スペース+vbでbasic.vimファイルを開く
 nnoremap <Leader>vb :<C-u>edit ~/.config/nvim/settings/base/basic.vim<CR>
 " スペース+vcでcolor.vimファイルを開く
