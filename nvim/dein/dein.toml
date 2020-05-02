@@ -162,3 +162,6 @@ repo = 'fatih/vim-go'
 [[plugins]] # 禅モード
 repo = 'junegunn/goyo.vim'
 
+[[plugins]] # カラースキーム
+repo = 'arcticicestudio/nord-vim'
+

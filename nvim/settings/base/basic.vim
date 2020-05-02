@@ -27,6 +27,8 @@ set undofile " undo履歴をファイルに保存(vim終了時にundo履歴が�
 " set noswapfile
 " set mouse=a " マウス有効化
 set termguicolors
+set pumblend=40 " ポップアップメニューの透明度を設定
+set winblend=20 " floating windowsの透明度を設定
 lang en_US.UTF-8
 set expandtab " タブ入力を複数の空白入力に置き換える
 set tabstop=2 " 画面上でタブ文字が占める幅

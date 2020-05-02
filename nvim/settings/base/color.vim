@@ -24,9 +24,13 @@ function! ColorSchemeBulkSetting()
   elseif g:colors_name == "material-theme"
     highlight Visual ctermbg=30 guibg=#194553
     highlight IndentGuidesOdd ctermbg=235 guibg=#37474f
+  elseif g:colors_name == "nord"
+    highlight Visual ctermbg=30 guibg=#314b68
+    highlight IndentGuidesOdd ctermbg=235 guibg=#3b4252
   endif
 endfunction
 
+colorscheme nord
 " ツリービュー拡張子ハイライト
 function! NERDTreeHighlightFile(extension, fg, bg, guifg, guibg)
   exec 'autocmd filetype nerdtree highlight ' . a:extension .' ctermbg='. a:bg .' ctermfg='. a:fg .' guibg='. a:guibg .' guifg='. a:guifg
@@ -52,10 +56,6 @@ call NERDTreeHighlightFile('lock',    '105', 'none', '#a9abab', 'none')
 call NERDTreeHighlightFile('ts',    '105', 'none', '#72dfc5', 'none')
 call NERDTreeHighlightFile('tsx',    '105', 'none', '#72dfc5', 'none')
 
-" カラースキーム設定
-" colorscheme iceberg
-colorscheme atom-dark
-" colorscheme material-theme
 " ランダムにカラースキームを決定
 function! ColorSchemeRand() abort
   let l:color_schemes = ['iceberg', 'atom-dark', 'material-theme']
@@ -63,5 +63,9 @@ function! ColorSchemeRand() abort
   let l:rand = reltimestr(reltime())[l:match_end : ] % len(l:color_schemes)
   execute "colorscheme " . l:color_schemes[l:rand]
 endfunction
-
 " autocmd! VimEnter * call ColorSchemeRand()
+
+" vimrc読み込み後ブランケット表示回避
+if exists("g:loaded_webdevicons")
+  call webdevicons#refresh()
+endif
