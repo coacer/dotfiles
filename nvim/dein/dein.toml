@@ -61,6 +61,9 @@ hook_add = '''
 [[plugins]] # nerdtreeにアイコン表示
 repo = 'ryanoasis/vim-devicons'
 
+[[plugins]] # deviconsにカラーをつける
+repo = 'tiagofumo/vim-nerdtree-syntax-highlight'
+
 [[plugins]] # 末尾の空白可視化
 repo = 'bronson/vim-trailing-whitespace'
 

@@ -22,3 +22,7 @@ syntax enable
 if dein#check_install()
   call dein#install()
 endif
+
+if len(dein#check_clean()) > 0
+  DeinDel
+endif

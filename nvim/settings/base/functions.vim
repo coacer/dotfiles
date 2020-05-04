@@ -61,6 +61,7 @@ command! ColorSchemeSelect Unite colorscheme -auto-preview
 function! s:DeinDelete()
   call map(dein#check_clean(), "delete(v:val, 'rf')")
   call dein#recache_runtimepath()
+  echo "Finish clean up!"
 endfunction
 command! DeinDel call <SID>DeinDelete()
 
@@ -68,7 +69,7 @@ command! DeinDel call <SID>DeinDelete()
 " Floating Term
 let s:float_term_border_win = 0
 let s:float_term_win = 0
-function! FloatTerm(...)
+function! s:FloatTerm(...)
   " Configuration
   let height = float2nr((&lines - 2) * 0.6)
   let row = float2nr((&lines - height) / 2)
@@ -104,7 +105,7 @@ function! FloatTerm(...)
   " Styling
   call setwinvar(s:float_term_border_win, '&winhl', 'Normal:Normal')
   call setwinvar(s:float_term_win, '&winhl', 'Normal:Normal')
-  if a:0 == 0
+  if a:1 == ''
     terminal
   else
     call termopen(a:1)
@@ -114,4 +115,9 @@ function! FloatTerm(...)
   autocmd TermClose * ++once :bd! | call nvim_win_close(s:float_term_border_win, v:true)
 endfunction
 
-command! -nargs=0 Term call FloatTerm()
+function! s:TermInvoke() abort
+  let l:cmd = input("Please input command: ")
+  call s:FloatTerm(l:cmd)
+endfunction
+
+command! -nargs=0 Term call <SID>TermInvoke()
