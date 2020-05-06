@@ -10,12 +10,6 @@ hook_add = '''
 [[plugins]] # カラースキーム
 repo = 'cocopon/iceberg.vim'
 
-[[plugins]] # Emmet導入
-repo = 'mattn/emmet-vim'
-hook_add = '''
-  source ~/.config/nvim/settings/plugins/emmet-vim.rc.vim
-'''
-
 [[plugins]] # コメントアウトショートカット導入
 repo = 'tomtom/tcomment_vim'
 
@@ -33,12 +27,6 @@ repo = 'simeji/winresizer'
 hook_add = '''
   source ~/.config/nvim/settings/plugins/winresizer.rc.vim
 '''
-
-[[plugins]] # カラーテーブルを表示する
-repo = 'guns/xterm-color-table.vim'
-
-[[plugins]] # JavaScriptES6のシンタックス
-repo = 'othree/yajs.vim'
 
 [[plugins]] # vim上からgitコマンドを使えるプラグイン
 repo = 'tpope/vim-fugitive'
@@ -82,29 +70,14 @@ repo = 'tpope/vim-repeat'
 #   source ~/.config/nvim/settings/plugins/comfortable-motion.rc.vim
 # '''
 
-[[plugins]] # coffeescriptシンタックス
-repo = 'kchmck/vim-coffee-script'
-
 [[plugins]] # gundoグラフ可視化
 repo = 'sjl/gundo.vim'
 hook_add = '''
   source ~/.config/nvim/settings/plugins/gundo.rc.vim
 '''
 
-[[plugins]] # tomlシンタックス
-repo = 'cespare/vim-toml'
-
 [[plugins]] # editorconfig
 repo = 'editorconfig/editorconfig-vim'
-
-[[plugins]] # Vue.jsシンタックス
-repo = 'posva/vim-vue'
-hook_add = '''
-  source ~/.config/nvim/settings/plugins/vim-vue.rc.vim
-'''
-
-[[plugins]] # PHPのbladeファイル対応
-repo = 'jwalton512/vim-blade'
 
 [[plugins]] # fzfプラグイン
 repo = 'junegunn/fzf.vim'
@@ -122,15 +95,6 @@ merged = '0'
 hook_add = '''
   source ~/.config/nvim/settings/plugins/coc.rc/init.vim
 '''
-
-[[plugins]] # typescriptシンタックス
-repo = 'leafgarland/typescript-vim'
-
-[[plugins]] # jsxシンタックス
-repo = 'maxmellon/vim-jsx-pretty'
-
-[[plugins]] # tsxシンタックス
-repo = 'ianks/vim-tsx'
 
 [[plugins]] # スニペット定義
 repo = 'Shougo/neosnippet-snippets'
@@ -158,9 +122,6 @@ repo = 'jiangmiao/auto-pairs'
 
 [[plugins]] # ruby閉じend補完
 repo = 'tpope/vim-endwise'
-
-[[plugins]] # golang
-repo = 'fatih/vim-go'
 
 [[plugins]] # 禅モード
 repo = 'junegunn/goyo.vim'

@@ -6,3 +6,50 @@ hook_source = '''
 on_i  = 1
 on_ft = ['snippet']
 depends = ['neosnippet-snippets']
+
+[[plugins]] # Emmet導入
+repo = 'mattn/emmet-vim'
+hook_source = '''
+  source ~/.config/nvim/settings/plugins/emmet-vim.rc.vim
+'''
+on_ft = ['html', 'eruby', 'javascriptreact', 'tsx', 'php']
+
+[[plugins]] # JavaScriptES6のシンタックス
+repo = 'othree/yajs.vim'
+on_ft = ['javascript']
+
+[[plugins]] # coffeescriptシンタックス
+repo = 'kchmck/vim-coffee-script'
+on_ft = ['coffee']
+
+[[plugins]] # tomlシンタックス
+repo = 'cespare/vim-toml'
+on_ft = ['toml']
+
+[[plugins]] # Vue.jsシンタックス
+repo = 'posva/vim-vue'
+hook_source = '''
+  source ~/.config/nvim/settings/plugins/vim-vue.rc.vim
+'''
+on_ft = ['vue']
+
+[[plugins]] # PHPのbladeファイル対応
+repo = 'jwalton512/vim-blade'
+on_ft = ['blade']
+
+[[plugins]] # typescriptシンタックス
+repo = 'leafgarland/typescript-vim'
+on_ft = ['typescript', 'tsx']
+
+[[plugins]] # jsxシンタックス
+repo = 'maxmellon/vim-jsx-pretty'
+on_ft = ['javascript', 'javascriptreact', 'tsx']
+
+[[plugins]] # tsxシンタックス
+repo = 'ianks/vim-tsx'
+on_ft = ['tsx']
+
+[[plugins]] # golang
+repo = 'fatih/vim-go'
+on_ft = ['go']
+

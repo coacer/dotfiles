@@ -23,6 +23,8 @@ if dein#check_install()
   call dein#install()
 endif
 
-if len(dein#check_clean()) > 0
-  DeinDel
+let s:del_plugs = dein#check_clean()
+if len(s:del_plugs) > 0
+  call map(s:del_plugs, "delete(v:val, 'rf')")
+  call dein#recache_runtimepath()
 endif
