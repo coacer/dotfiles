@@ -15,3 +15,7 @@ highlight! link NERDTreeFlags NERDTreeDir
 "NERDTreeのウィンドウしか開かれていないときは自動的に閉じる
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") &&
       \ b:NERDTree.isTabTree()) | bd | endif
+" 表示しないファイル
+let NERDTreeIgnore = [
+	\ '\.git$', '\.DS_Store$', '\.sass-cache$'
+	\ ]

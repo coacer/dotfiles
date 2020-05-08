@@ -10,7 +10,8 @@ onoremap <C-l> <Esc>
 lnoremap <C-l> <Esc>
 " ターミナルモード時にescで抜ける
 tnoremap <Esc> <C-\><C-n>
-tmap <C-l> <Esc>
+" ctrl+lでctrl+c
+tmap <C-l> <C-c>
 " ctrl+lで検索ハイライト無効化+再描画
 nnoremap <silent> <C-l> :<C-u>nohlsearch<CR><C-l>
 
@@ -27,6 +28,8 @@ nnoremap <Leader>vb :<C-u>edit ~/.config/nvim/settings/base/basic.vim<CR>
 nnoremap <Leader>vc :<C-u>edit ~/.config/nvim/settings/base/color.vim<CR>
 " スペース+vdでdein.tomlファイルを開く
 nnoremap <Leader>vd :<C-u>edit ~/.config/nvim/dein/dein.toml<CR>
+" スペース+vdでdein.tomlファイルを開く
+nnoremap <Leader>vD :<C-u>edit ~/.config/nvim/dein/dein_lazy.toml<CR>
 " スペース+vsで.vimrcファイルを読み込む
 nnoremap <Leader>vs :<C-u>source $MYVIMRC<CR>
 " スペース+mでmyvim_manual.txtファイルを開く

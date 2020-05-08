@@ -73,5 +73,5 @@ npm install -g neovim;
 
 # ==== Coc.nvim extensions インストール ====
 nvim -c 'CocInstall -sync coc-css coc-highlight coc-neosnippet coc-tsserver \
-  coc-eslint coc-jest coc-prettier coc-vetur coc-go coc-json coc-solargraph \
+  coc-eslint coc-jest coc-prettier coc-vetur coc-go coc-json coc-solargraph coc-phpls \
   | q';
