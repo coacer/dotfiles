@@ -52,9 +52,9 @@ function! s:Repl()
 endfunction
 vmap <silent> <expr> p <sid>Repl()
 
-" ColorPickerコマンド
+" カラーコードの上で実行するとカラーピッカーが表示する
 command! ColorPicker call CocAction('pickColor')
-" ColorSchemeSelectコマンド
+" カラースキームをプレビューしながら変更できる
 command! ColorSchemeSelect Unite colorscheme -auto-preview
 
 " deinの未使用プラグイン削除
@@ -66,7 +66,7 @@ endfunction
 command! DeinDel call <SID>DeinDelete()
 
 
-" Floating Term
+" floating window を用いてターミナルを表示させる
 let s:float_term_border_win = 0
 let s:float_term_win = 0
 function! s:FloatTerm(...)
@@ -98,13 +98,14 @@ function! s:FloatTerm(...)
   let bot = "╰" . repeat("─", width + 2) . "╯"
   let lines = [top] + repeat([mid], height) + [bot]
   let bbuf = nvim_create_buf(v:false, v:true)
-  " call nvim_buf_set_lines(bbuf, 0, -1, v:true, lines)
+  call nvim_buf_set_lines(bbuf, 0, -1, v:true, lines)
   let s:float_term_border_win = nvim_open_win(bbuf, v:true, border_opts)
   let buf = nvim_create_buf(v:false, v:true)
   let s:float_term_win = nvim_open_win(buf, v:true, opts)
-  " Styling
-  call setwinvar(s:float_term_border_win, '&winhl', 'Normal:Normal')
-  call setwinvar(s:float_term_win, '&winhl', 'Normal:Normal')
+  " floating windowで表示されるカラー
+  hi FloatTerm guifg=#598f89 guibg=#434c5e
+  call setwinvar(s:float_term_border_win, '&winhl', 'Normal:FloatTerm')
+  call setwinvar(s:float_term_win, '&winhl', 'Normal:NormalFloat')
   if a:1 == ''
     terminal
   else
@@ -115,6 +116,7 @@ function! s:FloatTerm(...)
   autocmd TermClose * ++once :bd! | call nvim_win_close(s:float_term_border_win, v:true)
 endfunction
 
+" FloatTerm実行時に任意のコマンド呼び出し
 function! s:TermInvoke() abort
   let l:cmd = input("Please input command: ")
   call s:FloatTerm(l:cmd)

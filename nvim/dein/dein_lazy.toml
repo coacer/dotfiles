@@ -12,11 +12,11 @@ repo = 'mattn/emmet-vim'
 hook_source = '''
   source ~/.config/nvim/settings/plugins/emmet-vim.rc.vim
 '''
-on_ft = ['html', 'eruby', 'javascriptreact', 'tsx', 'php']
+on_ft = ['html', 'eruby', 'javascriptreact', 'tsx', 'php', 'vue']
 
 [[plugins]] # JavaScriptES6のシンタックス
 repo = 'othree/yajs.vim'
-on_ft = ['javascript']
+on_ft = ['javascript', 'vue', 'javascriptreact']
 
 [[plugins]] # coffeescriptシンタックス
 repo = 'kchmck/vim-coffee-script'

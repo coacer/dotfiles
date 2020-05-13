@@ -1,8 +1,11 @@
 " ダイナミック プロバイダのパス
 let g:python_host_prog  = '~/.pyenv/versions/py2neovim/bin/python'
 let g:python3_host_prog = '~/.pyenv/versions/py3neovim/bin/python'
-let g:ruby_host_prog = '~/.rbenv/versions/2.6.0/bin/neovim-ruby-host'
-let g:node_host_prog = '~/.nodenv/versions/12.16.1/bin/neovim-node-host'
+let g:ruby_host_prog = '~/.rbenv/versions/2.7.1/bin/neovim-ruby-host'
+let g:node_host_prog = '~/.nodenv/versions/12.16.3/bin/neovim-node-host'
+
+" command line mode で使用するシェル(alias読み込みするため)
+let &shell='/bin/zsh -i'
 
 " neovimデフォルト有効オプション
 if !has('nvim')
@@ -21,7 +24,7 @@ scriptencoding utf-8
 set fileencoding=utf-8 " 保存時の文字コード
 set fileencodings=ucs-boms,utf-8,euc-jp,cp932 " 読み込み時の文字コードの自動判別. 左側が優先される
 set fileformats=unix,dos,mac " 改行コードの自動判別. 左側が優先される
-set ambiwidth=double " □や○文字が崩れる問題を解(エミュレータにも依存するためぶっちゃけ役に立ってない)
+" set ambiwidth=double " □や○文字が崩れる問題を解(エミュレータにも依存するためぶっちゃけ役に立ってない)
 set hidden " バッファ保存せずに移動しようとした場合に!をつけなくても移動できる, またargsの移動も隠しファイルにする
 set undofile " undo履歴をファイルに保存(vim終了時にundo履歴が削除されない)
 " set noswapfile
@@ -45,7 +48,7 @@ set ttimeoutlen=50 "インサートモードからEscの遅延を無くす
 " set whichwrap=b,s,h,l,<,>,[,],~ " カーソルの左右移動で行末から次の行の行頭への移動が可能になる
 set number " 行番号を表示
 set cursorline " カーソルラインをハイライト
-set foldmethod=syntax " foldmethodをインデントにする
+" set foldmethod=syntax " foldmethodをインデントにする
 
 set showmatch " 括弧の対応関係を一瞬表示する
 source $VIMRUNTIME/macros/matchit.vim " Vimの「%」を拡張する
@@ -55,4 +58,4 @@ autocmd TermOpen * setlocal nonumber
 " 保存時に末尾の半角/全角スペースを削除
 autocmd BufWritePre * %s/\v(\s|　)+$//e
 " ファイル表示時にfoldを全て展開
-autocmd BufRead * normal zR
+" autocmd BufRead * normal zR

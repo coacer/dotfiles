@@ -28,7 +28,7 @@ nnoremap <Leader>vb :<C-u>edit ~/.config/nvim/settings/base/basic.vim<CR>
 nnoremap <Leader>vc :<C-u>edit ~/.config/nvim/settings/base/color.vim<CR>
 " スペース+vdでdein.tomlファイルを開く
 nnoremap <Leader>vd :<C-u>edit ~/.config/nvim/dein/dein.toml<CR>
-" スペース+vdでdein.tomlファイルを開く
+" スペース+vDでdein_lazy.tomlファイルを開く
 nnoremap <Leader>vD :<C-u>edit ~/.config/nvim/dein/dein_lazy.toml<CR>
 " スペース+vsで.vimrcファイルを読み込む
 nnoremap <Leader>vs :<C-u>source $MYVIMRC<CR>
@@ -58,6 +58,9 @@ vnoremap x "_x
 
 " ウィンドウprefixをsに変換
 nnoremap s <C-w>
+" ウィンドウ分割時にフォーカス移動
+nnoremap sv <C-w>v<C-w>w
+nnoremap ss <C-w>s<C-w>w
 " Yでカーソル位置から行末までコピー
 nnoremap Y y$
 " ctrl-spaceで下に空行挿入して元の位置に戻る
@@ -101,4 +104,5 @@ vnoremap gy y`>
 nnoremap gp gpk
 " 選択範囲に.コマンド実行
 vnoremap <silent> . :normal .<CR>
+" leader + tでFloat Termを開く
 nnoremap <silent> <Leader>t :Term<CR>

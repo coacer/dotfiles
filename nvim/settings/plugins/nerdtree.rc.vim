@@ -1,6 +1,6 @@
 let g:NERDTreeDirArrowExpandable = '▸'
 let g:NERDTreeDirArrowCollapsible = '▾'
-nnoremap <C-n> :<C-u>NERDTreeToggle<CR><C-l>
+nnoremap <C-n> :<C-u>NERDTreeToggle<CR>
 " アイコン有効化
 let g:WebDevIconsUnicodeDecorateFolderNodes = 1
 let g:WebDevIconsOS = 'Darwin'
