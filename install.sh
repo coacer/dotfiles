@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/zsh
 
 # ==== シンボリックリンク ====
 rm ~/.zshrc;
@@ -21,7 +21,11 @@ ln -s ~/dotfiles/.vimrc ~/.vimrc;
 
 brew update;
 brew install vim neovim emacs fzf git hub docker lazydocker lazygit tmux tig \
-  tree autojump composer awscli rbenv pyenv pyenv-virtualenv nodenv;
+  tree autojump composer awscli rbenv pyenv pyenv-virtualenv nodenv bat;
+brew cask install docker iterm2;
+
+# To install useful key bindings and fuzzy completion:
+$(brew --prefix)/opt/fzf/install
 
 # 読み込み
 source ~/.zshrc;
