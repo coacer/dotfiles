@@ -53,3 +53,10 @@ on_ft = ['tsx']
 repo = 'fatih/vim-go'
 on_ft = ['go']
 
+[[plugins]] # Xdebugとの連携プラグイン
+repo = 'joonty/vdebug'
+on_ft = ['php']
+hook_source = '''
+  source ~/.config/nvim/settings/plugins/vdebug.rc.vim
+'''
+

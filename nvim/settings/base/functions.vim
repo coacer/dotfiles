@@ -70,7 +70,7 @@ command! DeinDel call <SID>DeinDelete()
 let s:float_term_border_win = 0
 let s:float_term_win = 0
 function! s:FloatTerm(...)
-  " Configuration
+  " 画面サイズからウィンドウの位置とサイズを決定しnumberにキャスト
   let height = float2nr((&lines - 2) * 0.6)
   let row = float2nr((&lines - height) / 2)
   let width = float2nr(&columns * 0.6)
@@ -123,3 +123,46 @@ function! s:TermInvoke() abort
 endfunction
 
 command! -nargs=0 Term call <SID>TermInvoke()
+
+
+" ==== Vdebug ====
+" xdebugの設定ファイル(.vdebug.conf.vim)を作成するコマンド(以下ファイル例)
+" == Sample(.vdebug.conf.vim) ==
+" let g:xdebug_port = 9001
+" let g:xdebug_guest_path = '/var/www/app'
+" let g:xdebug_host_path = '/Users/user_name/your/app/path'
+
+function! s:xdebug_generate_conf() abort
+  let l:outputfile = '.vdebug.conf.vim'
+
+  " 設定ファイルが存在したら上書きするか確認
+  if (filereadable(l:outputfile))
+    let l:answer = confirm("既に設定ファルが存在します。\n上書きしますか？", "&Yes\nNo")
+    if (l:answer == 2)
+      return
+    endif
+  endif
+
+  let l:port = input("ポート番号を入力してください: ")
+  let l:guest_path = input("マウントしてるパスを入力してください: ")
+  " 設定ファイル書き込み
+  execute 'redir! >' . l:outputfile
+    silent echon '"  ========Vdebug======== "' . "\n"
+    silent echon 'let g:xdebug_port = ' . l:port . "\n"
+    silent echon 'let g:xdebug_guest_path = ' . '"' . l:guest_path . '"'. "\n"
+    silent echon 'let g:xdebug_host_path = ' . '"' . substitute(execute("pwd"), "\n", "", "g") . '"' . "\n"
+  redir END
+  execute 'edit ' . l:outputfile
+  substitute/^\s\+//e
+  silent write
+  bdelete
+  echo "==== Xdebug Settings ==="
+  echo ' '
+  echo 'PORT: ' . l:port
+  echo 'GUEST PATH: ' . l:guest_path
+  echo '"' . l:outputfile . '"' . ' is created!'
+  echo ' '
+  echo '再起動してください'
+endfunction
+
+command! XdebugInit call <SID>xdebug_generate_conf()
