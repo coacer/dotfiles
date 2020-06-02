@@ -1,0 +1,1 @@
+curl -v -X POST -H "Authorization: Bearer ya29.a0Ae4lvC2UtiCxCdu5GJQptH1gwY7Jr-XheIYzW4ss-Y1urdPkOI0tCCesIwKOQMr4XcBTsLw_tqHL5yGp7jRJAPhcsWYsANre_4AxF3Xpl-9eWU33yZ0fE9a3cfXHUYsd64XBQ-kWEhJUKis2Q6w3RzsL-8TSik4yq3O-" "https://script.google.com/a/sonicmoov.com/macros/s/AKfycbx5t2HIZnv5o6e5VLGsy_ydzTX5yLRE4YIuF6gGUJ8ZBrPtnLc/exec"

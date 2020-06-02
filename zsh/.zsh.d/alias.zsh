@@ -3,7 +3,13 @@ function cdls() {
   ls -G;
 }
 
+function mkdir_cd() {
+  mkdir -p $1;
+  cd $_;
+}
+
 alias cd=cdls
+alias mkdir=mkdir_cd
 alias cdd='cd ~/Desktop'
 alias vi='vim -C -u NONE'
 alias ..='cd ..'
@@ -12,17 +18,17 @@ alias la='ls -a'
 alias ll='ls -lh'
 alias lla='ls -lha'
 alias ls="ls -GF"
-alias ide="~/Scripts/ide.sh"
+alias ide="~/.bin/ide.sh"
 alias nvis="nvim -S .session.vim"
-alias lo="~/Scripts/localhostOpen.sh"
+alias lo="~/.bin/localhostOpen.sh"
 alias t="tmux"
 alias ta="tmux a"
 alias tn="tmux new -s"
 alias ts="tmux source ~/.tmux.conf"
 alias te="nvim ~/.tmux.conf"
-alias tk="~/Scripts/tmuxKill.sh"
-alias giti="~/Scripts/CreateGitIgnoreFile/index.js"
+alias tk="~/.bin/tmuxKill.sh"
+alias giti="~/.bin/CreateGitIgnoreFile/index.js"
 alias lg="lazygit"
 alias ld="lazydocker"
 alias cdt="cd ~/dotfiles"
-alias esl="~/Scripts/setESlintPrettier/init.sh"
+alias esl="~/.bin/setESlintPrettier/init.sh"
