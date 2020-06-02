@@ -2,6 +2,7 @@
   path = .gitconfig.local # user.name, user.emailの設定ファイル読み込み
 [core]
   editor = nvim
+  excludesfile = ~/.gitignore_global
 [alias]
   st = status
   cc = commit

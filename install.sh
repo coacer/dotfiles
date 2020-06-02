@@ -15,6 +15,7 @@ ln -s ~/dotfiles/.tmux.conf ~/.tmux.conf;
 mkdir ~/.config;
 ln -s ~/dotfiles/nvim ~/.config/nvim;
 ln -s ~/dotfiles/.vimrc ~/.vimrc;
+ln -s ~/dotfiles/.gitignore_global ~/.gitignore_global
 
 # ==== Homebrew ====
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)";

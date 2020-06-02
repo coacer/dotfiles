@@ -1,6 +1,8 @@
 # デフォルト設定
 export FZF_DEFAULT_OPTS="--reverse --margin=1,3 --inline-info --prompt='Search: ' --preview 'bat  --color=always --style=header,grid --line-range :100 {}' --color=fg+:85,bg+:23,fg:247"
 export FZF_ALT_C_OPTS="--preview 'tree -C {} | head -200'"
+# 隠しファイルを対象とする(fzf.vim対応)
+export FZF_DEFAULT_COMMAND="find . -path '*/\.*' -type d -prune -o -type f -print -o -type l -print 2> /dev/null | sed s/^..//"
 
 # 一発でディレクトリ移動
 fd() {
