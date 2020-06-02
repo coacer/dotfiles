@@ -36,8 +36,10 @@ nnoremap <Leader>vs :<C-u>source $MYVIMRC<CR>
 nnoremap <Leader>m :<C-u>edit ~/Documents/Memo/skills/Vim/myvim_manual.txt<CR>
 
 "========== セッション操作 ==========
-" スペース+swでセッションファイルを保存してウィンドウを全て閉じる
-nnoremap <Leader>sw :<C-u>mks! .session.vim<CR>:<C-u>qall<CR>
+" スペース+swでセッションファイルを保存する
+nnoremap <Leader>sw :<C-u>mks! .session.vim<CR>
+" スペース+sWでセッションファイルを保存してウィンドウを全て閉じる
+nnoremap <Leader>sW :<C-u>mks! .session.vim<CR>:<C-u>qall<CR>
 " スペース+ssでセッションファイルを読み込む
 nnoremap <Leader>ss :<C-u>source .session.vim<CR>
 " スペース+sdでセッションファイルを削除

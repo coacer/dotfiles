@@ -27,3 +27,27 @@ let g:vdebug_options= {
 \    },
 \    "window_arrangement" : ["DebuggerWatch", "DebuggerStack"]
 \}
+
+" HighLight
+highlight DbgCurrentLine guibg=#774449
+highlight DbgCurrentSign guibg=#774449
+highlight DbgBreakptLine guibg=#395640
+highlight DbgBreakptSign guibg=#395640
+
+" Mappings
+" Leader + x 無効化
+nnoremap <Leader>x <Nop>
+" ブレイクポイント設置/削除
+nmap <Leader>xx <F10>
+" xdebug開始(start)
+nmap <Leader>xs <F5>
+" xdebug終了/閉じる(delete)
+nmap <Leader>xd <F6>
+" ステップオーバー(j: 下)
+nmap <Leader>xj <F2>
+" ステップイン(l: 右)
+nmap <Leader>xl <F3>
+" ステップアウト(h: 左)
+nmap <Leader>xh <F4>
+" カーソル下を評価(evaluate)
+nmap <Leader>xe <F12>

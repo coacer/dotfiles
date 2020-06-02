@@ -5,7 +5,7 @@ let g:ruby_host_prog = '~/.rbenv/versions/2.7.1/bin/neovim-ruby-host'
 let g:node_host_prog = '~/.nodenv/versions/12.16.3/bin/neovim-node-host'
 
 " command line mode で使用するシェル(alias読み込みするため)
-let &shell='/bin/zsh -i'
+" let &shell='/bin/zsh -i'
 
 " neovimデフォルト有効オプション
 if !has('nvim')

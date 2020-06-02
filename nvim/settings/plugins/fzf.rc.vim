@@ -2,6 +2,7 @@ nnoremap <Space>f :<C-u>Files<CR>
 nnoremap <Space>F :<C-u>GFiles<CR>
 nnoremap <Space>g :<C-u>GGrep<CR>
 nnoremap <Space>b :<C-u>Buffers<CR>
+nnoremap <Space>l :<C-u>BLines<CR>
 
 command! -bang -nargs=* GGrep
       \ call fzf#vim#grep(
