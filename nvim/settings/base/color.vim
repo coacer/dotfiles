@@ -2,6 +2,7 @@ autocmd Colorscheme * call ColorSchemeBulkSetting()
 
 function! ColorSchemeBulkSetting()
   highlight IndentGuidesEven ctermbg=236 guibg=none
+  highlight SuccessMsg guifg=#d8dee9 guibg=#5f8d61
   if g:colors_name == "iceberg"
     highlight Visual ctermbg=30 guibg=#123531
     highlight Search ctermbg=29 guifg=#ffffff guibg=#476a47

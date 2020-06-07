@@ -1,3 +1,20 @@
+" サクセスメッセージ出力関数
+function! s:echo_success(msg) abort
+  echo "\n"
+  echohl SuccessMsg
+  echo a:msg
+  echohl None
+endfunction
+
+" エラー出力関数
+function! s:echo_err(msg) abort
+  echo "\n"
+  echohl ErrorMsg
+  echomsg 'functions.vim: ' a:msg
+  echohl None
+endfunction
+
+
 " :SyntaxInfoコマンドでカーソル下のシンタックスグループ名を表示する関数
 function! s:get_syn_id(transparent)
   let synid = synID(line("."), col("."), 1)
@@ -144,7 +161,19 @@ function! s:xdebug_generate_conf() abort
   endif
 
   let l:port = input("ポート番号を入力してください: ")
+  " 数字以外の場合エラー
+  if (empty(l:port) || l:port =~# '\D')
+    call s:echo_err("正しく入力してください")
+    return
+  endif
+
   let l:guest_path = input("マウントしてるパスを入力してください: ")
+  " 空の場合エラー
+  if (empty(l:guest_path) || l:guest_path =~# '\s\+')
+    call s:echo_err("正しく入力してください")
+    return
+  endif
+
   " 設定ファイル書き込み
   execute 'redir! >' . l:outputfile
     silent echon '"  ========Vdebug======== "' . "\n"
@@ -156,11 +185,14 @@ function! s:xdebug_generate_conf() abort
   substitute/^\s\+//e
   silent write
   bdelete
+
+  " 結果出力
   echo "==== Xdebug Settings ==="
   echo ' '
   echo 'PORT: ' . l:port
   echo 'GUEST PATH: ' . l:guest_path
-  echo '"' . l:outputfile . '"' . ' is created!'
+  let l:success_msg = '"' . l:outputfile . '"' . ' is created!'
+  call s:echo_success(l:success_msg)
   echo ' '
   echo '再起動してください'
 endfunction
