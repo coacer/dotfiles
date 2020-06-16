@@ -1,20 +1,19 @@
-" Required:
-set runtimepath+=~/.cache/dein/repos/github.com/Shougo/dein.vim
+let s:dein_dir = expand('~/.cache/dein')
+let s:dein_repo_dir = s:dein_dir . '/repos/github.com/Shougo/dein.vim'
+
+execute 'set runtimepath+=' . s:dein_repo_dir
 " 自動リキャッシュ なぜかファイル保存時にairlineのカラーが無効化する(バグ？)
 " let g:dein#auto_recache = 1
 
-" Required:
-if dein#load_state('~/.cache/dein')
-  call dein#begin('~/.cache/dein')
-  call dein#load_toml('~/.config/nvim/dein/dein.toml', {'lazy': 0})
-  call dein#load_toml('~/.config/nvim/dein/dein_lazy.toml', {'lazy': 1})
+if dein#load_state(s:dein_dir)
+  call dein#begin(s:dein_dir)
+  call dein#load_toml(g:root_dir . '/dein/dein.toml', {'lazy': 0})
+  call dein#load_toml(g:root_dir . '/dein/dein_lazy.toml', {'lazy': 1})
 
-  " Required:
   call dein#end()
   call dein#save_state()
 endif
 
-" Required:
 filetype plugin indent on
 syntax enable
 

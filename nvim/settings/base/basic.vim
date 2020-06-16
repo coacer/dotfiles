@@ -1,8 +1,8 @@
 " ダイナミック プロバイダのパス
-let g:python_host_prog  = '~/.pyenv/versions/py2neovim/bin/python'
-let g:python3_host_prog = '~/.pyenv/versions/py3neovim/bin/python'
-let g:ruby_host_prog = '~/.rbenv/versions/2.7.1/bin/neovim-ruby-host'
-let g:node_host_prog = '~/.nodenv/versions/12.16.3/bin/neovim-node-host'
+let g:python_host_prog  = expand('~/.pyenv/versions/py2neovim/bin/python')
+let g:python3_host_prog = expand('~/.pyenv/versions/py3neovim/bin/python')
+let g:ruby_host_prog = expand('~/.rbenv/versions/2.7.1/bin/neovim-ruby-host')
+let g:node_host_prog = expand('~/.nodenv/versions/12.16.3/bin/neovim-node-host')
 
 " command line mode で使用するシェル(alias読み込みするため)
 " let &shell='/bin/zsh -i'
@@ -44,6 +44,7 @@ set smartcase " 検索パターンに大文字を含んでいたら大文字小�
 " language C " 出力文字英語化
 set inccommand=split "文字列置換をインタラクティブに
 set ttimeoutlen=50 "インサートモードからEscの遅延を無くす
+set virtualedit=block " 矩形選択でテキストが存在しない箇所も選択出来る
 
 " set whichwrap=b,s,h,l,<,>,[,],~ " カーソルの左右移動で行末から次の行の行頭への移動が可能になる
 set number " 行番号を表示

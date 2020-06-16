@@ -4,4 +4,4 @@ xmap <C-k> <Plug>(neosnippet_expand_target)
 if has('conceal')
   set conceallevel=2 concealcursor=niv
 endif
-let g:neosnippet#snippets_directory='~/.config/nvim/settings/plugins/neosnippet.rc.d/snippets'
+let g:neosnippet#snippets_directory = g:root_dir . '/settings/plugins/neosnippet.rc.d/snippets'

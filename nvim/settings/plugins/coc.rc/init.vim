@@ -1,4 +1,4 @@
-let g:coc_global_config = "~/.config/nvim/settings/plugins/coc.rc/coc-settings.json"
+let g:coc_global_config = g:root_dir . "/settings/plugins/coc.rc/coc-settings.json"
 " Some servers have issues with backup files, see #649
 set nobackup
 set nowritebackup
