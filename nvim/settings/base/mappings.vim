@@ -46,6 +46,13 @@ nnoremap <Leader>ss :<C-u>source .session.vim<CR>
 nnoremap <Leader>sd :<C-u>!rm .session.vim<CR>
 "==================================
 
+" Leader+wで保存
+nnoremap <Leader>w :<C-u>write<CR>
+" Leader+qで閉じる(未保存のファイルがある時ダイアログ表示)
+nnoremap <Leader>q :<C-u>confirm qall<CR>
+" Leader+zで保存して終了
+nnoremap <Leader>z :<C-u>wqall<CR>
+
 " レジスタprefixをLeader+r
 nnoremap <Leader>r "
 vnoremap <Leader>r "

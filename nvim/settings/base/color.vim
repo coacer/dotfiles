@@ -66,7 +66,7 @@ function! ColorSchemeRand() abort
 endfunction
 " autocmd! VimEnter * call ColorSchemeRand()
 
-" vimrc読み込み後ブランケット表示回避
+" vimrc読み込み後NerdTreeのアイコン周りのブランケット表示回避
 if exists("g:loaded_webdevicons")
   call webdevicons#refresh()
 endif
