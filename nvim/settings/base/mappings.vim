@@ -113,5 +113,9 @@ vnoremap gy y`>
 nnoremap gp gpk
 " 選択範囲に.コマンド実行
 vnoremap <silent> . :normal .<CR>
-" leader + tでFloat Termを開く
-nnoremap <silent> <Leader>t :Term<CR>
+" leader + ttでFloat Termを開く
+nnoremap <silent> <Leader>tt :Term<CR>
+" leader + tgでFloat Termでlazygitを開く
+nnoremap <silent> <Leader>tg :Term lazygit<CR>
+" leader + tdでFloat Termでlazydockerを開く
+nnoremap <silent> <Leader>td :Term lazydocker<CR>

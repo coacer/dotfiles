@@ -134,12 +134,17 @@ function! s:FloatTerm(...)
 endfunction
 
 " FloatTerm実行時に任意のコマンド呼び出し
-function! s:TermInvoke() abort
-  let l:cmd = input("Please input command: ")
+function! s:TermInvoke(...) abort
+  if (a:0 > 0)
+    let l:cmd = a:1
+  else
+    let l:cmd = input("Please input command: ")
+  endif
   call s:FloatTerm(l:cmd)
 endfunction
 
-command! -nargs=0 Term call <SID>TermInvoke()
+" 引数がある時はそのコマンドを実行し、無い時は入力を促す
+command! -nargs=? Term call <SID>TermInvoke(<f-args>)
 
 
 " ==== Vdebug ====
