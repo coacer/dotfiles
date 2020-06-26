@@ -3,6 +3,12 @@ autocmd Colorscheme * call ColorSchemeBulkSetting()
 function! ColorSchemeBulkSetting()
   highlight IndentGuidesEven ctermbg=236 guibg=none
   highlight SuccessMsg guifg=#d8dee9 guibg=#5f8d61
+  " diffのカラー
+  highlight DiffAdd    gui=bold guifg=none guibg=#2f4535
+  highlight DiffDelete gui=bold guifg=none guibg=#533135
+  highlight DiffChange gui=bold guifg=none guibg=#53543b
+  highlight DiffText   gui=bold guifg=none guibg=#2a5255
+
   if g:colors_name == "iceberg"
     highlight Visual ctermbg=30 guibg=#123531
     highlight Search ctermbg=29 guifg=#ffffff guibg=#476a47
