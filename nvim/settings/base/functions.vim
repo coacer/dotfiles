@@ -6,11 +6,19 @@ function! s:echo_success(msg) abort
   echohl None
 endfunction
 
+" アラートメッセージ出力関数
+function! s:echo_alert(msg) abort
+  echo "\n"
+  echohl AlertMsg
+  echo '[Alert!!] ' a:msg
+  echohl None
+endfunction
+
 " エラー出力関数
 function! s:echo_err(msg) abort
   echo "\n"
   echohl ErrorMsg
-  echomsg 'functions.vim: ' a:msg
+  echomsg '[Error!!] functions.vim: ' a:msg
   echohl None
 endfunction
 
@@ -203,3 +211,67 @@ function! s:xdebug_generate_conf() abort
 endfunction
 
 command! XdebugInit call <SID>xdebug_generate_conf()
+
+" gitのstageと差分のあるファイルをquickfixに出力し、Gdiffコマンドで差分表示する
+function! s:git_diff() abort
+  let l:status = ''
+  redir => l:status
+  silent! !git diff --name-only && git ls-files -o
+  redir END
+
+  let l:files = []
+  let l:index = 1
+  for l in split(l:status, "\n")
+    if l:index > 2
+      let l:info = {'filename': l}
+      let l:info.lnum = l:index - 2
+      call add(l:files, l:info)
+      unlet l:info
+    endif
+    let l:index = l:index + 1
+  endfor
+  call setqflist(l:files, 'r')
+  cwindow
+  cfirst
+  Gdiff
+  " ウィンドウ最上部に移動
+  execute "normal! 99999\<C-b>"
+  wincmd w
+  execute "normal! 99999\<C-b>"
+endfunction
+
+function! s:git_diff_next() abort
+  bdelete
+  try
+    cnext
+  " 一番最後だった時のエラーハンドリング
+  catch /^Vim\%((\a\+)\)\=:E553/
+    call s:echo_alert("Jump front")
+    cfirst
+  endtry
+  Gdiff
+  " ウィンドウ最上部に移動
+  execute "normal! 99999\<C-b>"
+  wincmd w
+  execute "normal! 99999\<C-b>"
+endfunction
+
+function! s:git_diff_previous() abort
+  bdelete
+  try
+    cprevious
+  " 一番最初だった時のエラーハンドリング
+  catch /^Vim\%((\a\+)\)\=:E553/
+    call s:echo_alert("Jump end")
+    clast
+  endtry
+  Gdiff
+  " ウィンドウ最上部に移動
+  execute "normal! 99999\<C-b>"
+  wincmd w
+  execute "normal! 99999\<C-b>"
+endfunction
+
+command! -nargs=0 GitStatusList call <SID>git_diff()
+command! -nargs=0 GitStatusNext call <SID>git_diff_next()
+command! -nargs=0 GitStatusPrevious call <SID>git_diff_previous()

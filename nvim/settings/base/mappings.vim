@@ -119,3 +119,8 @@ nnoremap <silent> <Leader>tt :Term<CR>
 nnoremap <silent> <Leader>tg :Term lazygit<CR>
 " leader + tdでFloat Termでlazydockerを開く
 nnoremap <silent> <Leader>td :Term lazydocker<CR>
+
+" GitStatusList系
+nnoremap <Leader><C-G><C-G> :GitStatusList<CR>
+nnoremap <Leader><C-G>n :GitStatusNext<CR>
+nnoremap <Leader><C-G>p :GitStatusPrevious<CR>
