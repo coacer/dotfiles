@@ -212,8 +212,13 @@ endfunction
 
 command! XdebugInit call <SID>xdebug_generate_conf()
 
-" gitのstageと差分のあるファイルをquickfixに出力し、Gdiffコマンドで差分表示する
-function! s:git_diff() abort
+
+
+" GitStatusDiff: gitのstageと差分のあるファイルをquickfixに出力し、Gdiffコマンドで差分表示する
+"                次々に差分表示したいファイルを切り替えできる
+
+" `git status`の結果をquickfixとして出力
+function! s:git_status_list() abort
   let l:status = ''
   redir => l:status
   silent! !git diff --name-only && git ls-files -o
@@ -225,6 +230,7 @@ function! s:git_diff() abort
     if l:index > 2
       let l:info = {'filename': l}
       let l:info.lnum = l:index - 2
+      let l:info.text = '✗'
       call add(l:files, l:info)
       unlet l:info
     endif
@@ -233,6 +239,10 @@ function! s:git_diff() abort
   call setqflist(l:files, 'r')
   cwindow
   cfirst
+endfunction
+
+" 差分を表示 + ウィンドウ初期化
+function! s:git_diff() abort
   Gdiff
   " ウィンドウ最上部に移動
   execute "normal! 99999\<C-b>"
@@ -240,38 +250,50 @@ function! s:git_diff() abort
   execute "normal! 99999\<C-b>"
 endfunction
 
-function! s:git_diff_next() abort
+" git_diff初期化
+function! s:git_diff_init() abort
+  call s:git_status_list()
+  call s:git_diff()
+endfunction
+
+" 引数のbufferにジャンプ
+function! s:git_diff_jump(buf_num) abort
+  " quickfixのバッファにフォーカスしている時はウィンドウ移動
+  if (&filetype == 'qf')
+    wincmd w
+  endif
+
   bdelete
   try
-    cnext
-  " 一番最後だった時のエラーハンドリング
+    if (a:buf_num == 'next')
+      cnext
+    elseif (a:buf_num == 'pre')
+      cprevious
+    else
+      execute "cc! " . a:buf_num
+    endif
+
+  " 一番最後または最初だった時のエラーハンドリング
   catch /^Vim\%((\a\+)\)\=:E553/
-    call s:echo_alert("Jump front")
-    cfirst
+    if (a:buf_num == 'pre')
+      let l:msg = "End"
+      clast
+    else
+      let l:msg = "Front"
+      cfirst
+    endif
+    call s:echo_alert("Jump " . l:msg)
+
+  " それ以外の不正な引数だった時のエラーハンドリング
+  catch
+    call s:echo_err("正しい引数を入力してください")
   endtry
-  Gdiff
-  " ウィンドウ最上部に移動
-  execute "normal! 99999\<C-b>"
-  wincmd w
-  execute "normal! 99999\<C-b>"
+
+  call s:git_diff()
 endfunction
 
-function! s:git_diff_previous() abort
-  bdelete
-  try
-    cprevious
-  " 一番最初だった時のエラーハンドリング
-  catch /^Vim\%((\a\+)\)\=:E553/
-    call s:echo_alert("Jump end")
-    clast
-  endtry
-  Gdiff
-  " ウィンドウ最上部に移動
-  execute "normal! 99999\<C-b>"
-  wincmd w
-  execute "normal! 99999\<C-b>"
-endfunction
 
-command! -nargs=0 GitStatusList call <SID>git_diff()
-command! -nargs=0 GitStatusNext call <SID>git_diff_next()
-command! -nargs=0 GitStatusPrevious call <SID>git_diff_previous()
+command! -nargs=0 GitStatusDiff call <SID>git_diff_init()
+command! -nargs=0 GitStatusNext call <SID>git_diff_jump('next')
+command! -nargs=0 GitStatusPrevious call <SID>git_diff_jump('pre')
+command! -nargs=1 GitStatusJump call <SID>git_diff_jump(<f-args>)
