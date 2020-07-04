@@ -24,10 +24,8 @@ scriptencoding utf-8
 set fileencoding=utf-8 " 保存時の文字コード
 set fileencodings=ucs-boms,utf-8,euc-jp,cp932 " 読み込み時の文字コードの自動判別. 左側が優先される
 set fileformats=unix,dos,mac " 改行コードの自動判別. 左側が優先される
-" set ambiwidth=double " □や○文字が崩れる問題を解(エミュレータにも依存するためぶっちゃけ役に立ってない)
 set hidden " バッファ保存せずに移動しようとした場合に!をつけなくても移動できる, またargsの移動も隠しファイルにする
 set undofile " undo履歴をファイルに保存(vim終了時にundo履歴が削除されない)
-" set noswapfile
 " set mouse=a " マウス有効化
 set termguicolors
 set pumblend=40 " ポップアップメニューの透明度を設定
@@ -57,6 +55,6 @@ source $VIMRUNTIME/macros/matchit.vim " Vimの「%」を拡張する
 " ターミナル表示時は番号を表示しない
 autocmd TermOpen * setlocal nonumber
 " 保存時に末尾の半角/全角スペースを削除
-autocmd BufWritePre * %s/\v(\s|　)+$//e
+" autocmd BufWritePre * %s/\v(\s|　)+$//e
 " ファイル表示時にfoldを全て展開
 " autocmd BufRead * normal zR

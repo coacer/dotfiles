@@ -16,8 +16,8 @@ tmap <C-l> <C-c>
 nnoremap <silent> <C-l> :<C-u>nohlsearch<CR><C-l>
 
 "========== vimrc操作 ==========
-" スペース+vrでnvimフォルダ(ルートディレクトリ)を開く
-nnoremap <Leader>vr :<C-u>execute 'edit ' . g:root_dir<CR>
+" スペース+vvでnvimフォルダをfzfで開く
+nnoremap <Leader>vv :<C-u>execute 'Files ' . g:root_dir<CR>
 " スペース+vmでmappings.vimファイルを開く
 nnoremap <Leader>vm :<C-u>execute 'edit ' . g:root_dir . '/settings/base/mappings.vim'<CR>
 " スペース+vfでfunctions.vimファイルを開く
@@ -64,6 +64,10 @@ nnoremap <Leader>a ggVG
 " xで文字を消した際にレジスタに格納しない
 nnoremap x "_x
 vnoremap x "_x
+" gJで連結する際に連結部分の空白除去
+" (デフォルトだとインデントなどされてた場合インデント分の空白を残した状態で連結するため)
+nnoremap <silent> gJ mz:<C-u>+1s/^\s\+//e<CR>`zgJ
+vnoremap <silent> gJ :<C-u>'<+1,'>s/^\s\+//e<CR>gvgJ
 
 " ウィンドウprefixをsに変換
 nnoremap s <C-w>
@@ -72,8 +76,10 @@ nnoremap sv <C-w>v<C-w>w
 nnoremap ss <C-w>s<C-w>w
 " Yでカーソル位置から行末までコピー
 nnoremap Y y$
-" ctrl-spaceで下に空行挿入して元の位置に戻る
-nnoremap <C-Space> mzo<Esc>"_cc<Esc>`z
+" ctrl-j/kで上下に空行挿入して元の位置に戻る
+" o/Oだけだとコメント行にカーソルが乗っていたとき空行がコメントになってしまうためccで回避
+nnoremap <C-j> mzo<Esc>"_cc<Esc>`z
+nnoremap <C-k> mzO<Esc>"_cc<Esc>`z
 " Leader*2でファイル全体のインデントを揃える
 nnoremap <silent> <Leader><Leader> mz:%normal ==<CR>`zzz
 " nnoremap <silent> <Leader><Leader> :<C-u>call CocAction("format")<CR>
@@ -101,7 +107,7 @@ cnoremap <C-a> <Home>
 cnoremap <C-e> <End>
 
 " *で検索時に次の検索文字に移動しないように設定
-nnoremap * mq*`q
+nnoremap * *N
 
 " <ctrl+r>*2で無名レジスタ
 inoremap <C-r><C-r> <C-r>"
@@ -113,6 +119,8 @@ vnoremap gy y`>
 nnoremap gp gpk
 " 選択範囲に.コマンド実行
 vnoremap <silent> . :normal .<CR>
+
+" Float Term系(functions.vim)
 " leader + ttでFloat Termを開く
 nnoremap <silent> <Leader>tt :Term<CR>
 " leader + tgでFloat Termでlazygitを開く
@@ -120,7 +128,5 @@ nnoremap <silent> <Leader>tg :Term lazygit<CR>
 " leader + tdでFloat Termでlazydockerを開く
 nnoremap <silent> <Leader>td :Term lazydocker<CR>
 
-" GitStatusDiff系
+" GitStatusDiff(functions.vim)
 nnoremap <Leader><C-G><C-G> :GitStatusDiff<CR>
-nnoremap <Leader><C-G>n :GitStatusNext<CR>
-nnoremap <Leader><C-G>p :GitStatusPrevious<CR>

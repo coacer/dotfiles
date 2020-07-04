@@ -1,6 +1,5 @@
 " サクセスメッセージ出力関数
 function! s:echo_success(msg) abort
-  echo "\n"
   echohl SuccessMsg
   echo a:msg
   echohl None
@@ -8,17 +7,15 @@ endfunction
 
 " アラートメッセージ出力関数
 function! s:echo_alert(msg) abort
-  echo "\n"
   echohl AlertMsg
-  echo '[Alert!!] ' a:msg
+  echo 'Alert:' a:msg
   echohl None
 endfunction
 
 " エラー出力関数
 function! s:echo_err(msg) abort
-  echo "\n"
   echohl ErrorMsg
-  echomsg '[Error!!] functions.vim: ' a:msg
+  echomsg 'Error[functions.vim]:' a:msg
   echohl None
 endfunction
 
@@ -84,9 +81,11 @@ command! ColorSchemeSelect Unite colorscheme -auto-preview
 
 " deinの未使用プラグイン削除
 function! s:DeinDelete()
+  echo "Please wait a little ...."
   call map(dein#check_clean(), "delete(v:val, 'rf')")
   call dein#recache_runtimepath()
-  echo "Finish clean up!"
+  redraw
+  call s:echo_success("Finish clean up!")
 endfunction
 command! DeinDel call <SID>DeinDelete()
 
@@ -131,7 +130,7 @@ function! s:FloatTerm(...)
   hi FloatTerm guifg=#598f89 guibg=#434c5e
   call setwinvar(s:float_term_border_win, '&winhl', 'Normal:FloatTerm')
   call setwinvar(s:float_term_win, '&winhl', 'Normal:NormalFloat')
-  if a:1 == ''
+  if a:1 ==# ''
     terminal
   else
     call termopen(a:1)
@@ -215,19 +214,35 @@ command! XdebugInit call <SID>xdebug_generate_conf()
 
 
 " GitStatusDiff: gitのstageと差分のあるファイルをquickfixに出力し、Gdiffコマンドで差分表示する
-"                次々に差分表示したいファイルを切り替えできる
+"                検索対象のディレクトリ指定可能
+
+"                [マッピング]
+  "                ctrl+n: 次のファイル差分へ
+  "                ctrl+p: 前のファイル差分へ
+  "                ctrl+j: 番号指定でジャンプ
+  "                q: 終了
 
 " `git status`の結果をquickfixとして出力
-function! s:git_status_list() abort
+" args: dir(検索対象のディレクトリ)
+" return: bool(ディレクトリの有無or差分有無)
+function! s:git_status_list(dir) abort
+  " args初期化
+  %argdelete
+
   let l:status = ''
   redir => l:status
-  silent! !git diff --name-only && git ls-files -o
+  silent! !git diff --name-only
   redir END
 
   let l:files = []
   let l:index = 1
   for l in split(l:status, "\n")
     if l:index > 2
+      if (!empty(a:dir) && l !~# "^" . a:dir . "/.*")
+        continue
+      endif
+      " argsに挿入
+      execute "argadd " . l
       let l:info = {'filename': l}
       let l:info.lnum = l:index - 2
       let l:info.text = '✗'
@@ -236,38 +251,52 @@ function! s:git_status_list() abort
     endif
     let l:index = l:index + 1
   endfor
+  if (empty(l:files))
+    return v:false
+  endif
   call setqflist(l:files, 'r')
   cwindow
   cfirst
+  return v:true
 endfunction
 
 " 差分を表示 + ウィンドウ初期化
 function! s:git_diff() abort
   Gdiff
   " ウィンドウ最上部に移動
-  execute "normal! 99999\<C-b>"
   wincmd w
   execute "normal! 99999\<C-b>"
 endfunction
 
 " git_diff初期化
 function! s:git_diff_init() abort
-  call s:git_status_list()
+  " マッピング定義
+  nnoremap <silent> q :GitDiffFin<CR>
+  nnoremap <C-n> :GitStatusNext<CR>
+  nnoremap <C-p> :GitStatusPrevious<CR>
+  nnoremap <C-j> :GitStatusJump<CR>
+  silent! wincmd o
+  let dir = input("Please input target directory > ")
+  if !s:git_status_list(dir)
+    call s:echo_err("Not found difference or directory")
+    return
+  endif
   call s:git_diff()
 endfunction
 
 " 引数のbufferにジャンプ
+" args: buf_num(バッファーのnumber)
 function! s:git_diff_jump(buf_num) abort
   " quickfixのバッファにフォーカスしている時はウィンドウ移動
   if (&filetype == 'qf')
     wincmd w
   endif
 
-  bdelete
+  wincmd c
   try
-    if (a:buf_num == 'next')
+    if (a:buf_num ==# 'next')
       cnext
-    elseif (a:buf_num == 'pre')
+    elseif (a:buf_num ==# 'pre')
       cprevious
     else
       execute "cc! " . a:buf_num
@@ -275,25 +304,41 @@ function! s:git_diff_jump(buf_num) abort
 
   " 一番最後または最初だった時のエラーハンドリング
   catch /^Vim\%((\a\+)\)\=:E553/
-    if (a:buf_num == 'pre')
-      let l:msg = "End"
+    if (a:buf_num ==# 'pre')
+      let l:msg = "end"
       clast
     else
-      let l:msg = "Front"
+      let l:msg = "front"
       cfirst
     endif
-    call s:echo_alert("Jump " . l:msg)
+    call s:echo_alert("no more items\njump " . l:msg)
 
   " それ以外の不正な引数だった時のエラーハンドリング
   catch
-    call s:echo_err("正しい引数を入力してください")
+    call s:echo_err("Bad argument")
   endtry
 
   call s:git_diff()
+endfunction
+
+function! s:git_diff_jump_confirm() abort
+  let input = input('Please input jump numbrer > ')
+  call s:git_diff_jump(input)
+endfunction
+
+" git_diff 終了関数
+function! s:git_diff_fin() abort
+  silent! argdo bdelete
+  nunmap q
+  " 元のマッピングを定義
+  nnoremap <silent> <C-n> :<C-u>NERDTreeToggle<CR>
+  nunmap <C-p>
+  nnoremap <C-j> mzo<Esc>"_cc<Esc>`z
 endfunction
 
 
 command! -nargs=0 GitStatusDiff call <SID>git_diff_init()
 command! -nargs=0 GitStatusNext call <SID>git_diff_jump('next')
 command! -nargs=0 GitStatusPrevious call <SID>git_diff_jump('pre')
-command! -nargs=1 GitStatusJump call <SID>git_diff_jump(<f-args>)
+command! -nargs=0 GitStatusJump call <SID>git_diff_jump_confirm()
+command! -nargs=0 GitDiffFin call <SID>git_diff_fin()

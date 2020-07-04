@@ -22,8 +22,9 @@ if dein#check_install()
   call dein#install()
 endif
 
-let s:del_plugs = dein#check_clean()
-if len(s:del_plugs) > 0
-  call map(s:del_plugs, "delete(v:val, 'rf')")
-  call dein#recache_runtimepath()
-endif
+" 有効化されていないプラグインが存在するときアンインストールする
+" let s:del_plugs = dein#check_clean()
+" if len(s:del_plugs) > 0
+"   call map(s:del_plugs, "delete(v:val, 'rf')")
+"   call dein#recache_runtimepath()
+" endif
