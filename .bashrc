@@ -1,9 +1,3 @@
-eval "$(rbenv init -)" # rbenv初期化(パスが通る)
-export PATH="/usr/local/opt/mysql/bin:$PATH"
-export PATH="$PATH:./node_modules/.bin"
-export CLICOLOR=1
-export LSCOLORS=DxGxcxdxCxegedabagacad #lsで表示される色の変更
-
 # プロンプトの表示変更、gitのブランチ表示、git補完機能
 source /usr/local/etc/bash_completion.d/git-prompt.sh
 source /usr/local/etc/bash_completion.d/git-completion.bash
@@ -31,8 +25,46 @@ alias cd=cdls
 alias cdd='cd ~/Desktop'
 alias vi='vim -C -u NONE'
 alias ..='cd ..'
+alias ...='cd ../..'
 alias la='ls -a'
-alias ll='ls -l'
-alias lla='ls -la'
+alias ll='ls -lh'
+alias lla='ls -lha'
+alias ls="ls -GF"
+alias ide="~/.bin/ide.sh"
+alias nvis="nvim -S .session.vim"
+alias lo="~/.bin/localhostOpen.sh"
+alias t="tmux"
+alias ta="tmux a"
+alias tn="tmux new -s"
+alias ts="tmux source ~/.tmux.conf"
+alias te="nvim ~/.tmux.conf"
+alias tk="~/.bin/tmuxKill.sh"
+alias giti="~/.bin/CreateGitIgnoreFile/index.js"
+alias lg="lazygit"
+alias ld="lazydocker"
+alias cdt="cd ~/dotfiles"
+alias esl="~/.bin/setESlintPrettier/init.sh"
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
+# デフォルト設定
+export FZF_DEFAULT_OPTS="--reverse --margin=1,3 --inline-info --prompt='Search: ' --preview 'bat  --color=always --style=header,grid --line-range :100 {}' --color=fg+:85,bg+:23,fg:247"
+export FZF_ALT_C_OPTS="--preview 'tree -C {} | head -200'"
+# 隠しファイルを対象とする(fzf.vim対応)
+export FZF_DEFAULT_COMMAND="find . -path '*/\.*' -type d -prune -o -type f -print -o -type l -print 2> /dev/null | sed s/^..//"
+
+# 一発でディレクトリ移動
+fd() {
+  local dir
+  dir=$(find ${1:-.} -path '*/\.*' -prune \
+                  -o -type d -print 2> /dev/null | fzf +m) &&
+  cd "$dir"
+}
+
+# ブランチを選択してcheckout
+fbr() {
+  local branches branch
+  branches=$(git --no-pager branch -vv) &&
+  branch=$(echo "$branches" | fzf +m) &&
+  git checkout $(echo "$branch" | awk '{print $1}' | sed "s/.* //")
+}

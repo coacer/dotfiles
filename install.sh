@@ -18,6 +18,7 @@ ln -s ~/dotfiles/.vimrc ~/.vimrc;
 ln -s ~/dotfiles/.gitignore_global ~/.gitignore_global
 ln -s ~/dotfiles/.bin ~/.bin
 ln -s ~/dotfiles/.ideavimrc ~/.ideavimrc
+ln -s ~/dotfiles/.zprofile ~/.zprofile
 
 # ==== Homebrew ====
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)";

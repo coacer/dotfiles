@@ -3,13 +3,7 @@ function cdls() {
   ls -G;
 }
 
-function mkdir_cd() {
-  mkdir -p $1;
-  cd $_;
-}
-
 alias cd=cdls
-alias mkdir=mkdir_cd
 alias cdd='cd ~/Desktop'
 alias vi='vim -C -u NONE'
 alias ..='cd ..'
