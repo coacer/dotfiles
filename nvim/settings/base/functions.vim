@@ -142,7 +142,7 @@ endfunction
 
 " FloatTerm実行時に任意のコマンド呼び出し
 function! s:TermInvoke(...) abort
-  if (a:0 > 0)
+  if a:0 > 0
     let l:cmd = a:1
   else
     let l:cmd = input("Please input command: ")
@@ -165,9 +165,9 @@ function! s:xdebug_generate_conf() abort
   let l:outputfile = '.vdebug.conf.vim'
 
   " 設定ファイルが存在したら上書きするか確認
-  if (filereadable(l:outputfile))
+  if filereadable(l:outputfile)
     let l:answer = confirm("既に設定ファルが存在します。\n上書きしますか？", "&Yes\nNo")
-    if (l:answer == 2)
+    if l:answer == 2
       return
     endif
   endif
@@ -224,7 +224,7 @@ command! XdebugInit call <SID>xdebug_generate_conf()
 
 " `git status`の結果をquickfixとして出力
 " args: dir(検索対象のディレクトリ)
-" return: bool(ディレクトリの有無or差分有無)
+" return: number(差分ファイル数)
 function! s:git_status_list(dir) abort
   " args初期化
   %argdelete
@@ -251,13 +251,10 @@ function! s:git_status_list(dir) abort
     endif
     let l:index = l:index + 1
   endfor
-  if (empty(l:files))
-    return v:false
-  endif
   call setqflist(l:files, 'r')
   cwindow
   cfirst
-  return v:true
+  return len(l:files)
 endfunction
 
 " 差分を表示 + ウィンドウ初期化
@@ -277,7 +274,8 @@ function! s:git_diff_init() abort
   nnoremap <C-j> :GitStatusJump<CR>
   silent! wincmd o
   let dir = input("Please input target directory > ")
-  if !s:git_status_list(dir)
+  let s:git_diff_count = s:git_status_list(dir)
+  if !s:git_diff_count
     call s:echo_err("Not found difference or directory")
     return
   endif
@@ -288,15 +286,15 @@ endfunction
 " args: buf_num(バッファーのnumber)
 function! s:git_diff_jump(buf_num) abort
   " quickfixのバッファにフォーカスしている時はウィンドウ移動
-  if (&filetype == 'qf')
+  if &filetype == 'qf'
     wincmd w
   endif
 
   wincmd c
   try
-    if (a:buf_num ==# 'next')
+    if a:buf_num ==# 'next'
       cnext
-    elseif (a:buf_num ==# 'pre')
+    elseif a:buf_num ==# 'pre'
       cprevious
     else
       execute "cc! " . a:buf_num
@@ -304,7 +302,7 @@ function! s:git_diff_jump(buf_num) abort
 
   " 一番最後または最初だった時のエラーハンドリング
   catch /^Vim\%((\a\+)\)\=:E553/
-    if (a:buf_num ==# 'pre')
+    if a:buf_num ==# 'pre'
       let l:msg = "end"
       clast
     else
@@ -329,6 +327,13 @@ endfunction
 " git_diff 終了関数
 function! s:git_diff_fin() abort
   silent! argdo bdelete
+  " fugitiveのコマンドの挙動がなぜか違うため
+  if s:git_diff_count == 1
+    bdelete!
+  endif
+  if &filetype == 'qf'
+    bdelete!
+  endif
   nunmap q
   " 元のマッピングを定義
   nnoremap <silent> <C-n> :<C-u>NERDTreeToggle<CR>
