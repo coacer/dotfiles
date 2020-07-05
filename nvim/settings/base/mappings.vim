@@ -17,19 +17,19 @@ nnoremap <silent> <C-l> :<C-u>nohlsearch<CR><C-l>
 
 "========== vimrc操作 ==========
 " スペース+vvでnvimフォルダをfzfで開く
-nnoremap <Leader>vv :<C-u>execute 'Files ' . g:root_dir<CR>
+nnoremap <Leader>vv :<C-u>execute 'Files' g:root_dir<CR>
 " スペース+vmでmappings.vimファイルを開く
-nnoremap <Leader>vm :<C-u>execute 'edit ' . g:root_dir . '/settings/base/mappings.vim'<CR>
+nnoremap <Leader>vm :<C-u>execute 'edit' g:root_dir . '/settings/base/mappings.vim'<CR>
 " スペース+vfでfunctions.vimファイルを開く
-nnoremap <Leader>vf :<C-u>execute 'edit ' . g:root_dir . '/settings/base/functions.vim'<CR>
+nnoremap <Leader>vf :<C-u>execute 'edit' g:root_dir . '/settings/base/functions.vim'<CR>
 " スペース+vbでbasic.vimファイルを開く
-nnoremap <Leader>vb :<C-u>execute 'edit ' . g:root_dir . '/settings/base/basic.vim'<CR>
+nnoremap <Leader>vb :<C-u>execute 'edit' g:root_dir . '/settings/base/basic.vim'<CR>
 " スペース+vcでcolor.vimファイルを開く
-nnoremap <Leader>vc :<C-u>execute 'edit ' . g:root_dir . '/settings/base/color.vim'<CR>
+nnoremap <Leader>vc :<C-u>execute 'edit' g:root_dir . '/settings/base/color.vim'<CR>
 " スペース+vdでdein.tomlファイルを開く
-nnoremap <Leader>vd :<C-u>execute 'edit ' . g:root_dir . '/dein/dein.toml'<CR>
+nnoremap <Leader>vd :<C-u>execute 'edit' g:root_dir . '/dein/dein.toml'<CR>
 " スペース+vDでdein_lazy.tomlファイルを開く
-nnoremap <Leader>vD :<C-u>execute 'edit ' . g:root_dir . '/dein/dein_lazy.toml'<CR>
+nnoremap <Leader>vD :<C-u>execute 'edit' g:root_dir . '/dein/dein_lazy.toml'<CR>
 " スペース+vsで.vimrcファイルを読み込む
 nnoremap <Leader>vs :<C-u>source $MYVIMRC<CR>
 " スペース+mでmyvim_manual.txtファイルを開く

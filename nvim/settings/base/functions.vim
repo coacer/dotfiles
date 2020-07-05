@@ -80,20 +80,20 @@ command! ColorPicker call CocAction('pickColor')
 command! ColorSchemeSelect Unite colorscheme -auto-preview
 
 " deinの未使用プラグイン削除
-function! s:DeinDelete()
+function! s:dein_delete()
   echo "Please wait a little ...."
   call map(dein#check_clean(), "delete(v:val, 'rf')")
   call dein#recache_runtimepath()
   redraw
   call s:echo_success("Finish clean up!")
 endfunction
-command! DeinDel call <SID>DeinDelete()
+command! DeinDel call <SID>dein_delete()
 
 
 " floating window を用いてターミナルを表示させる
 let s:float_term_border_win = 0
 let s:float_term_win = 0
-function! s:FloatTerm(...)
+function! s:float_term(...)
   " 画面サイズからウィンドウの位置とサイズを決定しnumberにキャスト
   let height = float2nr((&lines - 2) * 0.6)
   let row = float2nr((&lines - height) / 2)
@@ -141,17 +141,17 @@ function! s:FloatTerm(...)
 endfunction
 
 " FloatTerm実行時に任意のコマンド呼び出し
-function! s:TermInvoke(...) abort
+function! s:term_invoke(...) abort
   if a:0 > 0
-    let l:cmd = a:1
+    let cmd = a:1
   else
-    let l:cmd = input("Please input command: ")
+    let cmd = input("Please input command: ")
   endif
-  call s:FloatTerm(l:cmd)
+  call s:float_term(cmd)
 endfunction
 
 " 引数がある時はそのコマンドを実行し、無い時は入力を促す
-command! -nargs=? Term call <SID>TermInvoke(<f-args>)
+command! -nargs=? Term call <SID>term_invoke(<f-args>)
 
 
 " ==== Vdebug ====
@@ -162,38 +162,38 @@ command! -nargs=? Term call <SID>TermInvoke(<f-args>)
 " let g:xdebug_host_path = '/Users/user_name/your/app/path'
 
 function! s:xdebug_generate_conf() abort
-  let l:outputfile = '.vdebug.conf.vim'
+  let outputfile = '.vdebug.conf.vim'
 
   " 設定ファイルが存在したら上書きするか確認
-  if filereadable(l:outputfile)
-    let l:answer = confirm("既に設定ファルが存在します。\n上書きしますか？", "&Yes\nNo")
-    if l:answer == 2
+  if filereadable(outputfile)
+    let answer = confirm("既に設定ファルが存在します。\n上書きしますか？", "&Yes\nNo")
+    if answer == 2
       return
     endif
   endif
 
-  let l:port = input("ポート番号を入力してください: ")
+  let port = input("ポート番号を入力してください: ")
   " 数字以外の場合エラー
-  if (empty(l:port) || l:port =~# '\D')
+  if (empty(port) || port =~# '\D')
     call s:echo_err("正しく入力してください")
     return
   endif
 
-  let l:guest_path = input("マウントしてるパスを入力してください: ")
+  let guest_path = input("マウントしてるパスを入力してください: ")
   " 空の場合エラー
-  if (empty(l:guest_path) || l:guest_path =~# '\s\+')
+  if (empty(guest_path) || guest_path =~# '\s\+')
     call s:echo_err("正しく入力してください")
     return
   endif
 
   " 設定ファイル書き込み
-  execute 'redir! >' . l:outputfile
+  execute 'redir! >' outputfile
     silent echon '"  ========Vdebug======== "' . "\n"
-    silent echon 'let g:xdebug_port = ' . l:port . "\n"
-    silent echon 'let g:xdebug_guest_path = ' . '"' . l:guest_path . '"'. "\n"
+    silent echon 'let g:xdebug_port = ' . port . "\n"
+    silent echon 'let g:xdebug_guest_path = ' . '"' . guest_path . '"'. "\n"
     silent echon 'let g:xdebug_host_path = ' . '"' . substitute(execute("pwd"), "\n", "", "g") . '"' . "\n"
   redir END
-  execute 'edit ' . l:outputfile
+  execute 'edit' outputfile
   substitute/^\s\+//e
   silent write
   bdelete
@@ -201,10 +201,10 @@ function! s:xdebug_generate_conf() abort
   " 結果出力
   echo "==== Xdebug Settings ==="
   echo ' '
-  echo 'PORT: ' . l:port
-  echo 'GUEST PATH: ' . l:guest_path
-  let l:success_msg = '"' . l:outputfile . '"' . ' is created!'
-  call s:echo_success(l:success_msg)
+  echo 'PORT: ' . port
+  echo 'GUEST PATH: ' . guest_path
+  let success_msg = '"' . outputfile . '"' . ' is created!'
+  call s:echo_success(success_msg)
   echo ' '
   echo '再起動してください'
 endfunction
@@ -219,42 +219,43 @@ command! XdebugInit call <SID>xdebug_generate_conf()
 "                [マッピング]
   "                ctrl+n: 次のファイル差分へ
   "                ctrl+p: 前のファイル差分へ
-  "                ctrl+j: 番号指定でジャンプ
+  "                ctrl+j: 番号指定でジャンプ(プロンプトに数字を入力)
+  "                [n] ctrl+j: n番目のバッファにジャンプ
   "                q: 終了
 
 " `git status`の結果をquickfixとして出力
 " args: dir(検索対象のディレクトリ)
 " return: number(差分ファイル数)
 function! s:git_status_list(dir) abort
+  if !isdirectory('.git')
+    throw "Not a git repository"
+  endif
   " args初期化
   %argdelete
+  let status = systemlist("git diff --name-only")
 
-  let l:status = ''
-  redir => l:status
-  silent! !git diff --name-only
-  redir END
-
-  let l:files = []
-  let l:index = 1
-  for l in split(l:status, "\n")
-    if l:index > 2
-      if (!empty(a:dir) && l !~# "^" . a:dir . "/.*")
-        continue
-      endif
-      " argsに挿入
-      execute "argadd " . l
-      let l:info = {'filename': l}
-      let l:info.lnum = l:index - 2
-      let l:info.text = '✗'
-      call add(l:files, l:info)
-      unlet l:info
+  let files = []
+  let index = 1
+  for l in status
+    if (!empty(a:dir) && l !~# "^" . a:dir . "/.*")
+      continue
     endif
-    let l:index = l:index + 1
+    " argsに挿入
+    execute "argadd" l
+    let info = {'filename': l}
+    let info.lnum = index
+    let info.text = '✗'
+    call add(files, info)
+    unlet info
+    let index += 1
   endfor
-  call setqflist(l:files, 'r')
+  if len(files) <= 0 | throw "Not found difference or directory" | endif
+  call setqflist(files, 'r')
   cwindow
   cfirst
-  return len(l:files)
+  " 不具合があるため
+  edit!
+  return len(files)
 endfunction
 
 " 差分を表示 + ウィンドウ初期化
@@ -267,23 +268,25 @@ endfunction
 
 " git_diff初期化
 function! s:git_diff_init() abort
-  " マッピング定義
-  nnoremap <silent> q :GitDiffFin<CR>
-  nnoremap <C-n> :GitStatusNext<CR>
-  nnoremap <C-p> :GitStatusPrevious<CR>
-  nnoremap <C-j> :GitStatusJump<CR>
-  silent! wincmd o
-  let dir = input("Please input target directory > ")
-  let s:git_diff_count = s:git_status_list(dir)
-  if !s:git_diff_count
-    call s:echo_err("Not found difference or directory")
-    return
-  endif
-  call s:git_diff()
+  try
+    " マッピング定義
+    nnoremap <silent> q :GitDiffFin<CR>
+    nnoremap <C-n> :<C-u>GitStatusNext<CR>
+    nnoremap <C-p> :<C-u>GitStatusPrevious<CR>
+    nnoremap <C-j> :<C-u>call GitDiffJump(v:count)<CR>
+    silent! wincmd o
+    let dir = input("Please input target directory > ")
+    let s:git_diff_count = s:git_status_list(dir)
+    call s:git_diff()
+  catch
+    redraw
+    call s:echo_err(v:exception)
+    call s:git_diff_fin()
+  endtry
 endfunction
 
 " 引数のbufferにジャンプ
-" args: buf_num(バッファーのnumber)
+" args: buf_num(バッファーのnumber or 'next' or 'pre')
 function! s:git_diff_jump(buf_num) abort
   " quickfixのバッファにフォーカスしている時はウィンドウ移動
   if &filetype == 'qf'
@@ -297,19 +300,18 @@ function! s:git_diff_jump(buf_num) abort
     elseif a:buf_num ==# 'pre'
       cprevious
     else
-      execute "cc! " . a:buf_num
+      execute "cc!" a:buf_num
     endif
-
   " 一番最後または最初だった時のエラーハンドリング
   catch /^Vim\%((\a\+)\)\=:E553/
     if a:buf_num ==# 'pre'
-      let l:msg = "end"
+      let msg = "end"
       clast
     else
-      let l:msg = "front"
+      let msg = "front"
       cfirst
     endif
-    call s:echo_alert("no more items\njump " . l:msg)
+    call s:echo_alert("no more items\njump " . msg)
 
   " それ以外の不正な引数だった時のエラーハンドリング
   catch
@@ -319,17 +321,23 @@ function! s:git_diff_jump(buf_num) abort
   call s:git_diff()
 endfunction
 
-function! s:git_diff_jump_confirm() abort
-  let input = input('Please input jump numbrer > ')
-  call s:git_diff_jump(input)
+" ジャンプするバッファ番号をチェック
+" args: j_num(ジャンプするバッファ番号)
+function! GitDiffJump(j_num) abort
+  if a:j_num > 0
+    let j_num = a:j_num
+  else
+    let j_num = input('Please input jump numbrer > ')
+  endif
+  call s:git_diff_jump(j_num)
 endfunction
 
 " git_diff 終了関数
 function! s:git_diff_fin() abort
   silent! argdo bdelete
   " fugitiveのコマンドの挙動がなぜか違うため
-  if s:git_diff_count == 1
-    bdelete!
+  if exists('s:git_diff_count')
+    if s:git_diff_count == 1 | bdelete! | endif
   endif
   if &filetype == 'qf'
     bdelete!
@@ -339,11 +347,11 @@ function! s:git_diff_fin() abort
   nnoremap <silent> <C-n> :<C-u>NERDTreeToggle<CR>
   nunmap <C-p>
   nnoremap <C-j> mzo<Esc>"_cc<Esc>`z
+  call s:echo_success("git diff finished!")
 endfunction
 
 
 command! -nargs=0 GitStatusDiff call <SID>git_diff_init()
 command! -nargs=0 GitStatusNext call <SID>git_diff_jump('next')
 command! -nargs=0 GitStatusPrevious call <SID>git_diff_jump('pre')
-command! -nargs=0 GitStatusJump call <SID>git_diff_jump_confirm()
 command! -nargs=0 GitDiffFin call <SID>git_diff_fin()

@@ -8,7 +8,7 @@ let s:vdebug_file = '.vdebug.conf.vim'
 
 " 設定ファイルが存在したら設定
 if (filereadable(s:vdebug_file))
-  execute 'source ' . s:vdebug_file
+  execute 'source' s:vdebug_file
 
   " パラメータを元に設定
   let g:vdebug_options= {

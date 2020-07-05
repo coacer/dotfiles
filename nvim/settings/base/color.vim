@@ -3,7 +3,7 @@ autocmd Colorscheme * call ColorSchemeBulkSetting()
 function! ColorSchemeBulkSetting()
   highlight IndentGuidesEven ctermbg=236 guibg=none
   highlight SuccessMsg guifg=#d8dee9 guibg=#416043
-  highlight AlertMsg guifg=#d8dee9 guibg=#5b5c0d
+  highlight AlertMsg guifg=#d8dee9 guibg=#808113
   " diffのカラー
   highlight DiffAdd    gui=bold guifg=none guibg=#2d4235
   highlight DiffDelete gui=bold guifg=none guibg=#342023
@@ -69,7 +69,7 @@ function! ColorSchemeRand() abort
   let l:color_schemes = ['iceberg', 'atom-dark', 'material-theme']
   let l:match_end = matchend(reltimestr(reltime()), '\d\+\.') + 1
   let l:rand = reltimestr(reltime())[l:match_end : ] % len(l:color_schemes)
-  execute "colorscheme " . l:color_schemes[l:rand]
+  execute "colorscheme" l:color_schemes[l:rand]
 endfunction
 " autocmd! VimEnter * call ColorSchemeRand()
 
