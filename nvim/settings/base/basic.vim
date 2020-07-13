@@ -52,9 +52,22 @@ set cursorline " カーソルラインをハイライト
 set showmatch " 括弧の対応関係を一瞬表示する
 source $VIMRUNTIME/macros/matchit.vim " Vimの「%」を拡張する
 
-" ターミナル表示時は番号を表示しない
-autocmd TermOpen * setlocal nonumber
-" 保存時に末尾の半角/全角スペースを削除
-" autocmd BufWritePre * %s/\v(\s|　)+$//e
-" ファイル表示時にfoldを全て展開
-" autocmd BufRead * normal zR
+augroup Basic
+  autocmd!
+  " ターミナル表示時は番号を表示しない
+  autocmd TermOpen * setlocal nonumber
+  " 保存時に末尾の半角/全角スペースを削除
+  " autocmd BufWritePre * %s/\v(\s|　)+$//e
+  " ファイル表示時にfoldを全て展開
+  " autocmd BufRead * normal zR
+augroup END
+
+" insertモードを抜ける際にIMEをoff(AppleScriptを実行)にする
+if has('mac')
+  augroup insertLeave
+    autocmd!
+    autocmd InsertLeave * :call jobstart(
+          \ ['osascript', '-e', 'tell application "system events" to key code {102}'],
+          \ {'in_io': 'null', 'out_io': 'null', 'err_io': 'null'})
+  augroup end
+endif

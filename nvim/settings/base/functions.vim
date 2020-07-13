@@ -1,26 +1,31 @@
-" サクセスメッセージ出力関数
+" vim: foldmethod=marker
+
+" サクセスメッセージ出力関数 {{{
 function! s:echo_success(msg) abort
   echohl SuccessMsg
   echo a:msg
   echohl None
 endfunction
+" }}}
 
-" アラートメッセージ出力関数
+" アラートメッセージ出力関数 {{{
 function! s:echo_alert(msg) abort
   echohl AlertMsg
   echo 'Alert:' a:msg
   echohl None
 endfunction
+" }}}
 
-" エラー出力関数
+" エラー出力関数 {{{
 function! s:echo_err(msg) abort
   echohl ErrorMsg
   echomsg 'Error[functions.vim]:' a:msg
   echohl None
 endfunction
+" }}}
 
 
-" :SyntaxInfoコマンドでカーソル下のシンタックスグループ名を表示する関数
+" :SyntaxInfoコマンドでカーソル下のシンタックスグループ名を表示する関数 {{{
 function! s:get_syn_id(transparent)
   let synid = synID(line("."), col("."), 1)
   if a:transparent
@@ -59,11 +64,12 @@ function! s:get_syn_info()
   let @s = baseSyn.name
   let @g = linkedSyn.name
 endfunction
+" }}}
 
 " syntax情報を表示 + @sにsyntaxネーム, @gにsyntax groupのネームを格納
 command! SyntaxInfo call s:get_syn_info()
 
-" ヴィジュアルモードでペーストした際に削除した文字列をレジスタに格納しない
+" ヴィジュアルモードでペーストした際に削除した文字列をレジスタに格納しない {{{
 function! RestoreRegister()
   let @" = s:restore_reg
   return ''
@@ -73,13 +79,14 @@ function! s:Repl()
   return "p@=RestoreRegister()\<cr>"
 endfunction
 vmap <silent> <expr> p <sid>Repl()
+" }}}
 
 " カラーコードの上で実行するとカラーピッカーが表示する
 command! ColorPicker call CocAction('pickColor')
 " カラースキームをプレビューしながら変更できる
 command! ColorSchemeSelect Unite colorscheme -auto-preview
 
-" deinの未使用プラグイン削除
+" deinの未使用プラグイン削除 {{{
 function! s:dein_delete()
   echo "Please wait a little ...."
   call map(dein#check_clean(), "delete(v:val, 'rf')")
@@ -88,9 +95,10 @@ function! s:dein_delete()
   call s:echo_success("Finish clean up!")
 endfunction
 command! DeinDel call <SID>dein_delete()
+" }}}
 
 
-" floating window を用いてターミナルを表示させる
+" floating window を用いてターミナルを表示させる {{{
 let s:float_term_border_win = 0
 let s:float_term_win = 0
 function! s:float_term(...)
@@ -139,8 +147,9 @@ function! s:float_term(...)
   " Close border window when terminal window close
   autocmd TermClose * ++once :bd! | call nvim_win_close(s:float_term_border_win, v:true)
 endfunction
+" }}}
 
-" FloatTerm実行時に任意のコマンド呼び出し
+" FloatTerm実行時に任意のコマンド呼び出し {{{
 function! s:term_invoke(...) abort
   if a:0 > 0
     let cmd = a:1
@@ -149,13 +158,13 @@ function! s:term_invoke(...) abort
   endif
   call s:float_term(cmd)
 endfunction
+" }}}
 
 " 引数がある時はそのコマンドを実行し、無い時は入力を促す
 command! -nargs=? Term call <SID>term_invoke(<f-args>)
 
 
-" ==== Vdebug ====
-" xdebugの設定ファイル(.vdebug.conf.vim)を作成するコマンド(以下ファイル例)
+" xdebugの設定ファイル(.vdebug.conf.vim)を作成するコマンド(以下ファイル例) {{{
 " == Sample(.vdebug.conf.vim) ==
 " let g:xdebug_port = 9001
 " let g:xdebug_guest_path = '/var/www/app'
@@ -210,10 +219,10 @@ function! s:xdebug_generate_conf() abort
 endfunction
 
 command! XdebugInit call <SID>xdebug_generate_conf()
+" }}}
 
 
-
-" GitStatusDiff: gitのstageと差分のあるファイルをquickfixに出力し、Gdiffコマンドで差分表示する
+" GitStatusDiff: gitのstageと差分のあるファイルをquickfixに出力し、Gdiffコマンドで差分表示する {{{
 "                検索対象のディレクトリ指定可能
 
 "                [マッピング]
@@ -355,3 +364,4 @@ command! -nargs=0 GitStatusDiff call <SID>git_diff_init()
 command! -nargs=0 GitStatusNext call <SID>git_diff_jump('next')
 command! -nargs=0 GitStatusPrevious call <SID>git_diff_jump('pre')
 command! -nargs=0 GitDiffFin call <SID>git_diff_fin()
+" }}}

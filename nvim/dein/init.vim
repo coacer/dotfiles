@@ -1,7 +1,13 @@
 let s:dein_dir = expand('~/.cache/dein')
 let s:dein_repo_dir = s:dein_dir . '/repos/github.com/Shougo/dein.vim'
 
-execute 'set runtimepath+=' . s:dein_repo_dir
+if &runtimepath !~# '/dein.vim'
+  if !isdirectory(s:dein_repo_dir)
+    execute '!git clone https://github.com/Shougo/dein.vim' s:dein_repo_dir
+  endif
+  execute 'set runtimepath^=' . s:dein_repo_dir
+endif
+
 " 自動リキャッシュ なぜかファイル保存時にairlineのカラーが無効化する(バグ？)
 " let g:dein#auto_recache = 1
 

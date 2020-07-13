@@ -1,9 +1,13 @@
-autocmd Colorscheme * call ColorSchemeBulkSetting()
+augroup HighlightSettings
+  autocmd!
+  autocmd Colorscheme * call ColorSchemeBulkSetting()
+augroup END
 
 function! ColorSchemeBulkSetting()
   highlight IndentGuidesEven ctermbg=236 guibg=none
   highlight SuccessMsg guifg=#d8dee9 guibg=#416043
   highlight AlertMsg guifg=#d8dee9 guibg=#808113
+  highlight InfoMsg gui=bold guifg=#a7f3ff guibg=none
   " diffのカラー
   highlight DiffAdd    gui=bold guifg=none guibg=#2d4235
   highlight DiffDelete gui=bold guifg=none guibg=#342023

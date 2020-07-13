@@ -60,3 +60,11 @@ hook_source = '''
   execute 'source' g:root_dir . '/settings/plugins/vdebug.rc.vim'
 '''
 
+[[plugins]] # markkdownプレビュープラグイン
+repo = 'iamcco/markdown-preview.nvim'
+on_ft = ['markdown', 'pandoc.markdown', 'rmd']
+build = 'sh -c "cd app & yarn install"'
+hook_source = '''
+  execute 'source' g:root_dir . '/settings/plugins/markdown-preview.rc.vim'
+'''
+

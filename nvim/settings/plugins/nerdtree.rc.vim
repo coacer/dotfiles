@@ -11,10 +11,13 @@ let g:NERDTreeHighlightFolders = 1 " enables folder icon highlighting using exac
 " 隠しファイルをデフォルトで表示
 let NERDTreeShowHidden=1
 highlight! link NERDTreeFlags NERDTreeDir
-" autocmd ColorScheme * highlight Directory guifg=#98ffff
-"NERDTreeのウィンドウしか開かれていないときは自動的に閉じる
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") &&
-      \ b:NERDTree.isTabTree()) | bd | endif
+augroup NERDTreeSettings
+  autocmd!
+  " autocmd ColorScheme * highlight Directory guifg=#98ffff
+  "NERDTreeのウィンドウしか開かれていないときは自動的に閉じる
+  autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") &&
+        \ b:NERDTree.isTabTree()) | bd | endif
+augroup END
 " 表示しないファイル
 let NERDTreeIgnore = [
 	\ '\.git$', '\.DS_Store$', '\.sass-cache$'

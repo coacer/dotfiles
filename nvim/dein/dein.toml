@@ -51,6 +51,9 @@ repo = 'ryanoasis/vim-devicons'
 
 [[plugins]] # deviconsにカラーをつける
 repo = 'tiagofumo/vim-nerdtree-syntax-highlight'
+hook_add = '''
+  execute 'source' g:root_dir . '/settings/plugins/vim-nerdtree-syntax-highlight.rc.vim'
+'''
 
 [[plugins]] # 末尾の空白可視化
 repo = 'bronson/vim-trailing-whitespace'

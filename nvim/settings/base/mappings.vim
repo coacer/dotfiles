@@ -68,7 +68,8 @@ vnoremap x "_x
 " (デフォルトだとインデントなどされてた場合インデント分の空白を残した状態で連結するため)
 nnoremap <silent> gJ mz:<C-u>+1s/^\s\+//e<CR>`zgJ
 vnoremap <silent> gJ :<C-u>'<+1,'>s/^\s\+//e<CR>gvgJ
-
+" ctrl+dでバッファ削除
+nnoremap <silent> <C-d> :<C-u>bdelete<CR>
 " ウィンドウprefixをsに変換
 nnoremap s <C-w>
 " ウィンドウ分割時にフォーカス移動

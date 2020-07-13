@@ -51,15 +51,14 @@ function! s:show_documentation()
   endif
 endfunction
 
-" Highlight symbol under cursor on CursorHold
-autocmd CursorHold * silent call CocActionAsync('highlight')
-
-augroup mygroup
+augroup CocSettings
   autocmd!
   " Setup formatexpr specified filetype(s).
   autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
   " Update signature help on jump placeholder
   autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
+  " Highlight symbol under cursor on CursorHold
+  autocmd CursorHold * silent call CocActionAsync('highlight')
 augroup end
 
 " Add status line support, for integration with other plugin, checkout `:h coc-status`
@@ -67,7 +66,10 @@ set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 " golang autoformatter
 " autocmd BufWritePre *.go :call CocAction('runCommand', 'editor.action.organizeImport')
 command! -nargs=0 Prettier :CocCommand prettier.formatFile
-autocmd BufWritePre *.js Prettier
-autocmd BufWritePre *.ts Prettier
-autocmd BufWritePre *.tsx Prettier
-autocmd BufWritePre *.vue Prettier
+augroup CocPrettier
+  autocmd!
+  autocmd BufWritePre *.js Prettier
+  autocmd BufWritePre *.ts Prettier
+  autocmd BufWritePre *.tsx Prettier
+  autocmd BufWritePre *.vue Prettier
+augroup END
