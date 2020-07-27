@@ -61,13 +61,3 @@ augroup Basic
   " ファイル表示時にfoldを全て展開
   " autocmd BufRead * normal zR
 augroup END
-
-" insertモードを抜ける際にIMEをoff(AppleScriptを実行)にする
-if has('mac')
-  augroup insertLeave
-    autocmd!
-    autocmd InsertLeave * :call jobstart(
-          \ ['osascript', '-e', 'tell application "system events" to key code {102}'],
-          \ {'in_io': 'null', 'out_io': 'null', 'err_io': 'null'})
-  augroup end
-endif

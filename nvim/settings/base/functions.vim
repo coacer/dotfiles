@@ -236,12 +236,13 @@ command! XdebugInit call <SID>xdebug_generate_conf()
 " args: dir(検索対象のディレクトリ)
 " return: number(差分ファイル数)
 function! s:git_status_list(dir) abort
-  if !isdirectory('.git')
+  " カレントディレクトリがgit管理下でない場合例外
+  if empty(system('git rev-parse --git-dir 2> /dev/null'))
     throw "Not a git repository"
   endif
-  " args初期化
-  %argdelete
   let status = systemlist("git diff --name-only")
+
+  let root_dir = trim(system("git rev-parse --show-toplevel")) . '/'
 
   let files = []
   let index = 1
@@ -249,9 +250,9 @@ function! s:git_status_list(dir) abort
     if (!empty(a:dir) && l !~# "^" . a:dir . "/.*")
       continue
     endif
-    " argsに挿入
-    execute "argadd" l
-    let info = {'filename': l}
+
+    let filename = root_dir . l
+    let info = {'filename': filename}
     let info.lnum = index
     let info.text = '✗'
     call add(files, info)
@@ -275,9 +276,19 @@ function! s:git_diff() abort
   execute "normal! 99999\<C-b>"
 endfunction
 
+" ファイルが指定されたディレクトリ内のファイルか判定
+" args: file(ファイル名), dir(ディレクトリ名)
+" return: bool
+function! s:is_match_dir(file, dir) abort
+  
+endfunction
+
 " git_diff初期化
 function! s:git_diff_init() abort
   try
+    " セッションに今の状態を保持
+    let s:git_diff_session_file = '.git_diff_tmp.vim'
+    execute 'mksession!' s:git_diff_session_file
     " マッピング定義
     nnoremap <silent> q :GitDiffFin<CR>
     nnoremap <C-n> :<C-u>GitStatusNext<CR>
@@ -289,8 +300,8 @@ function! s:git_diff_init() abort
     call s:git_diff()
   catch
     redraw
+    call s:git_diff_fin(-1)
     call s:echo_err(v:exception)
-    call s:git_diff_fin()
   endtry
 endfunction
 
@@ -308,6 +319,8 @@ function! s:git_diff_jump(buf_num) abort
       cnext
     elseif a:buf_num ==# 'pre'
       cprevious
+
+
     else
       execute "cc!" a:buf_num
     endif
@@ -320,7 +333,8 @@ function! s:git_diff_jump(buf_num) abort
       let msg = "front"
       cfirst
     endif
-    call s:echo_alert("no more items\njump " . msg)
+    call s:echo_alert("no more items")
+    call s:echo_alert("jump " . msg)
 
   " それ以外の不正な引数だった時のエラーハンドリング
   catch
@@ -342,21 +356,21 @@ function! GitDiffJump(j_num) abort
 endfunction
 
 " git_diff 終了関数
-function! s:git_diff_fin() abort
-  silent! argdo bdelete
-  " fugitiveのコマンドの挙動がなぜか違うため
-  if exists('s:git_diff_count')
-    if s:git_diff_count == 1 | bdelete! | endif
-  endif
-  if &filetype == 'qf'
-    bdelete!
-  endif
+" a:1 異常終了フラグ -1の場合異常終了
+function! s:git_diff_fin(...) abort
+  execute 'source' s:git_diff_session_file
+  call system('rm ' . s:git_diff_session_file)
   nunmap q
   " 元のマッピングを定義
   nnoremap <silent> <C-n> :<C-u>NERDTreeToggle<CR>
   nunmap <C-p>
   nnoremap <C-j> mzo<Esc>"_cc<Esc>`z
-  call s:echo_success("git diff finished!")
+  " 異常終了の場合と分岐
+  if a:0 ==# 1 && a:1 ==# -1
+    call s:echo_err("git diff abort")
+  else
+    call s:echo_success("git diff finished!")
+  endif
 endfunction
 
 
@@ -365,3 +379,8 @@ command! -nargs=0 GitStatusNext call <SID>git_diff_jump('next')
 command! -nargs=0 GitStatusPrevious call <SID>git_diff_jump('pre')
 command! -nargs=0 GitDiffFin call <SID>git_diff_fin()
 " }}}
+
+" 現在のファイル名(拡張子抜き)を返す関数
+function! FileName() abort
+  return expand('%:t:r')
+endfunction
