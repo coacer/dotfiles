@@ -97,6 +97,7 @@ rev = 'release'
 merged = '0'
 hook_add = '''
   execute 'source' g:root_dir . '/settings/plugins/coc.rc.d/init.vim'
+  execute 'source' g:root_dir . '/settings/plugins/coc.rc.d/coc-settings.json.vim'
 '''
 
 [[plugins]] # スニペット定義
