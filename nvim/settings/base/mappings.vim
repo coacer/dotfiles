@@ -95,8 +95,6 @@ nnoremap $ g$
 " インサートモード
 inoremap <C-b> <Left>
 inoremap <C-f> <Right>
-inoremap <C-a> <Home>
-inoremap <C-e> <End>
 
 " コマンドモード
 " ctrl+n/pはデフォルトで履歴を辿れるがフィルタリング機能が<up>, <down>にしかないので追加

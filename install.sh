@@ -24,8 +24,9 @@ ln -s ~/dotfiles/.zprofile ~/.zprofile
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)";
 
 brew update;
-brew install vim neovim emacs fzf git hub docker lazydocker lazygit tmux tig \
+brew install vim neovim emacs fzf git hub docker lazydocker lazygit tig \
   tree autojump composer awscli rbenv pyenv pyenv-virtualenv nodenv bat;
+brew install tmux --HEAD
 brew cask install docker iterm2;
 
 # To install useful key bindings and fuzzy completion:

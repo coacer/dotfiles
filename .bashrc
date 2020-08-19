@@ -26,6 +26,7 @@ alias cdd='cd ~/Desktop'
 alias vi='vim -C -u NONE'
 alias ..='cd ..'
 alias ...='cd ../..'
+alias ....='cd ../../..'
 alias la='ls -a'
 alias ll='ls -lh'
 alias lla='ls -lha'
@@ -44,6 +45,7 @@ alias lg="lazygit"
 alias ld="lazydocker"
 alias cdt="cd ~/dotfiles"
 alias esl="~/.bin/setESlintPrettier/init.sh"
+alias tf="terraform"
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
