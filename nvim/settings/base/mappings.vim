@@ -21,7 +21,7 @@ nnoremap <Leader>vv :<C-u>execute 'Files' g:root_dir<CR>
 " スペース+vmでmappings.vimファイルを開く
 nnoremap <Leader>vm :<C-u>execute 'edit' g:root_dir . '/settings/base/mappings.vim'<CR>
 " スペース+vfでfunctions.vimファイルを開く
-nnoremap <Leader>vf :<C-u>execute 'edit' g:root_dir . '/settings/base/functions.vim'<CR>
+nnoremap <Leader>vf :<C-u>execute 'edit' g:root_dir . '/settings/base/functions/main.vim'<CR>
 " スペース+vbでbasic.vimファイルを開く
 nnoremap <Leader>vb :<C-u>execute 'edit' g:root_dir . '/settings/base/basic.vim'<CR>
 " スペース+vcでcolor.vimファイルを開く
@@ -55,19 +55,21 @@ nnoremap <Leader>z :<C-u>wqall<CR>
 
 " レジスタprefixをLeader+r
 nnoremap <Leader>r "
-vnoremap <Leader>r "
-" ヴィジュアルモードで+でシステムクリップボードにyank
-vnoremap + "+y
+xnoremap <Leader>r "
+" +をクリップボードに保存するオペレータとする
+nnoremap + "+y
+nnoremap ++ "+yy
+xnoremap + "+y
 " Leader+aで全選択
 nnoremap <Leader>a ggVG
 
 " xで文字を消した際にレジスタに格納しない
 nnoremap x "_x
-vnoremap x "_x
+xnoremap x "_x
 " gJで連結する際に連結部分の空白除去
 " (デフォルトだとインデントなどされてた場合インデント分の空白を残した状態で連結するため)
 nnoremap <silent> gJ mz:<C-u>+1s/^\s\+//e<CR>`zgJ
-vnoremap <silent> gJ :<C-u>'<+1,'>s/^\s\+//e<CR>gvgJ
+xnoremap <silent> gJ :<C-u>'<+1,'>s/^\s\+//e<CR>gvgJ
 " ctrl+dでバッファ削除
 nnoremap <silent> <C-d> :<C-u>bdelete<CR>
 " ウィンドウprefixをsに変換
@@ -113,11 +115,11 @@ inoremap <C-r><C-r> <C-r>"
 cnoremap <C-r><C-r> <C-r>"
 
 " ヴィジュアルモードでgyでyankしたらyank範囲の末尾にカーソル移動
-vnoremap gy y`>
+xnoremap gy y`>
 " gpでペースト時にカーソルを一個上の行に移動(連続ペーストの時デフォルトだと使いづらいため)
 nnoremap gp gpk
 " 選択範囲に.コマンド実行
-vnoremap <silent> . :normal .<CR>
+xnoremap <silent> . :normal .<CR>
 
 " Float Term系(functions.vim)
 " leader + ttでFloat Termを開く
@@ -127,5 +129,5 @@ nnoremap <silent> <Leader>tg :Term lazygit<CR>
 " leader + tdでFloat Termでlazydockerを開く
 nnoremap <silent> <Leader>td :Term lazydocker<CR>
 
-" GitStatusDiff(functions.vim)
-nnoremap <Leader><C-G><C-G> :GitStatusDiff<CR>
+" GitDiffFiles(functions.vim)
+nnoremap <Leader><C-G><C-G> :GitDiffFiles<CR>

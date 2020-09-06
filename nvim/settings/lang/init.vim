@@ -30,6 +30,7 @@ augroup PHP
   autocmd!
   " タブを空白4に設定
   autocmd FileType php setlocal tabstop=4 | setlocal shiftwidth=4
+  autocmd FileType htmldjango setlocal tabstop=4 | setlocal shiftwidth=4
   " volt拡張子はhtmldjangoとシンタックスが似ているため設定
   autocmd BufNewFile,BufRead *.volt set filetype=htmldjango
 augroup END

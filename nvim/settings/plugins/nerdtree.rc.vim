@@ -22,3 +22,5 @@ augroup END
 let NERDTreeIgnore = [
 	\ '\.git$', '\.DS_Store$', '\.sass-cache$'
 	\ ]
+let g:NERDTreeMapOpenSplit = 's'
+let g:NERDTreeMapOpenVSplit = 'v'

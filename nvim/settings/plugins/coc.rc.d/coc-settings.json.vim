@@ -13,7 +13,7 @@ let g:coc_user_config = {
       \    },
       \    "terraform": {
       \      "command": "~/.bin/terraform-lsp",
-      \      "filetypes": ["tf"],
+      \      "filetypes": ["terraform"],
       \      "initializationOptions": {}
       \    }
       \  }

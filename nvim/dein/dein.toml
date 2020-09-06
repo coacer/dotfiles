@@ -133,3 +133,9 @@ repo = 'junegunn/goyo.vim'
 [[plugins]] # カラースキーム
 repo = 'arcticicestudio/nord-vim'
 
+[[plugins]] # 整列
+repo = 'junegunn/vim-easy-align'
+hook_add = '''
+  execute 'source' g:root_dir . '/settings/plugins/vim-easy-align.rc.vim'
+'''
+

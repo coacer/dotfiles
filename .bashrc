@@ -46,6 +46,7 @@ alias ld="lazydocker"
 alias cdt="cd ~/dotfiles"
 alias esl="~/.bin/setESlintPrettier/init.sh"
 alias tf="terraform"
+alias tfw="terraform workspace"
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 

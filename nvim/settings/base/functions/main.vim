@@ -1,7 +1,7 @@
 " vim: foldmethod=marker
 
 " サクセスメッセージ出力関数 {{{
-function! s:echo_success(msg) abort
+function! EchoSuccess(msg) abort
   echohl SuccessMsg
   echo a:msg
   echohl None
@@ -9,7 +9,7 @@ endfunction
 " }}}
 
 " アラートメッセージ出力関数 {{{
-function! s:echo_alert(msg) abort
+function! EchoAlert(msg) abort
   echohl AlertMsg
   echo 'Alert:' a:msg
   echohl None
@@ -17,7 +17,7 @@ endfunction
 " }}}
 
 " エラー出力関数 {{{
-function! s:echo_err(msg) abort
+function! EchoErr(msg) abort
   echohl ErrorMsg
   echomsg 'Error[functions.vim]:' a:msg
   echohl None
@@ -92,7 +92,7 @@ function! s:dein_delete()
   call map(dein#check_clean(), "delete(v:val, 'rf')")
   call dein#recache_runtimepath()
   redraw
-  call s:echo_success("Finish clean up!")
+  call EchoSuccess("Finish clean up!")
 endfunction
 command! DeinDel call <SID>dein_delete()
 " }}}
@@ -184,14 +184,14 @@ function! s:xdebug_generate_conf() abort
   let port = input("ポート番号を入力してください: ")
   " 数字以外の場合エラー
   if (empty(port) || port =~# '\D')
-    call s:echo_err("正しく入力してください")
+    call EchoErr("正しく入力してください")
     return
   endif
 
   let guest_path = input("マウントしてるパスを入力してください: ")
   " 空の場合エラー
   if (empty(guest_path) || guest_path =~# '\s\+')
-    call s:echo_err("正しく入力してください")
+    call EchoErr("正しく入力してください")
     return
   endif
 
@@ -213,7 +213,7 @@ function! s:xdebug_generate_conf() abort
   echo 'PORT: ' . port
   echo 'GUEST PATH: ' . guest_path
   let success_msg = '"' . outputfile . '"' . ' is created!'
-  call s:echo_success(success_msg)
+  call EchoSuccess(success_msg)
   echo ' '
   echo '再起動してください'
 endfunction
@@ -222,31 +222,37 @@ command! XdebugInit call <SID>xdebug_generate_conf()
 " }}}
 
 
-" GitStatusDiff: gitのstageと差分のあるファイルをquickfixに出力し、Gdiffコマンドで差分表示する {{{
-"                検索対象のディレクトリ指定可能
+" GitDiffFiles: 'git diff'の差分ファイルをquickfixで管理し差分表示する {{{
+
+"                [入力項目]
+"                差分をみる対象パス(デフォルトはプロジェクトルート)
+"                ブランチ名(入力しなかった場合ワーキングディレクトリとステージの差分)
 
 "                [マッピング]
-  "                ctrl+n: 次のファイル差分へ
-  "                ctrl+p: 前のファイル差分へ
-  "                ctrl+j: 番号指定でジャンプ(プロンプトに数字を入力)
-  "                [n] ctrl+j: n番目のバッファにジャンプ
-  "                q: 終了
+"                  ctrl+n: 次のファイル差分へ
+"                  ctrl+p: 前のファイル差分へ
+"                  ctrl+j: 番号指定でジャンプ(プロンプトに数字を入力)
+"                  [n] ctrl+j: n番目のバッファにジャンプ
+"                  q: 終了
 
-" `git status`の結果をquickfixとして出力
+" `git diff`の結果をquickfixとして出力
 " args: dir(検索対象のディレクトリ)
 " return: number(差分ファイル数)
-function! s:git_status_list(dir) abort
+function! s:git_diff_list(dir, branch1, branch2) abort
   " カレントディレクトリがgit管理下でない場合例外
   if empty(system('git rev-parse --git-dir 2> /dev/null'))
     throw "Not a git repository"
   endif
-  let status = systemlist("git diff --name-only")
+  "macOSデフォルト設定の場合head(小文字)でも大丈夫だがOSや設定に依存しないよう変換
+  let branch1 = a:branch1 ==# 'head' ? 'HEAD' : a:branch1
+  let branch2 = a:branch2 ==# 'head' ? 'HEAD' : a:branch2
+  let diff = systemlist("git diff --name-only " . branch1 . ' ' . branch2)
 
   let root_dir = trim(system("git rev-parse --show-toplevel")) . '/'
 
   let files = []
   let index = 1
-  for l in status
+  for l in diff
     if (!empty(a:dir) && l !~# "^" . a:dir . "/.*")
       continue
     endif
@@ -262,47 +268,78 @@ function! s:git_status_list(dir) abort
   if len(files) <= 0 | throw "Not found difference or directory" | endif
   call setqflist(files, 'r')
   cwindow
+  call s:git_diff_mapping()
   cfirst
   " 不具合があるため
   edit!
   return len(files)
 endfunction
 
+" マッピング定義
+function! s:git_diff_mapping() abort
+    nnoremap <buffer> <silent> q :GitDiffFin<CR>
+    nnoremap <buffer> <C-n> :<C-u>GitDiffNext<CR>
+    nnoremap <buffer> <C-p> :<C-u>GitDiffPrevious<CR>
+    nnoremap <buffer> <C-j> :<C-u>call GitDiffJump(v:count)<CR>
+endfunction
+
 " 差分を表示 + ウィンドウ初期化
 function! s:git_diff() abort
   Gdiff
-  " ウィンドウ最上部に移動
+  " diffの2つのバッファにマッピング設定
+  call s:git_diff_mapping()
   wincmd w
+  call s:git_diff_mapping()
+  " ウィンドウ最上部に移動
   execute "normal! 99999\<C-b>"
-endfunction
-
-" ファイルが指定されたディレクトリ内のファイルか判定
-" args: file(ファイル名), dir(ディレクトリ名)
-" return: bool
-function! s:is_match_dir(file, dir) abort
-  
 endfunction
 
 " git_diff初期化
 function! s:git_diff_init() abort
   try
+    let dir = input("Please input target directory: ")
+    let branch1 = input("Please input branch name: ")
+    let branch2 = empty(branch1) ? '' : input("Please input another branch name: ")
+    if !empty(branch1) && !s:is_valid_branches(branch1, branch2)
+      throw "Invalid branch name"
+    endif
+
     " セッションに今の状態を保持
     let s:git_diff_session_file = '.git_diff_tmp.vim'
     execute 'mksession!' s:git_diff_session_file
-    " マッピング定義
-    nnoremap <silent> q :GitDiffFin<CR>
-    nnoremap <C-n> :<C-u>GitStatusNext<CR>
-    nnoremap <C-p> :<C-u>GitStatusPrevious<CR>
-    nnoremap <C-j> :<C-u>call GitDiffJump(v:count)<CR>
     silent! wincmd o
-    let dir = input("Please input target directory > ")
-    let s:git_diff_count = s:git_status_list(dir)
+
+    call s:git_diff_list(dir, branch1, branch2)
     call s:git_diff()
+  " 入力を中断した場合エラーではなく正常終了として処理する
+  catch /^Vim:Interrupt$/
+    echo 'git diff aborted'
   catch
     redraw
     call s:git_diff_fin(-1)
-    call s:echo_err(v:exception)
+    call EchoErr(v:exception)
   endtry
+endfunction
+
+function! s:is_valid_branches(branch1, branch2) abort
+  let valid_branches = systemlist('git branch -a')
+  " HEADも許容する
+  call add(valid_branches, 'HEAD')
+  call add(valid_branches, 'head')
+
+  let is_valid_branch1 = v:false
+  let is_valid_branch2 = v:false
+  for valid_branch in valid_branches
+    let valid_branch = trim(valid_branch)
+    if a:branch1 ==# valid_branch
+      let is_valid_branch1 = v:true
+    endif
+    if a:branch2 ==# valid_branch
+      let is_valid_branch2 = v:true
+    endif
+  endfor
+
+  return is_valid_branch1 && is_valid_branch2 ? v:true : v:false
 endfunction
 
 " 引数のbufferにジャンプ
@@ -319,8 +356,6 @@ function! s:git_diff_jump(buf_num) abort
       cnext
     elseif a:buf_num ==# 'pre'
       cprevious
-
-
     else
       execute "cc!" a:buf_num
     endif
@@ -333,12 +368,12 @@ function! s:git_diff_jump(buf_num) abort
       let msg = "front"
       cfirst
     endif
-    call s:echo_alert("no more items")
-    call s:echo_alert("jump " . msg)
+    call EchoAlert("no more items")
+    call EchoAlert("jump " . msg)
 
   " それ以外の不正な引数だった時のエラーハンドリング
   catch
-    call s:echo_err("Bad argument")
+    call EchoErr("Bad argument")
   endtry
 
   call s:git_diff()
@@ -350,7 +385,7 @@ function! GitDiffJump(j_num) abort
   if a:j_num > 0
     let j_num = a:j_num
   else
-    let j_num = input('Please input jump numbrer > ')
+    let j_num = input('Please input jump numbrer: ')
   endif
   call s:git_diff_jump(j_num)
 endfunction
@@ -358,29 +393,38 @@ endfunction
 " git_diff 終了関数
 " a:1 異常終了フラグ -1の場合異常終了
 function! s:git_diff_fin(...) abort
+  %bdelete
   execute 'source' s:git_diff_session_file
   call system('rm ' . s:git_diff_session_file)
-  nunmap q
-  " 元のマッピングを定義
-  nnoremap <silent> <C-n> :<C-u>NERDTreeToggle<CR>
-  nunmap <C-p>
-  nnoremap <C-j> mzo<Esc>"_cc<Esc>`z
   " 異常終了の場合と分岐
   if a:0 ==# 1 && a:1 ==# -1
-    call s:echo_err("git diff abort")
+    call EchoErr("git diff aborted")
   else
-    call s:echo_success("git diff finished!")
+    call EchoSuccess("git diff finished!")
   endif
 endfunction
 
 
-command! -nargs=0 GitStatusDiff call <SID>git_diff_init()
-command! -nargs=0 GitStatusNext call <SID>git_diff_jump('next')
-command! -nargs=0 GitStatusPrevious call <SID>git_diff_jump('pre')
+command! -nargs=0 GitDiffFiles call <SID>git_diff_init()
+command! -nargs=0 GitDiffNext call <SID>git_diff_jump('next')
+command! -nargs=0 GitDiffPrevious call <SID>git_diff_jump('pre')
 command! -nargs=0 GitDiffFin call <SID>git_diff_fin()
 " }}}
 
-" 現在のファイル名(拡張子抜き)を返す関数
+" 現在のファイル名(拡張子抜き)を返す関数 {{{
 function! FileName() abort
   return expand('%:t:r')
 endfunction
+" }}}
+
+" terraform フォーマット整形コマンド {{{
+function! s:terraform_fmt(...) abort
+  let file = a:0 > 0 ? a:1 : expand('%')
+  echo 'Now formatting...'
+  call system('terraform fmt ' . file) | edit %
+  redraw
+  call EchoSuccess('formatted.')
+endfunction
+
+command! -nargs=? TfFmt call <SID>terraform_fmt(<f-args>)
+" }}}
