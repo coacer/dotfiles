@@ -3,7 +3,7 @@ let mapleader = "\<Space>"
 " ctrl+lでesc
 " snoremapはスニペット使用時に使う
 inoremap <C-l> <Esc>
-cnoremap <C-l> <Esc>
+cnoremap <C-l> <C-c>
 vnoremap <C-l> <Esc>
 snoremap <C-l> <Esc>
 onoremap <C-l> <Esc>
@@ -38,8 +38,8 @@ nnoremap <Leader>m :<C-u>edit ~/Documents/Memo/skills/Vim/myvim_manual.txt<CR>
 "========== セッション操作 ==========
 " スペース+swでセッションファイルを保存する
 nnoremap <Leader>sw :<C-u>mks! .session.vim<CR>
-" スペース+sWでセッションファイルを保存してウィンドウを全て閉じる
-nnoremap <Leader>sW :<C-u>mks! .session.vim<CR>:<C-u>qall<CR>
+" スペース+sqでセッションファイルを保存してウィンドウを全て閉じる
+nnoremap <Leader>sq :<C-u>mks! .session.vim<CR>:<C-u>qall<CR>
 " スペース+ssでセッションファイルを読み込む
 nnoremap <Leader>ss :<C-u>source .session.vim<CR>
 " スペース+sdでセッションファイルを削除
@@ -56,6 +56,12 @@ nnoremap <Leader>z :<C-u>wqall<CR>
 " レジスタprefixをLeader+r
 nnoremap <Leader>r "
 xnoremap <Leader>r "
+
+" Leader+Sでsubstituteコマンド
+nnoremap <Leader>S :<C-u>%s/<C-r>///g<Left><Left>
+
+" ctrl+hでヘルプ入力
+nnoremap <C-h> :<C-u>Helptags<CR>
 " +をクリップボードに保存するオペレータとする
 nnoremap + "+y
 nnoremap ++ "+yy
@@ -109,6 +115,7 @@ cnoremap <C-e> <End>
 
 " *で検索時に次の検索文字に移動しないように設定
 nnoremap * *N
+nnoremap g* g*N
 
 " <ctrl+r>*2で無名レジスタ
 inoremap <C-r><C-r> <C-r>"

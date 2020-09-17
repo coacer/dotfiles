@@ -139,3 +139,9 @@ hook_add = '''
   execute 'source' g:root_dir . '/settings/plugins/vim-easy-align.rc.vim'
 '''
 
+[[plugins]] # yank可視化
+repo = 'machakann/vim-highlightedyank'
+hook_add = '''
+  execute 'source' g:root_dir . '/settings/plugins/vim-highlightedyank.rc.vim'
+'''
+

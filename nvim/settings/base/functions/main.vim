@@ -19,7 +19,7 @@ endfunction
 " エラー出力関数 {{{
 function! EchoErr(msg) abort
   echohl ErrorMsg
-  echomsg 'Error[functions.vim]:' a:msg
+  echomsg 'Error[' . expand('<sfile>:p:t') . ']:' a:msg
   echohl None
 endfunction
 " }}}
@@ -81,8 +81,34 @@ endfunction
 vmap <silent> <expr> p <sid>Repl()
 " }}}
 
-" カラーコードの上で実行するとカラーピッカーが表示する
-command! ColorPicker call CocAction('pickColor')
+" カラーピッカーを表示 {{{
+command! ColorPicker call <SID>color_picker()
+function! s:color_picker() abort
+  " カーソル下の文字列がカラーコードでない場合は挿入する
+  if (!s:is_color_code(expand('<cword>')))
+    let undo_seq_current = undotree().seq_cur
+    " カーソル位置が末尾だった場合は末尾にカラーコード挿入
+    if col('.') == col('$') - 1
+      normal! a#FFFFFF
+    else
+      normal! i#FFFFFF
+    endif
+    if (!s:is_color_code(expand('<cword>')))
+      " ロールバック
+      execute 'undo' undo_seq_current
+      redraw!
+      return EchoErr('word under the cursor is not color code')
+    endif
+    sleep 300m "normalの処理が遅いため
+  endif
+  call CocAction('pickColor')
+  normal! gUiw
+endfunction
+
+function! s:is_color_code(str) abort
+  return a:str =~# '\<#\?\(\x\{3}\|\x\{6}\)\>'
+endfunction
+" }}}
 " カラースキームをプレビューしながら変更できる
 command! ColorSchemeSelect Unite colorscheme -auto-preview
 
@@ -97,15 +123,14 @@ endfunction
 command! DeinDel call <SID>dein_delete()
 " }}}
 
-
 " floating window を用いてターミナルを表示させる {{{
 let s:float_term_border_win = 0
 let s:float_term_win = 0
 function! s:float_term(...)
   " 画面サイズからウィンドウの位置とサイズを決定しnumberにキャスト
-  let height = float2nr((&lines - 2) * 0.6)
+  let height = float2nr((&lines - 2) * 0.7)
   let row = float2nr((&lines - height) / 2)
-  let width = float2nr(&columns * 0.6)
+  let width = float2nr(&columns * 0.7)
   let col = float2nr((&columns - width) / 2)
   " Border Window
   let border_opts = {

@@ -1,7 +1,8 @@
-let g:airline_theme = 'bubblegum'
-set laststatus=2
-let g:airline#extensions#branch#enabled = 1
+" let g:airline_theme = 'bubblegum'
+" set laststatus=0
+" let g:airline_disable_statusline = 1
 let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#branch#enabled = 1
 let g:airline#extensions#wordcount#enabled = 0
 let g:airline#extensions#default#layout = [['a', 'b', 'c'], ['x', 'y', 'z']]
 let g:airline_section_c = '%t'

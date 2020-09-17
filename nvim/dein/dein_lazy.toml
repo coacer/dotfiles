@@ -68,7 +68,7 @@ hook_source = '''
   execute 'source' g:root_dir . '/settings/plugins/markdown-preview.rc.vim'
 '''
 
-[[plugins]] # Xdebugとの連携プラグイン
+[[plugins]] # Terraformシンタックス・コマンド
 repo = 'hashivim/vim-terraform'
 on_ft = ['terraform']
 
