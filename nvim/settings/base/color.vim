@@ -14,7 +14,7 @@ function! ColorSchemeBulkSetting()
   highlight DiffChange gui=bold guifg=none guibg=#393a2b
   highlight DiffText   gui=bold guifg=none guibg=#2f5d62
   " vim-highlightedyank
-  highlight HighlightedyankRegion guibg=#626262 gui=bold
+  highlight HighlightedyankRegion guibg=#626679 gui=bold
 
   if g:colors_name == "iceberg"
     highlight Visual ctermbg=30 guibg=#123531

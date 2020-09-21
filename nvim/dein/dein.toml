@@ -145,3 +145,8 @@ hook_add = '''
   execute 'source' g:root_dir . '/settings/plugins/vim-highlightedyank.rc.vim'
 '''
 
+[[plugins]] # yank可視化
+repo = 'Xuyuanp/scrollbar.nvim'
+# hook_add = '''
+#   execute 'source' g:root_dir . '/settings/plugins/vim-highlightedyank.rc.vim'
+# '''

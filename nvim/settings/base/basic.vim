@@ -9,7 +9,7 @@ let g:node_host_prog = expand('~/.nodenv/versions/12.16.3/bin/neovim-node-host')
 
 " neovimデフォルト有効オプション
 if !has('nvim')
-  syntax on " シンタックスを判別してカラー表示する
+  syntax enable " シンタックスを判別してカラー表示する
   filetype plugin indent on " ファイルタイプに応じてインデントを有効化する
   set autoindent " 改行時に前の行のインデントを継続する
   set autoread " vimで開いているファイルが外部で編集された時に自動で読み直す
