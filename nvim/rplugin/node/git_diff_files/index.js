@@ -1,10 +1,10 @@
-const util = require('./util');
-const source = require('./source');
+const util = require('./modules/util');
+const main = require('./modules/main');
 
 module.exports = plugin => {
   plugin.setOptions({ dev: true, alwaysInit: true });
   const { echoMsg, echoErr } = util(plugin);
-  const { isGitRepo, inputValues, setSession, createDiffList } = source(plugin);
+  const { isGitRepo, inputValues, setSession, createDiffList, executeDiff } = main(plugin);
 
   const init = async () => {
     try {
@@ -19,11 +19,8 @@ module.exports = plugin => {
 
       const { dir, branch1, branch2 } = result;
       setSession();
-      console.log(dir);
-      console.log(branch1);
-      console.log(branch2);
-      createDiffList(dir, branch1, branch2);
-      // executeDiff();
+      await createDiffList(dir, branch1, branch2);
+      await executeDiff();
     } catch (e) {
       console.log(e);
       echoErr(e);

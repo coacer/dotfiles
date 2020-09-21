@@ -27,10 +27,9 @@ module.exports = plugin => {
     if (typeof(msg) !== 'string') {
       msg = msg.toString();
     }
-    console.log('==== echoerr ====');
-    console.log(typeof(msg) !== 'string');
     plugin.nvim.call('EchoErr', msg);
   }
+
   /**
    * プロンプト表示関数
    * @param string prompt
@@ -65,7 +64,7 @@ module.exports = plugin => {
   const executeList = async cmd => {
     try {
       const result = await execute(cmd);
-      return result.split('\n');
+      return result.split('\n').filter(val => val);
     } catch (e) {
       throw e;
     }

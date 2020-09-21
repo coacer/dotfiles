@@ -1,4 +1,4 @@
-const util = require('../util');
+const util = require('./util');
 
 module.exports = plugin => {
   const {
@@ -121,11 +121,27 @@ module.exports = plugin => {
     setMappings();
   };
 
+  /**
+   * diffを表示+マッピング
+   */
+  const executeDiff = async () => {
+    const { nvim } = plugin;
+
+    plugin.nvim.command('Gdiff');
+    // ウィンドウ2つのバッファに対してマッピング設定
+    const windows = await nvim.windows;
+    nvim.window =  windows[0];
+    setMappings();
+    nvim.window =  windows[1];
+    setMappings();
+  };
+
 
   return {
     isGitRepo,
     inputValues,
     setSession,
     createDiffList,
+    executeDiff,
   }
 };
