@@ -72,3 +72,4 @@ command! -nargs=0 Prettier :CocCommand prettier.formatFile
 "   autocmd BufWritePre *.tsx Prettier
 "   autocmd BufWritePre *.vue Prettier
 " augroup END
+let g:node_client_debug = 1
