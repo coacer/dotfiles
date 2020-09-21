@@ -1,7 +1,16 @@
 const util = require('../util');
 
 module.exports = plugin => {
-  const { echoSuccess, echoAlert, echoErr, input, execute, executeList, makeSession } = util(plugin);
+  const {
+    echoSuccess,
+    echoAlert,
+    echoErr,
+    input,
+    execute,
+    executeList,
+    makeSession,
+    setQuickFixList,
+  } = util(plugin);
 
   /**
    * gitリポジトリ配下かどうか判定
@@ -35,13 +44,22 @@ module.exports = plugin => {
 
   /**
    * プロンプトを表示して入力させる
-   * @return Promise<Object> { dir: string, branch1: string, branch2: string }
+   * @return Promise<Object> { dir: string, branch1: string, branch2: string } | boolean プロンプト入力を中断した場合falseを返す
    * @throws Error
    */
   const inputValues = async () => {
-    const dir = await input("Please input target directory: ");
-    const branch1 = await input("Please input branch name: ");
-    const branch2 = branch1 ? '' : await input("Please input another branch name: ");
+    let dir = null;
+    let branch1 = null;
+    let branch2 = null;
+
+    try {
+      dir = await input("Please input target directory: ");
+      branch1 = await input("Please input branch name: ");
+      branch2 = branch1 ? await input("Please input another branch name: ") : '';
+    } catch (e) {
+      console.log(e);
+      return false
+    }
     if (!branch1 && !isValidBranches(branch1, branch2)) {
       throw new Error("Invalid branch name");
     }
@@ -58,8 +76,49 @@ module.exports = plugin => {
     plugin.nvim.command('silent! wincmd o');
   }
 
-  const createDiffList = (dir, branch1, branch2) => {
+  /**
+   * バッファに対してマッピング設定
+   */
+  const setMappings = () => {
+    plugin.nvim.command('nnoremap <buffer> <silent> q :GitDiffFin<CR>');
+    plugin.nvim.command('nnoremap <buffer> <C-n> :<C-u>GitDiffNext<CR>');
+    plugin.nvim.command('nnoremap <buffer> <C-p> :<C-u>GitDiffPrevious<CR>');
+    plugin.nvim.command('nnoremap <buffer> <C-j> :<C-u>call GitDiffJump(v:count)<CR>');
+  };
 
+  /**
+   * git diffの結果からQuickfix作成
+   * @param string dir
+   * @param string branch1
+   * @param string branch2
+   */
+  const createDiffList = async (dir, branch1, branch2) => {
+    const br1 = branch1 === 'head' ? 'HEAD' : branch1;
+    const br2 = branch2 === 'head' ? 'HEAD' : branch2;
+    let diffList = await executeList(`git diff --name-only ${br1} ${br2}`);
+
+    const rootDir = (await execute('git rev-parse --show-toplevel')).trim() + '/';
+    // ディレクトリ指定があった場合はfilterにかける
+    if (dir) {
+      const rgx = new RegExp(`^${dir}.*$`);
+      diffList = diffList.filter(val => rgx.test(val));
+    }
+
+    const files = [];
+    diffList.forEach((val, lnum) => {
+      let filename = rootDir + val;
+      let info = { filename, lnum, text: '✗' }
+      files.push(info);
+    });
+
+    if (files.length <= 0) throw new Error('Not found difference or directory');
+
+    setQuickFixList(files);
+    // quickfix window表示
+    plugin.nvim.command('cwindow');
+    // 一番最初のバッファに初期化
+    plugin.nvim.command('cfirst');
+    setMappings();
   };
 
 
@@ -67,5 +126,6 @@ module.exports = plugin => {
     isGitRepo,
     inputValues,
     setSession,
+    createDiffList,
   }
 };

@@ -2,23 +2,35 @@ const { exec } = require('child_process');
 
 module.exports = plugin => {
   /**
+   * 標準メッセージ関数
+   * @param string msg
+   */
+  const echoMsg = msg => plugin.nvim.command(`echo "${msg}"`);
+
+  /**
    * successメッセージ関数
    * @param string msg
    */
-  const echoSuccess = msg => plugin.nvim.command(`call EchoSuccess("${msg}")`);
+  const echoSuccess = msg => plugin.nvim.call('EchoSuccess', msg);
 
   /**
    * alertメッセージ関数
    * @param string msg
    */
-  const echoAlert = msg => plugin.nvim.command(`call EchoAlert("${msg}")`);
+  const echoAlert = msg => plugin.nvim.call('EchoAlert', msg);
 
   /**
    * errorメッセージ関数
    * @param string msg
    */
-  const echoErr = msg => plugin.nvim.command(`call EchoErr("${msg}")`);
-
+  const echoErr = msg => {
+    if (typeof(msg) !== 'string') {
+      msg = msg.toString();
+    }
+    console.log('==== echoerr ====');
+    console.log(typeof(msg) !== 'string');
+    plugin.nvim.call('EchoErr', msg);
+  }
   /**
    * プロンプト表示関数
    * @param string prompt
@@ -67,7 +79,16 @@ module.exports = plugin => {
     plugin.nvim.command(`mksession! ${file}`);
   };
 
+  /**
+   * QuickFixリストを作成
+   * @param array list [{filename, lnum, text}]
+   */
+  const setQuickFixList = list => {
+    plugin.nvim.call('setqflist', [list]);
+  }
+
   return {
+    echoMsg,
     echoSuccess,
     echoAlert,
     echoErr,
@@ -75,5 +96,6 @@ module.exports = plugin => {
     execute,
     executeList,
     makeSession,
+    setQuickFixList,
   };
 }
