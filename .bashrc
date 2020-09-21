@@ -4,6 +4,7 @@ source /usr/local/etc/bash_completion.d/git-completion.bash
 # GIT_PS1_SHOWDIRTYSTATE=true
 # export PS1='\[\033[32m\]\u@\h\[\033[00m\]:\[\033[34m\]\w\[\033[31m\]$(__git_ps1)\[\033[00m\]\n\$ '
 export PS1='\[\033[32m\]\u@\h\[\033[00m\]:\[\033[34m\]\w\[\033[31m\]\[\033[33m\] [\D{%y/%m/%d %H:%M:%S}]\[\033[00m\]\n\$ '
+export NVIM_NODE_LOG_FILE="${HOME}/.local/share/nvim/rplugin/log/node.log"
 
 # ログイン時以外でプロンプト表示の上に空行挿入
 # function add_line {
