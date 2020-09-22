@@ -72,6 +72,8 @@ module.exports = plugin => {
    */
   const setSession = () => {
     const sessionFile = '.git_diff_tmp.vim';
+    // g:git_diff_file_sessionに代入
+    plugin.nvim.setVar('git_diff_file_session', sessionFile);
     makeSession(sessionFile);
     plugin.nvim.command('silent! wincmd o');
   }
@@ -80,10 +82,10 @@ module.exports = plugin => {
    * バッファに対してマッピング設定
    */
   const setMappings = () => {
-    plugin.nvim.command('nnoremap <buffer> <silent> q :GitDiffFin<CR>');
-    plugin.nvim.command('nnoremap <buffer> <C-n> :<C-u>GitDiffNext<CR>');
-    plugin.nvim.command('nnoremap <buffer> <C-p> :<C-u>GitDiffPrevious<CR>');
-    plugin.nvim.command('nnoremap <buffer> <C-j> :<C-u>call GitDiffJump(v:count)<CR>');
+    plugin.nvim.command('nnoremap <buffer>  q :GitDiffFinV2<CR>');
+    plugin.nvim.command('nnoremap <buffer> <C-n> :<C-u>GitDiffNextV2<CR>');
+    plugin.nvim.command('nnoremap <buffer> <C-p> :<C-u>GitDiffPreviousV2<CR>');
+    plugin.nvim.command('nnoremap <buffer> <C-j> :<C-u>GitDiffJumpV2<CR>');
   };
 
   /**
@@ -105,8 +107,9 @@ module.exports = plugin => {
     }
 
     const files = [];
-    diffList.forEach((val, lnum) => {
+    diffList.forEach((val, i) => {
       let filename = rootDir + val;
+      let lnum = i + 1;
       let info = { filename, lnum, text: '✗' }
       files.push(info);
     });
