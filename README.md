@@ -6,3 +6,7 @@
  $ chmod 744 install.sh
  $ ./install.sh
 ```
+## リモート読み込み用
+```
+source https://raw.githubusercontent.com/coacer/dotfiles/master/.vimrc
+```
