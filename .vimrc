@@ -72,7 +72,7 @@ cnoremap <C-l> <Esc>
 snoremap <C-l> <Esc>
 if v:version >= 801
   tnoremap <Esc> <C-\><C-n>
-  tmap <C-l> <C-c>
+  tmap <C-l> <Esc>
 endif
 nnoremap <silent> <C-l> :<C-u>noh<CR><C-l>
 
