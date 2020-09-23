@@ -25,11 +25,14 @@ set hlsearch " 検索結果をハイライト
 language C " 出力文字英語化
 set ttimeoutlen=50 "インサートモードからEscの遅延を無くす
 
+" LeaderをSpaceに設定
+let mapleader = "\<Space>"
+
 " スペース+vで.vimrcファイルを開く
-nnoremap <Space>v :<C-u>edit $MYVIMRC<CR>
+nnoremap <Leader>v :<C-u>edit $MYVIMRC<CR>
 
 " スペース+sで.vimrcファイルを読み込む
-nnoremap <Space>s :<C-u>source $MYVIMRC<CR>
+nnoremap <Leader>s :<C-u>source $MYVIMRC<CR>
 
 " Yでカーソル位置から行末までコピー
 nnoremap Y y$
@@ -48,16 +51,16 @@ set backspace=indent,eol,start
 set showmatch " 括弧の対応関係を一瞬表示する
 
 " シンタックスを判別してカラー表示する
-syntax on
+syntax enable
 
 " Emacsキーバインディングの設定
 " インサートモード
 inoremap <C-b> <Left>
 inoremap <C-f> <Right>
-inoremap <C-a> <Home>
-inoremap <C-e> <End>
 
 " コマンドモード
+cnoremap <C-p> <Up>
+cnoremap <C-n> <Down>
 cnoremap <C-b> <Left>
 cnoremap <C-f> <Right>
 cnoremap <C-a> <Home>
@@ -67,4 +70,38 @@ inoremap <C-l> <Esc>
 vnoremap <C-l> <Esc>
 cnoremap <C-l> <Esc>
 snoremap <C-l> <Esc>
+if v:version >= 801
+  tnoremap <Esc> <C-\><C-n>
+  tmap <C-l> <C-c>
+endif
 nnoremap <silent> <C-l> :<C-u>noh<CR><C-l>
+
+" Leader+wで保存
+nnoremap <Leader>w :<C-u>write<CR>
+" Leader+qで閉じる(未保存のファイルがある時ダイアログ表示)
+nnoremap <Leader>q :<C-u>confirm qall<CR>
+" Leader+zで保存して終了
+nnoremap <Leader>z :<C-u>wqall<CR>
+
+" レジスタprefixをLeader+r
+nnoremap <Leader>r "
+xnoremap <Leader>r "
+
+" <ctrl+r>*2で無名レジスタ
+inoremap <C-r><C-r> <C-r>"
+cnoremap <C-r><C-r> <C-r>"
+
+" Leader+aで全選択
+nnoremap <Leader>a ggVG
+
+" xで文字を消した際にレジスタに格納しない
+nnoremap x "_x
+xnoremap x "_x
+
+" ctrl+dでバッファ削除
+nnoremap <silent> <C-d> :<C-u>bdelete<CR>
+
+" *で検索時に次の検索文字に移動しないように設定
+nnoremap * *N
+nnoremap g* g*N
+
