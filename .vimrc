@@ -43,8 +43,9 @@ set cursorline " カーソルラインをハイライト
 " 行が折り返し表示されていた場合、行単位ではなく表示行単位でカーソルを移動する
 noremap j gj
 noremap k gk
-noremap <down> gj
-noremap <up> gk
+
+noremap <down> <C-w>-
+noremap <up> <C-w>+
 
 " バックスペースキーの有効化
 set backspace=indent,eol,start
@@ -104,4 +105,10 @@ nnoremap <silent> <C-d> :<C-u>bdelete<CR>
 " *で検索時に次の検索文字に移動しないように設定
 nnoremap * *N
 nnoremap g* g*N
+
+" ウィンドウprefixをsに変換
+nnoremap s <C-w>
+" ウィンドウ分割時にフォーカス移動
+nnoremap sv <C-w>v<C-w>w
+nnoremap ss <C-w>s<C-w>w
 
