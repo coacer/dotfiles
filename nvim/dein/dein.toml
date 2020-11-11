@@ -1,11 +1,11 @@
 [[plugins]] # プラグイン管理
 repo = 'Shougo/dein.vim'
 
-[[plugins]] # ツリービュー表示
-repo = 'scrooloose/nerdtree'
-hook_add = '''
-  execute 'source' g:root_dir . '/settings/plugins/nerdtree.rc.vim'
-'''
+# [[plugins]] # ツリービュー表示
+# repo = 'scrooloose/nerdtree'
+# hook_add = '''
+#   execute 'source' g:root_dir . '/settings/plugins/nerdtree.rc.vim'
+# '''
 
 [[plugins]] # カラースキーム
 repo = 'cocopon/iceberg.vim'
@@ -46,17 +46,20 @@ hook_add = '''
   execute 'source' g:root_dir . '/settings/plugins/vim-indent-guides.rc.vim'
 '''
 
-[[plugins]] # nerdtreeにアイコン表示
+[[plugins]] # アイコン
 repo = 'ryanoasis/vim-devicons'
+
+[[plugins]] # defxアイコン
+repo = 'kristijanhusak/defx-icons'
+
+[[plugins]] # defx Git
+repo = 'kristijanhusak/defx-git'
 
 [[plugins]] # deviconsにカラーをつける
 repo = 'tiagofumo/vim-nerdtree-syntax-highlight'
 hook_add = '''
   execute 'source' g:root_dir . '/settings/plugins/vim-nerdtree-syntax-highlight.rc.vim'
 '''
-
-[[plugins]] # 末尾の空白可視化
-repo = 'bronson/vim-trailing-whitespace'
 
 [[plugins]] # gitで管理してる変更された箇所を行番号横に表示
 repo = 'airblade/vim-gitgutter'
@@ -98,6 +101,7 @@ merged = '0'
 hook_add = '''
   execute 'source' g:root_dir . '/settings/plugins/coc.rc.d/init.vim'
   execute 'source' g:root_dir . '/settings/plugins/coc.rc.d/coc-settings.json.vim'
+  execute 'source' g:root_dir . '/settings/plugins/coc.rc.d/extensions.vim'
 '''
 
 [[plugins]] # スニペット定義
@@ -145,8 +149,9 @@ hook_add = '''
   execute 'source' g:root_dir . '/settings/plugins/vim-highlightedyank.rc.vim'
 '''
 
-[[plugins]] # yank可視化
-repo = 'Xuyuanp/scrollbar.nvim'
-# hook_add = '''
-#   execute 'source' g:root_dir . '/settings/plugins/vim-highlightedyank.rc.vim'
-# '''
+[[plugins]] # ファイラー
+repo = 'Shougo/defx.nvim'
+hook_add = '''
+  execute 'source' g:root_dir . '/settings/plugins/defx.rc.vim'
+'''
+

@@ -83,6 +83,8 @@ nnoremap s <C-w>
 " ウィンドウ分割時にフォーカス移動
 nnoremap sv <C-w>v<C-w>w
 nnoremap ss <C-w>s<C-w>w
+" sNでvnew
+nnoremap sN :<C-u>vnew<CR>
 " Yでカーソル位置から行末までコピー
 nnoremap Y y$
 " ctrl-j/kで上下に空行挿入して元の位置に戻る
@@ -121,7 +123,8 @@ nnoremap g* g*N
 inoremap <C-r><C-r> <C-r>"
 cnoremap <C-r><C-r> <C-r>"
 
-" ヴィジュアルモードでgyでyankしたらyank範囲の末尾にカーソル移動
+" g + yankでyank範囲の末尾に移動
+nnoremap gyy yy`]
 xnoremap gy y`>
 " gpでペースト時にカーソルを一個上の行に移動(連続ペーストの時デフォルトだと使いづらいため)
 nnoremap gp gpk

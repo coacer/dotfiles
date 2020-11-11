@@ -76,9 +76,10 @@ function! s:git_diff_init() abort
     let dir = input("Please input target directory: ")
     let branch1 = input("Please input branch name: ")
     let branch2 = empty(branch1) ? '' : input("Please input another branch name: ")
-    if !empty(branch1) && !s:is_valid_branches(branch1, branch2)
-      throw "Invalid branch name"
-    endif
+    " if !empty(branch1) && !s:is_valid_branches(branch1, branch2)
+    " if !empty(branch1)
+    "   throw "Invalid branch name"
+    " endif
 
     " セッションに今の状態を保持
     let s:git_diff_session_file = '.git_diff_tmp.vim'
@@ -169,9 +170,11 @@ endfunction
 " git_diff 終了関数
 " a:1 異常終了フラグ -1の場合異常終了
 function! s:git_diff_fin(...) abort
-  %bdelete
-  execute 'source' s:git_diff_session_file
-  call system('rm ' . s:git_diff_session_file)
+  if exists('s:git_diff_session_file') && filereadable(s:git_diff_session_file)
+    %bdelete
+    execute 'source' s:git_diff_session_file
+    call system('rm ' . s:git_diff_session_file)
+  endif
   " 異常終了の場合と分岐
   if a:0 ==# 1 && a:1 ==# -1
     call EchoErr("git diff aborted")
