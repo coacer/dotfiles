@@ -1,8 +1,3 @@
-" ========Vdebug======== "
-" let g:xdebug_port = str2nr('9001')
-" let g:xdebug_guest_path = '/var/www/app'
-" let g:xdebug_host_path = substitute(execute('pwd'), "\n", '', 'g')
-
 " 設定ファイル名
 let s:vdebug_file = '.vdebug.conf.vim'
 
