@@ -4,7 +4,7 @@ call defx#custom#option('_', {
       \ 'show_ignored_files': 1,
       \ 'buffer_name': 'exlorer',
       \ 'toggle': 1,
-      \ 'resume': 0,
+      \ 'resume': 1,
       \ 'columns': 'indent:git:icons:filename:mark',
       \ })
 

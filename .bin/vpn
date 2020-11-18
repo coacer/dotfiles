@@ -1,0 +1,3 @@
+#!/bin/bash
+
+ifconfig | grep -q ppp0 && echo -e "#[fg=green]【VPN】#[default]"
