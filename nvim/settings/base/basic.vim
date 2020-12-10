@@ -52,6 +52,7 @@ set cursorline " カーソルラインをハイライト
 
 set showmatch " 括弧の対応関係を一瞬表示する
 source $VIMRUNTIME/macros/matchit.vim " Vimの「%」を拡張する
+set nofixendofline " 保存時に自動でファイル末尾に改行が入らない(vimはデフォルトで改行を入れるため)
 
 augroup Basic
   autocmd!

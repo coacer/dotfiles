@@ -263,3 +263,12 @@ endfunction
 
 command! -nargs=? TfFmt call <SID>terraform_fmt(<f-args>)
 " }}}
+
+" Qiitaのストックを検索して表示 {{{
+function! s:qiita_search_stock(...) abort
+  let search = a:0 > 0 ? a:1 : input('Please search word: ')
+  call system("open 'https://qiita.com/search?stocked=1&q=". search . "'")
+endfunction
+
+command! -nargs=? QiitaSearchStock call <SID>qiita_search_stock(<f-args>)
+" }}}

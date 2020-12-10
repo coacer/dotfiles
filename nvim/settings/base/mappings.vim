@@ -122,6 +122,7 @@ nnoremap g* g*N
 " <ctrl+r>*2で無名レジスタ
 inoremap <C-r><C-r> <C-r>"
 cnoremap <C-r><C-r> <C-r>"
+tmap <C-r><C-r> <Esc>pi
 
 " g + yankでyank範囲の末尾に移動
 nnoremap gyy yy`]
