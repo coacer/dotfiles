@@ -75,7 +75,7 @@ function! s:defx_my_settings() abort
   nnoremap <silent><buffer><expr> cd
   \ defx#do_action('change_vim_cwd')
   nnoremap <silent><buffer> ?
-  \ :<C-u>execute 'split' g:root_dir . '/settings/plugins/defx.rc.vim'<CR>
+  \ :<C-u>execute 'split' g:ROOT_DIR . '/settings/plugins/defx.rc.vim'<CR>
 endfunction
 
 " vim外でのファイル変更を同期するため

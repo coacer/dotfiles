@@ -4,7 +4,7 @@ repo = 'Shougo/dein.vim'
 # [[plugins]] # ツリービュー表示
 # repo = 'scrooloose/nerdtree'
 # hook_add = '''
-#   execute 'source' g:root_dir . '/settings/plugins/nerdtree.rc.vim'
+#   execute 'source' g:ROOT_DIR . '/settings/plugins/nerdtree.rc.vim'
 # '''
 
 [[plugins]] # カラースキーム
@@ -16,7 +16,7 @@ repo = 'tomtom/tcomment_vim'
 [[plugins]] # ステータスライン表示
 repo = 'vim-airline/vim-airline'
 hook_add = '''
-  execute 'source' g:root_dir . '/settings/plugins/vim-airline.rc.vim'
+  execute 'source' g:ROOT_DIR . '/settings/plugins/vim-airline.rc.vim'
 '''
 
 [[plugins]] # ステータスライン装飾
@@ -25,7 +25,7 @@ repo = 'vim-airline/vim-airline-themes'
 [[plugins]] # ウィンドウサイズ変更用プラグイン
 repo = 'simeji/winresizer'
 hook_add = '''
-  execute 'source' g:root_dir . '/settings/plugins/winresizer.rc.vim'
+  execute 'source' g:ROOT_DIR . '/settings/plugins/winresizer.rc.vim'
 '''
 
 [[plugins]] # vim上からgitコマンドを使えるプラグイン
@@ -43,7 +43,7 @@ repo = 'vim-jp/vimdoc-ja'
 [[plugins]] # インデントを可視化
 repo = 'nathanaelkane/vim-indent-guides'
 hook_add = '''
-  execute 'source' g:root_dir . '/settings/plugins/vim-indent-guides.rc.vim'
+  execute 'source' g:ROOT_DIR . '/settings/plugins/vim-indent-guides.rc.vim'
 '''
 
 [[plugins]] # アイコン
@@ -58,13 +58,13 @@ repo = 'kristijanhusak/defx-git'
 [[plugins]] # deviconsにカラーをつける
 repo = 'tiagofumo/vim-nerdtree-syntax-highlight'
 hook_add = '''
-  execute 'source' g:root_dir . '/settings/plugins/vim-nerdtree-syntax-highlight.rc.vim'
+  execute 'source' g:ROOT_DIR . '/settings/plugins/vim-nerdtree-syntax-highlight.rc.vim'
 '''
 
 [[plugins]] # gitで管理してる変更された箇所を行番号横に表示
 repo = 'airblade/vim-gitgutter'
 hook_add = '''
-  execute 'source' g:root_dir . '/settings/plugins/vim-gitgutter.rc.vim'
+  execute 'source' g:ROOT_DIR . '/settings/plugins/vim-gitgutter.rc.vim'
 '''
 
 [[plugins]] # surround.vimなどの変更を.で繰り返し可能にする
@@ -73,13 +73,13 @@ repo = 'tpope/vim-repeat'
 # [[plugins]] # スクロールを滑らかに
 # repo = 'yuttie/comfortable-motion.vim'
 # hook_add = '''
-#   execute 'source' g:root_dir . '/settings/plugins/comfortable-motion.rc.vim'
+#   execute 'source' g:ROOT_DIR . '/settings/plugins/comfortable-motion.rc.vim'
 # '''
 
 [[plugins]] # gundoグラフ可視化
 repo = 'sjl/gundo.vim'
 hook_add = '''
-  execute 'source' g:root_dir . '/settings/plugins/gundo.rc.vim'
+  execute 'source' g:ROOT_DIR . '/settings/plugins/gundo.rc.vim'
 '''
 
 [[plugins]] # editorconfig
@@ -88,7 +88,7 @@ repo = 'editorconfig/editorconfig-vim'
 [[plugins]] # fzfプラグイン
 repo = 'junegunn/fzf.vim'
 hook_add = '''
-  execute 'source' g:root_dir . '/settings/plugins/fzf.rc.vim'
+  execute 'source' g:ROOT_DIR . '/settings/plugins/fzf.rc.vim'
 '''
 
 [[plugins]] # fzf本体
@@ -99,9 +99,9 @@ repo = 'neoclide/coc.nvim'
 rev = 'release'
 merged = '0'
 hook_add = '''
-  execute 'source' g:root_dir . '/settings/plugins/coc.rc.d/init.vim'
-  execute 'source' g:root_dir . '/settings/plugins/coc.rc.d/coc-settings.json.vim'
-  execute 'source' g:root_dir . '/settings/plugins/coc.rc.d/extensions.vim'
+  execute 'source' g:ROOT_DIR . '/settings/plugins/coc.rc.d/init.vim'
+  execute 'source' g:ROOT_DIR . '/settings/plugins/coc.rc.d/coc-settings.json.vim'
+  execute 'source' g:ROOT_DIR . '/settings/plugins/coc.rc.d/extensions.vim'
 '''
 
 [[plugins]] # スニペット定義
@@ -119,7 +119,7 @@ repo = 'Shougo/unite.vim'
 [[plugins]] # カラースキーム選択
 repo = 'ujihisa/unite-colorscheme'
 hook_add = '''
-  execute 'source' g:root_dir . '/settings/plugins/unite-colorscheme.rc.vim'
+  execute 'source' g:ROOT_DIR . '/settings/plugins/unite-colorscheme.rc.vim'
 '''
 
 [[plugins]] # カラースキーム
@@ -140,24 +140,24 @@ repo = 'arcticicestudio/nord-vim'
 [[plugins]] # 整列
 repo = 'junegunn/vim-easy-align'
 hook_add = '''
-  execute 'source' g:root_dir . '/settings/plugins/vim-easy-align.rc.vim'
+  execute 'source' g:ROOT_DIR . '/settings/plugins/vim-easy-align.rc.vim'
 '''
 
 [[plugins]] # yank可視化
 repo = 'machakann/vim-highlightedyank'
 hook_add = '''
-  execute 'source' g:root_dir . '/settings/plugins/vim-highlightedyank.rc.vim'
+  execute 'source' g:ROOT_DIR . '/settings/plugins/vim-highlightedyank.rc.vim'
 '''
 
 [[plugins]] # ファイラー
 repo = 'Shougo/defx.nvim'
 hook_add = '''
-  execute 'source' g:root_dir . '/settings/plugins/defx.rc.vim'
+  execute 'source' g:ROOT_DIR . '/settings/plugins/defx.rc.vim'
 '''
 
 [[plugins]] # GraphQL syntax
 repo = 'jparise/vim-graphql'
 hook_add = '''
-  execute 'source' g:root_dir . '/settings/plugins/vim-graphql.rc.vim'
+  execute 'source' g:ROOT_DIR . '/settings/plugins/vim-graphql.rc.vim'
 '''
 

@@ -1,7 +1,7 @@
 [[plugins]] # スニペットエンジン
 repo = 'Shougo/neosnippet'
 hook_source = '''
-  execute 'source' g:root_dir . '/settings/plugins/neosnippet.rc.d/init.vim'
+  execute 'source' g:ROOT_DIR . '/settings/plugins/neosnippet.rc.d/init.vim'
 '''
 on_i  = 1
 on_ft = ['snippet']
@@ -10,7 +10,7 @@ depends = ['neosnippet-snippets']
 [[plugins]] # Emmet導入
 repo = 'mattn/emmet-vim'
 hook_source = '''
-  execute 'source' g:root_dir . '/settings/plugins/emmet-vim.rc.vim'
+  execute 'source' g:ROOT_DIR . '/settings/plugins/emmet-vim.rc.vim'
 '''
 on_ft = ['html', 'eruby', 'javascriptreact', 'tsx', 'php', 'vue']
 
@@ -29,7 +29,7 @@ on_ft = ['toml']
 [[plugins]] # Vue.jsシンタックス
 repo = 'posva/vim-vue'
 hook_source = '''
-  execute 'source' g:root_dir . '/settings/plugins/vim-vue.rc.vim'
+  execute 'source' g:ROOT_DIR . '/settings/plugins/vim-vue.rc.vim'
 '''
 on_ft = ['vue']
 
@@ -57,7 +57,7 @@ on_ft = ['go']
 repo = 'joonty/vdebug'
 on_ft = ['php']
 hook_source = '''
-  execute 'source' g:root_dir . '/settings/plugins/vdebug.rc.vim'
+  execute 'source' g:ROOT_DIR . '/settings/plugins/vdebug.rc.vim'
 '''
 
 [[plugins]] # markkdownプレビュープラグイン
@@ -65,7 +65,7 @@ repo = 'iamcco/markdown-preview.nvim'
 on_ft = ['markdown', 'pandoc.markdown', 'rmd']
 build = 'sh -c "cd app & yarn install"'
 hook_source = '''
-  execute 'source' g:root_dir . '/settings/plugins/markdown-preview.rc.vim'
+  execute 'source' g:ROOT_DIR . '/settings/plugins/markdown-preview.rc.vim'
 '''
 
 [[plugins]] # Terraformシンタックス・コマンド
