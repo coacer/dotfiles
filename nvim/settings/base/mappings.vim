@@ -141,4 +141,4 @@ nnoremap <silent> <Leader>tg :Term lazygit<CR>
 nnoremap <silent> <Leader>td :Term lazydocker<CR>
 
 " GitDiffFiles(functions.vim)
-nnoremap <Leader><C-G><C-G> :GitDiffFiles<CR>
+nnoremap <Leader><C-G><C-G> :GitDiffStart<CR>

@@ -272,3 +272,61 @@ endfunction
 
 command! -nargs=? QiitaSearchStock call <SID>qiita_search_stock(<f-args>)
 " }}}
+
+" git difftoolのラッパー {{{
+let s:ERROR_FLAG = -1
+let s:git_diff_next_key = '<C-n>'
+let s:git_diff_previous_key = '<C-p>'
+let s:git_diff_quit_key = 'q'
+
+function! s:git_difftool_session_start() abort
+  try
+    let diff_args = input("Please input diff arguments: ")
+
+    " セッションに今の状態を保持
+    let s:git_diff_session_file = '.git_diff_tmp.vim'
+    execute 'mksession!' s:git_diff_session_file
+    " Quickfixへ出力
+    Git difftool --name-only
+    " それぞれのdiffをタブで作成
+    execute 'Git difftool -y' diff_args
+    " 元々存在するタブは削除
+    tabfirst
+    tabclose
+
+    execute 'nnoremap <silent>' s:git_diff_quit_key ':GitDiffEnd<CR>'
+    execute 'nnoremap' s:git_diff_next_key 'gt'
+    execute 'nnoremap' s:git_diff_previous_key 'gT'
+  catch
+    call EchoErr('Bad arguments error')
+    call s:git_difftool_session_end(-1)
+  endtry
+endfunction
+
+function! s:git_difftool_session_end(...) abort
+  silent tabonly
+  if exists('s:git_diff_session_file') && filereadable(s:git_diff_session_file)
+    %bdelete
+    execute 'source' s:git_diff_session_file
+    call system('rm ' . s:git_diff_session_file)
+  endif
+
+  if s:git_diff_next_key ==? '<C-n>'
+    execute 'nnoremap <silent>' s:git_diff_next_key ':<C-u>Defx<CR>'
+  else
+    execute 'unmap' s:git_diff_next_key
+  endif
+  execute 'unmap' s:git_diff_previous_key
+  execute 'unmap' s:git_diff_quit_key
+
+  " 異常終了の場合と分岐
+  if a:0 ==# 1 && a:1 ==# -1
+    call EchoErr("git diff aborted")
+  else
+    call EchoSuccess("git diff finished!")
+  endif
+endfunction
+
+command! -nargs=0 GitDiffStart call <SID>git_difftool_session_start()
+command! -nargs=0 GitDiffEnd call <SID>git_difftool_session_end()
+" }}}
