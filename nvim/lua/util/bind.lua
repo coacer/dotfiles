@@ -93,4 +93,22 @@ function bind.set_mappings(mappings)
     end
 end
 
+function bind.set_options(options)
+ for k, v in pairs(options) do
+    if v == true then
+      vim.api.nvim_command('set ' .. k)
+    elseif v == false then
+      vim.api.nvim_command('set no' .. k)
+    else
+      vim.api.nvim_command('set ' .. k .. '=' .. v)
+    end
+  end
+end
+
+function bind.set_settings(settings)
+  for k, v in pairs(settings) do
+    vim.api.nvim_command(k .. ' ' .. v)
+  end
+end
+
 return bind
