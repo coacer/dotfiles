@@ -25,7 +25,7 @@ ln -s ~/dotfiles/.zprofile ~/.zprofile
 
 brew update;
 brew install vim neovim emacs fzf git hub docker lazydocker lazygit tig \
-  tree autojump composer awscli rbenv pyenv pyenv-virtualenv nodenv bat;
+  tree autojump composer awscli rbenv pyenv pyenv-virtualenv nodenv bat luarocks;
 brew install tmux --HEAD
 brew cask install docker iterm2;
 
