@@ -42,7 +42,7 @@ function Map:ex(cmd, ...)
   return self
 end
 
-function Map:without_nore()
+function Map:recursive()
   self.options.noremap = false
   return self
 end

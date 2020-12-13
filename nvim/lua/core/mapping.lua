@@ -19,7 +19,7 @@ local dump = require('util/helper').dump
 -- ex_range(command, args...): ':{command} {args...}<CR>'
 --
 -- # option
--- without_nore(): noremapを外す(デフォルトがnoremap)
+-- recursive(): noremapを外す(デフォルトがnoremap)
 -- with_silent(): <silent>
 -- with_buffer(): <buffer>
 
@@ -32,7 +32,7 @@ local mappings = {
   ['o | <C-l>'] = key('<Esc>'),
   ['l | <C-l>'] = key('<Esc>'),
   ['t | <Esc>'] = key([[<C-\><C-n>]]),
-  ['t | <C-l>'] = key('<C-c>'):without_nore(),
+  ['t | <C-l>'] = key('<C-c>'):recursive(),
   ['n | <C-l>'] = ex('nohlsearch'):key('<C-l>'),
 
   -- Lua file
@@ -101,7 +101,7 @@ local mappings = {
   ['n | g*'] = key('g*N'),
   ['i | <C-r><C-r>'] = key('<C-r>"'),
   ['c | <C-r><C-r>'] = key('<C-r>"'),
-  ['t | <C-r><C-r>'] = key('<Esc>pi'):without_nore(),
+  ['t | <C-r><C-r>'] = key('<Esc>pi'):recursive(),
   ['n | <Leader>a'] = key('ggVG'),
   ['n | gJ'] = key('mz')
                :ex([[+1s/^\s\+//e]])
