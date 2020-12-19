@@ -161,3 +161,10 @@ hook_add = '''
   execute 'source' g:ROOT_DIR . '/settings/plugins/vim-graphql.rc.vim'
 '''
 
+[[plugins]] # デバッガー
+repo = "puremourning/vimspector"
+build = "./install_gadget.py --basedir $HOME/.config/nvim/settings/plugins/vimspector.rc.d"
+hook_add = '''
+  execute 'source' g:ROOT_DIR . '/settings/plugins/vimspector.rc.d/init.vim'
+'''
+

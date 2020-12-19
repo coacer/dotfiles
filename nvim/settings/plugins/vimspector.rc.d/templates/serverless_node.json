@@ -1,0 +1,21 @@
+{
+  "configurations": {
+    "javascript_file": {
+      "adapter": "vscode-node",
+      "configuration": {
+        "name": "JavaScript: Current File",
+        "request": "launch",
+        "cwd": "${workspaceRoot}",
+        "program": "/Users/y.nakagami/.nodenv/versions/12.18.4/lib/node_modules/serverless/bin/serverless",
+        "args": ["offline", "start"],
+        "protocol": "inspector"
+      },
+      "breakpoints": {
+        "exception": {
+          "all": "N",
+          "uncaught": "Y"
+        }
+      }
+    }
+  }
+}

@@ -1,5 +1,3 @@
-" LeaderをSpaceに設定
-let mapleader = "\<Space>"
 " ctrl+lでesc
 " snoremapはスニペット使用時に使う
 inoremap <C-l> <Esc>
