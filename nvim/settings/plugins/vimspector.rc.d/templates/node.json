@@ -1,0 +1,23 @@
+{
+  "configurations": {
+    "javascript_file": {
+      "adapter": "vscode-node",
+      "configuration": {
+        "name": "JavaScript: Current File",
+        "request": "launch",
+        "cwd": "${fileDirname}",
+        "program": "${file}",
+        "args": [],
+        "protocol": "auto",
+        "stopOnEntry": true,
+        "externalConsole": false
+      },
+      "breakpoints": {
+        "exception": {
+          "all": "N",
+          "uncaught": "Y"
+        }
+      }
+    }
+  }
+}

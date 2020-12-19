@@ -1,4 +1,4 @@
-let g:ROOT_DIR = expand('~/.config/nvim')
+runtime! settings/variables.vim
 runtime! dein/init.vim
 runtime! settings/base/*.vim
 runtime! settings/base/functions/*.vim
