@@ -37,9 +37,9 @@ local mappings = {
 
   -- Lua file
   ['n | <Leader>vv'] = ex('Files', ROOT_DIR),
-  ['n | <Leader>vm'] = ex('edit', ROOT_DIR .. '/lua/core/mapping.lua'),
+  ['n | <Leader>vm'] = ex('edit', ROOT_DIR .. '/lua/core/mappings.lua'),
   ['n | <Leader>vf'] = ex('edit', ROOT_DIR .. '/lua/core/functions/init.lua'),
-  ['n | <Leader>vb'] = ex('edit', ROOT_DIR .. '/lua/core/basic.lua'),
+  ['n | <Leader>vo'] = ex('edit', ROOT_DIR .. '/lua/core/options.lua'),
   ['n | <Leader>vc'] = ex('edit', ROOT_DIR .. '/lua/core/color.lua'),
   ['n | <Leader>vd'] = ex('edit', ROOT_DIR .. '/lua/plugins/dein/dein.toml'),
   ['n | <Leader>vD'] = ex('edit', ROOT_DIR .. '/lua/plugins/dein/dein_lazy.toml'),

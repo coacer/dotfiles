@@ -27,7 +27,6 @@ local options = {
 }
 
 local settings = {
-  -- TODO なぜかエラーになる
   -- scriptencoding = 'utf-8',
   lang = 'en_US.UTF-8',
   source = '$VIMRUNTIME/macros/matchit.vim'
