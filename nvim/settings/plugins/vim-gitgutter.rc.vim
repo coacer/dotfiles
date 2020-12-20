@@ -1,2 +1,2 @@
-nnoremap <silent> <Space>h :GitGutterLineHighlightsToggle<CR>
+nnoremap <silent> <Leader>h :GitGutterLineHighlightsToggle<CR>
 set updatetime=100

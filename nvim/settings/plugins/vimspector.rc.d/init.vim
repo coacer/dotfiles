@@ -25,6 +25,7 @@ sign define vimspectorPCBP text=◉> texthl=ErrorMsg linehl=AlertMsg
 sign define vimspectorPC text=>> texthl=AlertMsg linehl=AlertMsg
 
 " TODO: .vimspector.jsonの自動生成コマンドを作成する
+"       templates/のファイルをコピー
 "       vimspector開始コマンド?全てのコマンド?が呼ばれた際にコマンドがコールバックされ、
 "       設定ファイルを作成するよう促す
 

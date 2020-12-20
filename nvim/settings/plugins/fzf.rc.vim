@@ -1,11 +1,11 @@
-nnoremap <Space>f :<C-u>Files<CR>
-nnoremap <Space>F :<C-u>GFiles<CR>
-nnoremap <Space>g :<C-u>GGrep<CR>
-nnoremap <Space>b :<C-u>Buffers<CR>
-nnoremap <Space>l :<C-u>BLines<CR>
+nnoremap <Leader>f :<C-u>Files<CR>
+nnoremap <Leader>F :<C-u>GFiles<CR>
+nnoremap <Leader>g :<C-u>GGrep<CR>
+nnoremap <Leader>b :<C-u>Buffers<CR>
+nnoremap <Leader>l :<C-u>BLines<CR>
 " カーソル下の単語をGGrepで検索する
-nmap <Space>* "zyiw<Space>g'<Esc>"zpi
-vmap <Space>* "zy<Space>g'<Esc>"zpi
+nmap <Leader>* "zyiw<Leader>g'<Esc>"zpi
+vmap <Leader>* "zy<Leader>g'<Esc>"zpi
 
 command! -bang -nargs=* GGrep
       \ call fzf#vim#grep(
