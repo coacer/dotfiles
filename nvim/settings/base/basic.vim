@@ -40,18 +40,23 @@ set virtualedit=block " 矩形選択でテキストが存在しない箇所も�
 
 " set whichwrap=b,s,h,l,<,>,[,],~ " カーソルの左右移動で行末から次の行の行頭への移動が可能になる
 set number " 行番号を表示
-set relativenumber " 相対行番号を表示
-set cursorline " カーソルラインをハイライト
+
+" 画面描画が重いのでオフに
+" set relativenumber " 相対行番号を表示
+" set cursorline " カーソルラインをハイライト
+
 " set foldmethod=syntax " foldmethodをインデントにする
 
 set showmatch " 括弧の対応関係を一瞬表示する
 source $VIMRUNTIME/macros/matchit.vim " Vimの「%」を拡張する
 set nofixendofline " 保存時に自動でファイル末尾に改行が入らない(vimはデフォルトで改行を入れるため)
+set regexpengine=1 "@see https://github.com/vim/vim/issues/2712#issuecomment-372968129
 
 augroup Basic
   autocmd!
   " ターミナル表示時は番号を表示しない
   autocmd TermOpen * setlocal nonumber
+  au BufNewFile,BufRead *.vtl set ft=velocity
   " 保存時に末尾の半角/全角スペースを削除
   " autocmd BufWritePre * %s/\v(\s|　)+$//e
   " ファイル表示時にfoldを全て展開

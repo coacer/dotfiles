@@ -1,3 +1,16 @@
+### 汎用 ###
+snippet     cl
+abbr        console.log()
+options     head
+  console.log(${1})
+
+snippet     func-allow
+abbr        const ~ = () => {}
+options     head
+ const ${1:name} = (${2}) => {${3}};
+
+
+### 限定的 ###
 snippet     vue-ts
 options     head
   <template>
@@ -24,3 +37,39 @@ options     head
   @Component
   export default class `expand("%:t:r")` extends Vue {}
   </script>
+
+snippet     nuxt-composition-ts
+abbr        <template> ~ <script> ~ export default defineComponent({})
+options     head
+  <template>
+    ${1}
+  </template>
+
+  <script lang="ts">
+  import { defineComponent, reactive } from '@nuxtjs/composition-api';
+
+  export default defineComponent({
+    name: '${2:`expand("%:t:r")`}',
+
+    components: {
+    },
+
+    props: {
+    },
+
+    setup(props, {}) {
+      const state = reactive({
+        ${3}
+      });
+    },
+  });
+
+  </script>
+
+  <style lang="scss" scoped>
+  </style>
+
+snippet     import
+abbr        import {} from '';
+options     head
+  import {${2}} from '~/${1}';

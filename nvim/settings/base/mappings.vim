@@ -65,6 +65,9 @@ nnoremap <C-h> :<C-u>Helptags<CR>
 nnoremap + "+y
 nnoremap ++ "+yy
 xnoremap + "+y
+" オペレータ+xで現在のファイル名をクリップボードにコピー
+nnoremap <silent> +x :<C-u>call system('pbcopy', expand('%:t:r'))<CR>
+nnoremap <silent> +X :<C-u>call system('pbcopy', expand('%'))<CR>
 " Leader+aで全選択
 nnoremap <Leader>a ggVG
 
@@ -128,6 +131,8 @@ nnoremap gyy yy`]
 xnoremap gy y`>
 " gpでペースト時にカーソルを一個上の行に移動(連続ペーストの時デフォルトだと使いづらいため)
 nnoremap gp gpk
+" ctrl+pでその行にペースト
+nmap <C-p> Vp
 " 選択範囲に.コマンド実行
 xnoremap <silent> . :normal .<CR>
 

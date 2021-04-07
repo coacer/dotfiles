@@ -1,0 +1,192 @@
+" 基本設定
+set encoding=utf-8
+scriptencoding utf-8
+set fileencoding=utf-8 " 保存時の文字コード
+set fileencodings=ucs-boms,utf-8,euc-jp,cp932 " 読み込み時の文字コードの自動判別. 左側が優先される
+set fileformats=unix,dos,mac " 改行コードの自動判別. 左側が優先される
+set ambiwidth=double " □や○文字が崩れる問題を解決
+set hidden " バッファ保存せずに移動しようとした場合に!をつけなくても移動できる, またargsの移動も隠しファイルにする
+set undofile " undo履歴をファイルに保存(vim終了時にundo履歴が削除されない)
+set undodir=~/.local/share/vim/undo " undoファイルの保存場所
+noswapfile
+" set mouse=a " マウス有効化
+
+set expandtab " タブ入力を複数の空白入力に置き換える
+set tabstop=2 " 画面上でタブ文字が占める幅
+set softtabstop=2 " 連続した空白に対してタブキーやバックスペースキーでカーソルが動く幅
+set autoindent " 改行時に前の行のインデントを継続する
+set smartindent " 改行時に前の行の構文をチェックし次の行のインデントを増減する
+set shiftwidth=2 " smartindentで増減する幅
+
+set incsearch " インクリメンタルサーチ. １文字入力毎に検索を行う
+set ignorecase " 検索パターンに大文字小文字を区別しない
+set smartcase " 検索パターンに大文字を含んでいたら大文字小文字を区別する
+set hlsearch " 検索結果をハイライト
+" set so=999 " 常にカーソルをファイル中央に配置
+language C " 出力文字英語化
+set ttimeoutlen=50 "インサートモードからEscの遅延を無くす
+
+" スペース+vで.vimrcファイルを開く
+nnoremap <Space>v :<C-u>edit $MYVIMRC<CR>
+
+" スペース+sで.vimrcファイルを読み込む
+nnoremap <Space>s :<C-u>source $MYVIMRC<CR>
+
+" Yでカーソル位置から行末までコピー
+nnoremap Y y$
+
+set number " 行番号を表示
+set cursorline " カーソルラインをハイライト
+
+" 行が折り返し表示されていた場合、行単位ではなく表示行単位でカーソルを移動する
+noremap j gj
+noremap k gk
+nnoremap ^ g^
+nnoremap $ g$
+
+" バックスペースキーの有効化
+set backspace=indent,eol,start
+set showmatch " 括弧の対応関係を一瞬表示する
+
+" シンタックスを判別してカラー表示する
+syntax on
+
+" Emacsキーバインディングの設定
+" インサートモード
+inoremap <C-b> <Left>
+inoremap <C-f> <Right>
+inoremap <C-a> <Home>
+inoremap <C-e> <End>
+
+" コマンドモード
+cnoremap <C-b> <Left>
+cnoremap <C-f> <Right>
+cnoremap <C-a> <Home>
+cnoremap <C-e> <End>
+
+" ctrl+lでesc
+" snoremapはスニペット使用時に使う
+inoremap <C-l> <Esc>
+cnoremap <C-l> <Esc>
+vnoremap <C-l> <Esc>
+snoremap <C-l> <Esc>
+onoremap <C-l> <Esc>
+lnoremap <C-l> <Esc>
+" ctrl+lで検索ハイライト無効化+再描画
+nnoremap <silent> <C-l> :<C-u>nohlsearch<CR><C-l>
+
+" レジスタprefixをspace+r
+nnoremap <Space>r "
+vnoremap <Space>r "
+" ヴィジュアルモードで+でシステムクリップボードにyank
+vnoremap + "+y
+" space+aで全選択
+nnoremap <Space>a ggVG
+
+" xで文字を消した際にレジスタに格納しない
+nnoremap x "_x
+vnoremap x "_x
+
+" ウィンドウprefixをsに変換
+nnoremap s <C-w>
+" Yでカーソル位置から行末までコピー
+nnoremap Y y$
+" ctrl-spaceで下に空行挿入して元の位置に戻る
+nnoremap <C-Space> mzo<Esc>"_cc<Esc>`z
+" space*2でファイル全体のインデントを揃える
+nnoremap <silent> <Space><Space> mz:%normal ==<CR>`zzz
+" *で検索時に次の検索文字に移動しないように設定
+nnoremap * mq*`q
+
+" <ctrl+r>*2で無名レジスタ
+inoremap <C-r><C-r> <C-r>"
+cnoremap <C-r><C-r> <C-r>"
+
+autocmd BufWritePre * %s/\s\+$//e
+
+" ヴィジュアルモードでgyでyankしたらyank範囲の末尾にカーソル移動
+vnoremap gy y`>
+" gpでペースト時にカーソルを一個上の行に移動(連続ペーストの時デフォルトだと使いづらいため)
+nnoremap gp gpk
+autocmd ColorScheme * highlight Visual ctermbg=30 guibg=#123531
+autocmd ColorScheme * highlight Search ctermbg=29 guifg=#ffffff guibg=#476a47
+
+colorscheme iceberg
+
+" Required:
+set runtimepath+=~/.cache/dein/repos/github.com/Shougo/dein.vim
+
+" Required:
+if dein#load_state('~/.cache/dein')
+  call dein#begin('~/.cache/dein')
+  call dein#add('~/.cache/dein/repos/github.com/Shougo/dein.vim')
+  if !has('nvim')
+    call dein#add('roxma/nvim-yarp')
+    call dein#add('roxma/vim-hug-neovim-rpc')
+  endif
+
+  call dein#add('scrooloose/nerdtree')
+  call dein#add('cocopon/iceberg.vim')
+  call dein#add('tomtom/tcomment_vim')
+  call dein#add('vim-airline/vim-airline')
+  call dein#add('vim-airline/vim-airline-themes')
+  call dein#add('simeji/winresizer')
+  call dein#add('tpope/vim-surround')
+  call dein#add('nathanaelkane/vim-indent-guides')
+  call dein#add('bronson/vim-trailing-whitespace')
+  call dein#add('airblade/vim-gitgutter')
+  call dein#add('tpope/vim-repeat')
+  call dein#add('yuttie/comfortable-motion.vim')
+  call dein#add('jwalton512/vim-blade')
+  call dein#add('othree/yajs.vim')
+  call dein#add('leafgarland/typescript-vim')
+  call dein#add('jiangmiao/auto-pairs')
+  call dein#add('othree/yajs.vim')
+  call dein#add('mattn/emmet-vim')
+
+  " Required:
+  call dein#end()
+  call dein#save_state()
+endif
+
+" Required:
+filetype plugin indent on
+syntax enable
+
+" If you want to install not installed plugins on startup.
+if dein#check_install()
+  call dein#install()
+endif
+
+nnoremap <silent> <Space>h :GitGutterLineHighlightsToggle<CR>
+nnoremap <C-n> :<C-u>NERDTreeToggle<CR><C-l>
+let g:user_emmet_leader_key = '<C-j>'
+let g:airline_theme = 'bubblegum'
+set laststatus=2
+let g:airline#extensions#branch#enabled = 1
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#wordcount#enabled = 0
+let g:airline#extensions#default#layout = [['a', 'b', 'c'], ['x', 'y', 'z']]
+let g:airline_section_c = '%t'
+let g:airline_section_x = '%{&filetype}'
+let g:airline#extensions#default#section_truncate_width = {}
+let g:airline#extensions#whitespace#enabled = 1
+nmap <C-e> <Plug>AirlineSelectPrevTab
+nmap <C-y> <Plug>AirlineSelectNextTab
+nnoremap <C-d> :bd<CR>
+let g:winresizer_start_key = '<C-U>'
+let g:indent_guides_enable_on_vim_startup = 1
+let g:indent_guides_auto_colors = 0
+autocmd Colorscheme * highlight IndentGuidesOdd  ctermbg=235 guibg=#1d202e
+autocmd Colorscheme * highlight IndentGuidesEven ctermbg=236 guibg=none
+" 移動幅の設定
+let g:winresizer_vert_resize = 3
+let g:winresizer_horiz_resize = 1
+let g:comfortable_motion_friction = 800.0 " 摩擦力
+let g:comfortable_motion_air_drag = 3.0 " 空気抵抗
+let g:comfortable_motion_no_default_key_mappings = 1
+nnoremap <silent> <C-f> :call comfortable_motion#flick(300)<CR>
+nnoremap <silent> <C-b> :call comfortable_motion#flick(-300)<CR>
+autocmd FileType vue syntax sync fromstart
+" 重い動作解消
+let g:vue_disable_pre_processors=1

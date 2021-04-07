@@ -1,6 +1,6 @@
 function cdls() {
   \cd $1;
-  ls -G;
+  ls -lGh;
 }
 
 alias cd=cdls
@@ -15,6 +15,8 @@ alias lla='ls -lha'
 alias ls="ls -GF"
 alias ide="~/.bin/ide.sh"
 alias nvis="nvim -S .session.vim"
+alias nnvim="~/nvim-osx64/bin/nvim"
+alias nnvis="nnvim -S .session.vim"
 alias lo="~/.bin/localhostOpen.sh"
 alias t="tmux"
 alias ta="tmux a"
@@ -33,4 +35,3 @@ alias vc="networksetup -connectpppoeservice sonic"
 alias vd="networksetup -disconnectpppoeservice sonic"
 alias air="BluetoothConnector --connect AC-90-85-DF-A3-F7 --notify"
 alias dair="BluetoothConnector AC-90-85-DF-A3-F7 --notify"
-alias nnvim="~/nvim-osx64/bin/nvim"

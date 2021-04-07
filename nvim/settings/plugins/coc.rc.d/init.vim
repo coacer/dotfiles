@@ -1,3 +1,6 @@
+" coc-settings.jsonの読み込み
+let g:coc_user_config = json_decode(readfile(expand(g:ROOT_DIR . '/settings/plugins/coc.rc.d/coc-settings.json')))
+
 " Some servers have issues with backup files, see #649
 set nobackup
 set nowritebackup
@@ -64,12 +67,22 @@ augroup end
 set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 " golang autoformatter
 " autocmd BufWritePre *.go :call CocAction('runCommand', 'editor.action.organizeImport')
+command! -nargs=0 EslintFix :CocCommand eslint.executeAutofix
 command! -nargs=0 Prettier :CocCommand prettier.formatFile
-" augroup CocPrettier
-"   autocmd!
-"   autocmd BufWritePre *.js Prettier
-"   autocmd BufWritePre *.ts Prettier
-"   autocmd BufWritePre *.tsx Prettier
-"   autocmd BufWritePre *.vue Prettier
-" augroup END
+
+" TODO 仕事プロジェクト都合上とりあえずファイル存在有無でフォーマット実行
+augroup CocJsFormatter
+  autocmd!
+  if filereadable('.prettierrc')
+    autocmd BufWritePre *.js Prettier
+    autocmd BufWritePre *.ts Prettier
+    autocmd BufWritePre *.tsx Prettier
+    autocmd BufWritePre *.vue Prettier
+  elseif filereadable('.eslintrc')
+    autocmd BufWritePre *.js EslintFix
+    autocmd BufWritePre *.ts EslintFix
+    autocmd BufWritePre *.tsx EslintFix
+    autocmd BufWritePre *.vue EslintFix
+  endif
+augroup END
 let g:node_client_debug = 1

@@ -12,4 +12,5 @@ let g:coc_global_extensions = [
       \ 'coc-solargraph',
       \ 'coc-tsserver',
       \ 'coc-vetur',
+      \ 'coc-cfn-lint',
       \ ]

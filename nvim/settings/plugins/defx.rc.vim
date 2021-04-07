@@ -60,7 +60,7 @@ function! s:defx_my_settings() abort
   \ defx#do_action('quit')
   nnoremap <silent><buffer><expr> <C-n>
   \ defx#do_action('quit')
-  nnoremap <silent><buffer><expr> <Space>
+  nnoremap <silent><buffer><expr> <Space><Space>
   \ defx#do_action('toggle_select') . 'j'
   nnoremap <silent><buffer><expr> *
   \ defx#do_action('toggle_select_all')

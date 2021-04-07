@@ -45,13 +45,30 @@ nnoremap s <C-w>
 " ウィンドウ分割時にフォーカス移動
 nnoremap sv <C-w>v<C-w>w
 nnoremap ss <C-w>s<C-w>w
+" sNでvnew
+nnoremap sN :<C-u>vnew<CR>
 " Yでカーソル位置から行末までコピー
 nnoremap Y y$
-" ctrl-spaceで下に空行挿入して元の位置に戻る
-nnoremap <C-Space> mzo<Esc>"_cc<Esc>`z
+nnoremap <C-j> mzo<Esc>"_cc<Esc>`z
+nnoremap <C-k> mzO<Esc>"_cc<Esc>`z
 " Leader*2でファイル全体のインデントを揃える
-nnoremap <silent> <Space><Leader> mz:%normal ==<CR>`zzz
+nnoremap <silent> <Space><Space> mz:%normal ==<CR>`zzz
 " nnoremap <silent> <Space><Leader> :<C-u>call CocAction("format")<CR>
+
+" Leader+wで保存
+nnoremap <Space>w :<C-u>write<CR>
+" Leader+qで閉じる(未保存のファイルがある時ダイアログ表示)
+nnoremap <Space>q :<C-u>confirm qall<CR>
+" Leader+zで保存して終了
+nnoremap <Space>z :<C-u>wqall<CR>
+
+" Leader+Sでsubstituteコマンド
+nnoremap <Space>S :<C-u>%s/<C-r>///g<Left><Left>
+
+" gJで連結する際に連結部分の空白除去
+" (デフォルトだとインデントなどされてた場合インデント分の空白を残した状態で連結するため)
+nnoremap <silent> gJ mz:<C-u>+1s/^\s\+//e<CR>`zgJ
+xnoremap <silent> gJ :<C-u>'<+1,'>s/^\s\+//e<CR>gvgJ
 
 " 論理行単位ではなく表示行単位でカーソルを移動する
 nnoremap j gj
@@ -77,6 +94,10 @@ cnoremap <C-e> <End>
 
 " *で検索時に次の検索文字に移動しないように設定
 nnoremap * mq*`q
+
+" *で検索時に次の検索文字に移動しないように設定
+nnoremap * *N
+nnoremap g* g*N
 
 " <ctrl+r>*2で無名レジスタ
 inoremap <C-r><C-r> <C-r>"

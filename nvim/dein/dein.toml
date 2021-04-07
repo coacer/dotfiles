@@ -100,7 +100,6 @@ rev = 'release'
 merged = '0'
 hook_add = '''
   execute 'source' g:ROOT_DIR . '/settings/plugins/coc.rc.d/init.vim'
-  execute 'source' g:ROOT_DIR . '/settings/plugins/coc.rc.d/coc-settings.json.vim'
   execute 'source' g:ROOT_DIR . '/settings/plugins/coc.rc.d/extensions.vim'
 '''
 

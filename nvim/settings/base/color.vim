@@ -20,7 +20,7 @@ function! ColorSchemeBulkSetting()
     highlight Visual ctermbg=30 guibg=#123531
     highlight Search ctermbg=29 guifg=#ffffff guibg=#476a47
     highlight IndentGuidesOdd ctermbg=235 guibg=#1e2132
-    highlight Normal guifg=#d0c9f9
+    " highlight Normal guifg=#d0c9f9
 
     " -----JavaScript-----
     highlight javascriptClassKeyword ctermfg=48 guifg=#1ebec9

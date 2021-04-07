@@ -1,6 +1,31 @@
+### 汎用 ###
 snippet     st
 abbr        setTimeout(() => {});
 options     head
   setTimeout((): void => {
     ${2}
   }, ${1:ms});
+
+
+### 限定的 ###
+snippet     composition-function
+abbr        export const use~ = () => {}
+options     head
+  import { InjectionKey, reactive, toRefs } from '@nuxtjs/composition-api';
+
+  type State = {
+    ${1}
+  }
+
+  export const `expand('%:t:r')` = () => {
+    const state = reactive<State>({
+      $1
+    });
+
+    return {
+      ...toRefs(state),
+    };
+  }
+  
+  export type `substitute(expand('%:t:r'), 'use', '', '')`Type = ReturnType<typeof `expand('%:t:r')`>;
+  export const `substitute(expand('%:t:r'), 'use', '', '')`Key: InjectionKey<`substitute(expand('%:t:r'), 'use', '', '')`Type> = Symbol('`substitute(expand('%:t:r'), 'use', '', '')`');
