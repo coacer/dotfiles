@@ -167,3 +167,9 @@ hook_add = '''
   execute 'source' g:ROOT_DIR . '/settings/plugins/vimspector.rc.d/init.vim'
 '''
 
+[[plugins]] # カラースキーム
+repo = 'w0ng/vim-hybrid'
+# hook_add = '''
+#   execute 'source' g:ROOT_DIR . '/settings/plugins/vim-graphql.rc.vim'
+# '''
+

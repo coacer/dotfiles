@@ -44,7 +44,9 @@ function! ColorSchemeBulkSetting()
   endif
 endfunction
 
+""" カラーテーマ """
 colorscheme nord
+
 " ツリービュー拡張子ハイライト
 function! NERDTreeHighlightFile(extension, fg, bg, guifg, guibg)
   exec 'autocmd filetype nerdtree highlight ' . a:extension .' ctermbg='. a:bg .' ctermfg='. a:fg .' guibg='. a:guibg .' guifg='. a:guifg

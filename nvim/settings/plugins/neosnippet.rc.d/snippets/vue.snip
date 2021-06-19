@@ -9,6 +9,15 @@ abbr        const ~ = () => {}
 options     head
  const ${1:name} = (${2}) => {${3}};
 
+snippet     try
+abbr        try {} catch(e) {}
+options     head
+  try {
+    ${1}
+  } catch (${2:e}) {
+    ${3}
+  }
+
 
 ### 限定的 ###
 snippet     vue-ts
@@ -51,13 +60,7 @@ options     head
   export default defineComponent({
     name: '${2:`expand("%:t:r")`}',
 
-    components: {
-    },
-
-    props: {
-    },
-
-    setup(props, {}) {
+    setup() {
       const state = reactive({
         ${3}
       });

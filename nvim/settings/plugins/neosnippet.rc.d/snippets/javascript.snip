@@ -9,3 +9,8 @@ snippet     func-allow
 abbr        const ~ = () => {}
 options     head
  const ${1:name} = (${2}) => {${3}};
+
+snippet     cl:
+abbr        console.log('~:', ~);
+options     head
+  console.log('$1: ', ${1});
