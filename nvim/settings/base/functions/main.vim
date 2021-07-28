@@ -222,10 +222,10 @@ function! s:xdebug_generate_conf() abort
 
   " 設定ファイル書き込み
   execute 'redir! >' outputfile
-    silent echon '"  ========Vdebug======== "' . "\n"
-    silent echon 'let g:xdebug_port = ' . port . "\n"
-    silent echon 'let g:xdebug_guest_path = ' . '"' . guest_path . '"'. "\n"
-    silent echon 'let g:xdebug_host_path = ' . '"' . substitute(execute("pwd"), "\n", "", "g") . '"' . "\n"
+  silent echon '"  ========Vdebug======== "' . "\n"
+  silent echon 'let g:xdebug_port = ' . port . "\n"
+  silent echon 'let g:xdebug_guest_path = ' . '"' . guest_path . '"'. "\n"
+  silent echon 'let g:xdebug_host_path = ' . '"' . substitute(execute("pwd"), "\n", "", "g") . '"' . "\n"
   redir END
   execute 'edit' outputfile
   substitute/^\s\+//e
@@ -281,6 +281,11 @@ let s:git_diff_quit_key = 'q'
 
 function! s:git_difftool_session_start() abort
   try
+    " スワップファイルが存在すると処理が中断してしまうので常にread onlyで開く
+    augroup GitDifftool
+      autocmd!
+      autocmd SwapExists * let v:swapchoice = "o"
+    augroup END
     let diff_args = input("Please input diff arguments: ")
 
     " セッションに今の状態を保持
@@ -318,6 +323,10 @@ function! s:git_difftool_session_end(...) abort
   endif
   execute 'unmap' s:git_diff_previous_key
   execute 'unmap' s:git_diff_quit_key
+
+  augroup GitDifftool
+    autocmd!
+  augroup END
 
   " 異常終了の場合と分岐
   if a:0 ==# 1 && a:1 ==# -1

@@ -56,7 +56,7 @@ augroup Basic
   autocmd!
   " ターミナル表示時は番号を表示しない
   autocmd TermOpen * setlocal nonumber
-  au BufNewFile,BufRead *.vtl set ft=velocity
+  autocmd BufNewFile,BufRead *.vtl set ft=velocity
   " 保存時に末尾の半角/全角スペースを削除
   " autocmd BufWritePre * %s/\v(\s|　)+$//e
   " ファイル表示時にfoldを全て展開

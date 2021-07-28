@@ -5,8 +5,10 @@ call defx#custom#option('_', {
       \ 'buffer_name': 'exlorer',
       \ 'toggle': 1,
       \ 'resume': 1,
-      \ 'columns': 'indent:git:icons:filename:mark',
+      \ 'columns': 'indent:git:space:icons:space:space:filename:mark:size:space:time:format',
       \ })
+
+call defx#custom#column('time', 'format', '20%y/%m/%d %H:%M')
 
 autocmd FileType defx call s:defx_my_settings()
 function! s:defx_my_settings() abort

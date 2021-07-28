@@ -90,4 +90,4 @@ function! ConfirmPreview() abort
     MarkdownPreview
   endif
 endfunction
-autocmd CursorMoved *.md ++once call ConfirmPreview()
+" autocmd CursorMoved *.md ++once call ConfirmPreview()

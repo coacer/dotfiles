@@ -108,3 +108,8 @@ fi
 # tabtab source for slss package
 # uninstall by removing these lines or running `tabtab uninstall slss`
 [[ -f /Users/y.nakagami/dev/sonicmoov/comsbi/sass/comsbi-saas/artillery/node_modules/tabtab/.completions/slss.zsh ]] && . /Users/y.nakagami/dev/sonicmoov/comsbi/sass/comsbi-saas/artillery/node_modules/tabtab/.completions/slss.zsh
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/y.nakagami/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/y.nakagami/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/Users/y.nakagami/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/y.nakagami/google-cloud-sdk/completion.zsh.inc'; fi

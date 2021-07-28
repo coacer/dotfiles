@@ -4,6 +4,11 @@ abbr        console.log()
 options     head
   console.log(${1})
 
+snippet     cl:
+abbr        console.log('~:', ~);
+options     head
+  console.log('$1: ', ${1});
+
 snippet     func-allow
 abbr        const ~ = () => {}
 options     head

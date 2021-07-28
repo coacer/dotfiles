@@ -6,9 +6,9 @@ nnoremap <Leader>d <Nop>
 " ブレイクポイントトグル
 nmap <Leader>dd <Plug>VimspectorToggleBreakpoint
 " 開始(start)
-nnoremap <Leader>ds :<C-u>call vimspector#Launch()<CR>
+nnoremap <Leader>ds :set noequalalways<CR>:<C-u>call vimspector#Launch()<CR>
 " 閉じる(quit)
-nnoremap <Leader>dq :<C-u>call vimspector#Reset()<CR>
+nnoremap <Leader>dq :set equalalways<CR>:<C-u>call vimspector#Reset()<CR>
 " 処理を再開(continue)
 nmap <Leader>dc <Plug>VimspectorContinue
 " リスタート(restart)
