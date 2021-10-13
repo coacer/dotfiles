@@ -20,7 +20,7 @@ set fileencodings=ucs-boms,utf-8,euc-jp,cp932 " 読み込み時の文字コー�
 set fileformats=unix,dos,mac " 改行コードの自動判別. 左側が優先される
 set hidden " バッファ保存せずに移動しようとした場合に!をつけなくても移動できる, またargsの移動も隠しファイルにする
 set undofile " undo履歴をファイルに保存(vim終了時にundo履歴が削除されない)
-" set mouse=a " マウス有効化
+set mouse=a " マウス有効化
 set termguicolors
 set pumblend=40 " ポップアップメニューの透明度を設定
 set winblend=30 " floating windowsの透明度を設定
@@ -55,7 +55,8 @@ set regexpengine=1 "@see https://github.com/vim/vim/issues/2712#issuecomment-372
 augroup Basic
   autocmd!
   " ターミナル表示時は番号を表示しない
-  autocmd TermOpen * setlocal nonumber
+  autocmd TermOpen * setlocal nonumber | startinsert
+  autocmd BufWinEnter term://* startinsert
   autocmd BufNewFile,BufRead *.vtl set ft=velocity
   " 保存時に末尾の半角/全角スペースを削除
   " autocmd BufWritePre * %s/\v(\s|　)+$//e

@@ -1,4 +1,4 @@
-let g:vimspector_install_gadgets = ['vscode-node-debug2']
+let g:vimspector_install_gadgets = ['vscode-node-debug2', "vscode-go"]
 let g:vimspector_base_dir=expand('$HOME/.config/nvim/settings/plugins/vimspector.rc.d')
 
 " Leader + d 無効化

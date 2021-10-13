@@ -16,6 +16,18 @@ function! ColorSchemeBulkSetting()
   " vim-highlightedyank
   highlight HighlightedyankRegion guibg=#626679 gui=bold
 
+  " coc.nvim
+  highlight CocErrorSign guifg=#FF888E
+  highlight CocErrorHighlight guifg=none
+
+  " easymotion
+  hi EasyMotionTarget guifg=#8CFFC5
+  hi EasyMotionTarget2First guifg=#8CFFC5
+  hi EasyMotionTarget2Second guifg=#6EC79B
+  hi EasyMotionShade guifg=#838E94
+  " hi EasyMotionMoveHL guifg=blue
+  " hi EasyMotionIncSearch ctermbg=green ctermfg=black
+
   if g:colors_name == "iceberg"
     highlight Visual ctermbg=30 guibg=#123531
     highlight Search ctermbg=29 guifg=#ffffff guibg=#476a47

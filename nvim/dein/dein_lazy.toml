@@ -49,9 +49,9 @@ on_ft = ['javascript', 'javascriptreact', 'tsx']
 repo = 'ianks/vim-tsx'
 on_ft = ['tsx']
 
-[[plugins]] # golang
-repo = 'fatih/vim-go'
-on_ft = ['go']
+# [[plugins]] # golang
+# repo = 'fatih/vim-go'
+# on_ft = ['go']
 
 [[plugins]] # Xdebugとの連携プラグイン
 repo = 'joonty/vdebug'
@@ -71,4 +71,12 @@ hook_source = '''
 [[plugins]] # Terraformシンタックス・コマンド
 repo = 'hashivim/vim-terraform'
 on_ft = ['terraform']
+
+[[plugins]] # Golang formatter
+repo = 'mattn/vim-goimports'
+on_ft = ['go']
+
+[[plugins]] # Protcol Buffers Syntax
+repo = 'uarun/vim-protobuf'
+on_ft = ['proto']
 

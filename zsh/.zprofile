@@ -1,6 +1,9 @@
 eval "$(rbenv init -)" # rbenv初期化(パスが通る)
 eval "$(pyenv init -)"
 eval "$(nodenv init -)"
+# eval "$(goenv init -)"
+# export GO111MODULE=auto
+
 export PATH="/usr/local/opt/mysql/bin:$PATH"
 export PATH="$PATH:./node_modules/.bin"
 export PATH="$PATH:/usr/local/opt/llvm/bin"

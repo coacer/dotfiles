@@ -3,8 +3,8 @@ nmap <Leader>* "zyiw<Leader>g'<Esc>"zpi
 vmap <Leader>* "zy<Leader>g'<Esc>"zpi
 
 " プレビューウィンドウ無効化
-let g:fzf_preview_window = []
-let g:fzf_layout = { 'window': { 'width': 0.6, 'height': 0.2 } }
+" let g:fzf_preview_window = []
+let g:fzf_layout = { 'window': { 'width': 0.6, 'height': 0.4 } }
 " let g:fzf_colors = {
 "   \ 'fg':      ['fg', 'Normal'],
 "   \ 'bg':      ['bg', 'Normal'],

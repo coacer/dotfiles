@@ -2,7 +2,7 @@
   path = .gitconfig.local # user.name, user.emailの設定ファイル読み込み
 [core]
   editor = nvim
-  excludesfile = ~/.gitignore_global
+	excludesfile = /Users/y.nakagami/.gitignore_global
 [alias]
   st = status
   cc = commit
@@ -27,3 +27,14 @@
   cmd = "nvim -d -c \"4wincmd w | wincmd J\" \"$LOCAL\" \"$BASE\" \"$REMOTE\"  \"$MERGED\""
 [mergetool]
   keepBackup = false
+[difftool "sourcetree"]
+	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+	path = 
+[mergetool "sourcetree"]
+	cmd = /Applications/Sourcetree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	trustExitCode = true
+[user]
+	name = y.nakagami
+	email = 
+[commit]
+	template = /Users/y.nakagami/.stCommitMsg

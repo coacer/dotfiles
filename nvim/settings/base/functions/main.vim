@@ -99,7 +99,7 @@ function! s:color_picker() abort
       redraw!
       return EchoErr('word under the cursor is not color code')
     endif
-    sleep 300m "normalの処理が遅いため
+    sleep 600m "normalの処理が遅いため
   endif
   call CocAction('pickColor')
   normal! gUiw
@@ -175,7 +175,7 @@ endfunction
 " }}}
 
 " FloatTerm実行時に任意のコマンド呼び出し {{{
-function! s:term_invoke(...) abort
+function! s:float_term_invoke(...) abort
   if a:0 > 0
     let cmd = a:1
   else
@@ -186,8 +186,18 @@ endfunction
 " }}}
 
 " 引数がある時はそのコマンドを実行し、無い時は入力を促す
-command! -nargs=? Term call <SID>term_invoke(<f-args>)
+command! -nargs=? TermFloat call <SID>float_term_invoke(<f-args>)
 
+function! s:term_invoke() abort
+  let term_buf = bufname('term://') 
+  if empty(term_buf)
+    terminal
+  else
+    execute 'buffer ' . term_buf
+  endif
+endfunction
+
+command! -nargs=0 Term call <SID>term_invoke()
 
 " xdebugの設定ファイル(.vdebug.conf.vim)を作成するコマンド(以下ファイル例) {{{
 " == Sample(.vdebug.conf.vim) ==

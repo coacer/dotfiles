@@ -3,14 +3,6 @@
   "tsserver.enableJavascript": true,
   "eslint.filetypes": ["javascript", "typescript", "typescriptreact", "javascriptreact", "typescript.tsx", "vue"],
   "languageserver": {
-    "golang": {
-      "command": "gopls",
-      "rootPatterns": ["go.mod", ".vim/", ".git/", ".hg/"],
-      "filetypes": ["go"],
-      "initializationOptions": {
-        "usePlaceholders": true
-      }
-    },
     "terraform": {
       "command": "~/.bin/terraform-lsp",
       "filetypes": ["terraform"],

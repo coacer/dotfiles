@@ -5,7 +5,7 @@ call defx#custom#option('_', {
       \ 'buffer_name': 'exlorer',
       \ 'toggle': 1,
       \ 'resume': 1,
-      \ 'columns': 'indent:git:space:icons:space:space:filename:mark:size:space:time:format',
+      \ 'columns': 'indent:git:space:icons:space:space:filename:size:space:time:format',
       \ })
 
 call defx#custom#column('time', 'format', '20%y/%m/%d %H:%M')
@@ -31,9 +31,11 @@ function! s:defx_my_settings() abort
   \ defx#do_action('open_tree', 'toggle')
   nnoremap <silent><buffer><expr> K
   \ defx#do_action('new_directory')
+  " nnoremap <silent><buffer><expr> N
+  " \ defx#do_action('new_file')
+  " nnoremap <silent><buffer><expr> M
+  " \ defx#do_action('new_multiple_files')
   nnoremap <silent><buffer><expr> N
-  \ defx#do_action('new_file')
-  nnoremap <silent><buffer><expr> M
   \ defx#do_action('new_multiple_files')
   nnoremap <silent><buffer><expr> C
   \ defx#do_action('toggle_columns',
@@ -75,6 +77,8 @@ function! s:defx_my_settings() abort
   nnoremap <silent><buffer><expr> <C-g>
   \ defx#do_action('print')
   nnoremap <silent><buffer><expr> cd
+  \ defx#do_action('cd', input('Please input change directory: ', '', 'file'))
+  nnoremap <silent><buffer><expr> C
   \ defx#do_action('change_vim_cwd')
   nnoremap <silent><buffer> ?
   \ :<C-u>execute 'split' g:ROOT_DIR . '/settings/plugins/defx.rc.vim'<CR>

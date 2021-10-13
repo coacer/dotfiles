@@ -2,7 +2,6 @@ let g:coc_global_extensions = [
       \ 'coc-css',
       \ 'coc-diagnostic',
       \ 'coc-eslint',
-      \ 'coc-go',
       \ 'coc-highlight',
       \ 'coc-jest',
       \ 'coc-json',
@@ -13,4 +12,5 @@ let g:coc_global_extensions = [
       \ 'coc-tsserver',
       \ 'coc-vetur',
       \ 'coc-cfn-lint',
+      \ 'coc-protobuf',
       \ ]

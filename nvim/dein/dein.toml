@@ -173,3 +173,9 @@ repo = 'w0ng/vim-hybrid'
 #   execute 'source' g:ROOT_DIR . '/settings/plugins/vim-graphql.rc.vim'
 # '''
 
+[[plugins]]
+repo = 'easymotion/vim-easymotion'
+hook_add = '''
+  execute 'source' g:ROOT_DIR . '/settings/plugins/vim-easymotion.rc.vim'
+'''
+
