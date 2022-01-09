@@ -28,6 +28,8 @@ brew install vim neovim emacs fzf git hub docker lazydocker lazygit tig \
   tree autojump composer awscli rbenv pyenv pyenv-virtualenv nodenv bat luarocks;
 brew install tmux --HEAD
 brew cask install docker iterm2;
+brew tap homebrew/cask-fonts
+brew install font-hack-nerd-font --cask
 
 # To install useful key bindings and fuzzy completion:
 $(brew --prefix)/opt/fzf/install
