@@ -12,6 +12,6 @@ export PATH="$PATH:$GOPATH/bin"
 export NODE_PATH=`npm bin -g`
 export PATH="$PATH:$NODE_PATH"
 export PYENV_ROOT="$HOME/.pyenv"
-export PATH="$PYENV_ROOT/bin:$PATH"
+export PATH="$PYENV_ROOT/shims:$PATH"
 export NVIM_NODE_LOG_FILE="${HOME}/.local/share/nvim/rplugin/log/node.log"
 if which pyenv-virtualenv-init > /dev/null; then eval "$(pyenv virtualenv-init -)"; fi
