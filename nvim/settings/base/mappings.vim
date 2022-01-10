@@ -57,7 +57,7 @@ nnoremap <Leader>r "
 xnoremap <Leader>r "
 
 " Leader+Sでsubstituteコマンド
-nnoremap <Leader>S <Cmd>%s/<C-r>///g<Left><Left>
+nnoremap <Leader>S :%s/<C-r>///g<Left><Left>
 
 " ctrl+hでヘルプ入力
 nnoremap <C-h> <Cmd>Helptags<CR>
@@ -116,6 +116,8 @@ cnoremap <C-b> <Left>
 cnoremap <C-f> <Right>
 cnoremap <C-a> <Home>
 cnoremap <C-e> <End>
+
+cnoremap <C-k> \/
 
 " *で検索時に次の検索文字に移動しないように設定
 nnoremap * *N

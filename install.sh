@@ -25,15 +25,21 @@ ln -s ~/dotfiles/zsh/.zprofile ~/.zprofile
 
 brew update;
 brew install vim neovim emacs fzf git hub docker lazydocker lazygit tig \
-  tree autojump composer awscli rbenv pyenv pyenv-virtualenv nodenv bat luarocks;
+  tree autojump composer awscli rbenv pyenv pyenv-virtualenv nodenv bat luarocks jq;
 brew install tmux --HEAD
-brew cask install docker iterm2;
+brew install docker iterm2 --cask;
 
 # To install useful key bindings and fuzzy completion:
 $(brew --prefix)/opt/fzf/install
 
+# kubectl
+
+
 # 読み込み
 source ~/.zshrc;
+curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/darwin/amd64/kubectl
+mv kubectl /usr/local/bin
+sudo chmod +x /usr/local/bin/kubectl
 
 # ==== Neovim ====
 # ==== dein.vimインストール ====

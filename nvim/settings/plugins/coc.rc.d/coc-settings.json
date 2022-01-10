@@ -1,7 +1,8 @@
 {
   "suggest.maxCompleteItemCount": 8,
   "tsserver.enableJavascript": true,
-  "eslint.filetypes": ["javascript", "typescript", "typescriptreact", "javascriptreact", "typescript.tsx", "vue"],
+  "eslint.probe": ["javascript", "typescript", "typescriptreact", "javascriptreact", "typescript.tsx", "vue"],
+  "eslint.validate": ["javascript", "typescript", "typescriptreact", "javascriptreact", "typescript.tsx", "vue"],
   "languageserver": {
     "terraform": {
       "command": "~/.bin/terraform-lsp",
