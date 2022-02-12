@@ -85,4 +85,3 @@ augroup CocJsFormatter
     " autocmd BufWritePre *.vue EslintFix
   " endif
 augroup END
-let g:node_client_debug = 1

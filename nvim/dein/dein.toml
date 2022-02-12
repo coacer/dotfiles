@@ -106,6 +106,13 @@ hook_add = '''
 [[plugins]] # スニペット定義
 repo = 'Shougo/neosnippet-snippets'
 
+[[plugins]] # スニペットエンジン
+repo = 'Shougo/neosnippet'
+hook_add = '''
+  execute 'source' g:ROOT_DIR . '/settings/plugins/neosnippet.rc.d/init.vim'
+'''
+depends = ['neosnippet-snippets']
+
 [[plugins]] # カラースキーム
 repo = 'jonathanfilip/vim-lucius'
 
