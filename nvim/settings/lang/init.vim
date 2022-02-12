@@ -15,6 +15,11 @@ function! s:RubyExecToggle(flag) abort
   augroup END
 endfunction
 
+augroup RubyFormatter
+  autocmd!
+  autocmd BufWritePost *.rb call CocActionAsync('format')
+augroup END
+
 function! s:ERubySetting() abort
   " ctrl+j -/= でerbのカッコを表示
   inoremap <C-j>- <%  %><Left><Left><Left>

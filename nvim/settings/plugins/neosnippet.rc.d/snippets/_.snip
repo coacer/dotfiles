@@ -1,0 +1,12 @@
+# Global snippets
+
+snippet     datetime_utc_iso8601
+alias       dfu
+options     word
+    `trim(system("date -u '+%Y-%m-%dT%H:%M:%S'"))`${0}
+
+
+snippet     date_utc_iso8601
+alias       ddu
+options     word
+    `trim(system("date -u '+%Y-%m-%d'"))`${0}

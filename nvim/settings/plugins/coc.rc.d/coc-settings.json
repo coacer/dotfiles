@@ -3,6 +3,10 @@
   "tsserver.enableJavascript": true,
   "eslint.probe": ["javascript", "typescript", "typescriptreact", "javascriptreact", "typescript.tsx", "vue"],
   "eslint.validate": ["javascript", "typescript", "typescriptreact", "javascriptreact", "typescript.tsx", "vue"],
+  "solargraph.diagnostics": true,
+  "solargraph.autoformat": true,
+  "solargraph.formatting": true,
+  "solargraph.hover": true,
   "languageserver": {
     "terraform": {
       "command": "~/.bin/terraform-lsp",
