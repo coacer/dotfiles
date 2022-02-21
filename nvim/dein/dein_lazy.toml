@@ -71,3 +71,17 @@ on_ft = ['go']
 repo = 'uarun/vim-protobuf'
 on_ft = ['proto']
 
+[[plugins]] # Dart
+repo = 'dart-lang/dart-vim-plugin'
+on_ft = ['dart']
+hook_source = '''
+  execute 'source' g:ROOT_DIR . '/settings/plugins/dart-vim-plugin.rc.vim'
+'''
+
+[[plugins]] # Flutter
+repo = 'thosakwe/vim-flutter'
+on_ft = ['dart']
+hook_source = '''
+  execute 'source' g:ROOT_DIR . '/settings/plugins/vim-flutter.rc.vim'
+'''
+

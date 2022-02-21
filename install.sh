@@ -25,10 +25,10 @@ ln -s ~/dotfiles/zsh/.zprofile ~/.zprofile
 
 brew update;
 brew install vim neovim emacs fzf git hub docker lazydocker lazygit tig \
-  tree autojump composer awscli rbenv pyenv pyenv-virtualenv nodenv bat luarocks jq;
+  tree autojump composer awscli rbenv pyenv pyenv-virtualenv nodenv bat luarocks jq asdf;
 brew install tmux --HEAD
 brew install docker iterm2 --cask;
-brew tap homebrew/cask-fonts
+brew tap homebrew/cask-fonts dart-lang/dart
 brew install font-hack-nerd-font --cask
 
 # To install useful key bindings and fuzzy completion:

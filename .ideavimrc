@@ -10,6 +10,7 @@ set showcmd " 右下にコマンドが表示される
 set ignorecase " 検索パターンに大文字小文字を区別しない
 set smartcase " 検索パターンに大文字を含んでいたら大文字小文字を区別する
 set expandtab " タブ入力を複数の空白入力に置き換える
+set surround " JetBrains IDE特有のSurrounded vim有効化オプション
 " ctrl+lでesc
 " snoremapはスニペット使用時に使う
 inoremap <C-l> <Esc>
