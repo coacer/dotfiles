@@ -140,7 +140,8 @@ xnoremap <silent> . :normal .<CR>
 
 " Float Term系(functions.vim)
 " leader + ttでTermを開く
-nnoremap <silent> <Leader>tt :Term<CR>
+" nnoremap <silent> <Leader>tt :Term<CR>
+nnoremap <silent> <Leader>tt :TermFloat -<CR>
 " leader + tgでFloat Termでlazygitを開く
 nnoremap <silent> <Leader>tg :TermFloat lazygit<CR>
 " leader + tdでFloat Termでlazydockerを開く

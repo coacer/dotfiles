@@ -177,7 +177,11 @@ endfunction
 " FloatTerm実行時に任意のコマンド呼び出し {{{
 function! s:float_term_invoke(...) abort
   if a:0 > 0
-    let cmd = a:1
+    if a:1 == '-'
+      let cmd = ''
+    else
+      let cmd = a:1
+    endif
   else
     let cmd = input("Please input command: ")
   endif

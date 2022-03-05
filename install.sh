@@ -31,6 +31,8 @@ brew install docker iterm2 --cask;
 brew tap homebrew/cask-fonts dart-lang/dart
 brew install font-hack-nerd-font --cask
 
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+
 # To install useful key bindings and fuzzy completion:
 $(brew --prefix)/opt/fzf/install
 
