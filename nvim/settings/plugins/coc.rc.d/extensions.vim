@@ -14,4 +14,6 @@ let g:coc_global_extensions = [
       \ 'coc-cfn-lint',
       \ 'coc-protobuf',
       \ 'coc-flutter',
+      \ 'coc-go',
+      \ 'coc-python',
       \ ]

@@ -1,5 +1,8 @@
 {
   "suggest.maxCompleteItemCount": 8,
+  "coc.preferences.formatOnSaveFiletypes": [
+     "go"
+  ],
   "tsserver.enableJavascript": true,
   "eslint.probe": ["javascript", "typescript", "typescriptreact", "javascriptreact", "typescript.tsx", "vue"],
   "eslint.validate": ["javascript", "typescript", "typescriptreact", "javascriptreact", "typescript.tsx", "vue"],
@@ -47,6 +50,11 @@
           "php": "phpcs"
         }
       }
+    },
+    "golang": {
+      "command": "gopls",
+      "rootPatterns": ["go.mod", ".vim/", ".git/", ".hg/"],
+      "filetypes": ["go"]
     }
   }
 }
