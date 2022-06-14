@@ -18,4 +18,5 @@ export PATH="$PATH:$HOME/flutter/bin"
 export PATH="$PATH:$HOME/Library/Android/sdk/cmdline-tools/latest/bin"
 export SBT_OPTS="-Xms1G -Xmx2G -XX:MetaspaceSize=256M -XX:MaxMetaspaceSize=768M -XX:+UseParallelGC -Duser.timezone=UTC -Dfile.encoding=UTF8"
 export PATH="/usr/local/opt/scala@2.11/bin:$PATH"
+export JAVA_HOME=/Library/Java/JavaVirtualMachines/adoptopenjdk-8.jdk/Contents/Home
 if which pyenv-virtualenv-init > /dev/null; then eval "$(pyenv virtualenv-init -)"; fi
