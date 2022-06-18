@@ -9,9 +9,9 @@ endfunction
 " }}}
 
 " アラートメッセージ出力関数 {{{
-function! EchoAlert(msg) abort
+function! EchoWarning(msg) abort
   echohl AlertMsg
-  echo 'Alert:' a:msg
+  echo 'Warning:' a:msg
   echohl None
 endfunction
 " }}}
@@ -24,6 +24,15 @@ function! EchoErr(msg) abort
 endfunction
 " }}}
 
+" util {{{
+function! ParseJsonFile(filename) abort
+  let json = ''
+  for line in readfile(a:filename)
+    let json .= line
+  endfor
+  return json_decode(json)
+endfunction
+" }}}
 
 " :SyntaxInfoコマンドでカーソル下のシンタックスグループ名を表示する関数 {{{
 function! s:get_syn_id(transparent)
@@ -189,7 +198,7 @@ function! s:float_term_invoke(...) abort
 endfunction
 " }}}
 
-" 引数がある時はそのコマンドを実行し、無い時は入力を促す
+" 引数がある時はそのコマンドを実行し、無い時は入力を促す {{{
 command! -nargs=? TermFloat call <SID>float_term_invoke(<f-args>)
 
 function! s:term_invoke() abort
@@ -202,6 +211,7 @@ function! s:term_invoke() abort
 endfunction
 
 command! -nargs=0 Term call <SID>term_invoke()
+" }}}
 
 " xdebugの設定ファイル(.vdebug.conf.vim)を作成するコマンド(以下ファイル例) {{{
 " == Sample(.vdebug.conf.vim) ==

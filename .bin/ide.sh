@@ -1,8 +1,11 @@
 #!/bin/bash
 
 if [ "$#" -eq 0 ]; then
-  tmux split-window -v -p 22
-  tmux split-window -h -p 50
+  # tmux split-window -v -p 22
+  tmux split-window -v
+  tmux resize-pane -y 12
+  # tmux split-window -h -p 50
+  tmux split-window -h
   tmux select-pane -t 0
   nvim
 else

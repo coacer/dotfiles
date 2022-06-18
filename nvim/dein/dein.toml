@@ -92,7 +92,7 @@ hook_add = '''
 '''
 
 [[plugins]] # fzf本体
-repo = '/usr/local/opt/fzf'
+repo = '/opt/homebrew/opt/fzf'
 
 [[plugins]] # LSPクライアントパッケージマネージャー
 repo = 'neoclide/coc.nvim'
@@ -184,5 +184,14 @@ repo = 'w0ng/vim-hybrid'
 repo = 'easymotion/vim-easymotion'
 hook_add = '''
   execute 'source' g:ROOT_DIR . '/settings/plugins/vim-easymotion.rc.vim'
+'''
+
+[[plugins]] # lua
+repo = 'nvim-lua/plenary.nvim'
+
+[[plugins]] # SQL
+repo = 'vim-scripts/dbext.vim'
+hook_add = '''
+  execute 'source' g:ROOT_DIR . '/settings/plugins/dbext.rc.d/dbext.rc.vim'
 '''
 

@@ -17,7 +17,7 @@ module.exports = plugin => {
    * alertメッセージ関数
    * @param string msg
    */
-  const echoAlert = msg => plugin.nvim.call('EchoAlert', msg);
+  const echoAlert = msg => plugin.nvim.call('EchoWarning', msg);
 
   /**
    * errorメッセージ関数

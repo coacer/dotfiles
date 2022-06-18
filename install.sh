@@ -25,11 +25,10 @@ ln -s ~/dotfiles/zsh/.zprofile ~/.zprofile
 
 brew update;
 brew install vim neovim emacs fzf git hub docker lazydocker lazygit tig \
-  tree autojump composer awscli rbenv pyenv pyenv-virtualenv nodenv bat luarocks jq asdf gopls;
+  tree autojump composer awscli rbenv pyenv pyenv-virtualenv nodenv bat luarocks jq asdf gopls mysql;
 brew install tmux --HEAD
-brew install docker iterm2 --cask;
+brew install docker iterm2 clipy homebrew/cask-versions/sequel-pro-nightly font-hack-nerd-font --cask;
 brew tap homebrew/cask-fonts dart-lang/dart
-brew install font-hack-nerd-font --cask
 
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
@@ -41,8 +40,12 @@ $(brew --prefix)/opt/fzf/install
 
 # 読み込み
 source ~/.zshrc;
+# x86
 curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/darwin/amd64/kubectl
-mv kubectl /usr/local/bin
+# arm64
+curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/darwin/arm64/kubectl"
+
+sudo mv kubectl /usr/local/bin
 sudo chmod +x /usr/local/bin/kubectl
 
 # ==== Neovim ====

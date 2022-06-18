@@ -1,4 +1,5 @@
 let g:coc_global_extensions = [
+      \ 'coc-vimlsp',
       \ 'coc-css',
       \ 'coc-diagnostic',
       \ 'coc-eslint',
