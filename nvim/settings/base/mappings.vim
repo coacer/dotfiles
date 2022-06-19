@@ -59,8 +59,6 @@ xnoremap <Leader>r "
 " Leader+Sでsubstituteコマンド
 nnoremap <Leader>S :%s/<C-r>///g<Left><Left>
 
-" ctrl+hでヘルプ入力
-nnoremap <C-h> <Cmd>Helptags<CR>
 " +をクリップボードに保存するオペレータとする
 nnoremap + "+y
 nnoremap ++ "+yy
@@ -120,8 +118,8 @@ cnoremap <C-e> <End>
 cnoremap <C-k> \/
 
 " *で検索時に次の検索文字に移動しないように設定
-nnoremap * *N
-nnoremap g* g*N
+" nnoremap * *N
+" nnoremap g* g*N
 
 " <ctrl+r>*2で無名レジスタ
 inoremap <C-r><C-r> <C-r>"
@@ -147,5 +145,9 @@ nnoremap <silent> <Leader>tg :TermFloat lazygit<CR>
 " leader + tdでFloat Termでlazydockerを開く
 nnoremap <silent> <Leader>td :TermFloat lazydocker<CR>
 
-" GitDiffFiles(functions.vim)
-nnoremap <Leader><C-G><C-G> :GitDiffStart<CR>
+" diffview
+nnoremap <Leader><C-G><C-G> :DiffOpen<CR>
+
+" hlslensにバグがあるため
+nnoremap n /<CR>
+

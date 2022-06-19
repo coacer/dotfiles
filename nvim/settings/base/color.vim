@@ -21,12 +21,25 @@ function! ColorSchemeBulkSetting()
   highlight CocErrorHighlight guifg=none
 
   " easymotion
-  hi EasyMotionTarget guifg=#8CFFC5
-  hi EasyMotionTarget2First guifg=#8CFFC5
-  hi EasyMotionTarget2Second guifg=#6EC79B
-  hi EasyMotionShade guifg=#838E94
-  " hi EasyMotionMoveHL guifg=blue
-  " hi EasyMotionIncSearch ctermbg=green ctermfg=black
+  highlight EasyMotionTarget guifg=#8CFFC5
+  highlight EasyMotionTarget2First guifg=#8CFFC5
+  highlight EasyMotionTarget2Second guifg=#6EC79B
+  highlight EasyMotionShade guifg=#838E94
+  " highlight EasyMotionMoveHL guifg=blue
+  " highlight EasyMotionIncSearch ctermbg=green ctermfg=black
+
+  " nvim-notify
+  highlight NotifyERRORBorder guifg=#BA1F1F
+  highlight NotifyERRORIcon guifg=#F70067
+  highlight NotifyERRORTitle  guifg=#F70067
+
+  " git-conflict
+  highlight GitConflictCurrent guibg=#25374d
+  highlight GitConflictIncoming guibg=#44453c
+  highlight GitConflictAncestor guibg=none
+  highlight GitConflictCurrentLabel guibg=#324B68
+  highlight GitConflictIncomingLabel guibg=#505245
+  highlight GitConflictAncestorLabel guibg=none
 
   if g:colors_name == "iceberg"
     highlight Visual ctermbg=30 guibg=#123531

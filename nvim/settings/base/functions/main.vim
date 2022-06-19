@@ -137,9 +137,9 @@ let s:float_term_border_win = 0
 let s:float_term_win = 0
 function! s:float_term(...)
   " 画面サイズからウィンドウの位置とサイズを決定しnumberにキャスト
-  let height = float2nr((&lines - 2) * 0.7)
+  let height = float2nr((&lines - 2) * 0.85)
   let row = float2nr((&lines - height) / 2)
-  let width = float2nr(&columns * 0.7)
+  let width = float2nr(&columns * 0.85)
   let col = float2nr((&columns - width) / 2)
   " Border Window
   let border_opts = {

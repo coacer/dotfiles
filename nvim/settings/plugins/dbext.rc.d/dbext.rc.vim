@@ -1,3 +1,4 @@
+let s:plugin_name = 'dbext.vim'
 let s:profile_config_file = '.neovim/dbext/profile.json'
 
 function! s:load_profile() abort
@@ -33,7 +34,7 @@ endfunction
 function! s:port_forward(profile_name) abort
   let profile = g:DbextProfile['profiles'][a:profile_name]
   if !profile['ssh_over']
-    call EchoErr("this profile's ssh_over is false.")
+    call Notify(s:plugin_name, "this profile's ssh_over is false.", "error")
     return
   endif
 
@@ -68,7 +69,7 @@ function! s:prompt_for_buffer_parameters() abort
   let target_pf_nm = ''
   if strlen(profile_num) != 0
     if !has_key(profile_num_dict, profile_num)
-      call EchoWarning("Please enter the correct number.")
+      call Notify(s:plugin_name, "Please enter the correct number.", 'warn')
       return
     endif
     let target_pf_nm = profile_num_dict[profile_num]
@@ -80,19 +81,31 @@ function! s:prompt_for_buffer_parameters() abort
   endif
 
   execute 'DBSetOption profile=' . target_pf_nm
-  call EchoSuccess(printf("'%s' profile was connected successfully.", target_pf_nm))
+
+  DBCompleteTables
+
+  call Notify(s:plugin_name, printf("'%s' profile was connected successfully.", target_pf_nm))
+
 endfunction
 
 function! s:kill_port_forward_process() abort
   call system("kill `ps aux | grep \"ssh -f\" | grep -v grep | awk '{print $2;}'`")
 endfunction
 
+call s:load_profile()
+
 augroup Dbext
   autocmd!
+  function! s:complete_table_and_notify() abort
+    silent DBCompleteTables
+    call Notify(s:plugin_name, 'Load db completed successfully.')
+  endfunction
+  if exists('g:dbext_default_profile') && strlen(g:dbext_default_profile) != 0
+    autocmd VimEnter * call s:complete_table_and_notify()
+  endif
   autocmd VimLeave * silent call s:kill_port_forward_process()
 augroup end
 
-call s:load_profile()
 command! DbextProfileSet call s:prompt_for_buffer_parameters()
 command! DbextProfileLoad call s:load_profile()
 nnoremap <Leader>sbp <Cmd>DbextProfileSet<CR>

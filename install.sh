@@ -25,7 +25,7 @@ ln -s ~/dotfiles/zsh/.zprofile ~/.zprofile
 
 brew update;
 brew install vim neovim emacs fzf git hub docker lazydocker lazygit tig \
-  tree autojump composer awscli rbenv pyenv pyenv-virtualenv nodenv bat luarocks jq asdf gopls mysql;
+  tree autojump composer awscli rbenv pyenv pyenv-virtualenv nodenv bat luarocks jq asdf gopls mysql ripgrep;
 brew install tmux --HEAD
 brew install docker iterm2 clipy homebrew/cask-versions/sequel-pro-nightly font-hack-nerd-font --cask;
 brew tap homebrew/cask-fonts dart-lang/dart

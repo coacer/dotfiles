@@ -4,7 +4,7 @@ vmap <Leader>* "zy<Leader>g'<Esc>"zpi
 
 " プレビューウィンドウ無効化
 " let g:fzf_preview_window = []
-let g:fzf_layout = { 'window': { 'width': 0.6, 'height': 0.4 } }
+let g:fzf_layout = { 'window': { 'width': 0.8, 'height': 0.8 } }
 " let g:fzf_colors = {
 "   \ 'fg':      ['fg', 'Normal'],
 "   \ 'bg':      ['bg', 'Normal'],
@@ -26,8 +26,8 @@ command! -bang -nargs=* GGrep
       \   fzf#vim#with_preview({'dir': systemlist('git rev-parse --show-toplevel')[0]}), <bang>0)
 
 " Mappings
-nnoremap <Leader>f :<C-u>Files<CR>
-nnoremap <Leader>F :<C-u>GFiles<CR>
-nnoremap <Leader>g :<C-u>GGrep<CR>
-nnoremap <Leader>b :<C-u>Buffers<CR>
-nnoremap <Leader>l :<C-u>BLines<CR>
+" nnoremap <Leader>f :<C-u>Files<CR>
+" nnoremap <Leader>F :<C-u>GFiles<CR>
+" nnoremap <Leader>g :<C-u>GGrep<CR>
+" nnoremap <Leader>b :<C-u>Buffers<CR>
+" nnoremap <Leader>l :<C-u>BLines<CR>

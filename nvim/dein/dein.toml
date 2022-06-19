@@ -167,6 +167,7 @@ hook_add = '''
   execute 'source' g:ROOT_DIR . '/settings/plugins/vim-graphql.rc.vim'
 '''
 
+# TODO: mfussenegger/nvim-dapに移行検討
 [[plugins]] # デバッガー
 repo = "puremourning/vimspector"
 build = "./install_gadget.py --basedir $HOME/.config/nvim/settings/plugins/vimspector.rc.d"
@@ -176,9 +177,6 @@ hook_add = '''
 
 [[plugins]] # カラースキーム
 repo = 'w0ng/vim-hybrid'
-# hook_add = '''
-#   execute 'source' g:ROOT_DIR . '/settings/plugins/vim-graphql.rc.vim'
-# '''
 
 [[plugins]] # カーソルジャンプ
 repo = 'easymotion/vim-easymotion'
@@ -193,5 +191,63 @@ repo = 'nvim-lua/plenary.nvim'
 repo = 'vim-scripts/dbext.vim'
 hook_add = '''
   execute 'source' g:ROOT_DIR . '/settings/plugins/dbext.rc.d/dbext.rc.vim'
+'''
+
+[[plugins]] # Finder
+repo = 'nvim-telescope/telescope.nvim'
+hook_add = '''
+  execute 'source' g:ROOT_DIR . '/settings/plugins/telescope.rc.d/telescope.rc.vim'
+'''
+
+[[plugins]] # 通知
+repo = 'rcarriga/nvim-notify'
+hook_add = '''
+  execute 'source' g:ROOT_DIR . '/settings/plugins/nvim-notify.rc.vim'
+'''
+
+[[plugins]] # telescope extension
+repo = 'nvim-telescope/telescope-frecency.nvim'
+depends = ['tami5/sqlite.lua']
+
+[[plugins]] # sqlite
+repo = 'tami5/sqlite.lua'
+
+[[plugins]] # scroll bar
+repo = 'petertriho/nvim-scrollbar'
+hook_add = '''
+  execute 'source' g:ROOT_DIR . '/settings/plugins/nvim-scrollbar.rc.vim'
+'''
+
+[[plugins]] # search utility
+repo = 'kevinhwang91/nvim-hlslens'
+
+[[plugins]] # '*' command extension
+repo = 'haya14busa/vim-asterisk'
+hook_add = '''
+  execute 'source' g:ROOT_DIR . '/settings/plugins/vim-asterisk.rc.vim'
+'''
+
+[[plugins]] # window adjust
+repo = 'kwkarlwang/bufresize.nvim'
+hook_add = '''
+  execute 'source' g:ROOT_DIR . '/settings/plugins/bufresize.rc.vim'
+'''
+
+[[plugins]] # quickfix extension
+repo = 'kevinhwang91/nvim-bqf'
+
+[[plugins]] # git diff
+repo = 'sindrets/diffview.nvim'
+hook_add = '''
+  execute 'source' g:ROOT_DIR . '/settings/plugins/diffview.rc.vim'
+'''
+
+[[plugins]] # icon
+repo = 'kyazdani42/nvim-web-devicons'
+
+[[plugins]] # git conflict
+repo = 'akinsho/git-conflict.nvim'
+hook_add = '''
+  execute 'source' g:ROOT_DIR . '/settings/plugins/git-conflict.rc.vim'
 '''
 
