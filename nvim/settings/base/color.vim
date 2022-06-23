@@ -41,6 +41,11 @@ function! ColorSchemeBulkSetting()
   highlight GitConflictIncomingLabel guibg=#505245
   highlight GitConflictAncestorLabel guibg=none
 
+  " telescope
+  highlight TelescopeMatching guifg=#e6e854
+  highlight TelescopeBorder guifg=#54e8d4
+
+
   if g:colors_name == "iceberg"
     highlight Visual ctermbg=30 guibg=#123531
     highlight Search ctermbg=29 guifg=#ffffff guibg=#476a47

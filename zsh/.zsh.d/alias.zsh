@@ -35,5 +35,8 @@ alias vc="networksetup -connectpppoeservice sonic"
 alias vd="networksetup -disconnectpppoeservice sonic"
 alias airp="BluetoothConnector --connect AC-90-85-DF-A3-F7 --notify"
 alias dairp="BluetoothConnector AC-90-85-DF-A3-F7 --notify"
+
+# Dynalyst
 alias sal="saml2aws login -a conv-dev"
 alias aip="saml2aws login -a conv-dev && ~/dev/dynalyst/dynalyst-mgmt-fw-tool/bin/dynalyst-mgmt-fw-tool allow-my-ip"
+alias sbtd="sbt -Dconfig.file=`pwd`/server/dashboard/conf/development.conf"

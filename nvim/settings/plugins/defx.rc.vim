@@ -1,4 +1,5 @@
 nnoremap <silent> <C-n> :<C-u>Defx<CR>
+nnoremap <silent> <Leader><C-n> :<C-u>Defx `expand('%:p:h')` -search=`expand('%:p')`<CR>
 
 call defx#custom#option('_', {
       \ 'show_ignored_files': 1,

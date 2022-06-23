@@ -1,6 +1,6 @@
 " カーソル下の単語をGGrepで検索する
-nmap <Leader>* "zyiw<Leader>g'<Esc>"zpi
-vmap <Leader>* "zy<Leader>g'<Esc>"zpi
+" nmap <Leader>* "zyiw<Leader>g'<Esc>"zpi
+" vmap <Leader>* "zy<Leader>g'<Esc>"zpi
 
 " プレビューウィンドウ無効化
 " let g:fzf_preview_window = []
