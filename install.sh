@@ -23,12 +23,17 @@ ln -s ~/dotfiles/zsh/.zprofile ~/.zprofile
 # ==== Homebrew ====
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)";
 
+# for dotnet-sdk
+sudo xcodebuild -license accept
+
 brew update;
 brew install vim neovim emacs fzf git hub docker lazydocker lazygit tig \
   tree autojump composer awscli rbenv pyenv pyenv-virtualenv nodenv bat luarocks jq asdf gopls mysql ripgrep;
 brew install tmux --HEAD
-brew install docker iterm2 clipy homebrew/cask-versions/sequel-pro-nightly font-hack-nerd-font --cask;
+brew install docker iterm2 clipy homebrew/cask-versions/sequel-pro-nightly font-hack-nerd-font dotnet-sdk --cask;
 brew tap homebrew/cask-fonts dart-lang/dart
+
+dotnet tool install --global csharp-ls
 
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 

@@ -21,6 +21,6 @@ set signcolumn=yes
 set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 
 " Scalaプロジェクトではnvim-metalsを使用するためマッピングを無効化
-if !file_readable('build.sbt')
+" if !file_readable('build.sbt')
   execute 'source' g:ROOT_DIR . '/settings/plugins/coc.rc.d/mapping.vim'
-endif
+" endif

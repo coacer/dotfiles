@@ -43,7 +43,7 @@ set number " 行番号を表示
 
 " 画面描画が重いのでオフに
 " set relativenumber " 相対行番号を表示
-" set cursorline " カーソルラインをハイライト
+set cursorline " カーソルラインをハイライト
 
 " set foldmethod=syntax " foldmethodをインデントにする
 

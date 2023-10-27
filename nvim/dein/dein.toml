@@ -95,14 +95,14 @@ hook_add = '''
 repo = '/opt/homebrew/opt/fzf'
 
 # TODO: neovim builtin LSPに完全移行する
-# [[plugins]] # LSPクライアントパッケージマネージャー
-# repo = 'neoclide/coc.nvim'
-# rev = 'release'
-# merged = '0'
-# hook_add = '''
-#   execute 'source' g:ROOT_DIR . '/settings/plugins/coc.rc.d/init.vim'
-#   execute 'source' g:ROOT_DIR . '/settings/plugins/coc.rc.d/extensions.vim'
-# '''
+[[plugins]] # LSPクライアントパッケージマネージャー
+repo = 'neoclide/coc.nvim'
+rev = 'release'
+merged = '0'
+hook_add = '''
+  execute 'source' g:ROOT_DIR . '/settings/plugins/coc.rc.d/init.vim'
+  execute 'source' g:ROOT_DIR . '/settings/plugins/coc.rc.d/extensions.vim'
+'''
 
 [[plugins]] # スニペット定義
 repo = 'Shougo/neosnippet-snippets'
@@ -228,11 +228,11 @@ hook_add = '''
   execute 'source' g:ROOT_DIR . '/settings/plugins/vim-asterisk.rc.vim'
 '''
 
-[[plugins]] # window adjust
-repo = 'kwkarlwang/bufresize.nvim'
-hook_add = '''
-  execute 'source' g:ROOT_DIR . '/settings/plugins/bufresize.rc.vim'
-'''
+# [[plugins]] # window adjust
+# repo = 'kwkarlwang/bufresize.nvim'
+# hook_add = '''
+#   execute 'source' g:ROOT_DIR . '/settings/plugins/bufresize.rc.vim'
+# '''
 
 [[plugins]] # quickfix extension
 repo = 'kevinhwang91/nvim-bqf'
@@ -258,36 +258,43 @@ hook_add = '''
   execute 'source' g:ROOT_DIR . '/settings/plugins/neoscroll.rc.vim'
 '''
 
-[[plugins]] # neovim autocomplete
-repo = 'hrsh7th/nvim-cmp'
+[[plugins]] # telescope live grep extension
+repo = 'nvim-telescope/telescope-live-grep-args.nvim'
 hook_add = '''
-  execute 'source' g:ROOT_DIR . '/settings/plugins/nvim-cmp.rc.vim'
+  execute 'source' g:ROOT_DIR . '/settings/plugins/neoscroll.rc.vim'
 '''
 
-[[plugins]] # LSP client config
-repo = 'neovim/nvim-lspconfig'
+# TODO: セキュリティソフトをオフにしてmetalsを機能させる
+# [[plugins]] # neovim autocomplete
+# repo = 'hrsh7th/nvim-cmp'
 # hook_add = '''
-#   execute 'source' g:ROOT_DIR . '/settings/plugins/neoscroll.rc.vim'
+#   execute 'source' g:ROOT_DIR . '/settings/plugins/nvim-cmp.rc.vim'
 # '''
-
-[[plugins]] # LSP server installer
-repo = 'williamboman/nvim-lsp-installer'
-hook_add = '''
-  execute 'source' g:ROOT_DIR . '/settings/plugins/nvim-lsp-installer.rc.vim'
-'''
-
-[[plugins]] # LSP Client
-repo = 'hrsh7th/cmp-nvim-lsp'
-hook_add = '''
-  execute 'source' g:ROOT_DIR . '/settings/plugins/cmp-nvim-lsp.rc.vim'
-'''
-
-[[plugins]] # debugger
-repo = 'mfussenegger/nvim-dap'
-hook_add = '''
-  execute 'source' g:ROOT_DIR . '/settings/plugins/nvim-dap.rc.vim'
-'''
-
-[[plugins]] # snippet
-repo = 'hrsh7th/vim-vsnip'
+#
+# [[plugins]] # LSP client config
+# repo = 'neovim/nvim-lspconfig'
+# # hook_add = '''
+# #   execute 'source' g:ROOT_DIR . '/settings/plugins/neoscroll.rc.vim'
+# # '''
+#
+# [[plugins]] # LSP server installer
+# repo = 'williamboman/nvim-lsp-installer'
+# hook_add = '''
+#   execute 'source' g:ROOT_DIR . '/settings/plugins/nvim-lsp-installer.rc.vim'
+# '''
+#
+# [[plugins]] # LSP Client
+# repo = 'hrsh7th/cmp-nvim-lsp'
+# hook_add = '''
+#   execute 'source' g:ROOT_DIR . '/settings/plugins/cmp-nvim-lsp.rc.vim'
+# '''
+#
+# [[plugins]] # debugger
+# repo = 'mfussenegger/nvim-dap'
+# hook_add = '''
+#   execute 'source' g:ROOT_DIR . '/settings/plugins/nvim-dap.rc.vim'
+# '''
+#
+# [[plugins]] # snippet
+# repo = 'hrsh7th/vim-vsnip'
 

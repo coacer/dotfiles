@@ -3,24 +3,6 @@
     "multi-session": {
       "host": "${host}",
       "port": "${port}"
-    },
-    "vscode-go": {
-      "command": [
-        "node",
-        "${gadgetDir}/vscode-go/dist/debugAdapter.js"
-      ],
-      "configuration": {
-        "cwd": "${workspaceRoot}"
-      },
-      "name": "delve"
-    },
-    "vscode-node": {
-      "command": [
-        "node",
-        "${gadgetDir}/vscode-node-debug2/out/src/nodeDebug.js"
-      ],
-      "name": "node2",
-      "type": "node2"
     }
   }
 }

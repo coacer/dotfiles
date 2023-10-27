@@ -2,7 +2,7 @@
   path = .gitconfig.local # user.name, user.emailの設定ファイル読み込み
 [core]
   editor = nvim
-	excludesfile = /Users/y.nakagami/.gitignore_global
+	excludesfile = /Users/s15022/.gitignore_global
 [alias]
   st = status
   cc = commit
@@ -34,7 +34,7 @@
 	cmd = /Applications/Sourcetree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
 	trustExitCode = true
 [user]
-	name = y.nakagami
-	email = 
+	name = coacer
+	email = nakagami_yuki@cyberagent.co.jp
 [commit]
 	template = /Users/y.nakagami/.stCommitMsg

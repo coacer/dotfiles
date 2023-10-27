@@ -1,5 +1,7 @@
 lua << EOF
-require('neoscroll').setup()
+require('neoscroll').setup({
+  mappings = {'<C-u>', '<C-d>', '<C-b>', '<C-f>', 'zt', 'zz', 'zb'}
+})
 local t = {}
 -- Syntax: t[keys] = {function, {function arguments}}
 t['<C-b>'] = {'scroll', {'-vim.api.nvim_win_get_height(0)', 'true', '125'}}

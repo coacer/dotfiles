@@ -85,11 +85,11 @@ hook_source = '''
   execute 'source' g:ROOT_DIR . '/settings/plugins/vim-flutter.rc.vim'
 '''
 
-[[plugins]] # Scala LSP Client (coc-metals is deprecated)
-repo = 'scalameta/nvim-metals'
-on_ft = ['scala']
-hook_source = '''
-  execute 'source' g:ROOT_DIR . '/settings/plugins/nvim-metals.rc.vim'
-'''
-depends = ['plenary.nvim']
+# [[plugins]] # Scala LSP Client (coc-metals is deprecated)
+# repo = 'scalameta/nvim-metals'
+# on_ft = ['scala']
+# hook_source = '''
+#   execute 'source' g:ROOT_DIR . '/settings/plugins/nvim-metals.rc.vim'
+# '''
+# depends = ['plenary.nvim']
 

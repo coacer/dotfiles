@@ -1,11 +1,24 @@
 {
   "suggest.maxCompleteItemCount": 8,
-  "coc.preferences.formatOnSaveFiletypes": [
-     "go"
-  ],
+  "codeLens.enable": true,
+  "metals.treeviews.gotoPrevSibling": "<C-q>",
   "tsserver.enableJavascript": true,
-  "eslint.probe": ["javascript", "typescript", "typescriptreact", "javascriptreact", "typescript.tsx", "vue"],
-  "eslint.validate": ["javascript", "typescript", "typescriptreact", "javascriptreact", "typescript.tsx", "vue"],
+  "eslint.probe": [
+    "javascript",
+    "typescript",
+    "typescriptreact",
+    "javascriptreact",
+    "typescript.tsx",
+    "vue"
+  ],
+  "eslint.validate": [
+    "javascript",
+    "typescript",
+    "typescriptreact",
+    "javascriptreact",
+    "typescript.tsx",
+    "vue"
+  ],
   "solargraph.diagnostics": true,
   "solargraph.autoformat": true,
   "solargraph.formatting": true,
@@ -18,15 +31,20 @@
     },
     "dls": {
       "command": "diagnostic-languageserver",
-      "args": [ "--stdio" ],
-      "filetypes": [ "php" ],
+      "args": ["--stdio"],
+      "filetypes": ["php"],
       "initializationOptions": {
         "linters": {
           "phpcs": {
             "command": "./vendor/bin/phpcs",
             "debounce": 100,
-            "rootPatterns": [ "composer.json", "composer.lock", "vendor", ".git" ],
-            "args": [ "--standard=PSR2", "--report=emacs", "-s", "-" ],
+            "rootPatterns": [
+              "composer.json",
+              "composer.lock",
+              "vendor",
+              ".git"
+            ],
+            "args": ["--standard=PSR2", "--report=emacs", "-s", "-"],
             "offsetLine": 0,
             "offsetColumn": 0,
             "sourceName": "phpcs",

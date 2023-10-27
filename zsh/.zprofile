@@ -1,9 +1,13 @@
+# Fig pre block. Keep at the top of this file.
+[[ -f "$HOME/.fig/shell/zprofile.pre.zsh" ]] && builtin source "$HOME/.fig/shell/zprofile.pre.zsh"
 export PATH="/usr/local/opt/mysql/bin:$PATH"
 export PATH="$PATH:./node_modules/.bin"
 export PATH="$PATH:/usr/local/opt/llvm/bin"
 export GOPATH="$HOME/go"
 export PATH="$PATH:$GOPATH/bin"
 export PATH="/opt/homebrew/bin:$PATH"
+export PATH="$PATH":"$HOME/.pub-cache/bin"
+export PATH="$HOME/.dotnet/tools:$PATH"
 
 eval "$(rbenv init -)" # rbenv初期化(パスが通る)
 eval "$(pyenv init -)"
@@ -28,3 +32,6 @@ if which pyenv-virtualenv-init > /dev/null; then eval "$(pyenv virtualenv-init -
 # >>> coursier install directory >>>
 export PATH="$PATH:/Users/s15022/Library/Application Support/Coursier/bin"
 # <<< coursier install directory <<<
+
+# Fig post block. Keep at the bottom of this file.
+[[ -f "$HOME/.fig/shell/zprofile.post.zsh" ]] && builtin source "$HOME/.fig/shell/zprofile.post.zsh"

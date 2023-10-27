@@ -4,3 +4,24 @@ options     head
   /**
    * $1
    */
+
+snippet     p
+abbr        println(s"")
+options     head
+  println(s"$1")
+
+snippet     p:
+abbr        println(s"~: $~")
+options     head
+  println(s"$1: ${${1}}")
+
+snippet     pf
+abbr        _ = println(s"")
+options     head
+  _ = println(s"$1")
+
+snippet     pf:
+abbr        _ = println(s"~: $~")
+options     head
+  _ = println(s"$1: ${${1}}")
+

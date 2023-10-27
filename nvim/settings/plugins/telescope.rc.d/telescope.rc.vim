@@ -5,7 +5,7 @@ require('telescope').setup{
     -- Default configuration for telescope goes here:
     -- config_key = value,
     winblend = 30,
-    path_display={"smart"},
+    path_display={ truncate = 1 },
     mappings = {
       n = {
         ["<C-d>"] = actions.close,
@@ -46,11 +46,13 @@ require('telescope').setup{
     },
   }
 }
+require("telescope").load_extension("live_grep_args")
 EOF
 
 nnoremap <Leader>f <cmd>lua require('telescope.builtin').find_files({hidden=true})<cr>
 nnoremap <Leader>o <cmd>lua require('telescope').extensions.frecency.frecency()<cr>
-nnoremap <Leader>g <cmd>lua require('telescope.builtin').live_grep({hidden=true})<cr>
+" nnoremap <Leader>g <cmd>lua require('telescope.builtin').live_grep({hidden=true})<cr>
+nnoremap <Leader>g <cmd>lua require("telescope").extensions.live_grep_args.live_grep_args()<cr>
 nnoremap <Leader>b <cmd>lua require('telescope.builtin').buffers({hidden=true})<cr>
 nnoremap <C-h> <cmd>lua require('telescope.builtin').help_tags()<cr>
 nnoremap <Leader>* <cmd>lua require('telescope.builtin').grep_string()<cr>

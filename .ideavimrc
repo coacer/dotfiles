@@ -108,6 +108,8 @@ cnoremap <C-r><C-r> <C-r>"
 vnoremap gy y`>
 " gpでペースト時にカーソルを一個上の行に移動(連続ペーストの時デフォルトだと使いづらいため)
 nnoremap gp gpk
+" ctrl+pでその行にペースト
+nmap <C-p> Vp
 " 選択範囲に.コマンド実行
 vnoremap <silent> . :normal .<CR>
 

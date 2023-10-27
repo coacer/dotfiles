@@ -18,7 +18,7 @@ nmap <silent> ]g <Plug>(coc-diagnostic-next)
 " Remap keys for gotos
 nmap <silent> gd <Plug>(coc-definition)
 " nmap <silent> gy <Plug>(coc-type-definition)
-" nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gR <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 " Remap for rename current word
 nmap gn <Plug>(coc-rename)
@@ -53,10 +53,10 @@ command! -nargs=0 Prettier :CocCommand prettier.formatFile
 augroup CocJsFormatter
   autocmd!
   " if filereadable('.prettierrc')
-    autocmd BufWritePre *.js Prettier
-    autocmd BufWritePre *.ts Prettier
-    autocmd BufWritePre *.tsx Prettier
-    autocmd BufWritePre *.vue Prettier
+    " autocmd BufWritePre *.js Prettier
+    " autocmd BufWritePre *.ts Prettier
+    " autocmd BufWritePre *.tsx Prettier
+    " autocmd BufWritePre *.vue Prettier
   " elseif filereadable('.eslintrc')
     " autocmd BufWritePre *.js EslintFix
     " autocmd BufWritePre *.ts EslintFix
