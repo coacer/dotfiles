@@ -121,16 +121,6 @@ endfunction
 " カラースキームをプレビューしながら変更できる
 command! ColorSchemeSelect Unite colorscheme -auto-preview
 
-" deinの未使用プラグイン削除 {{{
-function! s:dein_prune()
-  echo "Please wait a little ...."
-  call map(dein#check_clean(), "delete(v:val, 'rf')")
-  call dein#recache_runtimepath()
-  redraw
-  call EchoSuccess("Finish clean up!")
-endfunction
-command! DeinPrune call <SID>dein_prune()
-" }}}
 
 " floating window を用いてターミナルを表示させる {{{
 let s:float_term_border_win = 0

@@ -24,10 +24,10 @@ nnoremap <Leader>vf <Cmd>execute 'edit' g:ROOT_DIR . '/settings/base/functions/m
 nnoremap <Leader>vb <Cmd>execute 'edit' g:ROOT_DIR . '/settings/base/basic.vim'<CR>
 " スペース+vcでcolor.vimファイルを開く
 nnoremap <Leader>vc <Cmd>execute 'edit' g:ROOT_DIR . '/settings/base/color.vim'<CR>
-" スペース+vdでdein.tomlファイルを開く
-nnoremap <Leader>vd <Cmd>execute 'edit' g:ROOT_DIR . '/dein/dein.toml'<CR>
-" スペース+vDでdein_lazy.tomlファイルを開く
-nnoremap <Leader>vD <Cmd>execute 'edit' g:ROOT_DIR . '/dein/dein_lazy.toml'<CR>
+" スペース+vdでlua/lazy/plugins.luaファイルを開く
+nnoremap <Leader>vd <Cmd>execute 'edit' g:ROOT_DIR . '/lua/lazy/plugins.lua'<CR>
+" スペース+vDでlua/lazy/lazy-plugins.luaファイルを開く
+nnoremap <Leader>vD <Cmd>execute 'edit' g:ROOT_DIR . '/lua/lazy/lazy-plugins.lua'<CR>
 " スペース+vsで.vimrcファイルを読み込む
 nnoremap <Leader>vs <Cmd>source $MYVIMRC<CR>
 " スペース+mでmyvim_manual.txtファイルを開く
