@@ -48,7 +48,7 @@ set cursorline " カーソルラインをハイライト
 " set foldmethod=syntax " foldmethodをインデントにする
 
 set showmatch " 括弧の対応関係を一瞬表示する
-source $VIMRUNTIME/macros/matchit.vim " Vimの「%」を拡張する
+" source $VIMRUNTIME/macros/matchit.vim " Vimの「%」を拡張する (Neovim 0.11で廃止)
 " set nofixendofline " 保存時に自動でファイル末尾に改行が入らない(vimはデフォルトで改行を入れるため)
 set regexpengine=1 "@see https://github.com/vim/vim/issues/2712#issuecomment-372968129
 

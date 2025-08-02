@@ -82,6 +82,36 @@ return {
     end,
   },
 
+  -- TreeSitter context for showing context at the top
+  {
+    'nvim-treesitter/nvim-treesitter-context',
+    event = { 'BufReadPost', 'BufNewFile' },
+    dependencies = { 'nvim-treesitter/nvim-treesitter' },
+    config = function()
+      require('treesitter-context').setup({
+        enable = true, -- Enable this plugin (Can be enabled/disabled later via commands)
+        multiwindow = false, -- Enable multiwindow support.
+        max_lines = 0, -- How many lines the window should span. Values <= 0 mean no limit.
+        min_window_height = 0, -- Minimum editor window height to enable context. Values <= 0 mean no limit.
+        line_numbers = true,
+        multiline_threshold = 20, -- Maximum number of lines to show for a single context
+        trim_scope = 'outer', -- Which context lines to discard if `max_lines` is exceeded. Choices: 'inner', 'outer'
+        mode = 'cursor',  -- Line used to calculate context. Choices: 'cursor', 'topline'
+        -- Separator between context and content. Should be a single character string, like '-'.
+        -- When separator is set, the context will only show up when there are at least 2 lines above cursorline.
+        separator = nil,
+        zindex = 20, -- The Z-index of the context window
+        on_attach = nil, -- (fun(buf: integer): boolean) return false to disable attaching
+      })
+      
+      -- Custom highlight for TreesitterContext background (nord theme only)
+      if vim.g.colors_name == 'nord' then
+        vim.api.nvim_set_hl(0, 'TreesitterContext', { bg = '#3c455c', blend = 0 })
+        vim.api.nvim_set_hl(0, 'TreesitterContextLineNumber', { bg = '#3c455c', blend = 0 })
+      end
+    end,
+  },
+
   -- Code chunk highlighting
   {
     'shellRaining/hlchunk.nvim',
@@ -278,5 +308,83 @@ return {
 
   -- EditorConfig
   'editorconfig/editorconfig-vim',
+
+  -- Buffer tabs
+  {
+    'romgrk/barbar.nvim',
+    dependencies = {
+      'lewis6991/gitsigns.nvim', -- OPTIONAL: for git status
+      'nvim-tree/nvim-web-devicons', -- OPTIONAL: for file icons
+    },
+    init = function() vim.g.barbar_auto_setup = false end,
+    opts = {
+      -- lazy.nvim will automatically call setup for you. put your options here, anything missing will use the default:
+      -- animation = true,
+      -- insert_at_start = true,
+      -- …etc.
+    },
+    config = function()
+      require('barbar').setup()
+      
+      -- Tab navigation mappings (same as vim-airline)
+      vim.keymap.set('n', '<C-e>', '<Cmd>BufferPrevious<CR>', { silent = true })
+      vim.keymap.set('n', '<C-y>', '<Cmd>BufferNext<CR>', { silent = true })
+      
+      -- Custom highlight for modified buffers (nord theme only)
+      vim.api.nvim_create_autocmd('ColorScheme', {
+        callback = function()
+          if vim.g.colors_name == 'nord' then
+            vim.api.nvim_set_hl(0, 'BufferCurrentMod', { fg = '#ffcc02', bg = '#44475a', bold = true })
+            vim.api.nvim_set_hl(0, 'BufferVisibleMod', { fg = '#ffcc02', bg = '#282a36' })
+            vim.api.nvim_set_hl(0, 'BufferInactiveMod', { fg = '#ff9580', bg = '#21222c' })
+          end
+        end,
+      })
+    end,
+    version = '^1.0.0', -- optional: only update when a new 1.x version is released
+  },
+
+  -- Winbar for navigation
+  {
+    'Bekaboo/dropbar.nvim',
+    dependencies = {
+      'nvim-telescope/telescope-fzf-native.nvim',
+    },
+    config = function()
+      require('dropbar').setup({
+        bar = {
+          sources = function(buf, _)
+            return {
+              require('dropbar.sources').path
+            }
+          end
+        }
+      })
+      
+      -- dropbarの背景色をColorScheme後に設定 (nord theme only)
+      vim.api.nvim_create_autocmd('ColorScheme', {
+        callback = function()
+          if vim.g.colors_name == 'nord' then
+            -- 通常時の背景色
+            vim.api.nvim_set_hl(0, 'WinBar', { bg = '#2e3440' })
+            vim.api.nvim_set_hl(0, 'WinBarNC', { bg = '#2e3440' })
+            -- 選択時やメニューの背景色
+            vim.api.nvim_set_hl(0, 'DropBarCurrentContext', { bg = '#2e3440' })
+            vim.api.nvim_set_hl(0, 'DropBarMenuNormalFloat', { bg = '#2e3440' })
+            vim.api.nvim_set_hl(0, 'DropBarMenuHoverEntry', { bg = '#434c5e' })
+          end
+        end,
+      })
+      
+      -- 初回設定 (nord theme only)
+      if vim.g.colors_name == 'nord' then
+        vim.api.nvim_set_hl(0, 'WinBar', { bg = '#2e3440' })
+        vim.api.nvim_set_hl(0, 'WinBarNC', { bg = '#2e3440' })
+        vim.api.nvim_set_hl(0, 'DropBarCurrentContext', { bg = '#2e3440' })
+        vim.api.nvim_set_hl(0, 'DropBarMenuNormalFloat', { bg = '#2e3440' })
+        vim.api.nvim_set_hl(0, 'DropBarMenuHoverEntry', { bg = '#434c5e' })
+      end
+    end,
+  },
 
 }
