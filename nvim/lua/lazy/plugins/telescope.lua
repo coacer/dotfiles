@@ -6,6 +6,7 @@ return {
     'nvim-telescope/telescope-frecency.nvim',
     'nvim-telescope/telescope-live-grep-args.nvim',
     'tami5/sqlite.lua',
+    { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
   },
   cmd = 'Telescope',
   keys = {
@@ -44,10 +45,17 @@ return {
             ["nvim"] = vim.g.ROOT_DIR,
           }
         },
+        fzf = {
+          fuzzy = true,
+          override_generic_sorter = true,
+          override_file_sorter = true,
+          case_mode = "smart_case",
+        }
       }
     })
     
     -- Load extensions
     require("telescope").load_extension("live_grep_args")
+    require("telescope").load_extension("fzf")
   end,
 }

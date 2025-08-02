@@ -136,14 +136,13 @@ nmap <C-p> Vp
 " 選択範囲に.コマンド実行
 xnoremap <silent> . :normal .<CR>
 
-" Float Term系(functions.vim)
-" leader + ttでTermを開く
-" nnoremap <silent> <Leader>tt :Term<CR>
-nnoremap <silent> <Leader>tt :TermFloat -<CR>
-" leader + tgでFloat Termでlazygitを開く
-nnoremap <silent> <Leader>tg :TermFloat lazygit<CR>
-" leader + tdでFloat Termでlazydockerを開く
-nnoremap <silent> <Leader>td :TermFloat lazydocker<CR>
+" ToggleTerm系
+" leader + ttでToggleTermを開く
+nnoremap <silent> <Leader>tt :ToggleTerm<CR>
+" leader + tgでToggleTermでlazygitを開く
+nnoremap <silent> <Leader>tg :lua _LAZYGIT_TOGGLE()<CR>
+" leader + tdでToggleTermでlazydockerを開く
+nnoremap <silent> <Leader>td :lua _LAZYDOCKER_TOGGLE()<CR>
 
 " diffview
 nnoremap <Leader><C-G><C-G> :DiffOpen<CR>
