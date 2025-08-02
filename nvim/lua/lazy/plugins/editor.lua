@@ -28,6 +28,22 @@ return {
   },
   'tpope/vim-endwise',
 
+  -- Code chunk highlighting
+  {
+    'shellRaining/hlchunk.nvim',
+    event = { 'BufReadPre', 'BufNewFile' },
+    config = function()
+      require('hlchunk').setup({
+        chunk = {
+            enable = true
+        },
+        indent = {
+            enable = false
+        }
+      })
+    end,
+  },
+
   -- Text alignment
   {
     'junegunn/vim-easy-align',
@@ -102,16 +118,6 @@ return {
       -- Use python3 for gundo (default is python2.4)
       vim.g.gundo_prefer_python3 = 1
       vim.keymap.set('n', '<F1>', ':GundoToggle<CR>')
-    end,
-  },
-
-  -- Indent guides
-  {
-    'nathanaelkane/vim-indent-guides',
-    event = { 'BufReadPost', 'BufNewFile' },
-    config = function()
-      vim.g.indent_guides_enable_on_vim_startup = 1
-      vim.g.indent_guides_auto_colors = 0
     end,
   },
 
