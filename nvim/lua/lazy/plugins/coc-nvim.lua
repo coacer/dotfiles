@@ -19,7 +19,7 @@ return {
       'coc-css',
       'coc-diagnostic',
       'coc-eslint',
-      'coc-highlight',
+      -- 'coc-highlight', -- replaced by nvim-treesitter
       'coc-jest',
       'coc-json',
       'coc-neosnippet',

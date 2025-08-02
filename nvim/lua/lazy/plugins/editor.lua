@@ -19,7 +19,7 @@ return {
         enable_bracket_in_quote = true,
         enable_abbr = false,
         break_undo = true,
-        check_ts = false,
+        check_ts = true,
         map_bs = true,
         map_c_h = false,
         map_c_w = false,
@@ -28,17 +28,84 @@ return {
   },
   'tpope/vim-endwise',
 
+  -- TreeSitter for enhanced syntax highlighting and parsing
+  {
+    'nvim-treesitter/nvim-treesitter',
+    build = ':TSUpdate',
+    event = { 'BufReadPost', 'BufNewFile' },
+    config = function()
+      require('nvim-treesitter.configs').setup({
+        ensure_installed = {
+          'javascript',
+          'typescript',
+          'tsx',
+          'html',
+          'css',
+          'scss',
+          'json',
+          'lua',
+          'vim',
+          'vimdoc',
+          'markdown',
+          'yaml',
+          'toml',
+          'bash',
+          'python',
+          'go',
+          'rust',
+          'php',
+          'vue',
+          'dart',
+          'swift',
+          'ruby',
+          'java',
+          'kotlin',
+          'scala',
+        },
+        highlight = {
+          enable = true,
+          additional_vim_regex_highlighting = false,
+        },
+        indent = {
+          enable = true,
+        },
+        incremental_selection = {
+          enable = true,
+          keymaps = {
+            init_selection = '<C-space>',
+            node_incremental = '<C-space>',
+            scope_incremental = '<C-s>',
+            node_decremental = '<C-backspace>',
+          },
+        },
+      })
+    end,
+  },
+
   -- Code chunk highlighting
   {
     'shellRaining/hlchunk.nvim',
     event = { 'BufReadPre', 'BufNewFile' },
+    dependencies = { 'nvim-treesitter/nvim-treesitter' },
     config = function()
       require('hlchunk').setup({
         chunk = {
-            enable = true
+          enable = true,
+          priority = 15,
+          notify = true,
+          -- style = {
+          --   { fg = '#806d9c' },
+          --   { fg = '#c21f30' }, -- This fg is used to highlight wrong chunk
+          -- },
         },
         indent = {
-            enable = false
+          enable = false, -- Let treesitter handle indentation
+        },
+        line_num = {
+          enable = true,
+        },
+        blank = {
+          enable = true,
         }
       })
     end,
@@ -211,4 +278,5 @@ return {
 
   -- EditorConfig
   'editorconfig/editorconfig-vim',
+
 }

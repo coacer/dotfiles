@@ -10,11 +10,7 @@ return {
     end,
   },
 
-  -- JavaScript/TypeScript
-  { 'othree/yajs.vim', ft = { 'javascript', 'vue', 'javascriptreact' } },
-  { 'leafgarland/typescript-vim', ft = { 'typescript', 'tsx' } },
-  { 'maxmellon/vim-jsx-pretty', ft = { 'javascript', 'javascriptreact', 'tsx' } },
-  { 'ianks/vim-tsx', ft = { 'tsx' } },
+  -- JavaScript/TypeScript (handled by nvim-treesitter)
 
   -- Vue.js
   {
