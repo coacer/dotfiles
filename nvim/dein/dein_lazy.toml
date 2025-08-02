@@ -40,10 +40,6 @@ on_ft = ['javascript', 'javascriptreact', 'tsx']
 repo = 'ianks/vim-tsx'
 on_ft = ['tsx']
 
-# [[plugins]] # golang
-# repo = 'fatih/vim-go'
-# on_ft = ['go']
-
 [[plugins]] # Xdebugとの連携プラグイン
 repo = 'joonty/vdebug'
 on_ft = ['php']
@@ -84,12 +80,3 @@ on_ft = ['dart']
 hook_source = '''
   execute 'source' g:ROOT_DIR . '/settings/plugins/vim-flutter.rc.vim'
 '''
-
-# [[plugins]] # Scala LSP Client (coc-metals is deprecated)
-# repo = 'scalameta/nvim-metals'
-# on_ft = ['scala']
-# hook_source = '''
-#   execute 'source' g:ROOT_DIR . '/settings/plugins/nvim-metals.rc.vim'
-# '''
-# depends = ['plenary.nvim']
-

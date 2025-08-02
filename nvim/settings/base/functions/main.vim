@@ -363,3 +363,5 @@ endfunction
 command! -nargs=0 GitDiffStart call <SID>git_difftool_session_start()
 command! -nargs=0 GitDiffEnd call <SID>git_difftool_session_end()
 " }}}
+
+command! TodayNote execute 'edit /Users/nakagamiyuki/Library/Mobile\ Documents/iCloud~md~obsidian/Documents/Obsidian_Vault/02_DailyNotes/' . strftime('%Y-%m-%d') . '.md'

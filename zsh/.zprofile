@@ -8,16 +8,18 @@ export PATH="$PATH:$GOPATH/bin"
 export PATH="/opt/homebrew/bin:$PATH"
 export PATH="$PATH":"$HOME/.pub-cache/bin"
 export PATH="$HOME/.dotnet/tools:$PATH"
+export GOENV_ROOT="$HOME/.goenv"
+export PATH="$GOENV_ROOT/bin:$PATH"
 
 eval "$(rbenv init -)" # rbenv初期化(パスが通る)
 eval "$(pyenv init -)"
 eval "$(nodenv init -)"
-# eval "$(goenv init -)"
+eval "$(goenv init -)"
 # export GO111MODULE=auto
 
 export NODE_PATH=`npm bin --location=global`
 # if output warning this comment in.
-# export NODE_PATH=`npm bin -g`
+export NODE_PATH=`npm bin -g`
 export PATH="$PATH:$NODE_PATH"
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/shims:$PATH"

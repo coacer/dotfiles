@@ -1,8 +1,10 @@
 {
+  "suggest.enablePreselect": true,
   "suggest.maxCompleteItemCount": 8,
   "codeLens.enable": true,
   "metals.treeviews.gotoPrevSibling": "<C-q>",
   "tsserver.enableJavascript": true,
+  "eslint.enable": false,
   "eslint.probe": [
     "javascript",
     "typescript",
@@ -73,6 +75,10 @@
       "command": "gopls",
       "rootPatterns": ["go.mod", ".vim/", ".git/", ".hg/"],
       "filetypes": ["go"]
+    },
+    "swift": {
+      "command": "/usr/bin/sourcekit-lsp",
+      "filetypes": ["swift"]
     }
   }
 }

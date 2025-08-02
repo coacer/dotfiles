@@ -1,12 +1,6 @@
 [[plugins]] # プラグイン管理
 repo = 'Shougo/dein.vim'
 
-# [[plugins]] # ツリービュー表示
-# repo = 'scrooloose/nerdtree'
-# hook_add = '''
-#   execute 'source' g:ROOT_DIR . '/settings/plugins/nerdtree.rc.vim'
-# '''
-
 [[plugins]] # カラースキーム
 repo = 'cocopon/iceberg.vim'
 
@@ -69,12 +63,6 @@ hook_add = '''
 
 [[plugins]] # surround.vimなどの変更を.で繰り返し可能にする
 repo = 'tpope/vim-repeat'
-
-# [[plugins]] # スクロールを滑らかに
-# repo = 'yuttie/comfortable-motion.vim'
-# hook_add = '''
-#   execute 'source' g:ROOT_DIR . '/settings/plugins/comfortable-motion.rc.vim'
-# '''
 
 [[plugins]] # gundoグラフ可視化
 repo = 'sjl/gundo.vim'
@@ -228,12 +216,6 @@ hook_add = '''
   execute 'source' g:ROOT_DIR . '/settings/plugins/vim-asterisk.rc.vim'
 '''
 
-# [[plugins]] # window adjust
-# repo = 'kwkarlwang/bufresize.nvim'
-# hook_add = '''
-#   execute 'source' g:ROOT_DIR . '/settings/plugins/bufresize.rc.vim'
-# '''
-
 [[plugins]] # quickfix extension
 repo = 'kevinhwang91/nvim-bqf'
 
@@ -264,37 +246,8 @@ hook_add = '''
   execute 'source' g:ROOT_DIR . '/settings/plugins/neoscroll.rc.vim'
 '''
 
-# TODO: セキュリティソフトをオフにしてmetalsを機能させる
-# [[plugins]] # neovim autocomplete
-# repo = 'hrsh7th/nvim-cmp'
-# hook_add = '''
-#   execute 'source' g:ROOT_DIR . '/settings/plugins/nvim-cmp.rc.vim'
-# '''
-#
-# [[plugins]] # LSP client config
-# repo = 'neovim/nvim-lspconfig'
-# # hook_add = '''
-# #   execute 'source' g:ROOT_DIR . '/settings/plugins/neoscroll.rc.vim'
-# # '''
-#
-# [[plugins]] # LSP server installer
-# repo = 'williamboman/nvim-lsp-installer'
-# hook_add = '''
-#   execute 'source' g:ROOT_DIR . '/settings/plugins/nvim-lsp-installer.rc.vim'
-# '''
-#
-# [[plugins]] # LSP Client
-# repo = 'hrsh7th/cmp-nvim-lsp'
-# hook_add = '''
-#   execute 'source' g:ROOT_DIR . '/settings/plugins/cmp-nvim-lsp.rc.vim'
-# '''
-#
-# [[plugins]] # debugger
-# repo = 'mfussenegger/nvim-dap'
-# hook_add = '''
-#   execute 'source' g:ROOT_DIR . '/settings/plugins/nvim-dap.rc.vim'
-# '''
-#
-# [[plugins]] # snippet
-# repo = 'hrsh7th/vim-vsnip'
+[[plugins]] # Swift
+repo = 'keith/swift.vim'
 
+[[plugins]] # Github Copilot
+repo = 'github/copilot.vim'

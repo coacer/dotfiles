@@ -18,4 +18,5 @@ let g:coc_global_extensions = [
       \ 'coc-flutter',
       \ 'coc-go',
       \ 'coc-python',
+      \ 'coc-sourcekit',
       \ ]

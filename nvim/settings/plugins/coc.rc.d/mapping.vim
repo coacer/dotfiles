@@ -49,18 +49,41 @@ augroup end
 command! -nargs=0 EslintFix :CocCommand eslint.executeAutofix
 command! -nargs=0 Prettier :CocCommand prettier.formatFile
 
-" TODO 柔軟に対応できるよう整備
+" 現在のファイルに最も近い設定ファイルを探索する関数
+function! s:find_config_file(filename)
+  let l:current_dir = expand('%:p:h')
+  while l:current_dir != '/'
+    if filereadable(l:current_dir . '/' . a:filename)
+      return 1
+    endif
+    let l:current_dir = fnamemodify(l:current_dir, ':h')
+  endwhile
+  return 0
+endfunction
+
+" 保存時に適切なフォーマッターを実行
+function! s:format_on_save()
+  call CocAction('format')
+  " if s:find_config_file('.prettierrc') || s:find_config_file('.prettierrc.json')
+  "   CocCommand prettier.formatFile
+  " elseif s:find_config_file('.eslintrc') || s:find_config_file('.eslintrc.json')
+  "   CocCommand eslint.executeAutofix
+  " endif
+endfunction
+
 augroup CocJsFormatter
   autocmd!
-  " if filereadable('.prettierrc')
-    " autocmd BufWritePre *.js Prettier
-    " autocmd BufWritePre *.ts Prettier
-    " autocmd BufWritePre *.tsx Prettier
-    " autocmd BufWritePre *.vue Prettier
-  " elseif filereadable('.eslintrc')
-    " autocmd BufWritePre *.js EslintFix
-    " autocmd BufWritePre *.ts EslintFix
-    " autocmd BufWritePre *.tsx EslintFix
-    " autocmd BufWritePre *.vue EslintFix
-  " endif
+  autocmd BufWritePre *.js call s:format_on_save()
+  autocmd BufWritePre *.ts call s:format_on_save()
+  autocmd BufWritePre *.tsx call s:format_on_save()
+  autocmd BufWritePre *.vue call s:format_on_save()
+augroup END
+
+function! s:go_format_on_save()
+  call CocAction('format')
+endfunction
+
+augroup CocGoFormatter
+  autocmd!
+  autocmd BufWritePre *.go call s:go_format_on_save()
 augroup END
