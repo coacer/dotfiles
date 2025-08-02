@@ -68,7 +68,6 @@
   "vim-tsx": { "branch": "master", "commit": "77c89c42e189fefd3c9a632b37b7e3b3b9edf918" },
   "vim-vue": { "branch": "master", "commit": "6ae8fa751fbe4c6605961d2309f8326873fa40a6" },
   "vimdoc-ja": { "branch": "master", "commit": "aa8384083a4bcc5675b74f3467811013989cdd2a" },
-  "vimspector": { "branch": "master", "commit": "a1ee02d4e5df05d411e93740465db1177ba42b4c" },
   "winresizer": { "branch": "master", "commit": "9bd559a03ccec98a458e60c705547119eb5350f3" },
   "yajs.vim": { "branch": "master", "commit": "2bebc45ce94d02875803c67033b2d294a5375064" }
 }

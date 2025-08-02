@@ -12,11 +12,8 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
--- Load plugins
-require("lazy").setup({
-  { import = "lazy.plugins" },
-  { import = "lazy.lazy-plugins" },
-}, {
+-- Load plugins from plugins directory
+require("lazy").setup("lazy.plugins", {
   -- Configure lazy.nvim
   install = {
     colorscheme = { "iceberg" },
