@@ -1,10 +1,12 @@
 {
-  "suggest.enablePreselect": true,
-  "suggest.maxCompleteItemCount": 8,
+  "suggest.maxCompleteItemCount": 20,
   "codeLens.enable": true,
   "metals.treeviews.gotoPrevSibling": "<C-q>",
-  "tsserver.enableJavascript": true,
-  "eslint.enable": false,
+  "tsserver.implicitProjectConfig.checkJs": true,
+  "typescript.suggest.autoImports": true,
+  "typescript.updateImportsOnFileMove.enabled": "always",
+  "typescript.preferences.includePackageJsonAutoImports": "auto",
+  "eslint.enable": true,
   "eslint.probe": [
     "javascript",
     "typescript",

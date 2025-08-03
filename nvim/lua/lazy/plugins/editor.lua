@@ -218,18 +218,6 @@ return {
     end,
   },
 
-  -- Window resizer
-  {
-    'simeji/winresizer',
-    keys = '<C-U>',
-    config = function()
-      vim.g.winresizer_start_key = '<C-U>'
-      -- Resize amounts
-      vim.g.winresizer_vert_resize = 3
-      vim.g.winresizer_horiz_resize = 1
-    end,
-  },
-
   -- Fuzzy finder (fzf)
   {
     'junegunn/fzf.vim',
@@ -334,9 +322,9 @@ return {
       vim.api.nvim_create_autocmd('ColorScheme', {
         callback = function()
           if vim.g.colors_name == 'nord' then
-            vim.api.nvim_set_hl(0, 'BufferCurrentMod', { fg = '#ffcc02', bg = '#44475a', bold = true })
+            vim.api.nvim_set_hl(0, 'BufferCurrentMod', { fg = '#ffcc02', bg = '#4c566a', bold = true })
             vim.api.nvim_set_hl(0, 'BufferVisibleMod', { fg = '#ffcc02', bg = '#282a36' })
-            vim.api.nvim_set_hl(0, 'BufferInactiveMod', { fg = '#ff9580', bg = '#21222c' })
+            vim.api.nvim_set_hl(0, 'BufferInactiveMod', { fg = '#ffcc02' })
           end
         end,
       })
@@ -375,15 +363,6 @@ return {
           end
         end,
       })
-      
-      -- 初回設定 (nord theme only)
-      if vim.g.colors_name == 'nord' then
-        vim.api.nvim_set_hl(0, 'WinBar', { bg = '#2e3440' })
-        vim.api.nvim_set_hl(0, 'WinBarNC', { bg = '#2e3440' })
-        vim.api.nvim_set_hl(0, 'DropBarCurrentContext', { bg = '#2e3440' })
-        vim.api.nvim_set_hl(0, 'DropBarMenuNormalFloat', { bg = '#2e3440' })
-        vim.api.nvim_set_hl(0, 'DropBarMenuHoverEntry', { bg = '#434c5e' })
-      end
     end,
   },
 
