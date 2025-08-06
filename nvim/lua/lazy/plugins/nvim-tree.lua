@@ -51,9 +51,6 @@ return {
         vim.keymap.set('n', 'o', api.node.open.edit, opts('Open'))
         
         -- Create operations
-        vim.keymap.set('n', 'K', function()
-          api.fs.create_dir()
-        end, opts('Create Directory'))
         vim.keymap.set('n', 'N', function()
           api.fs.create()
         end, opts('Create File'))
