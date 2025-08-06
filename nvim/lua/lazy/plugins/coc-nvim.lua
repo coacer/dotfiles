@@ -53,20 +53,6 @@ return {
       return col == 0 or vim.fn.getline('.'):sub(col, col):match('%s') ~= nil
     end
 
-    vim.keymap.set('i', '<TAB>', function()
-      if vim.fn.pumvisible() == 1 then
-        return '<C-n>'
-      elseif check_back_space() then
-        return '<TAB>'
-      else
-        return vim.fn['coc#refresh']()
-      end
-    end, { expr = true, silent = true })
-
-    vim.keymap.set('i', '<S-TAB>', function()
-      return vim.fn.pumvisible() == 1 and '<C-p>' or '<C-h>'
-    end, { expr = true })
-
     -- Navigation mappings
     vim.keymap.set('n', '[g', '<Plug>(coc-diagnostic-prev)', { silent = true })
     vim.keymap.set('n', ']g', '<Plug>(coc-diagnostic-next)', { silent = true })
