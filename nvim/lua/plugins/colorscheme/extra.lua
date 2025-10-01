@@ -4,7 +4,10 @@ return {
   'jonathanfilip/vim-lucius',
   'jdkanani/vim-material-theme',
   'gosukiwi/vim-atom-dark',
-  'arcticicestudio/nord-vim',
+  {
+    'arcticicestudio/nord-vim',
+    priority = 1000,
+  },
   'w0ng/vim-hybrid',
 
   -- Colorscheme utilities

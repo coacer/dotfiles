@@ -1,8 +1,8 @@
 runtime! settings/variables.vim
-runtime! settings/base/functions/*.vim
 
 " Initialize lazy.nvim
-lua require('config.lazy')
+lua require('config')
+lua require('utils')
 
 runtime! settings/base/*.vim
 runtime! settings/lang/init.vim
