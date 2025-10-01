@@ -207,7 +207,7 @@ return {
       vim.api.nvim_create_user_command('DbextProfileLoad', load_profile, {})
       
       -- Key mapping
-      vim.keymap.set('n', '<Leader>sbp', '<Cmd>DbextProfileSet<CR>')
+      -- vim.keymap.set('n', '<Leader>sbp', '<Cmd>DbextProfileSet<CR>')
     end,
   },
 
@@ -240,15 +240,27 @@ return {
     event = 'InsertEnter',
     config = function()
       -- Key mappings
-      vim.keymap.set('i', '<C-g><c-g>', 'copilot#Accept("\\<CR>")', {
-        expr = true,
-        replace_keycodes = false
-      })
-      vim.g.copilot_no_tab_map = true
       vim.keymap.set('i', '<C-g><c-h>', '<Plug>(copilot-accept-word)')
       vim.keymap.set('i', '<C-g><c-p>', '<Plug>(copilot-previous)')
       vim.keymap.set('i', '<C-g><c-n>', '<Plug>(copilot-next)')
       vim.keymap.set('i', '<C-g><c-f>', '<Plug>(copilot-dismiss)')
+    end,
+  },
+
+  -- Markdown preview
+  {
+    'OXY2DEV/markview.nvim',
+    lazy = false,
+    dependencies = {
+      'nvim-treesitter/nvim-treesitter',
+      'nvim-tree/nvim-web-devicons'
+    },
+    config = function()
+      require('markview').setup({
+        experimental = {
+          check_rtp_message = false
+        },
+      })
     end,
   },
 }

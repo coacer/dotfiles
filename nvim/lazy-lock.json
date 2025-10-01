@@ -19,6 +19,7 @@
   "iceberg.vim": { "branch": "master", "commit": "23835d5ed696436f716cbfdb56a93a7850fe3b18" },
   "lazy.nvim": { "branch": "main", "commit": "6c3bda4aca61a13a9c63f1c1d1b16b9d3be90d7a" },
   "markdown-preview.nvim": { "branch": "master", "commit": "a923f5fc5ba36a3b17e289dc35dc17f66d0548ee" },
+  "markview.nvim": { "branch": "main", "commit": "2d68c060ad4387d9895577af43c3ace41a80de5d" },
   "neoscroll.nvim": { "branch": "master", "commit": "f957373912e88579e26fdaea4735450ff2ef5c9c" },
   "neosnippet": { "branch": "master", "commit": "efb2a615df2e6df9364087686dacca223fcfa16a" },
   "neosnippet-snippets": { "branch": "master", "commit": "725c989f18e9c134cddd63a7c6b15bed5c244657" },

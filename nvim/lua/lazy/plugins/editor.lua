@@ -380,8 +380,8 @@ return {
         callback = function()
           if vim.g.colors_name == 'nord' then
             -- 通常時の背景色
-            vim.api.nvim_set_hl(0, 'WinBar', { bg = '#2e3440' })
-            vim.api.nvim_set_hl(0, 'WinBarNC', { bg = '#2e3440' })
+            vim.api.nvim_set_hl(0, 'WinBar', { bg = '#5b6b81' })
+            vim.api.nvim_set_hl(0, 'WinBarNC', { bg = '#5b6b81' })
             -- 選択時やメニューの背景色
             vim.api.nvim_set_hl(0, 'DropBarCurrentContext', { bg = '#2e3440' })
             vim.api.nvim_set_hl(0, 'DropBarMenuNormalFloat', { bg = '#2e3440' })

@@ -6,10 +6,8 @@ vnoremap <C-l> <Esc>
 snoremap <C-l> <Esc>
 onoremap <C-l> <Esc>
 lnoremap <C-l> <Esc>
-" ターミナルモード時にescで抜ける
-tnoremap <Esc> <C-\><C-n>
-" ctrl+lでctrl+c
-tmap <C-l> <Esc>
+" ctrl+lでターミナルから抜ける
+tmap <C-l> <C-\><C-n>
 " ctrl+lで検索ハイライト無効化+再描画
 nnoremap <silent> <C-l> <Cmd>nohlsearch<CR><C-l>
 
@@ -32,18 +30,6 @@ nnoremap <Leader>vD <Cmd>execute 'edit' g:ROOT_DIR . '/lua/lazy/lazy-plugins.lua
 nnoremap <Leader>vs <Cmd>source $MYVIMRC<CR>
 " スペース+mでmyvim_manual.txtファイルを開く
 nnoremap <Leader>m <Cmd>edit ~/Documents/Memo/skills/Vim/myvim_manual.txt<CR>
-
-"========== セッション操作 ==========
-let s:session_file = '.session.vim'
-" スペース+swでセッションファイルを保存する
-execute 'nnoremap <Leader>sw <Cmd>mks!' s:session_file '<CR>'
-" スペース+sqでセッションファイルを保存してウィンドウを全て閉じる
-execute 'nnoremap <Leader>sq <Cmd>mks!' s:session_file '<CR>:qall<CR>'
-" スペース+ssでセッションファイルを読み込む
-execute 'nnoremap <Leader>ss <Cmd>source' s:session_file '<CR>'
-" スペース+sdでセッションファイルを削除
-execute 'nnoremap <Leader>sd <Cmd>!rm' s:session_file '<CR>'
-"==================================
 
 " Leader+wで保存
 nnoremap <Leader>w <Cmd>write<CR>
