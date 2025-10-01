@@ -80,6 +80,7 @@ function M.setup_highlights()
   elseif colorscheme == 'nord' then
     vim.api.nvim_set_hl(0, 'Visual', { ctermbg = 30, bg = '#314b68' })
     vim.api.nvim_set_hl(0, 'IndentGuidesOdd', { ctermbg = 235, bg = '#3b4252' })
+    vim.api.nvim_set_hl(0, "NormalFloat", { bg = "#475160" })
   end
 end
 

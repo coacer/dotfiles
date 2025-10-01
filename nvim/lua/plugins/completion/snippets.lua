@@ -18,7 +18,7 @@ return {
       end
 
       -- Custom snippets directory
-      vim.g['neosnippet#snippets_directory'] = vim.g.ROOT_DIR .. '/settings/plugins/neosnippet.rc.d/snippets'
+      vim.g['neosnippet#snippets_directory'] = vim.g.ROOT_DIR .. '/snippets'
     end,
   },
 }

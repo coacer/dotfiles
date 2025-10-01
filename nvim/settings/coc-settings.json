@@ -1,7 +1,6 @@
 {
   "suggest.maxCompleteItemCount": 20,
   "codeLens.enable": true,
-  "metals.treeviews.gotoPrevSibling": "<C-q>",
   "tsserver.implicitProjectConfig.checkJs": true,
   "typescript.suggest.autoImports": true,
   "typescript.updateImportsOnFileMove.enabled": "always",

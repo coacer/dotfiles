@@ -6,7 +6,7 @@ return {
   event = { 'BufReadPost', 'BufNewFile' },
   config = function()
     -- Load coc-settings.json
-    local coc_settings_path = vim.g.ROOT_DIR .. '/settings/plugins/coc.rc.d/coc-settings.json'
+    local coc_settings_path = vim.g.ROOT_DIR .. '/settings/coc-settings.json'
     if vim.fn.filereadable(coc_settings_path) == 1 then
       local coc_settings_content = vim.fn.readfile(coc_settings_path)
       vim.g.coc_user_config = vim.fn.json_decode(coc_settings_content)
@@ -15,7 +15,6 @@ return {
     -- Global extensions
     vim.g.coc_global_extensions = {
       'coc-vimlsp',
-      'coc-metals',
       'coc-css',
       'coc-diagnostic',
       'coc-eslint',
@@ -60,6 +59,7 @@ return {
     vim.keymap.set('n', 'gR', '<Plug>(coc-implementation)', { silent = true })
     vim.keymap.set('n', 'gr', '<Plug>(coc-references)', { silent = true })
     vim.keymap.set('n', 'gn', '<Plug>(coc-rename)')
+    vim.keymap.set("n", "gi", "<Plug>(coc-implementation)", {silent = true})
 
     -- Documentation
     local function show_documentation()

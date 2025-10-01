@@ -1,4 +1,5 @@
+require('config.variables')
 require('config.options')
 require('config.lazy')
 require('config.highlights')
-
+require('config.keymaps')
