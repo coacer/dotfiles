@@ -2,7 +2,7 @@ runtime! settings/variables.vim
 runtime! settings/base/functions/*.vim
 
 " Initialize lazy.nvim
-lua require('lazy.bootstrap')
+lua require('config.lazy')
 
 runtime! settings/base/*.vim
 runtime! settings/lang/init.vim

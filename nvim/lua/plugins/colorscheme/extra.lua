@@ -1,14 +1,5 @@
--- Colorscheme plugins
+-- Additional colorschemes and utilities
 return {
-  -- Main colorscheme
-  {
-    'cocopon/iceberg.vim',
-    priority = 1000,
-    config = function()
-      vim.cmd('colorscheme iceberg')
-    end,
-  },
-
   -- Additional colorschemes
   'jonathanfilip/vim-lucius',
   'jdkanani/vim-material-theme',
@@ -30,7 +21,7 @@ return {
         'murphy', 'pablo', 'peachpuff', 'ron',
         'slate', 'torte', 'zellner', 'industry', 'shine'
       }
-      
+
       -- Create convenient command
       vim.api.nvim_create_user_command('ColorSchemeSelect', 'Unite colorscheme -auto-preview', {})
     end,

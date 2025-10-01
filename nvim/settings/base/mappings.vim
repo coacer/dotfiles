@@ -136,3 +136,16 @@ nnoremap <Leader><C-G><C-G> :DiffOpen<CR>
 " hlslensにバグがあるため
 nnoremap n /<CR>
 
+" ヴィジュアルモードでペーストした際に削除した文字列をレジスタに格納しない
+function! RestoreRegister()
+  let @" = s:restore_reg
+  return ''
+endfunction
+
+function! s:Repl()
+  let s:restore_reg = @"
+  return "p@=RestoreRegister()\<cr>"
+endfunction
+
+vmap <silent> <expr> p <sid>Repl()
+

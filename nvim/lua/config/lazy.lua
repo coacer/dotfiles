@@ -13,11 +13,7 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 -- Load plugins from plugins directory
-require("lazy").setup("lazy.plugins", {
-  -- Configure lazy.nvim
-  install = {
-    colorscheme = { "iceberg" },
-  },
+require("lazy").setup("plugins", {
   checker = {
     enabled = true,
   },
