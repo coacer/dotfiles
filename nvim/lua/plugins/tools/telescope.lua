@@ -24,6 +24,7 @@ return {
       defaults = {
         winblend = 30,
         path_display = { truncate = 1 },
+        file_ignore_patterns = { "^%.git/" },
         mappings = {
           n = {
             ["<C-d>"] = actions.close,

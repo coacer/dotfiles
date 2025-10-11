@@ -18,51 +18,6 @@ vim.keymap.set('t', '<C-l>', [[<C-\><C-n>]], { noremap = true })
 vim.keymap.set('n', '<C-l>', '<Cmd>nohlsearch<CR><C-l>', { noremap = true, silent = true })
 
 -- ============================================
--- vimrc Operations
--- ============================================
-
--- Space+vv to open nvim folder with fzf
-vim.keymap.set('n', '<Leader>vv', function()
-  vim.cmd('Files ' .. vim.g.ROOT_DIR)
-end, { noremap = true })
-
--- Space+vm to open mappings.vim file
-vim.keymap.set('n', '<Leader>vm', function()
-  vim.cmd('edit ' .. vim.g.ROOT_DIR .. '/settings/base/mappings.vim')
-end, { noremap = true })
-
--- Space+vf to open functions.vim file
-vim.keymap.set('n', '<Leader>vf', function()
-  vim.cmd('edit ' .. vim.g.ROOT_DIR .. '/settings/base/functions/main.vim')
-end, { noremap = true })
-
--- Space+vb to open basic.vim file
-vim.keymap.set('n', '<Leader>vb', function()
-  vim.cmd('edit ' .. vim.g.ROOT_DIR .. '/settings/base/basic.vim')
-end, { noremap = true })
-
--- Space+vc to open color.vim file
-vim.keymap.set('n', '<Leader>vc', function()
-  vim.cmd('edit ' .. vim.g.ROOT_DIR .. '/settings/base/color.vim')
-end, { noremap = true })
-
--- Space+vd to open lua/lazy/plugins.lua file
-vim.keymap.set('n', '<Leader>vd', function()
-  vim.cmd('edit ' .. vim.g.ROOT_DIR .. '/lua/lazy/plugins.lua')
-end, { noremap = true })
-
--- Space+vD to open lua/lazy/lazy-plugins.lua file
-vim.keymap.set('n', '<Leader>vD', function()
-  vim.cmd('edit ' .. vim.g.ROOT_DIR .. '/lua/lazy/lazy-plugins.lua')
-end, { noremap = true })
-
--- Space+vs to source .vimrc file
-vim.keymap.set('n', '<Leader>vs', '<Cmd>source $MYVIMRC<CR>', { noremap = true })
-
--- Space+m to open myvim_manual.txt file
-vim.keymap.set('n', '<Leader>m', '<Cmd>edit ~/Documents/Memo/skills/Vim/myvim_manual.txt<CR>', { noremap = true })
-
--- ============================================
 -- File Operations
 -- ============================================
 
@@ -142,9 +97,6 @@ vim.keymap.set('n', 'Y', 'y$', { noremap = true })
 -- ctrl-j/k to insert blank line above/below and return to original position
 vim.keymap.set('n', '<C-j>', [[mzo<Esc>"_cc<Esc>`z]], { noremap = true })
 vim.keymap.set('n', '<C-k>', [[mzO<Esc>"_cc<Esc>`z]], { noremap = true })
-
--- Leader*2 to indent entire file
-vim.keymap.set('n', '<Leader><Leader>', [[mz:%normal ==<CR>`zzz]], { noremap = true, silent = true })
 
 -- g + yank to move to end of yanked range
 vim.keymap.set('n', 'gyy', 'yy`]', { noremap = true })

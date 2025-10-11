@@ -18,20 +18,6 @@ return {
   'tpope/vim-repeat',
   'tpope/vim-endwise',
 
-  -- Search enhancement
-  {
-    'haya14busa/vim-asterisk',
-    keys = { '*', '#', 'g*', 'g#' },
-    config = function()
-      vim.g['asterisk#keeppos'] = 1
-
-      vim.keymap.set('', '*', '<Plug>(asterisk-z*)')
-      vim.keymap.set('', '#', '<Plug>(asterisk-z#)')
-      vim.keymap.set('', 'g*', '<Plug>(asterisk-gz*)')
-      vim.keymap.set('', 'g#', '<Plug>(asterisk-gz#)')
-    end,
-  },
-
   -- Search lens
   'kevinhwang91/nvim-hlslens',
 
@@ -45,29 +31,6 @@ return {
     config = function()
       -- Highlight duration in milliseconds
       vim.g.highlightedyank_highlight_duration = 800
-    end,
-  },
-
-  -- Focus mode
-  {
-    'junegunn/goyo.vim',
-    cmd = 'Goyo',
-  },
-
-  -- EditorConfig
-  'editorconfig/editorconfig-vim',
-
-  -- Color picker and colorizer
-  {
-    'uga-rosa/ccc.nvim',
-    cmd = { 'CccPick', 'CccConvert', 'CccHighlighterEnable', 'CccHighlighterToggle' },
-    config = function()
-      require('ccc').setup({
-        highlighter = {
-          auto_enable = true,
-          lsp = true,
-        },
-      })
     end,
   },
 }

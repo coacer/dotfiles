@@ -15,13 +15,13 @@ return {
         width = 40,
       },
       renderer = {
-        group_empty = true,
+        group_empty = false,
         icons = {
           show = {
             file = true,
             folder = true,
             folder_arrow = true,
-            git = true,
+            git = false,
           },
         },
       },
@@ -90,9 +90,10 @@ return {
         end, opts('Print Path'))
         
         -- Help
-        vim.keymap.set('n', '?', function()
-          vim.cmd('split ' .. vim.g.ROOT_DIR .. '/lua/lazy/plugins/nvim-tree.lua')
-        end, opts('Help'))
+        vim.keymap.set('n', '?', api.tree.toggle_help, opts('Help'))
+
+        -- Override default 's' mapping to use window commands
+        vim.keymap.set('n', 's', '<C-w>', opts('Window Command Prefix'))
       end,
     })
     

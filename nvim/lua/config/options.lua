@@ -66,17 +66,3 @@ vim.api.nvim_create_autocmd({ 'BufNewFile', 'BufRead' }, {
     vim.bo.filetype = 'velocity'
   end,
 })
-
--- 保存時に末尾の半角/全角スペースを削除 (コメントアウトされていた)
--- vim.api.nvim_create_autocmd('BufWritePre', {
---   group = basic_group,
---   pattern = '*',
---   command = [[%s/\v(\s|　)+$//e]],
--- })
-
--- ファイル表示時にfoldを全て展開 (コメントアウトされていた)
--- vim.api.nvim_create_autocmd('BufRead', {
---   group = basic_group,
---   pattern = '*',
---   command = 'normal zR',
--- })

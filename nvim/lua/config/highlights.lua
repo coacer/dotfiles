@@ -28,6 +28,12 @@ function M.setup_highlights()
     EasyMotionTarget2Second = { fg = '#6EC79B' },
     EasyMotionShade = { fg = '#838E94' },
 
+    -- flash.nvim
+    FlashLabel = { fg = '#2e3440', bg = '#a3be8c', bold = true }, -- 移動用ラベル（明るい緑）
+    FlashMatch = { fg = '#d08770', bold = true }, -- マッチした文字（オレンジ）
+    FlashCurrent = { fg = '#2e3440', bg = '#88c0d0', bold = true }, -- 現在のマッチ（青、検索と同系色だが背景付き）
+    FlashBackdrop = { fg = '#4c566a' }, -- 背景の暗くなる部分
+
     -- nvim-notify
     NotifyERRORBorder = { fg = '#BA1F1F' },
     NotifyERRORIcon = { fg = '#F70067' },
@@ -54,33 +60,22 @@ function M.setup_highlights()
   -- カラースキーム別の設定
   local colorscheme = vim.g.colors_name
 
-  if colorscheme == 'iceberg' then
-    vim.api.nvim_set_hl(0, 'Visual', { ctermbg = 30, bg = '#123531' })
-    vim.api.nvim_set_hl(0, 'Search', { ctermbg = 29, fg = '#ffffff', bg = '#476a47' })
-    vim.api.nvim_set_hl(0, 'IndentGuidesOdd', { ctermbg = 235, bg = '#1e2132' })
-
-    -- JavaScript
-    vim.api.nvim_set_hl(0, 'javascriptClassKeyword', { ctermfg = 48, fg = '#1ebec9' })
-    vim.api.nvim_set_hl(0, 'javascriptObjectLabel', { ctermfg = 207, fg = '#1ebec9' })
-    vim.api.nvim_set_hl(0, 'javascriptClassStatic', { ctermfg = 197, fg = '#1ebec9' })
-
-    -- Ruby
-    vim.api.nvim_set_hl(0, 'rubyClass', { ctermfg = 150, fg = '#1ebec9' })
-    vim.api.nvim_set_hl(0, 'rubyFunction', { ctermfg = 123, fg = '#20cfdf' })
-    vim.api.nvim_set_hl(0, 'rubyInstanceVariable', { ctermfg = 212, fg = '#9df6af' })
-
-  elseif colorscheme == 'atom-dark' then
-    vim.api.nvim_set_hl(0, 'Visual', { ctermbg = 30, bg = '#174b45' })
-    vim.api.nvim_set_hl(0, 'IndentGuidesOdd', { ctermbg = 235, bg = '#293739' })
-
-  elseif colorscheme == 'material-theme' then
-    vim.api.nvim_set_hl(0, 'Visual', { ctermbg = 30, bg = '#194553' })
-    vim.api.nvim_set_hl(0, 'IndentGuidesOdd', { ctermbg = 235, bg = '#37474f' })
-
-  elseif colorscheme == 'nord' then
-    vim.api.nvim_set_hl(0, 'Visual', { ctermbg = 30, bg = '#314b68' })
+  if colorscheme == 'nord' then
+    vim.api.nvim_set_hl(0, 'Visual', { ctermbg = 30, bg = '#4d5167' })
     vim.api.nvim_set_hl(0, 'IndentGuidesOdd', { ctermbg = 235, bg = '#3b4252' })
     vim.api.nvim_set_hl(0, "NormalFloat", { bg = "#475160" })
+
+    -- 検索ハイライト
+    vim.api.nvim_set_hl(0, 'Search', { bg = '#5e81ac', fg = '#eceff4' })
+    vim.api.nvim_set_hl(0, 'IncSearch', { bg = '#88c0d0', fg = '#2e3440', bold = true })
+    vim.api.nvim_set_hl(0, 'CurSearch', { bg = '#88c0d0', fg = '#2e3440', bold = true })
+
+    -- アクティブ/非アクティブウィンドウ
+    vim.api.nvim_set_hl(0, 'NormalNC', { bg = '#242933' })
+
+    -- ターミナルモード
+    vim.api.nvim_set_hl(0, 'TerminalInsert', { bg = '#2e3440' })
+    vim.api.nvim_set_hl(0, 'TerminalNormal', { bg = '#242933' })
   end
 end
 

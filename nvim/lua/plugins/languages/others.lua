@@ -33,9 +33,6 @@ return {
   -- Swift
   'keith/swift.vim',
 
-  -- CoffeeScript
-  { 'kchmck/vim-coffee-script', ft = { 'coffee' } },
-
   -- Terraform
   { 'hashivim/vim-terraform', ft = { 'terraform' } },
 
@@ -50,7 +47,4 @@ return {
       vim.g.graphql_javascript_tags = { '' }
     end,
   },
-
-  -- Rails
-  'tpope/vim-rails',
 }
