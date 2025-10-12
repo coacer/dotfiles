@@ -1,7 +1,7 @@
 -- Icons
 return {
   'ryanoasis/vim-devicons',
-  'kyazdani42/nvim-web-devicons',
+  'nvim-tree/nvim-web-devicons',
   {
     'tiagofumo/vim-nerdtree-syntax-highlight',
     config = function()
