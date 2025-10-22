@@ -19,6 +19,7 @@ ln -s ~/dotfiles/.gitignore_global ~/.gitignore_global
 ln -s ~/dotfiles/.bin ~/.bin
 ln -s ~/dotfiles/.ideavimrc ~/.ideavimrc
 ln -s ~/dotfiles/zsh/.zprofile ~/.zprofile
+ln -s ~/dotfiles/fish ~/.config/fish
 
 # ==== Homebrew ====
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)";
@@ -28,7 +29,7 @@ sudo xcodebuild -license accept
 
 brew update;
 brew install vim neovim emacs fzf git hub docker lazydocker lazygit tig \
-  tree autojump composer awscli rbenv pyenv pyenv-virtualenv nodenv bat luarocks jq asdf gopls mysql ripgrep;
+  tree autojump composer awscli rbenv pyenv pyenv-virtualenv nodenv bat luarocks jq asdf gopls mysql ripgrep fish;
 brew install tmux --HEAD
 brew install docker iterm2 clipy homebrew/cask-versions/sequel-pro-nightly font-hack-nerd-font dotnet-sdk --cask;
 brew tap homebrew/cask-fonts dart-lang/dart

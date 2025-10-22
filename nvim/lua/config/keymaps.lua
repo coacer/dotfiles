@@ -162,6 +162,9 @@ vim.keymap.set('n', '<Leader><C-G><C-G>', ':DiffOpen<CR>', { noremap = true })
 -- hlslens has a bug
 vim.keymap.set('n', 'n', '/<CR>', { noremap = true })
 
+-- * to search word under cursor without jumping
+vim.keymap.set('n', '*', '*N', { noremap = true, silent = true })
+
 -- ============================================
 -- Advanced Functions
 -- ============================================

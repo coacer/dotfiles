@@ -38,3 +38,5 @@
 	email = nakagami_yuki@cyberagent.co.jp
 # [commit]
 # 	template = /Users/y.nakagami/.stCommitMsg
+[ghq]
+	root = /Users/nakagamiyuki/dev
