@@ -8,9 +8,12 @@
 # --------------------------------------------------
 
 # cd with ls (function instead of alias for better fish compatibility)
+# Note: Suppress ls output in Neovim to prevent interference with git-blame.nvim
 function cd
     builtin cd $argv
-    and ls -lGh
+    and if not set -q NVIM
+        ls -lGh
+    end
 end
 
 alias cdd='cd ~/Desktop'
