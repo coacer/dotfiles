@@ -20,6 +20,8 @@ ln -s ~/dotfiles/.bin ~/.bin
 ln -s ~/dotfiles/.ideavimrc ~/.ideavimrc
 ln -s ~/dotfiles/zsh/.zprofile ~/.zprofile
 ln -s ~/dotfiles/fish ~/.config/fish
+ln -s ~/dotfiles/.yabairc ~/.yabairc
+ln -s ~/dotfiles/.skhdrc ~/.skhdrc
 
 # ==== Homebrew ====
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)";

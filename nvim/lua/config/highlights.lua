@@ -61,21 +61,7 @@ function M.setup_highlights()
   local colorscheme = vim.g.colors_name
 
   if colorscheme == 'nord' then
-    vim.api.nvim_set_hl(0, 'Visual', { ctermbg = 30, bg = '#4d5167' })
-    vim.api.nvim_set_hl(0, 'IndentGuidesOdd', { ctermbg = 235, bg = '#3b4252' })
-    vim.api.nvim_set_hl(0, "NormalFloat", { bg = "#475160" })
-
-    -- 検索ハイライト
-    vim.api.nvim_set_hl(0, 'Search', { bg = '#5e81ac', fg = '#eceff4' })
-    vim.api.nvim_set_hl(0, 'IncSearch', { bg = '#88c0d0', fg = '#2e3440', bold = true })
-    vim.api.nvim_set_hl(0, 'CurSearch', { bg = '#88c0d0', fg = '#2e3440', bold = true })
-
-    -- アクティブ/非アクティブウィンドウ
-    vim.api.nvim_set_hl(0, 'NormalNC', { bg = '#242933' })
-
-    -- ターミナルモード
-    vim.api.nvim_set_hl(0, 'TerminalInsert', { bg = '#2e3440' })
-    vim.api.nvim_set_hl(0, 'TerminalNormal', { bg = '#242933' })
+    -- カラースキーム設定
   end
 end
 

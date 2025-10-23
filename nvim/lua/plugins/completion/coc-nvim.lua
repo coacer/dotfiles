@@ -31,7 +31,7 @@ return {
       'coc-protobuf',
       'coc-flutter',
       'coc-go',
-      'coc-python',
+      'coc-pyright',
       'coc-sourcekit',
     }
 
