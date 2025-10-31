@@ -32,10 +32,14 @@ function M.setup_today_note()
   end, {})
 end
 
+-- Load cursor-agent module
+local cursor_agent = require('utils.cursor-agent')
+
 -- Setup all commands
 function M.setup()
   M.setup_colorscheme_select()
   M.setup_today_note()
+  cursor_agent.setup()
 end
 
 M.setup()
