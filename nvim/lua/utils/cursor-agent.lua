@@ -14,6 +14,23 @@ local function is_cursor_agent_window_open()
   return state.winid and vim.api.nvim_win_is_valid(state.winid)
 end
 
+-- Helper function to adjust cursor agent window width to maintain exactly 30% of screen width
+local function adjust_cursor_agent_width()
+  if not is_cursor_agent_window_open() then
+    return
+  end
+
+  local state = _G.cursor_agent_state
+  local current_width = vim.api.nvim_win_get_width(state.winid)
+  local screen_width = vim.o.columns
+  local target_width = math.floor(screen_width * 0.3)
+
+  -- Adjust width if it's not exactly 30%
+  if current_width ~= target_width then
+    vim.api.nvim_win_set_width(state.winid, target_width)
+  end
+end
+
 -- Helper function to open cursor-agent window
 -- args: command line arguments for cursor-agent (only used on first launch)
 local function open_cursor_agent_window(args)
@@ -87,6 +104,14 @@ local function open_cursor_agent_window(args)
     -- Hide buffer from buffer list and normal buffer navigation
     vim.bo[state.bufnr].buflisted = false  -- Hide from :ls, :bn/:bp, Telescope
     vim.bo[state.bufnr].bufhidden = "hide" -- Keep buffer when window is closed
+  end
+
+  -- Ensure window width is exactly 30% of screen width
+  adjust_cursor_agent_width()
+
+  -- Fix window width to prevent manual resizing
+  if state.winid then
+    vim.wo[state.winid].winfixwidth = true
   end
 
   vim.cmd('startinsert')
@@ -181,6 +206,13 @@ function M.setup()
   vim.keymap.set('n', '<leader>sb', ':CursorAgentAdd %<CR>', { desc = 'Add current buffer to CursorAgent', silent = true })
   vim.keymap.set('v', '<leader>se', ':CursorAgentSend<CR>', { desc = 'Send visual selection to CursorAgent', silent = true })
   vim.keymap.set('n', '<leader>sr', ':CursorAgent --resume<CR>', { desc = 'Resume CursorAgent', silent = true })
+
+  -- Monitor window resize events to maintain exact 30% width
+  vim.api.nvim_create_autocmd('WinResized', {
+    callback = function()
+      adjust_cursor_agent_width()
+    end
+  })
 end
 
 return M

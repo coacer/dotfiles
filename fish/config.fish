@@ -118,3 +118,6 @@ set -g fish_color_command blue
 set -g fish_color_param normal
 set -g fish_color_error red
 set -g fish_color_quote yellow
+
+# Added by Windsurf
+fish_add_path /Users/nakagamiyuki/.codeium/windsurf/bin
