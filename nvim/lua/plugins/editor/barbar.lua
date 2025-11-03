@@ -23,6 +23,7 @@ return {
     vim.api.nvim_create_autocmd('ColorScheme', {
       callback = function()
         if vim.g.colors_name == 'nord' then
+          vim.api.nvim_set_hl(0, 'BufferInactive', { fg = '#888888'})
           vim.api.nvim_set_hl(0, 'BufferCurrentMod', { fg = '#ffcc02', bg = '#4c566a', bold = true })
           vim.api.nvim_set_hl(0, 'BufferVisibleMod', { fg = '#ffcc02', bg = '#282a36' })
           vim.api.nvim_set_hl(0, 'BufferInactiveMod', { fg = '#ffcc02' })

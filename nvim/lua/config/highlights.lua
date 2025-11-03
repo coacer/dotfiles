@@ -62,6 +62,8 @@ function M.setup_highlights()
 
   if colorscheme == 'nord' then
     -- カラースキーム設定
+    vim.api.nvim_set_hl(0, 'NormalFloat', { link = 'Normal' })
+    vim.api.nvim_set_hl(0, 'FloatBorder', { fg = '#5e81ac', bg = 'NONE' })
   end
 end
 
