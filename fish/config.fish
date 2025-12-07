@@ -121,3 +121,6 @@ set -g fish_color_quote yellow
 
 # Added by Windsurf
 fish_add_path /Users/nakagamiyuki/.codeium/windsurf/bin
+
+# Added by Antigravity
+fish_add_path /Users/nakagamiyuki/.antigravity/antigravity/bin

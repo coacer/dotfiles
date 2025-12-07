@@ -71,7 +71,7 @@ vim.keymap.set('n', 'gJ', [[mz:<C-u>+1s/^\s\+//e<CR>`zgJ]], { noremap = true, si
 vim.keymap.set('x', 'gJ', [[:s/^\s\+//e<CR>gvgJ]], { noremap = true, silent = true, desc = 'Join selected lines and remove leading whitespace' })
 
 -- ctrl+d to delete buffer
-vim.keymap.set('n', '<C-d>', '<Cmd>bdelete<CR>', { noremap = true, silent = true, desc = 'Delete buffer' })
+vim.keymap.set('n', '<Leader>d', '<Cmd>bdelete<CR>', { noremap = true, silent = true, desc = 'Delete buffer' })
 
 -- ============================================
 -- Window Operations

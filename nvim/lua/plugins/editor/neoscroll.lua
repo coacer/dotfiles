@@ -6,7 +6,7 @@ return {
     local neoscroll = require('neoscroll')
 
     neoscroll.setup({
-      mappings = {'<C-b>', '<C-f>', 'zt', 'zz', 'zb' },
+      mappings = {'<C-b>', '<C-f>', '<C-u>', '<C-d>', 'zt', 'zz', 'zb' },
     })
 
     -- Scroll mappings
@@ -14,10 +14,15 @@ return {
       vim.keymap.set('n', lhs, function()
         neoscroll.scroll(lines, opts)
       end, { silent = true })
+      vim.keymap.set('x', lhs, function()
+        neoscroll.scroll(lines, opts)
+      end, { silent = true })
     end
 
     map('<C-b>', -vim.api.nvim_win_get_height(0), { move_cursor = true, duration = 125 })
     map('<C-f>', vim.api.nvim_win_get_height(0), { move_cursor = true, duration = 125 })
+    map('<C-u>', -math.floor(vim.api.nvim_win_get_height(0) / 2), { move_cursor = true, duration = 60 })
+    map('<C-d>', math.floor(vim.api.nvim_win_get_height(0) / 2), { move_cursor = true, duration = 60 })
 
     -- z-series mappings
     vim.keymap.set('n', 'zz', function()

@@ -70,8 +70,8 @@ return {
         end, { desc = "Diff this ~" })
 
         -- トグル
-        map("n", "<leader>tb", gs.toggle_current_line_blame, { desc = "Toggle current line blame" })
-        map("n", "<leader>td", gs.toggle_deleted, { desc = "Toggle deleted" })
+        -- map("n", "<leader>tb", gs.toggle_current_line_blame, { desc = "Toggle current line blame" })
+        -- map("n", "<leader>td", gs.toggle_deleted, { desc = "Toggle deleted" })
 
         -- テキストオブジェクト
         map({ "o", "x" }, "ih", ":<C-U>Gitsigns select_hunk<CR>", { desc = "Select hunk" })

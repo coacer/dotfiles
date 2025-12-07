@@ -35,11 +35,15 @@ end
 -- Load cursor-agent module
 local cursor_agent = require('utils.cursor-agent')
 
+-- Load codex module
+local codex = require('utils.codex')
+
 -- Setup all commands
 function M.setup()
   M.setup_colorscheme_select()
   M.setup_today_note()
   cursor_agent.setup()
+  codex.setup()
 end
 
 M.setup()
