@@ -13,9 +13,9 @@ return {
       "icon",
     },
     -- Use system trash instead of permanent deletion
-    delete_to_trash = true,
+    delete_to_trash = false,
     -- Skip confirmation for simple operations
-    skip_confirm_for_simple_edits = false,
+    skip_confirm_for_simple_edits = true,
     -- Watch for external changes and reload buffer
     watch_for_changes = false,
     -- View options
@@ -26,9 +26,6 @@ return {
     keymaps = {
       ["g?"] = "actions.show_help",
       ["l"] = "actions.select",
-      ["<C-s>"] = { "actions.select", opts = { vertical = true }, desc = "Open the entry in a vertical split" },
-      ["<C-h>"] = { "actions.select", opts = { horizontal = true }, desc = "Open the entry in a horizontal split" },
-      ["<C-t>"] = { "actions.select", opts = { tab = true }, desc = "Open the entry in new tab" },
       ["<C-p>"] = "actions.preview",
       ["<C-n>"] = "actions.close",
       ["<C-l>"] = "actions.refresh",
@@ -47,6 +44,7 @@ return {
       max_width = 0.6,
       max_height = 0.7,
       border = "rounded",
+      preview_split = "right",
       win_options = {
         winblend = 20,
       },
@@ -83,7 +81,7 @@ return {
     require("oil").setup(opts)
 
     -- Keymap to open oil in floating window
-    vim.keymap.set("n", "<C-n>", "<CMD>Oil . --float<CR>", { desc = "Open cwd in oil floating window" })
-    vim.keymap.set("n", "<Leader><C-n>", "<CMD>Oil --float<CR>", { desc = "Open current file directory in oil floating window" })
+    vim.keymap.set("n", "<C-n>", "<CMD>Oil . --float --preview<CR>", { desc = "Open cwd in oil floating window" })
+    vim.keymap.set("n", "<Leader><C-n>", "<CMD>Oil --float --preview<CR>", { desc = "Open current file directory in oil floating window" })
   end,
 }

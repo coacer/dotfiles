@@ -4,7 +4,7 @@ return {
   event = "VeryLazy",
   opts = {
     -- デフォルト設定で十分ですが、カスタマイズ可能
-    labels = "asdfghjklqwertyuiopzxcvbnm",
+    labels = "asdfjkl;",
     search = {
       multi_window = true,
       forward = true,
@@ -18,7 +18,7 @@ return {
       nohlsearch = false,
     },
     label = {
-      uppercase = true,
+      uppercase = false,
       rainbow = {
         enabled = false,
         shade = 5,
@@ -29,7 +29,7 @@ return {
         enabled = false,
       },
       char = {
-        enabled = true,
+        enabled = false, -- f, t, F, Tの移動時にflashを無効化
         jump_labels = true,
       },
     },

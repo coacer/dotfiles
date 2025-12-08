@@ -29,9 +29,9 @@ function M.setup_highlights()
     EasyMotionShade = { fg = '#838E94' },
 
     -- flash.nvim
-    FlashLabel = { fg = '#2e3440', bg = '#a3be8c', bold = true }, -- 移動用ラベル（明るい緑）
-    FlashMatch = { fg = '#d08770', bold = true }, -- マッチした文字（オレンジ）
-    FlashCurrent = { fg = '#2e3440', bg = '#88c0d0', bold = true }, -- 現在のマッチ（青、検索と同系色だが背景付き）
+    FlashLabel = { fg = '#ffffff', bg = '#2d3240', bold = true }, -- 移動用ラベル（明るい緑）
+    FlashMatch = { fg = '#6a7896', bold = true }, -- マッチした文字
+    FlashCurrent = { fg = '#6a7896', bold = true }, -- 現在のマッチ
     FlashBackdrop = { fg = '#4c566a' }, -- 背景の暗くなる部分
 
     -- nvim-notify
