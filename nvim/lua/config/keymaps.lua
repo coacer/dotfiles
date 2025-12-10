@@ -56,7 +56,7 @@ vim.keymap.set('n', '+X', function()
 end, { noremap = true, silent = true, desc = 'Copy filename (with extension) to clipboard' })
 
 -- Leader+a to select all
-vim.keymap.set('n', '<Leader>a', 'ggVG', { noremap = true, desc = 'Select entire file' })
+-- vim.keymap.set('n', '<Leader>a', 'ggVG', { noremap = true, desc = 'Select entire file' })
 
 -- ============================================
 -- Editing Operations

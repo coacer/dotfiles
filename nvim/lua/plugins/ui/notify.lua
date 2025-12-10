@@ -19,8 +19,7 @@ return {
       timeout = 6000
     })
 
-    -- Set as default notify function
-    vim.notify = require('notify')
+    -- Note: vim.notify is set by noice.nvim when available
 
     -- Global notify function
     _G.Notify = function(title, msg, type)

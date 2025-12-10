@@ -1,3 +1,8 @@
+# .zsh_secretsの読み込み
+if [ -f "$HOME/.zsh_secrets" ]; then
+  source "$HOME/.zsh_secrets"
+fi
+
 # Fig pre block. Keep at the top of this file.
 [[ -f "$HOME/.fig/shell/zshrc.pre.zsh" ]] && builtin source "$HOME/.fig/shell/zshrc.pre.zsh"
 # alias j="autojump"
@@ -121,8 +126,9 @@ source <(kubectl completion zsh)
 # Fig post block. Keep at the bottom of this file.
 [[ -f "$HOME/.fig/shell/zshrc.post.zsh" ]] && builtin source "$HOME/.fig/shell/zshrc.post.zsh"
 
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
 [[ "$TERM_PROGRAM" == "kiro" ]] && . "$(kiro --locate-shell-integration-path zsh)"
+
+## [Completion]
+## Completion scripts setup. Remove the following line to uninstall
+[[ -f /Users/nakagamiyuki/.dart-cli-completion/zsh-config.zsh ]] && . /Users/nakagamiyuki/.dart-cli-completion/zsh-config.zsh || true
+## [/Completion]
