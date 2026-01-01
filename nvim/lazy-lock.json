@@ -1,4 +1,5 @@
 {
+  "ascii.nvim": { "branch": "master", "commit": "70783fea66e99525221e52dce3b3489c05354181" },
   "auto-save.nvim": { "branch": "main", "commit": "979b6c82f60cfa80f4cf437d77446d0ded0addf0" },
   "barbar.nvim": { "branch": "master", "commit": "53b5a2f34b68875898f0531032fbf090e3952ad7" },
   "claudecode.nvim": { "branch": "main", "commit": "6091df0e8edcdc92526cec23bbb42f63c0bb5ff2" },
@@ -46,6 +47,7 @@
   "telescope.nvim": { "branch": "master", "commit": "e69b434b968a33815e2f02a5c7bd7b8dd4c7d4b2" },
   "toggleterm.nvim": { "branch": "main", "commit": "50ea089fc548917cc3cc16b46a8211833b9e3c7c" },
   "undo-glow.nvim": { "branch": "main", "commit": "782569bd04b5e2bae4cb684d6716eec0e20bbb65" },
+  "url-open": { "branch": "main", "commit": "dce2a9bc51e4885ea80ca03da5b4d0f719aaf820" },
   "vCoolor.vim": { "branch": "master", "commit": "bc19d684af09b1e146cf72176eea1ecded84882c" },
   "vdebug": { "branch": "master", "commit": "66517871178779ac54e19ed0f34d66805b820664" },
   "vim-blade": { "branch": "master", "commit": "9534101808cc320eef003129a40cab04b026a20c" },

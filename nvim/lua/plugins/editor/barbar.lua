@@ -13,7 +13,11 @@ return {
     -- …etc.
   },
   config = function()
-    require('barbar').setup()
+    require('barbar').setup({
+      icons = {
+        preset = 'slanted',  -- 'default', 'powerline', 'slanted'
+      },
+    })
 
     -- Tab navigation mappings (same as vim-airline)
     vim.keymap.set('n', '<C-e>', '<Cmd>BufferPrevious<CR>', { silent = true })

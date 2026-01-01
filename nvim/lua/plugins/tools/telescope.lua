@@ -18,9 +18,10 @@ return {
     { '<Leader>*', '<cmd>lua require("telescope.builtin").grep_string()<cr>', desc = 'Grep string' },
   },
   config = function()
+    local telescope = require("telescope")
     local actions = require("telescope.actions")
     
-    require('telescope').setup({
+    telescope.setup({
       defaults = {
         winblend = 30,
         path_display = { truncate = 1 },
@@ -56,7 +57,9 @@ return {
     })
     
     -- Load extensions
-    require("telescope").load_extension("live_grep_args")
-    require("telescope").load_extension("fzf")
+    telescope.load_extension("ascii")
+    telescope.load_extension("frecency")
+    telescope.load_extension("live_grep_args")
+    telescope.load_extension("fzf")
   end,
 }

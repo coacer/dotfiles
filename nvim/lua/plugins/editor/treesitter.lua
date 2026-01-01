@@ -16,7 +16,6 @@ return {
         'lua',
         'vim',
         'vimdoc',
-        'markdown',
         'yaml',
         'toml',
         'bash',
@@ -35,6 +34,7 @@ return {
       highlight = {
         enable = true,
         additional_vim_regex_highlighting = false,
+        disable = { 'markdown' },
       },
       indent = {
         enable = true,

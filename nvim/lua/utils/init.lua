@@ -24,11 +24,18 @@ end
 function M.setup_today_note()
   vim.api.nvim_create_user_command('TodayNote', function()
     local date = os.date('%Y-%m-%d')
-    local file_path = string.format(
-      '/Users/nakagamiyuki/Library/Mobile\\ Documents/iCloud~md~obsidian/Documents/Obsidian_Vault/02_DailyNotes/%s.md',
-      date
-    )
-    vim.cmd('edit ' .. file_path)
+    local base_dir = vim.fn.expand('~/Library/Mobile Documents/iCloud~md~obsidian/Documents/Obsidian_Vault')
+    local file_path = base_dir .. '/02_DailyNotes/' .. date .. '.md'
+    local template_path = base_dir .. '/99_Systems/DailyNotesTemplate.md'
+
+    -- ファイルが存在しない場合はテンプレートをコピー
+    if vim.fn.filereadable(file_path) == 0 then
+      if vim.fn.filereadable(template_path) == 1 then
+        vim.fn.writefile(vim.fn.readfile(template_path), file_path)
+      end
+    end
+
+    vim.cmd('edit ' .. vim.fn.fnameescape(file_path))
   end, {})
 end
 

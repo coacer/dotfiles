@@ -34,7 +34,12 @@ vim.opt.virtualedit = 'block' -- 矩形選択でテキストが存在しない�
 vim.opt.number = true -- 行番号を表示
 -- vim.opt.relativenumber = true -- 相対行番号を表示 (画面描画が重いのでオフに)
 vim.opt.cursorline = true -- カーソルラインをハイライト
+vim.opt.cursorcolumn = true -- カーソルカラムをハイライト
 vim.opt.showmatch = true -- 括弧の対応関係を一瞬表示する
+-- カーソルの形状と点滅設定
+vim.opt.guicursor =
+  "n-v-c:block-blinkon500-blinkoff500," ..
+  "i-ci-ve:ver25-blinkon500-blinkoff500"
 
 -- その他の設定
 vim.opt.regexpengine = 1 -- @see https://github.com/vim/vim/issues/2712#issuecomment-372968129
