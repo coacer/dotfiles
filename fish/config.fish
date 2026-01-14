@@ -14,7 +14,7 @@ set -gx PATH /usr/local/opt/mysql/bin $PATH
 
 # Node.js
 set -gx PATH ./node_modules/.bin $PATH
-set -gx NODE_PATH (npm bin -g 2>/dev/null)
+set -gx NODE_PATH (npm config get prefix 2>/dev/null)
 if test -n "$NODE_PATH"
     set -gx PATH $NODE_PATH $PATH
 end

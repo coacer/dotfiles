@@ -49,7 +49,7 @@ function M.setup_highlights()
 
     -- telescope
     TelescopeMatching = { fg = '#e6e854' },
-    TelescopeBorder = { fg = '#54e8d4' },
+    TelescopeBorder = { fg = '#6d7ba4' },
   }
 
   -- 共通ハイライトを適用
