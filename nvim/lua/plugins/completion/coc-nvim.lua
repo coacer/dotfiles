@@ -35,10 +35,7 @@ return {
       'coc-sourcekit',
     }
 
-    -- Basic settings
-    vim.opt.backup = false
-    vim.opt.writebackup = false
-    vim.opt.cmdheight = 2
+    -- coc.nvim recommended settings
     vim.opt.updatetime = 300
     vim.opt.shortmess:append('c')
     vim.opt.signcolumn = 'yes'

@@ -2,6 +2,9 @@
 -- vim.opt.shell = '/bin/zsh -i'
 
 -- 基本設定
+vim.opt.backup = false -- バックアップファイルを作らない
+vim.opt.writebackup = false -- 保存中の一時バックアップを作らない
+vim.opt.cmdheight = 0 -- コマンドライン領域の高さ（0で非表示）
 vim.scriptencoding = 'utf-8'
 vim.opt.fileencoding = 'utf-8' -- 保存時の文字コード
 vim.opt.fileencodings = 'ucs-bom,utf-8,euc-jp,cp932' -- 読み込み時の文字コードの自動判別. 左側が優先される
