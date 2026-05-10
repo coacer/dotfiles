@@ -12,7 +12,7 @@ return {
     },
     condition = function()
       local target_dirs = {
-        -- vim.fn.expand("~/Library/Mobile Documents/iCloud~md~obsidian/Documents"),
+        vim.fn.expand("~/Library/Mobile Documents/iCloud~md~obsidian/Documents"),
         -- 追加したいディレクトリをここに記述
       }
       local filepath = vim.fn.expand("%:p")

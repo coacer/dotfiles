@@ -4,7 +4,7 @@ return {
   event = "VeryLazy",
   opts = {
     -- デフォルト設定で十分ですが、カスタマイズ可能
-    labels = "asdfjkl;",
+    labels = "asdfghjkl;",
     search = {
       multi_window = true,
       forward = true,

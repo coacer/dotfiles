@@ -1,6 +1,7 @@
 -- グローバル変数の設定
 vim.g.ROOT_DIR = vim.fn.expand('~/.config/nvim')
 vim.g.mapleader = ' '
+vim.g.maplocalleader = ' '
 
 -- ダイナミック プロバイダ
 vim.g.python_host_prog = vim.fn.expand('~/.pyenv/versions/py2neovim/bin/python')
