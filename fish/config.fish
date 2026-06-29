@@ -55,6 +55,10 @@ set -gx NVIM_NODE_LOG_FILE $HOME/.local/share/nvim/rplugin/log/node.log
 # Coursier
 set -gx PATH $HOME/Library/Application\ Support/Coursier/bin $PATH
 
+# Bun
+set -gx BUN_INSTALL $HOME/.bun
+set -gx PATH $BUN_INSTALL/bin $PATH
+
 # --------------------------------------------------
 # Version Managers Initialization
 # --------------------------------------------------

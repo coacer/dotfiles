@@ -132,3 +132,10 @@ source <(kubectl completion zsh)
 ## Completion scripts setup. Remove the following line to uninstall
 [[ -f /Users/nakagamiyuki/.dart-cli-completion/zsh-config.zsh ]] && . /Users/nakagamiyuki/.dart-cli-completion/zsh-config.zsh || true
 ## [/Completion]
+
+# bun completions
+[ -s "/Users/nakagamiyuki/.bun/_bun" ] && source "/Users/nakagamiyuki/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
