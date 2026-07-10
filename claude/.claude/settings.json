@@ -1,0 +1,56 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-settings.json",
+  "permissions": {
+    "allow": [
+      "Read(**/node_modules/@perses-dev/**)"
+    ],
+    "deny": [
+      "Read(**/node_modules/!(\\@perses-dev)/**)",
+      "List(**/node_modules/!(\\@perses-dev)/**)",
+      "Read(**/.terraform/**)",
+      "List(**/.terraform/**)",
+      "Read(**/.mysql-data/**)",
+      "List(**/.mysql-data/**)",
+      "Read(**/!(node_modules)/**/dist/**)",
+      "List(**/!(node_modules)/**/dist/**)",
+      "Read(**/build/**)",
+      "List(**/build/**)",
+      "Read(**/.nuxt/**)",
+      "List(**/.nuxt/**)"
+    ]
+  },
+  "hooks": {
+    "Notification": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "osascript -e 'display notification \"Claude Codeが許可を求めています\" with title \"Claude Code\" subtitle \"確認待ち\" sound name \"Default\"'"
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "osascript -e 'display notification \"タスクが完了しました\" with title \"Claude Code\" subtitle \"処理終了\" sound name \"Default\"'"
+          }
+        ]
+      }
+    ]
+  },
+  "statusLine": {
+    "type": "command",
+    "command": "bash /Users/nakagamiyuki/.claude/statusline-command.sh"
+  },
+  "enabledPlugins": {
+    "superpowers@claude-plugins-official": true
+  },
+  "feedbackSurveyState": {
+    "lastShownTime": 1754025379638
+  }
+}
